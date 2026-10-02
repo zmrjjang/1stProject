@@ -3,3 +3,6 @@ __pycache__/
 *.tmp
 .venv/
 data/collector.log
+.cache/
+research/search.log
+research/state.json.tmp

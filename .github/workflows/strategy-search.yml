@@ -1,0 +1,63 @@
+name: strategy-search
+
+# Runs the endless strategy search on GitHub's free runners: 5.5 hours every 6 hours,
+# so it is effectively always on. Progress and discoveries are committed to research/.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: "Search duration in hours"
+        default: "5.5"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: strategy-search
+  cancel-in-progress: false
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-lab.txt
+
+      - run: pip install -r requirements-lab.txt
+
+      - name: Configure git
+        run: |
+          git config user.name "strategy-search-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Search
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Phone push via the free ntfy app: subscribe to this topic (or set an NTFY_TOPIC secret).
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC || 'zmr-strategy-32bdb26924' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python strategy_search.py --hours "${{ inputs.hours || '5.5' }}" --push
+
+      - name: Save progress
+        if: always()
+        run: |
+          git add research
+          git diff --cached --quiet && exit 0
+          git commit -m "Strategy search progress"
+          for i in 1 2 3 4 5; do
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}"
+            sleep $((i * 10))
+          done
+          exit 1

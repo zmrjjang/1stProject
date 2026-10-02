@@ -1,0 +1,46 @@
+{
+  "split": {
+    "is_end": "2024-01-01",
+    "oos_end": "2025-07-01"
+  },
+  "cost_per_side": 0.0007,
+  "funding_8h": 0.0001,
+  "feature_cache_size": 120,
+  "search": {
+    "population": 48,
+    "generations_per_epoch": 40,
+    "stale_generations": 10,
+    "elite": 4,
+    "immigrants": 0.2,
+    "mutation_rate": 0.35
+  },
+  "gates": {
+    "min_trades": {
+      "single": 40,
+      "all": 150,
+      "xs": 60,
+      "pair": 30
+    },
+    "is_min_sharpe": 1.0,
+    "is_min_psr": 0.95,
+    "is_max_dd": 0.6,
+    "oos_min_sharpe": 0.8,
+    "oos_min_dsr": 0.9,
+    "oos_trade_frac": 0.3,
+    "oos_max_dd": 0.5,
+    "stress_cost_mult": 2.0,
+    "stress_min_sharpe": 0.4,
+    "neighbors": 8,
+    "nb_min_ratio": 0.5,
+    "nb_min_positive": 0.75,
+    "ho_min_sharpe": 0.5,
+    "ho_trade_frac": 0.2,
+    "max_corr": 0.7,
+    "ho_min_dsr": 0.5
+  },
+  "leverage": {
+    "target_vol": 0.4,
+    "max": 5,
+    "liq_buffer": 0.5
+  }
+}
