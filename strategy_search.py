@@ -10,7 +10,7 @@ import logging
 import os
 import sys
 
-from lab.search import Search
+from lab.search import Search, prune_discoveries
 
 
 def main():
@@ -19,8 +19,15 @@ def main():
     p.add_argument("--workers", type=int, default=0, help="worker processes (0 = all cores)")
     p.add_argument("--push", action="store_true", help="git commit + push each discovery immediately")
     p.add_argument("--seed", type=int, default=None)
+    p.add_argument("--prune", action="store_true",
+                   help="re-apply the duplicate rules to existing discoveries and exit")
     args = p.parse_args()
     root = os.path.dirname(os.path.abspath(__file__))
+    if args.prune:
+        kept, moved = prune_discoveries(root)
+        print("kept:", kept)
+        print("moved to variants (id -> variant of):", moved)
+        return
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(message)s",
         handlers=[logging.StreamHandler(sys.stdout),

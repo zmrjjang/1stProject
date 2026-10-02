@@ -28,7 +28,7 @@ import numpy as np
 from .data import Universe
 from .evaluate import Evaluator
 from .families import FAMILIES
-from .genome import cluster_key, crossover, key, mutate, neighbors, random_genome
+from .genome import cluster_key, crossover, key, mutate, neighbors, random_genome, structure_key
 from .notify import notify
 from .report import write_discovery, write_index
 from .stats import HyperLogLog, RunningVar, dsr
@@ -76,6 +76,76 @@ def _w_robust(args):
     return stress, nb
 
 
+def correlation(a, b, end):
+    """Daily-return correlation on pre-holdout days where both strategies were live."""
+    ok = np.isfinite(a[:end]) & np.isfinite(b[:end])
+    if ok.sum() <= 100:
+        return 0.0
+    x, y = a[:end][ok], b[:end][ok]
+    if x.std() == 0 or y.std() == 0:
+        return 0.0
+    return float(np.corrcoef(x, y)[0, 1])
+
+
+def duplicate_of(structure, daily, known, end, max_corr):
+    """Index of the first known discovery this one duplicates: same structure
+    (family + coin set + direction) or daily-return correlation above max_corr."""
+    for i, (s, other) in enumerate(known):
+        if s == structure or correlation(daily, other, end) > max_corr:
+            return i
+    return None
+
+
+def load_discoveries(ddir):
+    out = []
+    if not os.path.isdir(ddir):
+        return out
+    for name in sorted(os.listdir(ddir)):
+        if name.endswith(".json"):
+            with open(os.path.join(ddir, name)) as f:
+                g = json.load(f)["genome"]
+            out.append((structure_key(g), np.load(os.path.join(ddir, name[:-5] + ".npy")).astype(float)))
+    return out
+
+
+def prune_discoveries(root):
+    """Re-apply the duplicate rules to existing discoveries. Keeps the best of each group
+    (ranked by min(OOS Sharpe, holdout Sharpe)) and moves the rest to discoveries/variants/."""
+    rdir = os.path.join(root, "research")
+    ddir = os.path.join(rdir, "discoveries")
+    with open(os.path.join(rdir, "config.json")) as f:
+        cfg = json.load(f)
+    with open(os.path.join(rdir, "state.json")) as f:
+        state = json.load(f)
+    uni_day0 = Universe(["1d"], os.path.join(root, "data"), os.path.join(root, ".cache"))
+    end = uni_day0.day_of(cfg["split"]["oos_end"])
+    entries = sorted(state["discoveries"], key=lambda d: min(d["oos_sharpe"], d["ho_sharpe"]), reverse=True)
+    kept, known, moved = [], [], []
+    for e in entries:
+        with open(os.path.join(ddir, e["slug"] + ".json")) as f:
+            g = json.load(f)["genome"]
+        daily = np.load(os.path.join(ddir, e["slug"] + ".npy")).astype(float)
+        j = duplicate_of(structure_key(g), daily, known, end, cfg["gates"]["max_corr"])
+        if j is None:
+            kept.append(e)
+            known.append((structure_key(g), daily))
+        else:
+            moved.append((e, kept[j]["id"]))
+    vdir = os.path.join(ddir, "variants")
+    os.makedirs(vdir, exist_ok=True)
+    for e, parent in moved:
+        for ext in (".md", ".json", ".npy"):
+            os.replace(os.path.join(ddir, e["slug"] + ext), os.path.join(vdir, e["slug"] + ext))
+    state["last_id"] = max([d["id"] for d in state["discoveries"]] + [state.get("last_id", 0)])
+    state["discoveries"] = sorted(kept, key=lambda d: d["id"])
+    state.setdefault("pruned", []).extend({"id": e["id"], "variant_of": p} for e, p in moved)
+    state["duplicates"] = state.get("duplicates", 0) + len(moved)
+    with open(os.path.join(rdir, "state.json"), "w") as f:
+        json.dump(state, f, indent=1, ensure_ascii=False)
+    write_index(ddir, state["discoveries"])
+    return [d["id"] for d in state["discoveries"]], [(e["id"], p) for e, p in moved]
+
+
 def _now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -100,10 +170,7 @@ class Search:
         self.oos_clusters = HyperLogLog(self.state.get("oos_clusters_hll"))
         self.memo = {}
         self.validated = set()
-        self.known = []  # daily returns of earlier discoveries (for de-duplication)
-        for name in sorted(os.listdir(self.ddir)) if os.path.isdir(self.ddir) else []:
-            if name.endswith(".npy"):
-                self.known.append(np.load(os.path.join(self.ddir, name)).astype(float))
+        self.known = load_discoveries(self.ddir)  # (structure, daily returns) for de-duplication
 
     # -- persistence --------------------------------------------------------
     def _state_path(self):
@@ -255,7 +322,7 @@ class Search:
                     and pos >= G["nb_min_positive"]):
                 continue
             # Variants of an earlier discovery are dropped before they can use up a holdout look.
-            if self.is_duplicate(daily):
+            if self.is_duplicate(g, daily):
                 self.state["duplicates"] += 1
                 continue
             # Holdout is looked at only now, once per robust, novel candidate.
@@ -281,25 +348,18 @@ class Search:
             }
             self.record(g, st, daily, extra)
 
-    def is_duplicate(self, daily):
-        """Correlation with earlier discoveries, measured on pre-holdout days only."""
+    def is_duplicate(self, g, daily):
         end = _UNI.day_of(self.cfg["split"]["oos_end"])
-        for other in self.known:
-            ok = np.isfinite(daily[:end]) & np.isfinite(other[:end])
-            ok = np.concatenate([ok, np.zeros(daily.size - end, bool)])
-            if ok.sum() > 100:
-                a, b = daily[ok], other[ok]
-                if a.std() > 0 and b.std() > 0 and np.corrcoef(a, b)[0, 1] > self.G["max_corr"]:
-                    return True
-        return False
+        return duplicate_of(structure_key(g), daily, self.known, end, self.G["max_corr"]) is not None
 
     def record(self, g, st, daily, extra):
-        disc_id = len(self.state["discoveries"]) + 1
+        disc_id = max([d["id"] for d in self.state["discoveries"]] + [self.state.get("last_id", 0)]) + 1
+        self.state["last_id"] = disc_id
         repo, ref = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_REF_NAME")
         link_base = f"https://github.com/{repo}/blob/{ref}/research/discoveries" if repo and ref else None
         slug, title, message, body, link, lev = write_discovery(
             self.ddir, disc_id, g, st, extra, daily, _UNI, self.cfg, link_base)
-        self.known.append(daily.astype(float))
+        self.known.append((structure_key(g), daily.astype(float)))
         self.state["families"][g["family"]]["found"] += 1
         self.state["discoveries"].append({
             "id": disc_id, "slug": slug, "name": FAMILIES[g["family"]]["name"], "universe": g["universe"],

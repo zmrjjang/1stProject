@@ -153,6 +153,18 @@ def neighbors(g, rng, n, scale=0.12):
     return out
 
 
+def structure_key(g):
+    """The trading idea without its tuning: family + coin set + direction (or portfolio mode).
+    Two discoveries with the same structure are treated as variants of one strategy."""
+    fam = FAMILIES[g["family"]]
+    if fam["kind"] == "single":
+        side = g["p"]["side"] if g["family"] == "season" else g["mod"]["direction"]
+        return f"{g['family']}|{g['universe']}|{side}"
+    if fam["kind"] == "xs":
+        return f"xsmom|{g['p']['mode']}|{g['p']['legs']}"
+    return f"pairs|{'/'.join(sorted([g['p']['a'], g['p']['b']]))}"
+
+
 def cluster_key(g):
     """Coarse identity used to count *independent* trials for the Deflated Sharpe Ratio:
     numeric parameters are bucketed on a log2 grid, so GA siblings that differ by a few

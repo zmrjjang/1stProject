@@ -137,5 +137,7 @@ def write_index(out_dir, entries):
         lines.append(f"| {e['id']} | {e['name']} | {e['universe']} | {e['tf']} | {e['oos_sharpe']:.2f} | "
                      f"{e['ho_sharpe']:.2f} | {_pct(e['cagr'])} | {e['mdd'] * 100:.0f}% | {e['lev']:g}x | "
                      f"[보기]({e['slug']}.md) |")
+    lines += ["", "같은 전략의 변형(같은 계열·대상·방향이거나 일간수익률 상관 > 0.4)은 "
+                  "알리지 않으며, 예전에 정리된 변형은 [variants](variants/) 폴더에 있습니다."]
     with open(os.path.join(out_dir, "README.md"), "w") as f:
         f.write("\n".join(lines) + "\n")

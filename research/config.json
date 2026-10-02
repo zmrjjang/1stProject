@@ -35,7 +35,7 @@
     "nb_min_positive": 0.75,
     "ho_min_sharpe": 0.5,
     "ho_trade_frac": 0.2,
-    "max_corr": 0.7,
+    "max_corr": 0.4,
     "ho_min_dsr": 0.5
   },
   "leverage": {
