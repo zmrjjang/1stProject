@@ -58,8 +58,13 @@ def perturb(spec, v, rng, scale):
     raise ValueError(kind)
 
 
+_NAMES = list(FAMILIES)
+_WEIGHTS = [FAMILIES[f].get("weight", 1.0) for f in _NAMES]
+_PROBS = [w / sum(_WEIGHTS) for w in _WEIGHTS]
+
+
 def random_genome(rng, symbols, family=None):
-    fam = family or list(FAMILIES)[int(rng.integers(len(FAMILIES)))]
+    fam = family or _NAMES[int(rng.choice(len(_NAMES), p=_PROBS))]
     spec = FAMILIES[fam]
     g = {"family": fam, "tf": _py(spec["tfs"][int(rng.integers(len(spec["tfs"])))]),
          "p": {k: sample(s, rng) for k, s in spec["params"].items()}, "mod": {}}
@@ -161,8 +166,42 @@ def structure_key(g):
         side = g["p"]["side"] if g["family"] == "season" else g["mod"]["direction"]
         return f"{g['family']}|{g['universe']}|{side}"
     if fam["kind"] == "xs":
-        return f"xsmom|{g['p']['mode']}|{g['p']['legs']}"
+        return f"{g['family']}|{g['p']['mode']}|{g['p']['legs']}"
     return f"pairs|{'/'.join(sorted([g['p']['a'], g['p']['b']]))}"
+
+
+# Main time-scale parameter of each family (its octave defines a cluster of similar strategies).
+_SCALE = {"tsmom": "lookback", "ma_cross": "fast", "donchian": "n", "zscore_mr": "n", "rsi_mr": "n",
+          "squeeze": "n", "flow": "w", "regime": "er_n", "xsmom": "lookback", "pairs": "z_n"}
+
+
+def search_space_cells(n_symbols):
+    """Number of clusters of similar strategies in the whole search space: family x timeframe x
+    coin set x direction x every categorical option x octave of the main look-back.
+
+    Strategies inside one cluster differ only in thresholds/exits and are strongly correlated,
+    so this is an upper bound on the number of *independent* trials the endless search can
+    ever make (Lopez de Prado 2019: estimate effective trials by clustering). It is used as N
+    in the Deflated Sharpe Ratio instead of the raw count, which grows without bound."""
+    total = 0
+    for f, s in FAMILIES.items():
+        if s["kind"] == "single":
+            uni, dirs = n_symbols + 1, (1 if f == "season" else 3)
+        elif s["kind"] == "xs":
+            uni, dirs = 1, 1
+        else:
+            uni, dirs = n_symbols * (n_symbols - 1) // 2, 1
+        choices = 1
+        for spec in s["params"].values():
+            if spec[0] == "choice":
+                choices *= len(spec[1])
+        if f == "season":
+            scale = 8  # start hour in 3-hour blocks
+        else:
+            spec = s["params"][s.get("scale") or _SCALE[f]]
+            scale = int(math.log2(spec[2])) - int(math.log2(spec[1])) + 1
+        total += len(s["tfs"]) * uni * dirs * choices * scale
+    return total
 
 
 def cluster_key(g):

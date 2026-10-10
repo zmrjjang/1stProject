@@ -20,7 +20,7 @@
 
 ## 어떻게 찾나
 
-### 1. 전략 공간 — 학술적 근거가 있는 11개 계열
+### 1. 전략 공간 — 학술적 근거가 있는 15개 계열
 
 | 계열 | 근거 |
 |---|---|
@@ -35,6 +35,14 @@
 | 시간대 계절성 | Eross et al. (2019) *The intraday dynamics of bitcoin* |
 | 횡단면 모멘텀/리버설 | Jegadeesh & Titman (1993); Liu, Tsyvinski & Wu (2022) *J. Finance* |
 | 페어 트레이딩 (공적분) | Engle & Granger (1987); Gatev, Goetzmann & Rouwenhorst (2006) *RFS* |
+| **펀딩비 쏠림** (추종/역행) | He, Manela, Ross & von Wachter (2022); Ackerer, Hugonnier & Jermann (2024) *Math. Finance* |
+| **롱/숏 비율 포지셔닝** (전체 계정, 상위 트레이더, 둘의 차이) | Kogan, Makarov, Niessner & Schoar (2024) *JFE*; Wang (2003) *J. Futures Markets* |
+| **미결제약정(OI) × 가격** (신규자금 추종 / 청산 소진 역행) | Hong & Yogo (2012) *JFE*; Bessembinder & Seguin (1993) *JFQA* |
+| **횡단면 펀딩 캐리** | Schmeling, Schrimpf & Todorov (2023) *Crypto Carry*; Koijen et al. (2018) *Carry*, *JFE* |
+
+굵게 표시한 4개는 가격 외 정보(펀딩비, 미결제약정, 롱/숏 비율 — `collect_derivatives.py`로 수집)를 쓰며,
+탐색 시 다른 계열보다 3배 자주 시도됩니다. 이 데이터는 해당 봉이 마감되기 **최소 5분 전에 공개된 값만** 사용합니다
+(펀딩비는 정산 시점 이후). 미결제약정·비율 데이터는 BTC 2020-09, 나머지 대부분 2021-12부터 있습니다.
 
 여기에 공통 옵션(롱/숏/양방향, ATR 손절·익절, 최대 보유기간)과 대상(코인 1개 또는 10개 전체 동일비중)을 조합합니다.
 
@@ -63,7 +71,9 @@
 
 - **PSR** (Bailey & López de Prado 2012): 표본 길이·왜도·첨도를 반영해 "진짜 샤프 > 0"일 확률
 - **DSR** (Bailey & López de Prado 2014): 지금까지 시도한 독립 전략 수 N을 반영해, 실력 없는 N개 중 최고값보다 나을 확률.
-  시도가 늘수록 기준이 자동으로 엄격해집니다. 독립 시도 수는 비슷한 파라미터를 하나로 묶어(클러스터링) HyperLogLog로 셉니다.
+  시도가 늘수록 기준이 자동으로 엄격해집니다. 독립 시도 수 N은 "계열 × 봉 × 대상 × 방향 × 선택옵션 × 주 기간의 2배수 구간"으로
+  묶은 클러스터 중 실제 시도된 수이며(HyperLogLog로 집계), 탐색 공간 전체의 클러스터 수(약 2.7만 개)를 넘을 수 없습니다.
+  같은 클러스터 안의 전략들은 진입·청산 문턱만 달라 서로 강하게 상관되므로 독립 시도로 보지 않습니다 (López de Prado 2019).
 - 홀드아웃은 앞 단계를 모두 통과한 전략에만 공개되며, 몇 번 들여다봤는지도 DSR에 반영합니다.
 
 `python strategy_search.py --prune`을 실행하면 기존 발견 목록에도 같은 규칙을 다시 적용합니다

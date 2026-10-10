@@ -8,7 +8,7 @@ import numpy as np
 from . import engine
 from . import indicators as ind
 from .data import INTERVAL_MS
-from .families import FAMILIES, w_pairs, w_xsmom
+from .families import FAMILIES, w_pairs, w_xscarry, w_xsmom
 from .stats import summarize
 
 SEGMENTS = ("is", "oos", "ho")
@@ -67,6 +67,25 @@ class Evaluator:
                 bw = np.log(np.maximum(ind.rolling_std(c, n), 1e-12) / ind.sma(c, n))
             bw[: n - 1] = bw[n - 1] if bw.size >= n else 0.0
             v = ind.zscore(bw, w)
+        elif name == "deriv_z":
+            field, smooth, w = args
+            with np.errstate(divide="ignore", invalid="ignore"):
+                if field == "fr":
+                    x = d["fr"]
+                elif field == "smart_gap":
+                    x = np.log(d["ls_top_pos"]) - np.log(d["ls_glob"])
+                else:
+                    x = np.log(d[field])
+            x = np.where(np.isfinite(x), x, np.nan)
+            v = ind.zscore_nan(ind.ema_nan(x, smooth) if smooth > 1 else x, w)
+        elif name == "roc_z":
+            v = ind.zscore_nan(ind.log_roc(c, args[0]), args[1])
+        elif name == "oi_roc_z":
+            oi = np.where(d["oi"] > 0, d["oi"], np.nan)  # zero/negative snapshots are bad data
+            L = args[0]
+            roc = np.full(oi.size, np.nan)
+            roc[L:] = np.log(oi[L:] / oi[:-L])
+            v = ind.zscore_nan(roc, args[1])
         elif name == "flow_z":
             n, w = args
             v = ind.zscore(ind.ema(ind.taker_imbalance(d["v"], d["tbv"]), n), w)
@@ -114,6 +133,9 @@ class Evaluator:
         if g["family"] == "xsmom":
             w = w_xsmom(m, p, pc)
             valid = np.isfinite(m["c"]).sum(axis=1) >= 2 * int(p["k"])
+        elif g["family"] == "xs_carry":
+            w = w_xscarry(m, p, pc)
+            valid = np.isfinite(m["fr"]).sum(axis=1) >= 2 * int(p["k"])
         else:
             w = w_pairs(m, p, pc, self.uni.symbols)
             a, b = self.uni.symbols.index(p["a"]), self.uni.symbols.index(p["b"])

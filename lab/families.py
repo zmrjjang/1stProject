@@ -15,6 +15,7 @@ from . import indicators as ind
 ALL_TF = ["5m", "15m", "30m", "1h", "4h", "1d"]
 INTRADAY_TF = ["5m", "15m", "30m", "1h"]
 PORTFOLIO_TF = ["15m", "30m", "1h", "4h", "1d"]
+DERIV_TF = ["30m", "1h", "4h", "1d"]  # open interest / ratios are 30-minute snapshots
 
 # Common modifiers for single-asset families.
 MODIFIERS = {
@@ -126,6 +127,41 @@ def b_season(d, p, F):
 
 
 # ---------------------------------------------------------------------------
+# Positioning families (funding, open interest, long/short ratios)
+
+def _z_rule(z, p, up, dn):
+    th, xth = p["th"], min(p["exit"], p["th"])
+    return (z > th) & up, (z < -th) & dn, z < xth, z > -xth
+
+
+def b_funding(d, p, F):
+    """mode +1: follow the crowd (high funding -> long); -1: fade crowded funding."""
+    z = F("deriv_z", "fr", int(p["smooth"]), int(p["w"])) * p["mode"]
+    up, dn = _trend_ok(F, d["c"], p["trend"])
+    return _z_rule(z, p, up, dn)
+
+
+def b_positioning(d, p, F):
+    """Long/short account or position ratios (log), z-scored; mode -1 fades the crowd."""
+    z = F("deriv_z", p["which"], int(p["smooth"]), int(p["w"])) * p["mode"]
+    up, dn = _trend_ok(F, d["c"], p["trend"])
+    return _z_rule(z, p, up, dn)
+
+
+def b_oi(d, p, F):
+    """Price move vs open-interest change over the same lookback (both z-scored).
+    confirm: price up + OI up -> long (new money), price down + OI up -> short.
+    fade:    price down + OI down -> long (liquidation flush), price up + OI down -> short."""
+    L, w = int(p["lookback"]), int(p["w"])
+    pz = F("roc_z", L, w)
+    oz = F("oi_roc_z", L, w)
+    a, b, x = p["price_th"], p["oi_th"], p["exit"]
+    if p["mode"] == "confirm":
+        return (pz > a) & (oz > b), (pz < -a) & (oz > b), pz < x, pz > -x
+    return (pz < -a) & (oz < -b), (pz > a) & (oz < -b), pz > -x, pz < x
+
+
+# ---------------------------------------------------------------------------
 # Portfolio families
 
 def w_xsmom(m, p, cache):
@@ -192,6 +228,23 @@ def _rolling_nanmean(x, n):
         with np.errstate(invalid="ignore", divide="ignore"):
             out[n:, j] = np.where(k > n // 2, s / k, np.nan)
     return out
+
+
+def w_xscarry(m, p, cache):
+    """Cross-sectional funding carry: rank coins by smoothed funding rate."""
+    L, R, k = int(p["lookback"]), int(p["rebalance"]), int(p["k"])
+    key = ("carry", L)
+    score = cache.get(key)
+    if score is None:
+        fr = m["fr"]
+        score = np.empty_like(fr)
+        for j in range(fr.shape[1]):
+            score[:, j] = ind.ema_nan(np.ascontiguousarray(fr[:, j]), L)
+        score[~np.isfinite(m["c"])] = np.nan
+        cache[key] = score
+    # carry: long the coins whose longs pay the least (crowd is short), short the most crowded
+    signed = -score if p["mode"] == "carry" else score
+    return _xs_weights(signed, R, k, 1 if p["legs"] == "ls" else 0)
 
 
 def w_pairs(m, p, cache, symbols):
@@ -370,6 +423,66 @@ FAMILIES = {
         ref="Eross, McGroarty, Urquhart & Wolfe (2019) 'The intraday dynamics of bitcoin', Res. Int. Bus. Finance",
         rule=lambda p: (f"UTC {int(p['start']):02d}시부터 {int(p['length'])}시간 동안 "
                         f"{'롱' if p['side'] > 0 else '숏'} 보유 ({ {'all': '매일', 'weekdays': '평일만', 'weekend': '주말만'}[p['days']] })."),
+    ),
+    "funding": dict(
+        kind="single", tfs=DERIV_TF, build=b_funding, weight=3.0, scale="w",
+        params={"smooth": ("int", 1, 50, True), "w": ("int", 50, 3000, True),
+                "th": ("float", 0.5, 3.0), "exit": ("float", -1.0, 1.5), "mode": ("choice", [1, -1]),
+                "trend": ("optint", 50, 2000, 0.6, True)},
+        name="펀딩비 쏠림",
+        ref="He, Manela, Ross & von Wachter (2022) 'Fundamentals of Perpetual Futures'; "
+            "Ackerer, Hugonnier & Jermann (2024) 'Perpetual Futures Pricing', Math. Finance",
+        rule=lambda p: (f"펀딩비의 EMA({int(p['smooth'])})를 {int(p['w'])}봉 z-score로 만든 값이 "
+                        f"+{p['th']:.2f} 초과면 {'롱' if p['mode'] > 0 else '숏'}, -{p['th']:.2f} 미만이면 "
+                        f"{'숏' if p['mode'] > 0 else '롱'} ({'쏠림 추종' if p['mode'] > 0 else '쏠림 역행'}). "
+                        f"{min(p['exit'], p['th']):.2f} 이내로 돌아오면 청산."
+                        + (f" 추세필터 EMA({int(p['trend'])})." if p["trend"] > 0 else "")),
+    ),
+    "positioning": dict(
+        kind="single", tfs=DERIV_TF, build=b_positioning, weight=3.0, scale="w",
+        params={"which": ("choice", ["ls_glob", "ls_top_acc", "ls_top_pos", "smart_gap"]),
+                "smooth": ("int", 1, 50, True), "w": ("int", 50, 3000, True),
+                "th": ("float", 0.5, 3.0), "exit": ("float", -1.0, 1.5), "mode": ("choice", [1, -1]),
+                "trend": ("optint", 50, 2000, 0.6, True)},
+        name="롱/숏 비율 포지셔닝",
+        ref="Kogan, Makarov, Niessner & Schoar (2024) 'Are Cryptocurrencies Different? Evidence from "
+            "Retail Trading', J. Financial Economics; Wang (2003) J. Futures Markets",
+        rule=lambda p: (f"{ {'ls_glob': '전체 계정 롱/숏 비율', 'ls_top_acc': '상위 트레이더 계정 롱/숏 비율', 'ls_top_pos': '상위 트레이더 포지션 롱/숏 비율', 'smart_gap': '상위 트레이더 포지션 비율 ÷ 전체 계정 비율'}[p['which']] }"
+                        f"(로그)의 EMA({int(p['smooth'])})를 {int(p['w'])}봉 z-score로 만든 값이 +{p['th']:.2f} 초과면 "
+                        f"{'롱' if p['mode'] > 0 else '숏'}, -{p['th']:.2f} 미만이면 {'숏' if p['mode'] > 0 else '롱'}. "
+                        f"{min(p['exit'], p['th']):.2f} 이내로 돌아오면 청산."
+                        + (f" 추세필터 EMA({int(p['trend'])})." if p["trend"] > 0 else "")),
+    ),
+    "oi_trend": dict(
+        kind="single", tfs=DERIV_TF, build=b_oi, weight=3.0, scale="lookback",
+        params={"lookback": ("int", 2, 500, True), "w": ("int", 100, 3000, True),
+                "price_th": ("float", 0.0, 2.5), "oi_th": ("float", 0.0, 2.5),
+                "exit": ("float", -1.0, 1.0), "mode": ("choice", ["confirm", "fade"])},
+        name="미결제약정(OI) × 가격",
+        ref="Hong & Yogo (2012) 'What does futures market interest tell us about the macroeconomy and "
+            "asset prices?', J. Financial Economics; Bessembinder & Seguin (1993) JFQA",
+        rule=lambda p: (f"{int(p['lookback'])}봉 가격 변화와 미결제약정 변화를 각각 {int(p['w'])}봉 z-score로 만들어, "
+                        + (f"가격 z > {p['price_th']:.2f} 이고 OI z > {p['oi_th']:.2f}(신규 자금 유입)면 롱, "
+                           f"가격 z < -{p['price_th']:.2f} 이고 OI z > {p['oi_th']:.2f}면 숏. "
+                           f"가격 z가 {p['exit']:+.2f} 아래(롱)/위(숏)로 돌아오면 청산."
+                           if p["mode"] == "confirm" else
+                           f"가격 z < -{p['price_th']:.2f} 이고 OI z < -{p['oi_th']:.2f}(청산 물량 소진)면 롱, "
+                           f"가격 z > {p['price_th']:.2f} 이고 OI z < -{p['oi_th']:.2f}(숏 커버링 소진)면 숏. "
+                           f"가격 z가 {-p['exit']:+.2f} 위(롱)/아래(숏)로 돌아오면 청산.")),
+    ),
+    "xs_carry": dict(
+        kind="xs", tfs=["1h", "4h", "1d"], weight=3.0, scale="lookback",
+        params={"lookback": ("int", 3, 500, True), "rebalance": ("int", 1, 100, True),
+                "k": ("int", 1, 4, False), "mode": ("choice", ["carry", "anti"]),
+                "legs": ("choice", ["ls", "long"])},
+        name="횡단면 펀딩 캐리 (10개 코인 순위)",
+        ref="Schmeling, Schrimpf & Todorov (2023) 'Crypto Carry', BIS Working Paper; "
+            "Koijen, Moskowitz, Pedersen & Vrugt (2018) 'Carry', J. Financial Economics",
+        rule=lambda p: (f"{int(p['rebalance'])}봉마다 10개 코인을 펀딩비 EMA({int(p['lookback'])}) 순으로 정렬해 "
+                        + (f"펀딩비가 가장 낮은 {int(p['k'])}개 롱" + (f", 가장 높은 {int(p['k'])}개 숏" if p["legs"] == "ls" else "")
+                           if p["mode"] == "carry" else
+                           f"펀딩비가 가장 높은 {int(p['k'])}개 롱" + (f", 가장 낮은 {int(p['k'])}개 숏" if p["legs"] == "ls" else ""))
+                        + " (동일비중)."),
     ),
     "xsmom": dict(
         kind="xs", tfs=PORTFOLIO_TF,

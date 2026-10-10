@@ -28,7 +28,8 @@ import numpy as np
 from .data import Universe
 from .evaluate import Evaluator
 from .families import FAMILIES
-from .genome import cluster_key, crossover, key, mutate, neighbors, random_genome, structure_key
+from .genome import (cluster_key, crossover, key, mutate, neighbors, random_genome, search_space_cells,
+                     structure_key)
 from .notify import notify
 from .report import write_discovery, write_index
 from .stats import HyperLogLog, RunningVar, dsr
@@ -193,7 +194,8 @@ class Search:
     def save_state(self):
         st = self.state
         st["is_sr"], st["oos_sr"], st["ho_sr"] = self.is_sr.to_dict(), self.oos_sr.to_dict(), self.ho_sr.to_dict()
-        st["oos_independent_trials"] = self.oos_clusters.count()
+        st["oos_independent_trials"] = self.n_eff()
+        st["oos_fine_clusters"] = self.oos_clusters.count()
         st["oos_clusters_hll"] = self.oos_clusters.dump()
         st["updated_at"] = _now()
         tmp = self._state_path() + ".tmp"
@@ -218,6 +220,11 @@ class Search:
             run("pull", "--rebase", "-X", "theirs", "origin", branch)
             time.sleep(2 ** attempt)
         log.warning("git push failed; results stay committed locally")
+
+    def n_eff(self):
+        """Effective number of independent OOS trials for the Deflated Sharpe Ratio: clusters
+        actually tested, capped by the number of clusters that exist in the search space."""
+        return max(2, min(self.oos_clusters.count(), search_space_cells(len(_UNI.symbols))))
 
     # -- gates --------------------------------------------------------------
     def min_trades(self, g):
@@ -296,8 +303,7 @@ class Search:
             if o["days"] >= 30:
                 self.oos_sr.add(o["sr_daily"])
             self.oos_clusters.add(cluster_key(g))
-            oos_dsr = dsr(o["sr_daily"], o["days"], o["skew"], o["kurt"],
-                          max(2, self.oos_clusters.count()), self.oos_sr.var)
+            oos_dsr = dsr(o["sr_daily"], o["days"], o["skew"], o["kurt"], self.n_eff(), self.oos_sr.var)
             score = min(st["is"]["sharpe"], o["sharpe"])
             best = self.state["best_near_miss"]
             if best is None or score > best["score"]:
@@ -341,7 +347,7 @@ class Search:
             extra = {
                 "is_dsr": dsr(i["sr_daily"], i["days"], i["skew"], i["kurt"],
                               max(2, self.state["evaluations"]), self.is_sr.var),
-                "n_trials": self.state["evaluations"], "oos_dsr": oos_dsr, "n_oos": self.oos_clusters.count(),
+                "n_trials": self.state["evaluations"], "oos_dsr": oos_dsr, "n_oos": self.n_eff(),
                 "ho_dsr": ho_dsr,
                 "stress_sharpe": stress, "nb_n": int(nb.size), "nb_median": med, "nb_pos": pos,
                 "n_ho": self.state["holdout_checks"],

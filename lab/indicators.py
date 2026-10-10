@@ -178,3 +178,51 @@ def shift(x, k):
     for i in range(k, x.size):
         out[i] = x[i - k]
     return out
+
+
+@njit(cache=True)
+def ema_nan(x, n):
+    """EMA that starts at the first finite value and carries over NaN gaps (NaN before start)."""
+    out = np.full(x.size, np.nan)
+    a = 2.0 / (n + 1.0)
+    acc = np.nan
+    for i in range(x.size):
+        v = x[i]
+        if v == v:
+            acc = v if acc != acc else a * v + (1.0 - a) * acc
+        out[i] = acc
+    return out
+
+
+@njit(cache=True)
+def zscore_nan(x, n):
+    """Rolling z-score over the finite values among the last n candles; NaN when fewer than
+    80% of them are finite or the current value is missing."""
+    out = np.full(x.size, np.nan)
+    s = 0.0
+    s2 = 0.0
+    cnt = 0
+    base = np.nan
+    for i in range(x.size):
+        v = x[i]
+        if v == v:
+            if base != base:
+                base = v
+            d = v - base
+            s += d
+            s2 += d * d
+            cnt += 1
+        j = i - n
+        if j >= 0:
+            w = x[j]
+            if w == w:
+                d = w - base
+                s -= d
+                s2 -= d * d
+                cnt -= 1
+        if v == v and cnt >= 0.8 * n and cnt > 2:
+            m = s / cnt
+            var = (s2 - s * m) / (cnt - 1)
+            if var > 0:
+                out[i] = (v - base - m) / np.sqrt(var)
+    return out
