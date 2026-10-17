@@ -61,17 +61,22 @@ def _row(label, s):
             f"{_pct(s['cagr'])} | {_pct(s['total_return'])} | {s['max_dd'] * 100:.1f}% |")
 
 
-def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_base=None):
+def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_base=None, kind="discovery"):
     fam = FAMILIES[g["family"]]
     lev = recommended_leverage(stats, cfg)
-    slug = f"{disc_id:04d}_{g['family']}_{g['universe'].replace('/', '-')}_{g['tf']}"
+    tag = f"C{disc_id}" if kind == "candidate" else f"#{disc_id}"
+    slug = (f"{'C' if kind == 'candidate' else ''}{disc_id:04d}_{g['family']}_"
+            f"{g['universe'].replace('/', '-')}_{g['tf']}")
     years = yearly(daily, uni.day0)
     split = cfg["split"]
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     rule = describe(g)
     md = [
-        f"# 전략 #{disc_id}: {fam['name']} — {g['universe']} {g['tf']}",
+        f"# {'후보' if kind == 'candidate' else '전략'} {tag}: {fam['name']} — {g['universe']} {g['tf']}",
         "",
+        *(["> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. "
+           f"`python run_strategy.py paper --candidate C{disc_id}` 로 모의매매해 보세요.", ""]
+          if kind == "candidate" else []),
         f"- 발견 시각: {now}",
         f"- 근거 논문/이론: {fam['ref']}",
         f"- 규칙: {rule}",
@@ -121,7 +126,7 @@ def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_bas
     np.save(os.path.join(out_dir, slug + ".npy"), daily.astype(np.float32))
 
     s_oos, s_ho = stats["oos"], stats["ho"]
-    title = f"전략 발견 #{disc_id}: {fam['name']} {g['universe']} {g['tf']}"
+    title = f"{'후보' if kind == 'candidate' else '전략 발견'} {tag}: {fam['name']} {g['universe']} {g['tf']}"
     message = (f"검증 샤프 {s_oos['sharpe']:.2f} / 홀드아웃 샤프 {s_ho['sharpe']:.2f} / "
                f"전체 연수익 {_pct(stats['all']['cagr'])} / MDD {stats['all']['max_dd'] * 100:.0f}% (1x) / "
                f"권장 {lev:g}x\n{rule}")
@@ -129,15 +134,20 @@ def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_bas
     return slug, title, message, "\n".join(md), link, lev
 
 
-def write_index(out_dir, entries):
-    lines = ["# 발견된 전략 목록", "",
+def write_index(out_dir, entries, kind="discovery"):
+    cand = kind == "candidate"
+    lines = ["# 페이퍼 트레이딩 후보 목록" if cand else "# 발견된 전략 목록", "",
+             *(["엄격한 과최적화 검정 없이 검증·홀드아웃 구간 수익, 비용 스트레스, 파라미터 안정성만 통과한 후보입니다. "
+                "같은 아이디어의 변형은 더 좋은 것이 나오면 교체됩니다. "
+                "`python run_strategy.py paper --candidate C번호` 로 모의매매할 수 있습니다.", ""] if cand else []),
              "| # | 전략 | 대상 | 봉 | 검증 샤프 | 홀드아웃 샤프 | 전체 연수익(1x) | MDD(1x) | 권장 레버리지 | 상세 |",
              "|---|---|---|---|---|---|---|---|---|---|"]
     for e in entries:
-        lines.append(f"| {e['id']} | {e['name']} | {e['universe']} | {e['tf']} | {e['oos_sharpe']:.2f} | "
+        lines.append(f"| {'C' if cand else ''}{e['id']} | {e['name']} | {e['universe']} | {e['tf']} | {e['oos_sharpe']:.2f} | "
                      f"{e['ho_sharpe']:.2f} | {_pct(e['cagr'])} | {e['mdd'] * 100:.0f}% | {e['lev']:g}x | "
                      f"[보기]({e['slug']}.md) |")
-    lines += ["", "같은 전략의 변형(같은 계열·대상·방향이거나 일간수익률 상관 > 0.4)은 "
-                  "알리지 않으며, 예전에 정리된 변형은 [variants](variants/) 폴더에 있습니다."]
+    if not cand:
+        lines += ["", "같은 전략의 변형(같은 계열·대상·방향이거나 일간수익률 상관 > 0.4)은 "
+                      "알리지 않으며, 예전에 정리된 변형은 [variants](variants/) 폴더에 있습니다."]
     with open(os.path.join(out_dir, "README.md"), "w") as f:
         f.write("\n".join(lines) + "\n")

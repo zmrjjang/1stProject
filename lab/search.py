@@ -97,6 +97,12 @@ def duplicate_of(structure, daily, known, end, max_corr):
     return None
 
 
+def load_one(ddir, slug):
+    with open(os.path.join(ddir, slug + ".json")) as f:
+        g = json.load(f)["genome"]
+    return structure_key(g), np.load(os.path.join(ddir, slug + ".npy")).astype(float)
+
+
 def load_discoveries(ddir):
     out = []
     if not os.path.isdir(ddir):
@@ -156,9 +162,12 @@ class Search:
         self.root = root
         self.rdir = os.path.join(root, "research")
         self.ddir = os.path.join(self.rdir, "discoveries")
+        self.cdir = os.path.join(self.rdir, "candidates")
         with open(os.path.join(self.rdir, "config.json")) as f:
             self.cfg = json.load(f)
         self.G = self.cfg["gates"]
+        self.CG = self.cfg["candidate_gates"]
+        self.new_candidates = []
         self.workers = workers or os.cpu_count() or 1
         self.deadline = time.time() + hours * 3600 if hours else None
         self.push = push
@@ -172,6 +181,7 @@ class Search:
         self.memo = {}
         self.validated = set()
         self.known = load_discoveries(self.ddir)  # (structure, daily returns) for de-duplication
+        self.cand_known = {e["id"]: load_one(self.cdir, e["slug"]) for e in self.state["candidates"]}
 
     # -- persistence --------------------------------------------------------
     def _state_path(self):
@@ -187,6 +197,9 @@ class Search:
                   "holdout_checks": 0, "holdout_rejects": 0, "duplicates": 0,
                   "families": {}, "best_near_miss": None, "discoveries": []}
         st.setdefault("ho_sr", {})
+        st.setdefault("candidates", [])
+        for k in ("cand_last_id", "cand_holdout_checks", "cand_holdout_rejects", "cand_replaced"):
+            st.setdefault(k, 0)
         for f in FAMILIES:
             st["families"].setdefault(f, {"evals": 0, "oos": 0, "robust": 0, "holdout": 0, "found": 0})
         return st
@@ -311,48 +324,144 @@ class Search:
                     "score": round(score, 3), "family": g["family"], "universe": g["universe"], "tf": g["tf"],
                     "is_sharpe": round(st["is"]["sharpe"], 2), "oos_sharpe": round(o["sharpe"], 2),
                     "oos_dsr": round(oos_dsr, 3), "at": _now()}
-            if (o["sharpe"] >= G["oos_min_sharpe"] and oos_dsr >= G["oos_min_dsr"]
-                    and o["trades"] >= self.min_trades(g) * G["oos_trade_frac"]
-                    and o["total_return"] > 0 and o["max_dd"] <= G["oos_max_dd"]):
-                passed.append((g, st, daily, oos_dsr))
+            strict = (o["sharpe"] >= G["oos_min_sharpe"] and oos_dsr >= G["oos_min_dsr"]
+                      and o["trades"] >= self.min_trades(g) * G["oos_trade_frac"]
+                      and o["total_return"] > 0 and o["max_dd"] <= G["oos_max_dd"])
+            CG = self.CG
+            loose = (o["sharpe"] >= CG["oos_min_sharpe"] and o["total_return"] > 0
+                     and o["trades"] >= self.min_trades(g) * CG["oos_trade_frac"] and o["max_dd"] <= CG["oos_max_dd"])
+            # candidates are only worth the costly robustness test if they could be recorded
+            if strict or (loose and self.candidate_could_record(g, st, daily)):
+                passed.append((g, st, daily, oos_dsr, strict))
         if not passed:
             return
         jobs = [(g, G["neighbors"], int(self.rng.integers(1 << 31)), G["stress_cost_mult"]) for g, *_ in passed]
-        for (g, st, daily, oos_dsr), (stress, nb) in zip(passed, pool.map(_w_robust, jobs)):
+        for (g, st, daily, oos_dsr, strict), (stress, nb) in zip(passed, pool.map(_w_robust, jobs)):
             self.state["robust_checks"] += 1
             self.state["families"][g["family"]]["robust"] += 1
             base = st["is_oos"]["sharpe"]
             nb = np.asarray(nb)
             med, pos = float(np.median(nb)), float((nb > 0).mean())
-            if not (stress >= G["stress_min_sharpe"] and med >= G["nb_min_ratio"] * base
-                    and pos >= G["nb_min_positive"]):
-                continue
-            # Variants of an earlier discovery are dropped before they can use up a holdout look.
-            if self.is_duplicate(g, daily):
-                self.state["duplicates"] += 1
-                continue
-            # Holdout is looked at only now, once per robust, novel candidate.
-            self.state["holdout_checks"] += 1
-            self.state["families"][g["family"]]["holdout"] += 1
-            h = st["ho"]
-            if h["days"] >= 30:
-                self.ho_sr.add(h["sr_daily"])
-            ho_dsr = dsr(h["sr_daily"], h["days"], h["skew"], h["kurt"],
-                         max(2, self.state["holdout_checks"]), self.ho_sr.var)
-            if not (h["sharpe"] >= G["ho_min_sharpe"] and h["total_return"] > 0 and ho_dsr >= G["ho_min_dsr"]
-                    and h["trades"] >= self.min_trades(g) * G["ho_trade_frac"]):
-                self.state["holdout_rejects"] += 1
-                continue
-            i = st["is"]
-            extra = {
+            robust = (stress >= G["stress_min_sharpe"] and med >= G["nb_min_ratio"] * base
+                      and pos >= G["nb_min_positive"])
+            checks = {"stress_sharpe": stress, "nb_n": int(nb.size), "nb_median": med, "nb_pos": pos,
+                      "oos_dsr": oos_dsr}
+            if not (strict and robust and self.strict_holdout(g, st, daily, checks)):
+                if stress >= self.CG["stress_min_sharpe"] and pos >= self.CG["nb_min_positive"] and med > 0:
+                    self.consider_candidate(g, st, daily, checks)
+
+    def strict_holdout(self, g, st, daily, checks):
+        """Strict tier: de-duplicate, then the deflated holdout test. True if recorded."""
+        G = self.G
+        # Variants of an earlier discovery are dropped before they can use up a holdout look.
+        if self.is_duplicate(g, daily):
+            self.state["duplicates"] += 1
+            return False
+        # Holdout is looked at only now, once per robust, novel candidate.
+        self.state["holdout_checks"] += 1
+        self.state["families"][g["family"]]["holdout"] += 1
+        h = st["ho"]
+        if h["days"] >= 30:
+            self.ho_sr.add(h["sr_daily"])
+        ho_dsr = dsr(h["sr_daily"], h["days"], h["skew"], h["kurt"],
+                     max(2, self.state["holdout_checks"]), self.ho_sr.var)
+        if not (h["sharpe"] >= G["ho_min_sharpe"] and h["total_return"] > 0 and ho_dsr >= G["ho_min_dsr"]
+                and h["trades"] >= self.min_trades(g) * G["ho_trade_frac"]):
+            self.state["holdout_rejects"] += 1
+            return False
+        self.record(g, st, daily, self.extra(st, checks, ho_dsr, self.state["holdout_checks"]))
+        return True
+
+    def extra(self, st, checks, ho_dsr, n_ho):
+        i = st["is"]
+        return {**checks,
                 "is_dsr": dsr(i["sr_daily"], i["days"], i["skew"], i["kurt"],
                               max(2, self.state["evaluations"]), self.is_sr.var),
-                "n_trials": self.state["evaluations"], "oos_dsr": oos_dsr, "n_oos": self.n_eff(),
-                "ho_dsr": ho_dsr,
-                "stress_sharpe": stress, "nb_n": int(nb.size), "nb_median": med, "nb_pos": pos,
-                "n_ho": self.state["holdout_checks"],
-            }
-            self.record(g, st, daily, extra)
+                "n_trials": self.state["evaluations"], "n_oos": self.n_eff(), "ho_dsr": ho_dsr, "n_ho": n_ho}
+
+    def candidate_could_record(self, g, st, daily):
+        """Cheap pre-check (holdout gate + duplicate/improvement) before the robustness test."""
+        CG = self.CG
+        h, o = st["ho"], st["oos"]
+        if not (h["sharpe"] >= CG["ho_min_sharpe"] and h["total_return"] > 0
+                and h["trades"] >= self.min_trades(g) * CG["ho_trade_frac"]):
+            return False
+        end = _UNI.day_of(self.cfg["split"]["oos_end"])
+        if duplicate_of(structure_key(g), daily, self.known, end, self.G["max_corr"]) is not None:
+            return False
+        ids = list(self.cand_known)
+        j = duplicate_of(structure_key(g), daily, [self.cand_known[i] for i in ids], end, CG["max_corr"])
+        if j is None:
+            return True
+        old = next(e for e in self.state["candidates"] if e["id"] == ids[j])
+        return min(o["sharpe"], h["sharpe"]) > old["score"]
+
+    def consider_candidate(self, g, st, daily, checks):
+        """Loose tier for paper trading: positive OOS and holdout, robust, no deflation tests.
+        A variant of an existing candidate replaces it only if it is better."""
+        CG, st_ = self.CG, self.state
+        end = _UNI.day_of(self.cfg["split"]["oos_end"])
+        if duplicate_of(structure_key(g), daily, self.known, end, self.G["max_corr"]) is not None:
+            return  # already covered by a strict discovery
+        st_["cand_holdout_checks"] += 1
+        h, o = st["ho"], st["oos"]
+        if not (h["sharpe"] >= CG["ho_min_sharpe"] and h["total_return"] > 0
+                and h["trades"] >= self.min_trades(g) * CG["ho_trade_frac"]):
+            st_["cand_holdout_rejects"] += 1
+            return
+        score = min(o["sharpe"], h["sharpe"])
+        ids = list(self.cand_known)
+        j = duplicate_of(structure_key(g), daily, [self.cand_known[i] for i in ids], end, CG["max_corr"])
+        if j is not None:
+            old = next(e for e in st_["candidates"] if e["id"] == ids[j])
+            if score <= old["score"]:
+                return
+            cid = old["id"]
+            for ext in (".md", ".json", ".npy"):
+                try:
+                    os.remove(os.path.join(self.cdir, old["slug"] + ext))
+                except FileNotFoundError:
+                    pass
+            st_["candidates"].remove(old)
+            st_["cand_replaced"] += 1
+        else:
+            st_["cand_last_id"] += 1
+            cid = st_["cand_last_id"]
+        ho_dsr = dsr(h["sr_daily"], h["days"], h["skew"], h["kurt"], max(2, st_["cand_holdout_checks"]),
+                     self.ho_sr.var)  # informational only for candidates
+        slug, title, message, body, link, lev = write_discovery(
+            self.cdir, cid, g, st, self.extra(st, checks, ho_dsr, st_["cand_holdout_checks"]), daily, _UNI,
+            self.cfg, None, kind="candidate")
+        entry = {"id": cid, "slug": slug, "name": FAMILIES[g["family"]]["name"], "universe": g["universe"],
+                 "tf": g["tf"], "oos_sharpe": o["sharpe"], "ho_sharpe": h["sharpe"], "cagr": st["all"]["cagr"],
+                 "mdd": st["all"]["max_dd"], "lev": lev, "score": score, "found_at": _now(),
+                 "replaced": j is not None}
+        st_["candidates"].append(entry)
+        st_["candidates"].sort(key=lambda e: e["id"])
+        self.cand_known[cid] = (structure_key(g), daily.astype(float))
+        self.new_candidates.append(entry)
+        write_index(self.cdir, st_["candidates"], kind="candidate")
+        log.info("CANDIDATE C%d %s %s %s | OOS %.2f HO %.2f%s", cid, g["family"], g["universe"], g["tf"],
+                 o["sharpe"], h["sharpe"], " (replaced a weaker variant)" if j is not None else "")
+
+    def candidate_digest(self):
+        """One notification per run listing new/improved candidates."""
+        new = self.new_candidates
+        if not new:
+            return
+        self.save_state()
+        self.git_sync(f"Strategy candidates: {len(new)} new or improved")
+        repo, ref = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_REF_NAME")
+        link = f"https://github.com/{repo}/blob/{ref}/research/candidates/README.md" if repo and ref else None
+        lines = [f"C{e['id']} {e['name']} {e['universe']} {e['tf']}: 검증 {e['oos_sharpe']:.2f} / "
+                 f"홀드아웃 {e['ho_sharpe']:.2f}{' (개선)' if e['replaced'] else ''}" for e in new]
+        title = f"페이퍼 트레이딩 후보 {len(new)}개 (총 {len(self.state['candidates'])}개)"
+        body = (title + "\n\n" + "\n".join("- " + x for x in lines)
+                + "\n\n엄격한 과최적화 검정(DSR)을 거치지 않은 후보입니다. "
+                  "`python run_strategy.py paper --candidate C번호`로 모의매매하세요."
+                + (f"\n\n전체 목록: {link}" if link else ""))
+        notify(title, "\n".join(lines[:15]) + ("\n..." if len(lines) > 15 else ""), body, link)
+        self.new_candidates = []
 
     def is_duplicate(self, g, daily):
         end = _UNI.day_of(self.cfg["split"]["oos_end"])
@@ -410,6 +519,7 @@ class Search:
         self.state["runs"] += 1
         C = self.cfg["search"]
         t0, evals0, last_ck = time.time(), self.state["evaluations"], time.time()
+        last_digest = time.time()
         log.info("search started with %d workers (%s)", self.workers,
                  f"until {datetime.fromtimestamp(self.deadline, timezone.utc):%Y-%m-%d %H:%M} UTC"
                  if self.deadline else "no time limit")
@@ -430,6 +540,9 @@ class Search:
                         self.validate(pool, cands)
                     top = max(f for *_, f in scored)
                     best, stale = (top, 0) if top > best + 1e-6 else (best, stale + 1)
+                    if time.time() - last_digest > 6 * 3600:
+                        self.candidate_digest()
+                        last_digest = time.time()
                     if time.time() - last_ck > float(os.environ.get("LAB_CHECKPOINT_SEC", 300)):
                         self.state["runtime_hours"] += (time.time() - last_ck) / 3600
                         last_ck = time.time()
@@ -442,6 +555,7 @@ class Search:
         self.state["runtime_hours"] += (time.time() - last_ck) / 3600
         self.save_state()
         self.progress(t0, evals0)
+        self.candidate_digest()
 
     def _done(self):
         return self.stop or (self.deadline is not None and time.time() >= self.deadline)

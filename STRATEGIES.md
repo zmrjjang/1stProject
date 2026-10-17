@@ -135,6 +135,16 @@ Python 3.10 이상, 필요한 라이브러리는 `numpy`, `requests` 뿐입니�
 - `--strategies momentum_30m,squeeze_4h` : 일부 전략만
 - `--notify` : 새 신호를 휴대폰 푸시로 받기 (환경변수 `NTFY_TOPIC=토픽이름` 설정 후, ntfy 앱에서 같은 토픽 구독)
 
+### 탐색기가 찾은 다른 전략/후보도 모의매매하기
+```bash
+python run_strategy.py list                          # 발견(#번호)·후보(C번호) 전체 목록과 성과
+python run_strategy.py paper --pick C3,C7,9 --loop   # 원하는 번호만 골라 모의매매 (상태는 paper/ 에 저장)
+python run_strategy.py signal --pick C3              # 지금 포지션/다음 할 일만 확인
+```
+- 연구용 백테스트와 **같은 신호 코드**를 그대로 써서 계산합니다 (최근 4,000봉을 받아 계산, 연구 결과와 포지션 일치 검증됨).
+- 처음 실행 시 `pip install -r requirements.txt` 로 numba도 설치됩니다.
+- 아직 실시간 실행이 안 되는 종류: 여러 코인 순위형(횡단면 모멘텀, 펀딩 캐리), 페어 트레이딩, 펀딩비·미결제약정 기반 전략. `list`에 표시됩니다.
+
 ### 출력 예시
 ```
 [squeeze_4h] #8 볼린저 스퀴즈 돌파 (4h, 레버리지 1x, 코인당 100 USDT)

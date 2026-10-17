@@ -15,10 +15,13 @@ from datetime import datetime, timezone
 import numpy as np
 import requests
 
+from lab.data import INTERVAL_MS as TF_MS
 from lab.data import load, symbols
 
-from .rules import COST_PER_SIDE, FUNDING_8H, STRATEGIES, TF_MS, build_signals
+from .rules import COST_PER_SIDE, FUNDING_8H, STRATEGIES, build_signals
 from .simulator import CoinTrader
+
+FIELDS = ("t", "o", "h", "l", "c", "v", "n", "tbv")
 
 FAPI = "https://fapi.binance.com/fapi/v1/klines"
 SIDE = {1: "롱", -1: "숏", 0: "없음"}
@@ -39,10 +42,11 @@ class BinanceSource:
         self.s = requests.Session()
         self.delay = delay
 
-    def candles(self, symbol, tf, now_ms):
+    def _page(self, symbol, tf, end_ms):
         for attempt in range(5):
             try:
-                r = self.s.get(FAPI, params={"symbol": symbol, "interval": tf, "limit": 1500}, timeout=20)
+                r = self.s.get(FAPI, params={"symbol": symbol, "interval": tf, "limit": 1500,
+                                             "endTime": end_ms}, timeout=20)
                 if r.status_code == 451:
                     raise SystemExit("fapi.binance.com이 이 지역에서 차단되어 있습니다 (HTTP 451). "
                                      "바이낸스 접속이 되는 PC에서 실행하세요.")
@@ -50,13 +54,28 @@ class BinanceSource:
                     time.sleep(int(r.headers.get("Retry-After", 60)))
                     continue
                 r.raise_for_status()
-                rows = [k for k in r.json() if int(k[6]) < now_ms]  # closed candles only
                 time.sleep(self.delay)
-                a = np.array([[float(x) for x in k[:5]] for k in rows])
-                return {"t": a[:, 0].astype(np.int64), "o": a[:, 1], "h": a[:, 2], "l": a[:, 3], "c": a[:, 4]}
+                return r.json()
             except requests.RequestException:
                 time.sleep(2 ** attempt)
         raise RuntimeError(f"failed to fetch {symbol} {tf}")
+
+    def candles(self, symbol, tf, now_ms, bars=1500):
+        """The last `bars` CLOSED candles (several requests if more than 1500 are needed)."""
+        rows, end = [], now_ms
+        while len(rows) < bars:
+            page = self._page(symbol, tf, end)
+            if not page:
+                break
+            rows = page + rows
+            end = int(page[0][0]) - 1
+            if len(page) < 1500:
+                break
+        rows = [k for k in rows if int(k[6]) < now_ms][-bars:]  # closed candles only
+        a = np.array([[float(k[i]) for i in (0, 1, 2, 3, 4, 5, 8, 9)] for k in rows]).reshape(-1, 8)
+        d = {f: a[:, i] for i, f in enumerate(FIELDS)}
+        d["t"] = d["t"].astype(np.int64)
+        return d
 
 
 class LocalSource:
@@ -65,11 +84,18 @@ class LocalSource:
     def __init__(self, data_dir="data"):
         self.data_dir = data_dir
 
-    def candles(self, symbol, tf, now_ms):
+    def candles(self, symbol, tf, now_ms, bars=1500):
         d = load(symbol, tf, self.data_dir)
         end = int(np.searchsorted(d["t"] + TF_MS[tf], now_ms, side="right"))
-        start = max(0, end - 1500)
-        return {k: d[k][start:end] for k in ("t", "o", "h", "l", "c")}
+        start = max(0, end - bars)
+        return {k: d[k][start:end] for k in FIELDS}
+
+
+def builtin_spec(name):
+    """Spec for one of the hand-coded strategies in strategies/rules.py."""
+    s = STRATEGIES[name]
+    return dict(s, key=name, label=f"#{s['id']} {s['name']}", coins=None, bars=1500,
+                signals=lambda sym, d, fetch, name=name: build_signals(name, d["o"], d["h"], d["l"], d["c"]))
 
 
 def new_trader(s, state=None):
@@ -118,8 +144,9 @@ class Runner:
                             datetime.fromtimestamp(tr["exit_time"] / 1000, timezone.utc).isoformat(timespec="minutes"),
                             tr["entry"], tr["exit"], REASON.get(tr["reason"], tr["reason"]), round(tr["ret"], 6)])
 
-    def run_strategy(self, name, now_ms):
-        s = STRATEGIES[name]
+    def run_strategy(self, s, now_ms):
+        name = s["key"]
+        coins = s.get("coins") or self.coins
         st = self.state.get(name)
         fresh = st is None
         if fresh:
@@ -127,12 +154,13 @@ class Runner:
         lines, actions, paper_trades = [], [], []
         bar_returns = {}
         last_closed = None
-        for sym in self.coins:
-            d = self.source.candles(sym, s["tf"], now_ms)
+        for sym in coins:
+            d = self.source.candles(sym, s["tf"], now_ms, s["bars"])
             if d["c"].size < 700:
                 lines.append(f"  {sym:10s} 데이터 부족 ({d['c'].size}봉) - 건너뜀")
                 continue
-            le, se, lx, sx, atr = build_signals(name, d["o"], d["h"], d["l"], d["c"])
+            fetch = lambda sy, tf: self.source.candles(sy, tf, now_ms, s["bars"])  # noqa: E731
+            le, se, lx, sx, atr = s["signals"](sym, d, fetch)
             prev = st["coins"].get(sym)
             replay = prev is None or st["last_time"] is None or st["last_time"] < d["t"][0]
             trader = new_trader(s, None if replay else prev)
@@ -159,8 +187,8 @@ class Runner:
         self.state[name] = st
         self.log_trades(name, paper_trades)
 
-        per_coin = self.capital * s["leverage"] / len(self.coins)
-        head = (f"\n[{name}] #{s['id']} {s['name']} ({s['tf']}, 레버리지 {s['leverage']:g}x, "
+        per_coin = self.capital * s["leverage"] / len(coins)
+        head = (f"\n[{name}] {s['label']} ({s['tf']}, 레버리지 {s['leverage']:g}x, "
                 f"코인당 {per_coin:,.0f} USDT)\n"
                 f"  마지막 마감: {fmt_t(last_closed + TF_MS[s['tf']])} UTC → 아래 신호는 지금 시작된 봉의 시가에 실행 | "
                 f"페이퍼 수익 {(st['equity'] - 1) * 100:+.2f}% (시작 {fmt_t(st['start_time'])} UTC)")
@@ -199,13 +227,16 @@ class Runner:
             txt += "  ▷ 유지"
         return f"  {sym:10s} {txt}"
 
-    def run_once(self, names, now_ms=None):
+    def run_once(self, specs, now_ms=None):
         now_ms = now_ms or int(time.time() * 1000)
         all_actions = []
-        for name in names:
-            text, actions = self.run_strategy(name, now_ms)
+        for s in specs:
+            st = self.state.get(s["key"])
+            if st and st.get("last_time") and now_ms < st["last_time"] + 2 * TF_MS[s["tf"]]:
+                continue  # no new closed candle for this strategy's timeframe yet
+            text, actions = self.run_strategy(s, now_ms)
             print(text)
-            all_actions += [f"[{name}] {a}" for a in actions]
+            all_actions += [f"[{s['key']}] {a}" for a in actions]
         self.save()
         if all_actions:
             print("\n다음 봉 시가에 할 일:\n  " + "\n  ".join(all_actions))

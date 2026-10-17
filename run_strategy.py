@@ -5,6 +5,8 @@
     python run_strategy.py signal                   # latest Binance candles -> current positions + next actions
     python run_strategy.py paper --loop             # paper trade: re-check after every 30m candle close, forever
     python run_strategy.py signal --source local --now 2026-09-20T12:00   # replay local data as if it were that time
+    python run_strategy.py list                     # every discovery (#N) and candidate (CN) the search found
+    python run_strategy.py paper --pick C3,C7,9 --loop   # paper trade discoveries/candidates by number
 """
 
 import argparse
@@ -16,7 +18,8 @@ from strategies.rules import STRATEGIES
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("mode", choices=["backtest", "signal", "paper"])
+    p.add_argument("mode", choices=["backtest", "signal", "paper", "list"])
+    p.add_argument("--pick", help="discoveries/candidates to run instead of the built-in strategies, e.g. C3,C7,9")
     p.add_argument("--strategies", default=",".join(STRATEGIES),
                    help="comma separated subset of: " + ", ".join(STRATEGIES))
     p.add_argument("--capital", type=float, default=1000.0, help="USDT allocated to EACH strategy")
@@ -31,9 +34,24 @@ def main():
         from strategies.backtest import report
         report(".")
         return
+    if args.mode == "list":
+        from strategies.genome_live import list_all
+        print(f"{'번호':5s} {'전략':24s} {'대상':10s} {'봉':4s} {'검증샤프':>7s} {'홀드아웃':>7s} {'연수익':>7s} {'MDD':>5s} 레버리지")
+        for ref, name, uni, tf, oos, ho, cagr, mdd, lev, why in list_all("."):
+            print(f"{ref:5s} {name[:24]:24s} {uni:10s} {tf:4s} {oos:7.2f} {ho:7.2f} {cagr * 100:6.1f}% "
+                  f"{mdd * 100:4.0f}% {lev:g}x" + (f"  (실시간 미지원: {why})" if why else ""))
+        return
 
-    from strategies.live import BinanceSource, LocalSource, Runner, seconds_to_next_close
-    names = [n.strip() for n in args.strategies.split(",") if n.strip()]
+    import json
+    from lab.data import INTERVAL_MS, symbols
+    from strategies.live import BinanceSource, LocalSource, Runner, builtin_spec, seconds_to_next_close
+    if args.pick:
+        from strategies.genome_live import genome_spec
+        with open("research/config.json") as f:
+            cfg = json.load(f)
+        specs = [genome_spec(".", r, cfg, symbols()) for r in args.pick.split(",") if r.strip()]
+    else:
+        specs = [builtin_spec(n.strip()) for n in args.strategies.split(",") if n.strip()]
     source = LocalSource() if args.source == "local" else BinanceSource()
     now_ms = None
     if args.now:
@@ -45,10 +63,10 @@ def main():
         runner.state = {}
     while True:
         print(f"\n===== {datetime.now(timezone.utc):%Y-%m-%d %H:%M:%S} UTC =====")
-        runner.run_once(names, now_ms)
+        runner.run_once(specs, now_ms)
         if not args.loop:
             break
-        wait = seconds_to_next_close()
+        wait = seconds_to_next_close(min(INTERVAL_MS[s["tf"]] for s in specs))
         print(f"\n다음 확인까지 {wait / 60:.1f}분 대기 (Ctrl+C로 종료)")
         time.sleep(wait)
 
