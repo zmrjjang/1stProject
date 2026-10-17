@@ -1,6 +1,6 @@
 # 후보 C105: 거래량 급증 돌파 — SOLUSDT 4h
 
-> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C105` 로 모의매매해 보세요.
+> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --pick C105` 로 모의매매해 보세요.
 
 - 발견 시각: 2026-10-17 06:05 UTC
 - 근거 논문/이론: Gervais, Kaniel & Mingelgrin (2001) 'The High-Volume Return Premium', J. Finance

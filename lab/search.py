@@ -458,7 +458,7 @@ class Search:
         title = f"페이퍼 트레이딩 후보 {len(new)}개 (총 {len(self.state['candidates'])}개)"
         body = (title + "\n\n" + "\n".join("- " + x for x in lines)
                 + "\n\n엄격한 과최적화 검정(DSR)을 거치지 않은 후보입니다. "
-                  "`python run_strategy.py paper --candidate C번호`로 모의매매하세요."
+                  "`python run_strategy.py paper --pick C번호`로 모의매매하세요."
                 + (f"\n\n전체 목록: {link}" if link else ""))
         notify(title, "\n".join(lines[:15]) + ("\n..." if len(lines) > 15 else ""), body, link)
         self.new_candidates = []

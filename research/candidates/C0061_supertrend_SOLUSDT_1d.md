@@ -1,6 +1,6 @@
 # 후보 C61: 슈퍼트렌드 — SOLUSDT 1d
 
-> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C61` 로 모의매매해 보세요.
+> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --pick C61` 로 모의매매해 보세요.
 
 - 발견 시각: 2026-10-17 09:46 UTC
 - 근거 논문/이론: Seban (2009); Wilder (1978) ATR

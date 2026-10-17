@@ -1,6 +1,6 @@
 # 후보 C78: NR 협폭봉 돌파 — ALL 1d
 
-> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C78` 로 모의매매해 보세요.
+> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --pick C78` 로 모의매매해 보세요.
 
 - 발견 시각: 2026-10-17 14:12 UTC
 - 근거 논문/이론: Crabel (1990) 'Day Trading with Short Term Price Patterns and Opening Range Breakout'

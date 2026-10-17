@@ -1,6 +1,6 @@
 # 후보 C207: 하이킨아시 연속봉 — SOLUSDT 4h
 
-> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C207` 로 모의매매해 보세요.
+> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --pick C207` 로 모의매매해 보세요.
 
 - 발견 시각: 2026-10-17 14:35 UTC
 - 근거 논문/이론: Valcu (2004) 'Using the Heikin-Ashi Technique', Technical Analysis of Stocks & Commodities

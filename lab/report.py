@@ -75,7 +75,7 @@ def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_bas
         f"# {'후보' if kind == 'candidate' else '전략'} {tag}: {fam['name']} — {g['universe']} {g['tf']}",
         "",
         *(["> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. "
-           f"`python run_strategy.py paper --candidate C{disc_id}` 로 모의매매해 보세요.", ""]
+           f"`python run_strategy.py paper --pick C{disc_id}` 로 모의매매해 보세요.", ""]
           if kind == "candidate" else []),
         f"- 발견 시각: {now}",
         f"- 근거 논문/이론: {fam['ref']}",
@@ -139,7 +139,7 @@ def write_index(out_dir, entries, kind="discovery"):
     lines = ["# 페이퍼 트레이딩 후보 목록" if cand else "# 발견된 전략 목록", "",
              *(["엄격한 과최적화 검정 없이 검증·홀드아웃 구간 수익, 비용 스트레스, 파라미터 안정성만 통과한 후보입니다. "
                 "같은 아이디어의 변형은 더 좋은 것이 나오면 교체됩니다. "
-                "`python run_strategy.py paper --candidate C번호` 로 모의매매할 수 있습니다.", ""] if cand else []),
+                "`python run_strategy.py paper --pick C번호` 로 모의매매할 수 있습니다.", ""] if cand else []),
              "| # | 전략 | 대상 | 봉 | 검증 샤프 | 홀드아웃 샤프 | 전체 연수익(1x) | MDD(1x) | 권장 레버리지 | 상세 |",
              "|---|---|---|---|---|---|---|---|---|---|"]
     for e in entries:

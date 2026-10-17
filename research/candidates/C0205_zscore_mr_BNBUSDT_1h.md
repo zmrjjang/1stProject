@@ -1,6 +1,6 @@
 # 후보 C205: Ornstein-Uhlenbeck 평균회귀 (z-score) — BNBUSDT 1h
 
-> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C205` 로 모의매매해 보세요.
+> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --pick C205` 로 모의매매해 보세요.
 
 - 발견 시각: 2026-10-17 11:47 UTC
 - 근거 논문/이론: Avellaneda & Lee (2010) 'Statistical Arbitrage in the US Equities Market', Quant. Finance
