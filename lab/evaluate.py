@@ -7,7 +7,7 @@ import numpy as np
 
 from . import engine
 from . import indicators as ind
-from .data import INTERVAL_MS
+from .data import INTERVAL_MS, asof
 from .families import FAMILIES, w_pairs, w_xscarry, w_xsmom
 from .stats import summarize
 
@@ -90,11 +90,94 @@ class Evaluator:
             n, w = args
             v = ind.zscore(ind.ema(ind.taker_imbalance(d["v"], d["tbv"]), n), w)
         else:
-            raise KeyError(name)
+            v = self._chart_feature(sym, tf, d, name, args)
         self._cache[key] = v
         while len(self._cache) > self.cache_max:
             self._cache.popitem(last=False)
         return v
+
+    _TF_ORDER = ["5m", "15m", "30m", "1h", "4h", "1d"]
+
+    def _chart_feature(self, sym, tf, d, name, args):
+        o, h, l, c, v = d["o"], d["h"], d["l"], d["c"], d["v"]
+        a14 = self.feature(sym, tf, "atr", 14)
+        with np.errstate(divide="ignore", invalid="ignore"):
+            if name == "macd":
+                f, s, sig = args
+                line = ind.ema(c, f) - ind.ema(c, s)
+                return line / a14, (line - ind.ema(line, sig)) / a14
+            if name == "dmi":
+                return ind.dmi(h, l, c, args[0])
+            if name == "ichimoku":
+                sc = args[0]
+                n1, n2, n3 = max(2, round(9 * sc)), max(3, round(26 * sc)), max(4, round(52 * sc))
+                mid = lambda n: (ind.rolling_max(h, n) + ind.rolling_min(l, n)) / 2.0  # noqa: E731
+                tk, kj, sb = mid(n1), mid(n2), mid(n3)
+                sa = (tk + kj) / 2.0
+                # the cloud at candle i was computed n2 candles earlier (no look-ahead)
+                sa, sb = ind.shift(sa, n2), ind.shift(sb, n2)
+                return tk, kj, np.fmax(sa, sb), np.fmin(sa, sb)
+            if name == "supertrend":
+                n, mult = args
+                return ind.supertrend(h, l, c, ind.atr(h, l, c, n), mult)
+            if name == "stoch":
+                n, sm = args
+                hh, ll = ind.rolling_max(h, n), ind.rolling_min(l, n)
+                k = np.where(hh > ll, 100.0 * (c - ll) / (hh - ll), 50.0)
+                k[: n - 1] = np.nan
+                return ind.sma(k, sm) if sm > 1 else k
+            if name == "mfi":
+                n = args[0]
+                tp = (h + l + c) / 3.0
+                mf = tp * v
+                up = np.where(np.diff(tp, prepend=tp[0]) > 0, mf, 0.0)
+                dn = np.where(np.diff(tp, prepend=tp[0]) < 0, mf, 0.0)
+                su, sd = ind.sma(up, n) * n, ind.sma(dn, n) * n
+                return np.where(su + sd > 0, 100.0 * su / (su + sd), 50.0)
+            if name == "obv_z":
+                n, w = args
+                obv = np.cumsum(np.sign(np.diff(c, prepend=c[0])) * v)
+                ch = np.full(c.size, np.nan)
+                ch[n:] = obv[n:] - obv[:-n]
+                return ind.zscore_nan(ch, w)
+            if name == "vwap_dev":
+                n = args[0]
+                tp = (h + l + c) / 3.0
+                vw = ind.sma(tp * v, n) / ind.sma(v, n)
+                return (c - vw) / a14
+            if name == "aroon":
+                return ind.aroon(h, l, args[0])
+            if name == "psar":
+                return ind.psar(h, l, args[0], args[1])
+            if name == "linreg_t":
+                return ind.linreg_t(c, args[0])
+            if name == "ha_run":
+                return ind.heikin_run(o, h, l, c)
+            if name == "candle":
+                return _candles(o, h, l, c, args[0])
+            if name == "nr_prev":
+                n = args[0]
+                rng = h - l
+                nr = rng <= ind.rolling_min(rng, n)
+                nr[: n - 1] = False
+                return ind.shift(nr.astype(float), 1) > 0
+            if name == "vol_z":
+                return ind.zscore_nan(np.log(np.where(v > 0, v, np.nan)), args[0])
+            if name == "atr_pct_z":
+                return ind.zscore_nan(a14 / c, args[0])
+            if name == "htf_trend":
+                level, n = args
+                i = self._TF_ORDER.index(tf) + level
+                if i >= len(self._TF_ORDER) or (sym, self._TF_ORDER[i]) not in self.uni.series:
+                    return np.full(c.size, np.nan)
+                htf = self._TF_ORDER[i]
+                hd = self.uni.series[(sym, htf)]
+                e = ind.ema(hd["c"], n)
+                val = np.where(hd["c"] > e, 1.0, -1.0)
+                val[:n] = np.nan
+                # value of the last higher-timeframe candle that has CLOSED by this candle's close
+                return asof(hd["t"] + INTERVAL_MS[htf], val, d["t"] + INTERVAL_MS[tf], 0, 10 ** 15)
+        raise KeyError(name)
 
     # -- runs --------------------------------------------------------------
     def _fund(self, tf):
@@ -191,3 +274,31 @@ class Evaluator:
         fin = daily[np.isfinite(daily)]
         out["worst_day"] = float(fin.min()) if fin.size else 0.0
         return out, daily
+
+
+def _candles(o, h, l, c, pattern):
+    """(bullish, bearish) boolean arrays for a candlestick pattern completed on each candle."""
+    body = c - o
+    rng = np.maximum(h - l, 1e-12)
+    o1, c1, h1, l1 = (np.roll(x, 1) for x in (o, c, h, l))
+    if pattern == "engulf":
+        bull = (c1 < o1) & (c > o) & (c >= o1) & (o <= c1) & (np.abs(body) > np.abs(c1 - o1))
+        bear = (c1 > o1) & (c < o) & (c <= o1) & (o >= c1) & (np.abs(body) > np.abs(c1 - o1))
+    elif pattern == "pin":
+        lower = np.minimum(o, c) - l
+        upper = h - np.maximum(o, c)
+        bull = (lower >= 2 * np.abs(body)) & (lower >= 0.6 * rng) & (upper <= 0.2 * rng)
+        bear = (upper >= 2 * np.abs(body)) & (upper >= 0.6 * rng) & (lower <= 0.2 * rng)
+    elif pattern == "inside":
+        h2, l2 = np.roll(h, 2), np.roll(l, 2)
+        inside = (h1 < h2) & (l1 > l2)
+        bull, bear = inside & (c > h2), inside & (c < l2)
+    else:  # three soldiers / crows
+        g = (c > o) & ((h - c) <= 0.3 * rng)
+        r = (c < o) & ((c - l) <= 0.3 * rng)
+        up = c > c1
+        bull = g & np.roll(g, 1) & np.roll(g, 2) & up & np.roll(up, 1)
+        bear = r & np.roll(r, 1) & np.roll(r, 2) & ~up & ~np.roll(up, 1)
+    bull[:3] = False
+    bear[:3] = False
+    return bull, bear

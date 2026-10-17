@@ -425,7 +425,7 @@ FAMILIES = {
                         f"{'롱' if p['side'] > 0 else '숏'} 보유 ({ {'all': '매일', 'weekdays': '평일만', 'weekend': '주말만'}[p['days']] })."),
     ),
     "funding": dict(
-        kind="single", tfs=DERIV_TF, build=b_funding, weight=3.0, scale="w",
+        kind="single", tfs=DERIV_TF, build=b_funding, weight=1.0, scale="w",
         params={"smooth": ("int", 1, 50, True), "w": ("int", 50, 3000, True),
                 "th": ("float", 0.5, 3.0), "exit": ("float", -1.0, 1.5), "mode": ("choice", [1, -1]),
                 "trend": ("optint", 50, 2000, 0.6, True)},
@@ -439,7 +439,7 @@ FAMILIES = {
                         + (f" 추세필터 EMA({int(p['trend'])})." if p["trend"] > 0 else "")),
     ),
     "positioning": dict(
-        kind="single", tfs=DERIV_TF, build=b_positioning, weight=3.0, scale="w",
+        kind="single", tfs=DERIV_TF, build=b_positioning, weight=1.0, scale="w",
         params={"which": ("choice", ["ls_glob", "ls_top_acc", "ls_top_pos", "smart_gap"]),
                 "smooth": ("int", 1, 50, True), "w": ("int", 50, 3000, True),
                 "th": ("float", 0.5, 3.0), "exit": ("float", -1.0, 1.5), "mode": ("choice", [1, -1]),
@@ -454,7 +454,7 @@ FAMILIES = {
                         + (f" 추세필터 EMA({int(p['trend'])})." if p["trend"] > 0 else "")),
     ),
     "oi_trend": dict(
-        kind="single", tfs=DERIV_TF, build=b_oi, weight=3.0, scale="lookback",
+        kind="single", tfs=DERIV_TF, build=b_oi, weight=1.0, scale="lookback",
         params={"lookback": ("int", 2, 500, True), "w": ("int", 100, 3000, True),
                 "price_th": ("float", 0.0, 2.5), "oi_th": ("float", 0.0, 2.5),
                 "exit": ("float", -1.0, 1.0), "mode": ("choice", ["confirm", "fade"])},
@@ -471,7 +471,7 @@ FAMILIES = {
                            f"가격 z가 {-p['exit']:+.2f} 위(롱)/아래(숏)로 돌아오면 청산.")),
     ),
     "xs_carry": dict(
-        kind="xs", tfs=["1h", "4h", "1d"], weight=3.0, scale="lookback",
+        kind="xs", tfs=["1h", "4h", "1d"], weight=1.0, scale="lookback",
         params={"lookback": ("int", 3, 500, True), "rebalance": ("int", 1, 100, True),
                 "k": ("int", 1, 4, False), "mode": ("choice", ["carry", "anti"]),
                 "legs": ("choice", ["ls", "long"])},
@@ -508,3 +508,8 @@ FAMILIES = {
                         f"∓{p['z_out']:.2f}까지 회귀하면 청산 (달러중립)."),
     ),
 }
+
+
+from .families_chart import CHART_FAMILIES  # noqa: E402 - second-generation chart families
+
+FAMILIES.update(CHART_FAMILIES)
