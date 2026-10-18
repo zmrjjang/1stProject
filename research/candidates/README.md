@@ -12,7 +12,7 @@
 | C13 | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.20 | 1.90 | +4.6% | 3% | 2x | [보기](C0013_zscore_mr_ALL_1h.md) |
 | C20 | 아룬 추세 | ALL | 4h | 2.49 | 2.28 | +34.4% | 12% | 0.5x | [보기](C0020_aroon_ALL_4h.md) |
 | C23 | 슈퍼트렌드 | ALL | 4h | 2.01 | 2.37 | +13.2% | 12% | 0.5x | [보기](C0023_supertrend_ALL_4h.md) |
-| C26 | 거래량 급증 돌파 | ETHUSDT | 15m | 2.10 | 2.41 | +51.5% | 8% | 2x | [보기](C0026_vol_breakout_ETHUSDT_15m.md) |
+| C26 | 거래량 급증 돌파 | ETHUSDT | 1h | 2.41 | 2.55 | +9.7% | 5% | 5x | [보기](C0026_vol_breakout_ETHUSDT_1h.md) |
 | C27 | 테이커 주문흐름 불균형 | ALL | 4h | 1.99 | 1.96 | +30.1% | 34% | 0.5x | [보기](C0027_flow_ALL_4h.md) |
 | C28 | OBV 거래량 모멘텀 | ALL | 4h | 2.17 | 2.22 | +13.1% | 11% | 1.5x | [보기](C0028_obv_ALL_4h.md) |
 | C33 | 켈트너 채널 | ALL | 1h | 2.14 | 1.81 | +12.6% | 10% | 1x | [보기](C0033_keltner_ALL_1h.md) |
@@ -29,7 +29,7 @@
 | C75 | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 15m | 1.73 | 1.66 | +39.0% | 23% | 1.5x | [보기](C0075_xsmom_ALL_15m.md) |
 | C80 | MACD | ALL | 1d | 1.68 | 1.87 | +44.9% | 35% | 1x | [보기](C0080_macd_ALL_1d.md) |
 | C88 | 파라볼릭 SAR | SOLUSDT | 1d | 1.62 | 2.14 | +60.6% | 52% | 0.5x | [보기](C0088_psar_SOLUSDT_1d.md) |
-| C94 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 30m | 1.63 | 1.62 | +33.8% | 17% | 1.5x | [보기](C0094_squeeze_ZECUSDT_30m.md) |
+| C94 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 4h | 2.16 | 1.83 | +54.3% | 27% | 1x | [보기](C0094_squeeze_ZECUSDT_4h.md) |
 | C102 | 아룬 추세 | ETHUSDT | 4h | 1.96 | 1.73 | +50.6% | 23% | 1x | [보기](C0102_aroon_ETHUSDT_4h.md) |
 | C108 | 롤링 VWAP 이격 | DOGEUSDT | 5m | 1.97 | 2.09 | +56.0% | 11% | 0.5x | [보기](C0108_vwap_dev_DOGEUSDT_5m.md) |
 | C109 | 거래량 급증 돌파 | ETHUSDT | 15m | 2.35 | 2.21 | +84.4% | 27% | 1x | [보기](C0109_vol_breakout_ETHUSDT_15m.md) |
