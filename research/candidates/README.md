@@ -19,7 +19,7 @@
 | C321 | B | OBV 거래량 모멘텀 | ALL | 1h | 2.12 | 2.07 | +6.8% | 6% | 1x | [보기](C0321_obv_ALL_1h.md) |
 | C373 | B | 켈트너 채널 | ALL | 15m | 2.31 | 2.71 | +5.4% | 3% | 1x | [보기](C0373_keltner_ALL_15m.md) |
 | C385 | B | 미결제약정(OI) × 가격 | ALL | 30m | 2.64 | 1.54 | +12.0% | 4% | 0.5x | [보기](C0385_oi_trend_ALL_30m.md) |
-| C398 | B | MACD | ALL | 1d | 1.67 | 1.79 | +39.5% | 17% | 1x | [보기](C0398_macd_ALL_1d.md) |
+| C398 | B | MACD | ALL | 4h | 2.15 | 1.96 | +13.1% | 6% | 2x | [보기](C0398_macd_ALL_4h.md) |
 | C415 | B | ADX/DMI 추세 | ALL | 4h | 1.63 | 1.51 | +25.6% | 13% | 0.5x | [보기](C0415_adx_dmi_ALL_4h.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.93 | 2.29 | +17.0% | 7% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
@@ -38,8 +38,6 @@
 | C69 | C | 롱/숏 비율 포지셔닝 | ALL | 30m | 2.55 | 2.22 | +32.1% | 16% | 1x | [보기](C0069_positioning_ALL_30m.md) |
 | C72 | C | 일목균형표 | ZECUSDT | 1h | 2.29 | 2.31 | +124.4% | 47% | 0.5x | [보기](C0072_ichimoku_ZECUSDT_1h.md) |
 | C75 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 1h | 1.76 | 1.78 | +36.8% | 33% | 1.5x | [보기](C0075_xsmom_ALL_1h.md) |
-| C80 | C | MACD | ALL | 1d | 1.68 | 1.87 | +44.9% | 35% | 1x | [보기](C0080_macd_ALL_1d.md) |
-| C88 | C | 파라볼릭 SAR | SOLUSDT | 1d | 1.62 | 2.14 | +60.6% | 52% | 0.5x | [보기](C0088_psar_SOLUSDT_1d.md) |
 | C94 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 4h | 2.16 | 1.83 | +54.3% | 27% | 1x | [보기](C0094_squeeze_ZECUSDT_4h.md) |
 | C102 | C | 아룬 추세 | ETHUSDT | 4h | 1.96 | 1.73 | +50.6% | 23% | 1x | [보기](C0102_aroon_ETHUSDT_4h.md) |
 | C109 | C | 거래량 급증 돌파 | ETHUSDT | 15m | 2.35 | 2.21 | +84.4% | 27% | 1x | [보기](C0109_vol_breakout_ETHUSDT_15m.md) |
@@ -54,7 +52,7 @@
 | C311 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 30m | 1.87 | 2.25 | +31.8% | 23% | 1.5x | [보기](C0311_rsi_mr_ZECUSDT_30m.md) |
 | C317 | C | 거래량 급증 돌파 | ALL | 4h | 2.32 | 2.50 | +8.5% | 7% | 1.5x | [보기](C0317_vol_breakout_ALL_4h.md) |
 | C341 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 2.60 | 2.01 | +15.1% | 8% | 4x | [보기](C0341_oi_trend_BNBUSDT_1h.md) |
-| C344 | C | 돈치안 채널 돌파 (터틀) | XRPUSDT | 1h | 1.71 | 1.69 | +70.0% | 48% | 0.5x | [보기](C0344_donchian_XRPUSDT_1h.md) |
+| C344 | C | 돈치안 채널 돌파 (터틀) | XRPUSDT | 1h | 1.71 | 1.70 | +78.3% | 53% | 0.5x | [보기](C0344_donchian_XRPUSDT_1h.md) |
 | C364 | C | 거래량 급증 돌파 | SOLUSDT | 4h | 1.98 | 1.98 | +47.3% | 32% | 0.5x | [보기](C0364_vol_breakout_SOLUSDT_4h.md) |
 | C378 | C | 시계열 모멘텀 (변동성 정규화) | SOLUSDT | 15m | 2.51 | 2.64 | +59.6% | 44% | 1x | [보기](C0378_tsmom_SOLUSDT_15m.md) |
 | C379 | C | 일목균형표 | ALL | 4h | 2.07 | 1.85 | +10.8% | 8% | 1.5x | [보기](C0379_ichimoku_ALL_4h.md) |
@@ -65,9 +63,11 @@
 | C402 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.09 | 1.99 | +5.7% | 3% | 2x | [보기](C0402_zscore_mr_ALL_1h.md) |
 | C404 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BNBUSDT | 15m | 2.16 | 2.41 | +20.5% | 14% | 3x | [보기](C0404_pairs_DOGEUSDT-BNBUSDT_15m.md) |
 | C406 | C | 선형회귀 추세 유의성 | DOGEUSDT | 1h | 1.89 | 2.66 | +60.1% | 35% | 1x | [보기](C0406_linreg_DOGEUSDT_1h.md) |
-| C409 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 1h | 1.98 | 1.71 | +63.1% | 31% | 1x | [보기](C0409_squeeze_SOLUSDT_1h.md) |
+| C409 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 2.14 | 1.82 | +58.5% | 39% | 1x | [보기](C0409_squeeze_SOLUSDT_4h.md) |
 | C411 | C | 시계열 모멘텀 (변동성 정규화) | TRXUSDT | 1d | 1.78 | 1.71 | +56.1% | 40% | 1x | [보기](C0411_tsmom_TRXUSDT_1d.md) |
-| C412 | C | 하이킨아시 연속봉 | ALL | 1d | 1.64 | 1.62 | +31.0% | 19% | 0.5x | [보기](C0412_heikin_ALL_1d.md) |
 | C413 | C | 아룬 추세 | ZECUSDT | 4h | 1.77 | 1.78 | +57.9% | 31% | 1x | [보기](C0413_aroon_ZECUSDT_4h.md) |
 | C414 | C | 슈퍼트렌드 | TRXUSDT | 4h | 1.92 | 1.82 | +52.2% | 40% | 0.5x | [보기](C0414_supertrend_TRXUSDT_4h.md) |
-| C417 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 30m | 1.66 | 2.36 | +25.8% | 18% | 2x | [보기](C0417_squeeze_XRPUSDT_30m.md) |
+| C418 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | BTCUSDT | 30m | 1.80 | 1.74 | +11.2% | 5% | 5x | [보기](C0418_squeeze_BTCUSDT_30m.md) |
+| C419 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 5m | 1.98 | 1.91 | +13.4% | 13% | 4x | [보기](C0419_zscore_mr_SOLUSDT_5m.md) |
+| C420 | C | 하이킨아시 연속봉 | ALL | 1d | 1.78 | 1.82 | +22.0% | 12% | 1x | [보기](C0420_heikin_ALL_1d.md) |
+| C421 | C | 아룬 추세 | ALL | 1h | 2.08 | 1.87 | +11.6% | 5% | 1.5x | [보기](C0421_aroon_ALL_1h.md) |
