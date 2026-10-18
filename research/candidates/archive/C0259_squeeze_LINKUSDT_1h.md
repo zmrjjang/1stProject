@@ -1,4 +1,4 @@
-# 후보 C259: 변동성 수축 후 돌파 (볼린저 스퀴즈) — LINKUSDT 1h
+# 후보 C259 [C등급]: 변동성 수축 후 돌파 (볼린저 스퀴즈) — LINKUSDT 1h
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C259` 로 모의매매해 보세요.
 

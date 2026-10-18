@@ -1,4 +1,4 @@
-# 후보 C159: 일목균형표 — ETHUSDT 1d
+# 후보 C159 [C등급]: 일목균형표 — ETHUSDT 1d
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C159` 로 모의매매해 보세요.
 

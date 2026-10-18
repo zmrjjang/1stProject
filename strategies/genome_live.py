@@ -91,6 +91,15 @@ def genome_spec(root, ref, cfg, all_symbols):
                 bars=4000, signals=signals)
 
 
+def grade_refs(root, grade):
+    """'A' -> every discovery, 'B'/'C' -> every active candidate of that grade (live-runnable only)."""
+    refs = []
+    for ref, _name, _uni, _tf, _o, _h, _c, _m, _l, why, g in list_all(root):
+        if g == grade and why is None:
+            refs.append(ref)
+    return refs
+
+
 def list_all(root):
     rows = []
     for folder, cand in (("discoveries", False), ("candidates", True)):
@@ -105,5 +114,6 @@ def list_all(root):
                 ref = f"C{info['id']}" if cand else f"#{info['id']}"
                 rows.append((ref, FAMILIES[g["family"]]["name"], g["universe"], g["tf"], s["oos"]["sharpe"],
                              s["ho"]["sharpe"], s["all"]["cagr"], s["all"]["max_dd"], info.get("leverage", 1),
-                             unsupported_reason(g)))
+                             unsupported_reason(g), info.get("grade", "C" if cand else "A")))
+    rows.sort(key=lambda r: ("ABC".index(r[10]), r[0][0] != "#", int(r[0].lstrip("#C"))))
     return rows

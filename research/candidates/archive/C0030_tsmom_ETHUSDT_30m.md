@@ -1,4 +1,4 @@
-# 후보 C30: 시계열 모멘텀 (변동성 정규화) — ETHUSDT 30m
+# 후보 C30 [C등급]: 시계열 모멘텀 (변동성 정규화) — ETHUSDT 30m
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C30` 로 모의매매해 보세요.
 

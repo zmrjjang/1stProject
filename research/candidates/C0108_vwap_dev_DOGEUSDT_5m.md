@@ -1,4 +1,4 @@
-# 후보 C108: 롤링 VWAP 이격 — DOGEUSDT 5m
+# 후보 C108 [B등급]: 롤링 VWAP 이격 — DOGEUSDT 5m
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C108` 로 모의매매해 보세요.
 

@@ -347,7 +347,8 @@
    "lev": 1.0,
    "score": 2.29508848186419,
    "found_at": "2026-10-17 10:56 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 2,
@@ -362,7 +363,24 @@
    "lev": 0.5,
    "score": 2.0644921479766283,
    "found_at": "2026-10-17 13:21 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
+  },
+  {
+   "id": 3,
+   "slug": "C0003_vol_breakout_ALL_30m",
+   "name": "거래량 급증 돌파",
+   "universe": "ALL",
+   "tf": "30m",
+   "oos_sharpe": 2.373746472263414,
+   "ho_sharpe": 2.1934022905591357,
+   "cagr": 0.20983500047250314,
+   "mdd": 0.0804891593795064,
+   "lev": 1.0,
+   "score": 2.1934022905591357,
+   "found_at": "2026-10-17 11:44 UTC",
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 5,
@@ -377,7 +395,8 @@
    "lev": 3.5,
    "score": 1.925153885372665,
    "found_at": "2026-10-17 14:15 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 9,
@@ -392,7 +411,8 @@
    "lev": 0.5,
    "score": 1.9778032285375378,
    "found_at": "2026-10-17 15:17 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 11,
@@ -407,7 +427,8 @@
    "lev": 2.5,
    "score": 2.572264721070664,
    "found_at": "2026-10-17 12:39 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 13,
@@ -422,7 +443,8 @@
    "lev": 2.0,
    "score": 1.9005465819609382,
    "found_at": "2026-10-18T05:24:28+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 20,
@@ -437,7 +459,8 @@
    "lev": 0.5,
    "score": 2.282913524087117,
    "found_at": "2026-10-17 13:29 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 23,
@@ -452,7 +475,8 @@
    "lev": 0.5,
    "score": 2.006731409239872,
    "found_at": "2026-10-18T01:20:37+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 26,
@@ -467,7 +491,8 @@
    "lev": 5.0,
    "score": 2.406000064933979,
    "found_at": "2026-10-18T06:19:42+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 27,
@@ -482,7 +507,8 @@
    "lev": 0.5,
    "score": 1.9567537328480369,
    "found_at": "2026-10-17 07:40 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 28,
@@ -497,7 +523,8 @@
    "lev": 1.5,
    "score": 2.1668557030846416,
    "found_at": "2026-10-17 13:49 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 33,
@@ -512,7 +539,8 @@
    "lev": 1.0,
    "score": 1.8092360975935853,
    "found_at": "2026-10-17 14:49 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 39,
@@ -527,7 +555,8 @@
    "lev": 1.0,
    "score": 1.7054017454901156,
    "found_at": "2026-10-17 07:57 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 40,
@@ -542,7 +571,8 @@
    "lev": 1.0,
    "score": 2.0853713055245553,
    "found_at": "2026-10-17 15:15 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 41,
@@ -557,7 +587,8 @@
    "lev": 2.0,
    "score": 1.7412992086585728,
    "found_at": "2026-10-17 13:49 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 42,
@@ -572,7 +603,40 @@
    "lev": 0.5,
    "score": 1.8691927126582573,
    "found_at": "2026-10-17 08:50 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
+  },
+  {
+   "id": 49,
+   "slug": "C0049_candle_ALL_4h",
+   "name": "캔들 패턴",
+   "universe": "ALL",
+   "tf": "4h",
+   "oos_sharpe": 1.7979670726081194,
+   "ho_sharpe": 1.6247015198642811,
+   "cagr": 0.17436442474874614,
+   "mdd": 0.10939362981932954,
+   "lev": 1.5,
+   "score": 1.6247015198642811,
+   "found_at": "2026-10-17 05:59 UTC",
+   "replaced": false,
+   "grade": "B"
+  },
+  {
+   "id": 53,
+   "slug": "C0053_regime_ALL_1d",
+   "name": "국면 전환 (추세/횡보 판별 후 전략 선택)",
+   "universe": "ALL",
+   "tf": "1d",
+   "oos_sharpe": 1.626970319720222,
+   "ho_sharpe": 1.7598350535740006,
+   "cagr": 0.22254426308433328,
+   "mdd": 0.14163179863520126,
+   "lev": 1.0,
+   "score": 1.626970319720222,
+   "found_at": "2026-10-17 14:52 UTC",
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 54,
@@ -587,7 +651,8 @@
    "lev": 2.0,
    "score": 1.856855272225839,
    "found_at": "2026-10-17 14:18 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 59,
@@ -602,7 +667,8 @@
    "lev": 1.0,
    "score": 2.198593060522879,
    "found_at": "2026-10-17 05:27 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 60,
@@ -617,7 +683,8 @@
    "lev": 0.5,
    "score": 1.9003007472953413,
    "found_at": "2026-10-17 09:01 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 61,
@@ -632,7 +699,8 @@
    "lev": 0.5,
    "score": 1.6707631989150435,
    "found_at": "2026-10-17 09:46 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 69,
@@ -647,7 +715,8 @@
    "lev": 1.0,
    "score": 2.220233639436829,
    "found_at": "2026-10-17 07:49 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 72,
@@ -662,7 +731,8 @@
    "lev": 0.5,
    "score": 2.2853363797731157,
    "found_at": "2026-10-17 11:40 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 75,
@@ -677,7 +747,8 @@
    "lev": 1.5,
    "score": 1.664003719462381,
    "found_at": "2026-10-18T04:21:28+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 80,
@@ -692,7 +763,8 @@
    "lev": 1.0,
    "score": 1.6774437410039005,
    "found_at": "2026-10-17 05:44 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 88,
@@ -707,7 +779,8 @@
    "lev": 0.5,
    "score": 1.624046926503276,
    "found_at": "2026-10-17 14:43 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 94,
@@ -722,7 +795,8 @@
    "lev": 1.0,
    "score": 1.8328485372567016,
    "found_at": "2026-10-18T06:16:30+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 102,
@@ -737,7 +811,8 @@
    "lev": 1.0,
    "score": 1.7258184788648556,
    "found_at": "2026-10-17 14:19 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 108,
@@ -752,7 +827,8 @@
    "lev": 0.5,
    "score": 1.9695772357449035,
    "found_at": "2026-10-17 11:30 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 109,
@@ -767,7 +843,8 @@
    "lev": 1.0,
    "score": 2.2148093548433874,
    "found_at": "2026-10-18T04:53:35+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 133,
@@ -782,7 +859,8 @@
    "lev": 0.5,
    "score": 1.6880565357794541,
    "found_at": "2026-10-17 13:50 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 136,
@@ -797,7 +875,8 @@
    "lev": 3.0,
    "score": 2.0828953571470423,
    "found_at": "2026-10-18T03:51:06+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 234,
@@ -812,7 +891,8 @@
    "lev": 0.5,
    "score": 1.7544054895321457,
    "found_at": "2026-10-17 15:18 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 242,
@@ -827,7 +907,8 @@
    "lev": 1.5,
    "score": 1.9542151483450043,
    "found_at": "2026-10-17 13:52 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 284,
@@ -842,7 +923,8 @@
    "lev": 2.5,
    "score": 1.7427311969282093,
    "found_at": "2026-10-17 17:02 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 285,
@@ -857,7 +939,8 @@
    "lev": 1.0,
    "score": 1.7711405288000657,
    "found_at": "2026-10-17 17:07 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 289,
@@ -872,7 +955,8 @@
    "lev": 0.5,
    "score": 1.972375165349439,
    "found_at": "2026-10-17 17:11 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 292,
@@ -887,7 +971,8 @@
    "lev": 1.0,
    "score": 2.240200431338952,
    "found_at": "2026-10-18T05:36:19+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 300,
@@ -902,7 +987,8 @@
    "lev": 1.5,
    "score": 2.3682943413976467,
    "found_at": "2026-10-17 17:42 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 304,
@@ -917,7 +1003,8 @@
    "lev": 0.5,
    "score": 2.071481106586436,
    "found_at": "2026-10-17 17:57 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 311,
@@ -932,7 +1019,8 @@
    "lev": 1.5,
    "score": 1.8673328669302893,
    "found_at": "2026-10-18T05:27:10+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 317,
@@ -947,7 +1035,24 @@
    "lev": 1.5,
    "score": 2.319789239005403,
    "found_at": "2026-10-17 18:22 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
+  },
+  {
+   "id": 321,
+   "slug": "C0321_obv_ALL_1h",
+   "name": "OBV 거래량 모멘텀",
+   "universe": "ALL",
+   "tf": "1h",
+   "oos_sharpe": 2.1169751487993516,
+   "ho_sharpe": 2.070255268627451,
+   "cagr": 0.06750228173731987,
+   "mdd": 0.06109054487687382,
+   "lev": 1.0,
+   "score": 2.070255268627451,
+   "found_at": "2026-10-17 18:38 UTC",
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 341,
@@ -962,7 +1067,8 @@
    "lev": 4.0,
    "score": 2.0123617076091227,
    "found_at": "2026-10-17 20:04 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 344,
@@ -977,7 +1083,8 @@
    "lev": 0.5,
    "score": 1.6891286823817129,
    "found_at": "2026-10-18T02:50:36+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   },
   {
    "id": 364,
@@ -992,7 +1099,24 @@
    "lev": 0.5,
    "score": 1.9775133377093328,
    "found_at": "2026-10-17 21:08 UTC",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
+  },
+  {
+   "id": 373,
+   "slug": "C0373_keltner_ALL_15m",
+   "name": "켈트너 채널",
+   "universe": "ALL",
+   "tf": "15m",
+   "oos_sharpe": 2.3091371054437833,
+   "ho_sharpe": 2.707337359933597,
+   "cagr": 0.05391034001438855,
+   "mdd": 0.02532600722530476,
+   "lev": 1.0,
+   "score": 2.3091371054437833,
+   "found_at": "2026-10-17 21:32 UTC",
+   "replaced": false,
+   "grade": "B"
   },
   {
    "id": 377,
@@ -1007,7 +1131,8 @@
    "lev": 1.0,
    "score": 1.6231676847920526,
    "found_at": "2026-10-18T01:25:03+00:00",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 378,
@@ -1022,7 +1147,8 @@
    "lev": 1.0,
    "score": 2.5128171374472577,
    "found_at": "2026-10-18T03:14:52+00:00",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 379,
@@ -1037,7 +1163,8 @@
    "lev": 0.5,
    "score": 1.7744895541344192,
    "found_at": "2026-10-18T03:27:05+00:00",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 380,
@@ -1052,7 +1179,8 @@
    "lev": 1.0,
    "score": 1.941291000696867,
    "found_at": "2026-10-18T03:37:19+00:00",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 381,
@@ -1067,7 +1195,8 @@
    "lev": 2.0,
    "score": 1.8054930171961017,
    "found_at": "2026-10-18T03:51:43+00:00",
-   "replaced": false
+   "replaced": false,
+   "grade": "C"
   },
   {
    "id": 382,
@@ -1082,12 +1211,13 @@
    "lev": 2.0,
    "score": 1.7234998661332326,
    "found_at": "2026-10-18T04:35:08+00:00",
-   "replaced": true
+   "replaced": true,
+   "grade": "C"
   }
  ],
  "cand_last_id": 382,
  "cand_holdout_checks": 767,
  "cand_holdout_rejects": 2,
  "cand_replaced": 509,
- "cand_archived": 332
+ "cand_archived": 327
 }

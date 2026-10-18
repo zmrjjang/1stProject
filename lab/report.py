@@ -61,10 +61,12 @@ def _row(label, s):
             f"{_pct(s['cagr'])} | {_pct(s['total_return'])} | {s['max_dd'] * 100:.1f}% |")
 
 
-def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_base=None, kind="discovery"):
+def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_base=None, kind="discovery",
+                    grade=None):
     fam = FAMILIES[g["family"]]
     lev = recommended_leverage(stats, cfg)
-    tag = f"C{disc_id}" if kind == "candidate" else f"#{disc_id}"
+    grade = grade or ("A" if kind == "discovery" else "C")
+    tag = (f"C{disc_id}" if kind == "candidate" else f"#{disc_id}") + f" [{grade}등급]"
     slug = (f"{'C' if kind == 'candidate' else ''}{disc_id:04d}_{g['family']}_"
             f"{g['universe'].replace('/', '-')}_{g['tf']}")
     years = yearly(daily, uni.day0)
@@ -121,7 +123,7 @@ def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_bas
     with open(os.path.join(out_dir, slug + ".md"), "w") as f:
         f.write("\n".join(md))
     with open(os.path.join(out_dir, slug + ".json"), "w") as f:
-        json.dump({"id": disc_id, "genome": g, "stats": stats, "checks": extra, "leverage": lev,
+        json.dump({"id": disc_id, "grade": grade, "genome": g, "stats": stats, "checks": extra, "leverage": lev,
                    "yearly": years, "found_at": now}, f, indent=2, ensure_ascii=False)
     np.save(os.path.join(out_dir, slug + ".npy"), daily.astype(np.float32))
 
@@ -141,10 +143,11 @@ def write_index(out_dir, entries, kind="discovery"):
                 "같은 아이디어의 변형은 더 좋은 것이 나오면 교체되고, 목록은 min(검증, 홀드아웃 샤프) 상위 "
                 "최대 50개만 유지합니다 (밀려난 후보는 [archive](archive/)에 보관되며 번호로 계속 실행 가능). "
                 "`python run_strategy.py paper --pick C번호` 로 모의매매할 수 있습니다.", ""] if cand else []),
-             "| # | 전략 | 대상 | 봉 | 검증 샤프 | 홀드아웃 샤프 | 전체 연수익(1x) | MDD(1x) | 권장 레버리지 | 상세 |",
-             "|---|---|---|---|---|---|---|---|---|---|"]
-    for e in entries:
-        lines.append(f"| {'C' if cand else ''}{e['id']} | {e['name']} | {e['universe']} | {e['tf']} | {e['oos_sharpe']:.2f} | "
+             "| # | 등급 | 전략 | 대상 | 봉 | 검증 샤프 | 홀드아웃 샤프 | 전체 연수익(1x) | MDD(1x) | 권장 레버리지 | 상세 |",
+             "|---|---|---|---|---|---|---|---|---|---|---|"]
+    order = (lambda e: (e.get("grade", "C") != "B", e["id"])) if cand else (lambda e: e["id"])
+    for e in sorted(entries, key=order):
+        lines.append(f"| {'C' if cand else ''}{e['id']} | {e.get('grade', 'C' if cand else 'A')} | {e['name']} | {e['universe']} | {e['tf']} | {e['oos_sharpe']:.2f} | "
                      f"{e['ho_sharpe']:.2f} | {_pct(e['cagr'])} | {e['mdd'] * 100:.0f}% | {e['lev']:g}x | "
                      f"[보기]({e['slug']}.md) |")
     if not cand:

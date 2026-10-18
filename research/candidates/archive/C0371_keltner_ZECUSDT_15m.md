@@ -1,4 +1,4 @@
-# 후보 C371: 켈트너 채널 — ZECUSDT 15m
+# 후보 C371 [C등급]: 켈트너 채널 — ZECUSDT 15m
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C73` 로 모의매매해 보세요.
 

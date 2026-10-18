@@ -32,6 +32,7 @@ from .genome import (cluster_key, crossover, key, mutate, neighbors, random_geno
                      structure_key)
 from .notify import notify
 from .report import write_discovery, write_index
+from .grades import is_b
 from .stats import HyperLogLog, RunningVar, dsr
 
 log = logging.getLogger("lab")
@@ -381,7 +382,8 @@ class Search:
                 "n_trials": self.state["evaluations"], "n_oos": self.n_eff(), "ho_dsr": ho_dsr, "n_ho": n_ho}
 
     def candidate_could_record(self, g, st, daily):
-        """Cheap pre-check (holdout gate + duplicate/improvement) before the robustness test."""
+        """Cheap pre-check (holdout gate + duplicate/improvement) before the robustness test.
+        Robustness is not known yet, so a possible B grade is judged on the period Sharpes only."""
         CG = self.CG
         h, o = st["ho"], st["oos"]
         if not (h["sharpe"] >= CG["ho_min_sharpe"] and h["total_return"] > 0
@@ -395,16 +397,21 @@ class Search:
             return False
         ids = list(self.cand_known)
         j = duplicate_of(structure_key(g), daily, [self.cand_known[i] for i in ids], end, CG["max_corr"])
+        b_min = self.cfg["b_grade"]["min_sharpe_every_period"]
+        maybe_b = min(st["is"]["sharpe"], o["sharpe"], h["sharpe"]) >= b_min
         if j is None:
-            return self.has_room(score)
+            return maybe_b or self.has_room(score)
         old = next(e for e in self.state["candidates"] if e["id"] == ids[j])
-        return score > old["score"]
+        return score > old["score"] and (maybe_b or old.get("grade") != "B")
 
-    def has_room(self, score):
-        """Below the cap, or better than the weakest candidate (which would be archived)."""
-        cands = self.state["candidates"]
+    def has_room(self, score, grade="C"):
+        """B always has room. A C candidate needs a free slot (B candidates do not count) or
+        must beat the weakest C candidate, which would be archived."""
+        if grade == "B":
+            return True
+        cs = [e for e in self.state["candidates"] if e.get("grade") != "B"]
         cap = self.CG.get("max_candidates", 10 ** 9)
-        return len(cands) < cap or score > min(e["score"] for e in cands)
+        return len(cs) < cap or score > min(e["score"] for e in cs)
 
     def archive_candidate(self, entry, reason):
         adir = os.path.join(self.cdir, "archive")
@@ -434,11 +441,12 @@ class Search:
         score = min(o["sharpe"], h["sharpe"])
         if score < CG.get("min_score", 0):
             return
+        grade = "B" if is_b(st, checks, self.cfg) else "C"
         ids = list(self.cand_known)
         j = duplicate_of(structure_key(g), daily, [self.cand_known[i] for i in ids], end, CG["max_corr"])
         if j is not None:
             old = next(e for e in st_["candidates"] if e["id"] == ids[j])
-            if score <= old["score"]:
+            if score <= old["score"] or (old.get("grade") == "B" and grade != "B"):
                 return
             cid = old["id"]
             for ext in (".md", ".json", ".npy"):
@@ -449,10 +457,11 @@ class Search:
             st_["candidates"].remove(old)
             st_["cand_replaced"] += 1
         else:
-            if not self.has_room(score):
+            if not self.has_room(score, grade):
                 return
-            if len(st_["candidates"]) >= CG.get("max_candidates", 10 ** 9):
-                weakest = min(st_["candidates"], key=lambda e: e["score"])
+            cs = [e for e in st_["candidates"] if e.get("grade") != "B"]
+            if grade != "B" and len(cs) >= CG.get("max_candidates", 10 ** 9):
+                weakest = min(cs, key=lambda e: e["score"])
                 self.archive_candidate(weakest, f"a stronger candidate arrived (score {score:.2f})")
                 self.evicted += 1
             st_["cand_last_id"] += 1
@@ -461,18 +470,25 @@ class Search:
                      self.ho_sr.var)  # informational only for candidates
         slug, title, message, body, link, lev = write_discovery(
             self.cdir, cid, g, st, self.extra(st, checks, ho_dsr, st_["cand_holdout_checks"]), daily, _UNI,
-            self.cfg, None, kind="candidate")
+            self.cfg, None, kind="candidate", grade=grade)
         entry = {"id": cid, "slug": slug, "name": FAMILIES[g["family"]]["name"], "universe": g["universe"],
                  "tf": g["tf"], "oos_sharpe": o["sharpe"], "ho_sharpe": h["sharpe"], "cagr": st["all"]["cagr"],
                  "mdd": st["all"]["max_dd"], "lev": lev, "score": score, "found_at": _now(),
-                 "replaced": j is not None}
+                 "replaced": j is not None, "grade": grade}
         st_["candidates"].append(entry)
         st_["candidates"].sort(key=lambda e: e["id"])
         self.cand_known[cid] = (structure_key(g), daily.astype(float))
         self.new_candidates.append(entry)
         write_index(self.cdir, st_["candidates"], kind="candidate")
-        log.info("CANDIDATE C%d %s %s %s | OOS %.2f HO %.2f%s", cid, g["family"], g["universe"], g["tf"],
-                 o["sharpe"], h["sharpe"], " (replaced a weaker variant)" if j is not None else "")
+        log.info("CANDIDATE C%d [%s] %s %s %s | OOS %.2f HO %.2f%s", cid, grade, g["family"], g["universe"],
+                 g["tf"], o["sharpe"], h["sharpe"], " (replaced a weaker variant)" if j is not None else "")
+        if grade == "B" and (j is None or old.get("grade") != "B"):
+            self.save_state()
+            self.git_sync(f"B-grade strategy C{cid}: {g['family']} {g['universe']} {g['tf']}")
+            repo, ref = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_REF_NAME")
+            link = f"https://github.com/{repo}/blob/{ref}/research/candidates/{slug}.md" if repo and ref else None
+            sent = notify(title.replace("후보", "B등급 편입", 1), message, body, link)
+            log.info("B grade notified via: %s", ", ".join(sent) or "(no channel configured)")
 
     def candidate_digest(self):
         """One notification per run listing new/improved candidates."""

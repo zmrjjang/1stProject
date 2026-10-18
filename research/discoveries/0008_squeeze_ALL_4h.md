@@ -1,4 +1,4 @@
-# 전략 #8: 변동성 수축 후 돌파 (볼린저 스퀴즈) — ALL 4h
+# 전략 #8 [A등급]: 변동성 수축 후 돌파 (볼린저 스퀴즈) — ALL 4h
 
 - 발견 시각: 2026-10-02 09:06 UTC
 - 근거 논문/이론: Bollerslev (1986) GARCH volatility clustering; Bollinger (2001) 'Bollinger on Bollinger Bands'

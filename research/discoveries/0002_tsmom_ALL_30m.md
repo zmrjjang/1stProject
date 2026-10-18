@@ -1,4 +1,4 @@
-# 전략 #2: 시계열 모멘텀 (변동성 정규화) — ALL 30m
+# 전략 #2 [A등급]: 시계열 모멘텀 (변동성 정규화) — ALL 30m
 
 - 발견 시각: 2026-10-02 08:52 UTC
 - 근거 논문/이론: Moskowitz, Ooi & Pedersen (2012) 'Time Series Momentum', J. Financial Economics

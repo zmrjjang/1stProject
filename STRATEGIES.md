@@ -137,6 +137,8 @@ Python 3.10 이상, 필요한 라이브러리는 `numpy`, `requests` 뿐입니�
 
 ### 탐색기가 찾은 다른 전략/후보도 모의매매하기
 ```bash
+python run_strategy.py paper --pick A --paper-dir paper_A --loop     # A등급 전체 (따로 기록)
+python run_strategy.py paper --pick B --paper-dir paper_B --loop     # B등급 전체 (따로 기록)
 python run_strategy.py list                          # 발견(#번호)·후보(C번호) 전체 목록과 성과
 python run_strategy.py paper --pick C3,C7,9 --loop   # 원하는 번호만 골라 모의매매 (상태는 paper/ 에 저장)
 python run_strategy.py signal --pick C3              # 지금 포지션/다음 할 일만 확인

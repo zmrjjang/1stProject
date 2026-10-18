@@ -1,4 +1,4 @@
-# 후보 C353: NR 협폭봉 돌파 — DOGEUSDT 4h
+# 후보 C353 [C등급]: NR 협폭봉 돌파 — DOGEUSDT 4h
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C226` 로 모의매매해 보세요.
 

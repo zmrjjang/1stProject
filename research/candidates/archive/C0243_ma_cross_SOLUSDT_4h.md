@@ -1,4 +1,4 @@
-# 후보 C243: 이동평균 교차 추세추종 — SOLUSDT 4h
+# 후보 C243 [C등급]: 이동평균 교차 추세추종 — SOLUSDT 4h
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C243` 로 모의매매해 보세요.
 

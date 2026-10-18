@@ -1,4 +1,4 @@
-# 후보 C284: 롱/숏 비율 포지셔닝 — BTCUSDT 1h
+# 후보 C284 [C등급]: 롱/숏 비율 포지셔닝 — BTCUSDT 1h
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --pick C284` 로 모의매매해 보세요.
 

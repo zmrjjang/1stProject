@@ -1,4 +1,4 @@
-# 후보 C16: RSI 과매도/과매수 역추세 — DOGEUSDT 30m
+# 후보 C16 [C등급]: RSI 과매도/과매수 역추세 — DOGEUSDT 30m
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C16` 로 모의매매해 보세요.
 

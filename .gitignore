@@ -7,3 +7,4 @@ data/collector.log
 research/search.log
 research/state.json.tmp
 paper/
+paper_*/

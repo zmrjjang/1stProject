@@ -1,4 +1,4 @@
-# 전략 #9: RSI 과매도/과매수 역추세 — XRPUSDT 15m
+# 전략 #9 [A등급]: RSI 과매도/과매수 역추세 — XRPUSDT 15m
 
 - 발견 시각: 2026-10-02 13:54 UTC
 - 근거 논문/이론: Wilder (1978) 'New Concepts in Technical Trading Systems'; Connors & Alvarez (2009)

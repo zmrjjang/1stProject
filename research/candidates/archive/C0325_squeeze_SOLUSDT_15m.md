@@ -1,4 +1,4 @@
-# 후보 C325: 변동성 수축 후 돌파 (볼린저 스퀴즈) — SOLUSDT 15m
+# 후보 C325 [C등급]: 변동성 수축 후 돌파 (볼린저 스퀴즈) — SOLUSDT 15m
 
 > 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C214` 로 모의매매해 보세요.
 
