@@ -8,7 +8,7 @@
 | C3 | B | 거래량 급증 돌파 | ALL | 1h | 2.25 | 2.78 | +14.2% | 8% | 0.5x | [보기](C0003_vol_breakout_ALL_1h.md) |
 | C20 | B | 아룬 추세 | ALL | 4h | 2.49 | 2.28 | +34.4% | 12% | 0.5x | [보기](C0020_aroon_ALL_4h.md) |
 | C23 | B | 슈퍼트렌드 | ALL | 4h | 2.03 | 2.11 | +35.4% | 18% | 0.5x | [보기](C0023_supertrend_ALL_4h.md) |
-| C39 | B | 파라볼릭 SAR | ALL | 1d | 1.98 | 1.94 | +37.0% | 24% | 0.5x | [보기](C0039_psar_ALL_1d.md) |
+| C39 | B | 파라볼릭 SAR | ALL | 1d | 2.01 | 1.95 | +41.3% | 23% | 0.5x | [보기](C0039_psar_ALL_1d.md) |
 | C49 | B | 캔들 패턴 | ALL | 4h | 1.80 | 1.62 | +17.4% | 11% | 1.5x | [보기](C0049_candle_ALL_4h.md) |
 | C53 | B | 국면 전환 (추세/횡보 판별 후 전략 선택) | ALL | 1d | 1.63 | 1.76 | +22.3% | 14% | 1x | [보기](C0053_regime_ALL_1d.md) |
 | C59 | B | 롤링 VWAP 이격 | XRPUSDT | 5m | 2.20 | 2.34 | +48.7% | 16% | 1x | [보기](C0059_vwap_dev_XRPUSDT_5m.md) |
@@ -19,6 +19,7 @@
 | C373 | B | 켈트너 채널 | ALL | 15m | 2.31 | 2.71 | +5.4% | 3% | 1x | [보기](C0373_keltner_ALL_15m.md) |
 | C385 | B | 미결제약정(OI) × 가격 | ALL | 30m | 2.64 | 1.54 | +12.0% | 4% | 0.5x | [보기](C0385_oi_trend_ALL_30m.md) |
 | C398 | B | MACD | ALL | 1d | 1.67 | 1.79 | +39.5% | 17% | 1x | [보기](C0398_macd_ALL_1d.md) |
+| C415 | B | ADX/DMI 추세 | ALL | 4h | 1.63 | 1.51 | +25.6% | 13% | 0.5x | [보기](C0415_adx_dmi_ALL_4h.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.93 | 2.29 | +17.0% | 7% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C9 | C | 캔들 패턴 | ALL | 4h | 2.08 | 1.98 | +37.8% | 19% | 0.5x | [보기](C0009_candle_ALL_4h.md) |
@@ -55,17 +56,17 @@
 | C341 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 2.60 | 2.01 | +15.1% | 8% | 4x | [보기](C0341_oi_trend_BNBUSDT_1h.md) |
 | C344 | C | 돈치안 채널 돌파 (터틀) | XRPUSDT | 1h | 1.71 | 1.69 | +70.0% | 48% | 0.5x | [보기](C0344_donchian_XRPUSDT_1h.md) |
 | C364 | C | 거래량 급증 돌파 | SOLUSDT | 4h | 1.98 | 1.98 | +47.3% | 32% | 0.5x | [보기](C0364_vol_breakout_SOLUSDT_4h.md) |
-| C377 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 1.62 | 1.85 | +52.5% | 41% | 1x | [보기](C0377_squeeze_DOGEUSDT_4h.md) |
 | C378 | C | 시계열 모멘텀 (변동성 정규화) | SOLUSDT | 15m | 2.51 | 2.64 | +59.6% | 44% | 1x | [보기](C0378_tsmom_SOLUSDT_15m.md) |
 | C379 | C | 일목균형표 | ALL | 4h | 2.07 | 1.85 | +10.8% | 8% | 1.5x | [보기](C0379_ichimoku_ALL_4h.md) |
 | C380 | C | 켈트너 채널 | ZECUSDT | 15m | 1.98 | 1.94 | +17.2% | 10% | 1x | [보기](C0380_keltner_ZECUSDT_15m.md) |
 | C381 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ZECUSDT | 1h | 1.81 | 2.42 | +30.6% | 16% | 2x | [보기](C0381_zscore_mr_ZECUSDT_1h.md) |
 | C382 | C | OBV 거래량 모멘텀 | ZECUSDT | 30m | 2.01 | 1.72 | +23.1% | 38% | 2x | [보기](C0382_obv_ZECUSDT_30m.md) |
-| C391 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 4h | 1.74 | 1.50 | +39.3% | 21% | 1.5x | [보기](C0391_positioning_BTCUSDT_4h.md) |
 | C396 | C | 슈퍼트렌드 | SOLUSDT | 4h | 2.17 | 1.91 | +77.0% | 32% | 0.5x | [보기](C0396_supertrend_SOLUSDT_4h.md) |
-| C399 | C | 아룬 추세 | ALL | 4h | 1.50 | 1.58 | +29.3% | 28% | 0.5x | [보기](C0399_aroon_ALL_4h.md) |
 | C402 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.09 | 1.99 | +5.7% | 3% | 2x | [보기](C0402_zscore_mr_ALL_1h.md) |
-| C403 | C | 거래량 급증 돌파 | ALL | 4h | 1.73 | 1.62 | +25.0% | 18% | 0.5x | [보기](C0403_vol_breakout_ALL_4h.md) |
 | C404 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BNBUSDT | 15m | 2.16 | 2.41 | +20.5% | 14% | 3x | [보기](C0404_pairs_DOGEUSDT-BNBUSDT_15m.md) |
 | C406 | C | 선형회귀 추세 유의성 | DOGEUSDT | 1h | 1.89 | 2.66 | +60.1% | 35% | 1x | [보기](C0406_linreg_DOGEUSDT_1h.md) |
-| C407 | C | 선형회귀 추세 유의성 | TRXUSDT | 4h | 2.82 | 1.49 | +45.8% | 30% | 1x | [보기](C0407_linreg_TRXUSDT_4h.md) |
+| C409 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 1h | 1.98 | 1.71 | +63.1% | 31% | 1x | [보기](C0409_squeeze_SOLUSDT_1h.md) |
+| C411 | C | 시계열 모멘텀 (변동성 정규화) | TRXUSDT | 1d | 1.78 | 1.71 | +56.1% | 40% | 1x | [보기](C0411_tsmom_TRXUSDT_1d.md) |
+| C412 | C | 하이킨아시 연속봉 | ALL | 1d | 1.64 | 1.62 | +31.0% | 19% | 0.5x | [보기](C0412_heikin_ALL_1d.md) |
+| C413 | C | 아룬 추세 | ZECUSDT | 4h | 1.77 | 1.78 | +57.9% | 31% | 1x | [보기](C0413_aroon_ZECUSDT_4h.md) |
+| C414 | C | 슈퍼트렌드 | TRXUSDT | 4h | 1.92 | 1.82 | +52.2% | 40% | 0.5x | [보기](C0414_supertrend_TRXUSDT_4h.md) |
