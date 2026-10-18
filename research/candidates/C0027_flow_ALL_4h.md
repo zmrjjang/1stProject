@@ -1,6 +1,6 @@
 # 후보 C27: 테이커 주문흐름 불균형 — ALL 4h
 
-> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --pick C27` 로 모의매매해 보세요.
+> 페이퍼 트레이딩 후보: 엄격한 과최적화 검정(Deflated Sharpe Ratio)을 통과하지 않았을 수 있습니다. `python run_strategy.py paper --candidate C27` 로 모의매매해 보세요.
 
 - 발견 시각: 2026-10-17 07:40 UTC
 - 근거 논문/이론: Cont, Kukanov & Stoikov (2014) 'The Price Impact of Order Book Events'; Easley, Lopez de Prado & O'Hara (2012) VPIN

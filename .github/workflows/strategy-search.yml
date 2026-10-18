@@ -25,6 +25,10 @@ jobs:
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
+        with:
+          # a run that waited in the queue must start from the latest results, not the
+          # commit it was triggered on, or it overwrites the previous run's progress
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:

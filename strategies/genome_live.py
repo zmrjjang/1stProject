@@ -34,10 +34,13 @@ def find(root, ref):
     num = int(ref[1:] if cand else ref)
     folder = os.path.join(root, "research", "candidates" if cand else "discoveries")
     prefix = f"{'C' if cand else ''}{num:04d}_"
-    for name in sorted(os.listdir(folder)):
-        if name.startswith(prefix) and name.endswith(".json"):
-            with open(os.path.join(folder, name)) as f:
-                return name[:-5], json.load(f)
+    for sub in (folder, os.path.join(folder, "archive")):
+        if not os.path.isdir(sub):
+            continue
+        for name in sorted(os.listdir(sub)):
+            if name.startswith(prefix) and name.endswith(".json"):
+                with open(os.path.join(sub, name)) as f:
+                    return name[:-5], json.load(f)
     raise SystemExit(f"{ref}: research/{'candidates' if cand else 'discoveries'}/ 에 없습니다")
 
 

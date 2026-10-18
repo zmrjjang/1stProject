@@ -44,7 +44,7 @@
     "liq_buffer": 0.5
   },
   "candidate_gates": {
-    "_note": "Looser tier for paper-trading candidates: no Deflated-Sharpe gates.",
+    "_note": "Looser tier for paper-trading candidates: no Deflated-Sharpe gates. At most max_candidates are kept, ranked by min(OOS, holdout Sharpe).",
     "oos_min_sharpe": 1.0,
     "oos_max_dd": 0.5,
     "oos_trade_frac": 0.3,
@@ -52,6 +52,8 @@
     "nb_min_positive": 0.6,
     "ho_min_sharpe": 0.5,
     "ho_trade_frac": 0.2,
-    "max_corr": 0.6
+    "max_corr": 0.6,
+    "max_candidates": 50,
+    "min_score": 1.2
   }
 }

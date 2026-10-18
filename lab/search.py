@@ -168,6 +168,7 @@ class Search:
         self.G = self.cfg["gates"]
         self.CG = self.cfg["candidate_gates"]
         self.new_candidates = []
+        self.evicted = 0
         self.workers = workers or os.cpu_count() or 1
         self.deadline = time.time() + hours * 3600 if hours else None
         self.push = push
@@ -386,15 +387,36 @@ class Search:
         if not (h["sharpe"] >= CG["ho_min_sharpe"] and h["total_return"] > 0
                 and h["trades"] >= self.min_trades(g) * CG["ho_trade_frac"]):
             return False
+        score = min(o["sharpe"], h["sharpe"])
+        if score < CG.get("min_score", 0):
+            return False
         end = _UNI.day_of(self.cfg["split"]["oos_end"])
         if duplicate_of(structure_key(g), daily, self.known, end, self.G["max_corr"]) is not None:
             return False
         ids = list(self.cand_known)
         j = duplicate_of(structure_key(g), daily, [self.cand_known[i] for i in ids], end, CG["max_corr"])
         if j is None:
-            return True
+            return self.has_room(score)
         old = next(e for e in self.state["candidates"] if e["id"] == ids[j])
-        return min(o["sharpe"], h["sharpe"]) > old["score"]
+        return score > old["score"]
+
+    def has_room(self, score):
+        """Below the cap, or better than the weakest candidate (which would be archived)."""
+        cands = self.state["candidates"]
+        cap = self.CG.get("max_candidates", 10 ** 9)
+        return len(cands) < cap or score > min(e["score"] for e in cands)
+
+    def archive_candidate(self, entry, reason):
+        adir = os.path.join(self.cdir, "archive")
+        os.makedirs(adir, exist_ok=True)
+        for ext in (".md", ".json", ".npy"):
+            src = os.path.join(self.cdir, entry["slug"] + ext)
+            if os.path.exists(src):
+                os.replace(src, os.path.join(adir, entry["slug"] + ext))
+        self.state["candidates"].remove(entry)
+        self.cand_known.pop(entry["id"], None)
+        self.state["cand_archived"] = self.state.get("cand_archived", 0) + 1
+        log.info("candidate C%d archived (%s)", entry["id"], reason)
 
     def consider_candidate(self, g, st, daily, checks):
         """Loose tier for paper trading: positive OOS and holdout, robust, no deflation tests.
@@ -410,6 +432,8 @@ class Search:
             st_["cand_holdout_rejects"] += 1
             return
         score = min(o["sharpe"], h["sharpe"])
+        if score < CG.get("min_score", 0):
+            return
         ids = list(self.cand_known)
         j = duplicate_of(structure_key(g), daily, [self.cand_known[i] for i in ids], end, CG["max_corr"])
         if j is not None:
@@ -425,6 +449,12 @@ class Search:
             st_["candidates"].remove(old)
             st_["cand_replaced"] += 1
         else:
+            if not self.has_room(score):
+                return
+            if len(st_["candidates"]) >= CG.get("max_candidates", 10 ** 9):
+                weakest = min(st_["candidates"], key=lambda e: e["score"])
+                self.archive_candidate(weakest, f"a stronger candidate arrived (score {score:.2f})")
+                self.evicted += 1
             st_["cand_last_id"] += 1
             cid = st_["cand_last_id"]
         ho_dsr = dsr(h["sr_daily"], h["days"], h["skew"], h["kurt"], max(2, st_["cand_holdout_checks"]),
@@ -453,15 +483,26 @@ class Search:
         self.git_sync(f"Strategy candidates: {len(new)} new or improved")
         repo, ref = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_REF_NAME")
         link = f"https://github.com/{repo}/blob/{ref}/research/candidates/README.md" if repo and ref else None
+        # the same slot can improve several times in one run: report each candidate once
+        latest = {}
+        for e in new:
+            latest[e["id"]] = e
+        alive = {e["id"] for e in self.state["candidates"]}
+        new = [e for e in latest.values() if e["id"] in alive]
+        n_new = sum(not e["replaced"] for e in new)
         lines = [f"C{e['id']} {e['name']} {e['universe']} {e['tf']}: 검증 {e['oos_sharpe']:.2f} / "
                  f"홀드아웃 {e['ho_sharpe']:.2f}{' (개선)' if e['replaced'] else ''}" for e in new]
-        title = f"페이퍼 트레이딩 후보 {len(new)}개 (총 {len(self.state['candidates'])}개)"
+        title = (f"페이퍼 트레이딩 후보: 신규 {n_new}개, 개선 {len(new) - n_new}개, 밀려남 {self.evicted}개 "
+                 f"(현재 {len(self.state['candidates'])}/{self.CG.get('max_candidates', '-')}개)")
+        if not new:
+            self.new_candidates, self.evicted = [], 0
+            return
         body = (title + "\n\n" + "\n".join("- " + x for x in lines)
                 + "\n\n엄격한 과최적화 검정(DSR)을 거치지 않은 후보입니다. "
                   "`python run_strategy.py paper --pick C번호`로 모의매매하세요."
                 + (f"\n\n전체 목록: {link}" if link else ""))
         notify(title, "\n".join(lines[:15]) + ("\n..." if len(lines) > 15 else ""), body, link)
-        self.new_candidates = []
+        self.new_candidates, self.evicted = [], 0
 
     def is_duplicate(self, g, daily):
         end = _UNI.day_of(self.cfg["split"]["oos_end"])
