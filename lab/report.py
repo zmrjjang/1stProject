@@ -155,3 +155,101 @@ def write_index(out_dir, entries, kind="discovery"):
                       "알리지 않으며, 예전에 정리된 변형은 [variants](variants/) 폴더에 있습니다."]
     with open(os.path.join(out_dir, "README.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
+
+
+_LIVE_UNSUPPORTED = {"funding", "positioning", "oi_trend", "xs_carry"}
+_TF_KO = {"5m": "5분봉", "15m": "15분봉", "30m": "30분봉", "1h": "1시간봉", "4h": "4시간봉", "1d": "일봉"}
+
+
+def write_grades(root, cfg):
+    """GRADES.md: every A and B strategy with rules, performance and settings on one page."""
+    rd = os.path.join(root, "research")
+    items = []
+    for folder, kind in (("discoveries", "A"), ("candidates", None)):
+        path = os.path.join(rd, folder)
+        if not os.path.isdir(path):
+            continue
+        for name in sorted(os.listdir(path)):
+            if not name.endswith(".json"):
+                continue
+            with open(os.path.join(path, name)) as f:
+                info = json.load(f)
+            grade = kind or info.get("grade", "C")
+            if grade in ("A", "B"):
+                items.append((grade, ("#" if kind else "C") + str(info["id"]), f"research/{folder}/{name[:-5]}.md", info))
+    items.sort(key=lambda x: (x[0], int(x[1].lstrip("#C"))))
+    b = cfg["b_grade"]
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    split = cfg["split"]
+    L = [
+        "# A·B 등급 전략 모음",
+        "",
+        f"자동 탐색기가 갱신합니다 (마지막 갱신: {now}). 백테스트 기간: 학습 ~{split['is_end']} / "
+        f"검증 ~{split['oos_end']} / 홀드아웃(최근) {split['oos_end']}~. 모든 수치는 레버리지 1x, 비용 반영 기준.",
+        "",
+        "- **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과",
+        f"- **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ {b['min_sharpe_every_period']}, 최대낙폭 ≤ {b['max_dd'] * 100:.0f}%, "
+        f"거래 ≥ {b['min_trades']}회, 비용 2배 샤프 ≥ {b['min_stress_sharpe']}, "
+        f"파라미터 근방 {b['min_neighbors_positive'] * 100:.0f}% 이상 수익 (DSR 검정 없음)",
+        "- 'ALL'은 10개 코인 각각에 같은 규칙을 적용하고 자금을 1/10씩 배분한다는 뜻입니다.",
+        "",
+        "## 모의매매 실행",
+        "",
+        "```bash",
+        "git pull && pip install -r requirements.txt",
+        "python run_strategy.py paper --pick A --paper-dir paper_A --loop   # A등급 전체",
+        "python run_strategy.py paper --pick B --paper-dir paper_B --loop   # B등급 전체",
+        "python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 번호만",
+        "```",
+        "",
+        "## 요약",
+        "",
+        "| 등급 | 번호 | 전략 | 대상 | 봉 | 방향 | 학습 샤프 | 검증 샤프 | 최근 샤프 | 연수익 | 최대낙폭 | 권장 레버리지 |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    for grade, ref, md, info in items:
+        g, s = info["genome"], info["stats"]
+        fam = FAMILIES[g["family"]]
+        direction = DIR_LABEL.get((g.get("mod") or {}).get("direction", ""), "포트폴리오")
+        L.append(f"| {grade} | [{ref}](#{ref.lower().lstrip('#')}) | {fam['name']} | {g['universe']} | {g['tf']} | {direction} | "
+                 f"{s['is']['sharpe']:.2f} | {s['oos']['sharpe']:.2f} | {s['ho']['sharpe']:.2f} | "
+                 f"{_pct(s['all']['cagr'])} | {s['all']['max_dd'] * 100:.0f}% | {info.get('leverage', 1):g}x |")
+    L += ["", "## 전략별 상세", ""]
+    for grade, ref, md, info in items:
+        g, s, c = info["genome"], info["stats"], info.get("checks", {})
+        fam = FAMILIES[g["family"]]
+        live = fam["kind"] == "single" and g["family"] not in _LIVE_UNSUPPORTED
+        uni = "10개 코인 전체 (코인당 자금 1/10)" if g["universe"] == "ALL" else g["universe"]
+        years = " · ".join(f"{y} {_pct(r)}" for y, r in (info.get("yearly") or {}).items())
+        L += [
+            f'<a id="{ref.lower().lstrip("#")}"></a>',
+            f"### {grade}등급 {ref} — {fam['name']} ({uni}, {_TF_KO.get(g['tf'], g['tf'])})",
+            "",
+            f"- **규칙**: {describe(g)}",
+            "- **체결**: 봉 마감에 신호 확인 → 다음 봉 시가에 시장가. 손절/익절은 진입가 기준 ATR(14) 배수로 미리 걸어둠",
+            f"- **권장 레버리지**: {info.get('leverage', 1):g}x"
+            + ("" if live else "  ·  ⚠️ 아직 실시간 모의매매 미지원 (포트폴리오형/파생데이터 전략)"),
+            f"- **모의매매**: `python run_strategy.py paper --pick {ref.lstrip('#')} --loop`" if live else "",
+            "",
+            "| 구간 | 샤프 | 연수익 | 최대낙폭 | 거래수 |",
+            "|---|---|---|---|---|",
+            *[f"| {label} | {s[k]['sharpe']:.2f} | {_pct(s[k]['cagr'])} | {s[k]['max_dd'] * 100:.1f}% | {s[k]['trades']} |"
+              for k, label in (("is", "학습"), ("oos", "검증"), ("ho", "홀드아웃(최근)"), ("all", "전체"))],
+            "",
+            f"- **연도별 수익률**: {years}" if years else "",
+            f"- **강건성**: 비용 2배 샤프 {c.get('stress_sharpe', 0):.2f} · 파라미터 근방 수익 비율 "
+            f"{c.get('nb_pos', 0) * 100:.0f}% · 근거: {fam['ref']}",
+            f"- **상세 보고서**: [{os.path.basename(md)}]({md})",
+            "",
+            "<details><summary>파라미터 (JSON)</summary>",
+            "",
+            "```json",
+            json.dumps(g, indent=2, ensure_ascii=False),
+            "```",
+            "</details>",
+            "",
+        ]
+    L.append("> 모든 성과는 과거 백테스트입니다. 실거래 전 모의매매로 확인하세요.")
+    with open(os.path.join(root, "GRADES.md"), "w") as f:
+        f.write("\n".join(x for x in L if x is not None) + "\n")
+    return len(items)

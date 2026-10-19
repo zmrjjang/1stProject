@@ -31,7 +31,7 @@ from .families import FAMILIES
 from .genome import (cluster_key, crossover, key, mutate, neighbors, random_genome, search_space_cells,
                      structure_key)
 from .notify import notify
-from .report import write_discovery, write_index
+from .report import write_discovery, write_grades, write_index
 from .grades import is_b
 from .stats import HyperLogLog, RunningVar, dsr
 
@@ -225,7 +225,7 @@ class Search:
             ["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=self.root, capture_output=True,
             text=True).stdout.strip()
         run = lambda *a: subprocess.run(["git", *a], cwd=self.root, capture_output=True, text=True)  # noqa: E731
-        run("add", "research")
+        run("add", "research", "GRADES.md")
         if run("diff", "--cached", "--quiet").returncode == 0:
             return
         run("commit", "-m", message)
@@ -483,6 +483,7 @@ class Search:
         log.info("CANDIDATE C%d [%s] %s %s %s | OOS %.2f HO %.2f%s", cid, grade, g["family"], g["universe"],
                  g["tf"], o["sharpe"], h["sharpe"], " (replaced a weaker variant)" if j is not None else "")
         if grade == "B" and (j is None or old.get("grade") != "B"):
+            write_grades(self.root, self.cfg)
             self.save_state()
             self.git_sync(f"B-grade strategy C{cid}: {g['family']} {g['universe']} {g['tf']}")
             repo, ref = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_REF_NAME")
@@ -538,6 +539,7 @@ class Search:
             "tf": g["tf"], "oos_sharpe": st["oos"]["sharpe"], "ho_sharpe": st["ho"]["sharpe"],
             "cagr": st["all"]["cagr"], "mdd": st["all"]["max_dd"], "lev": lev, "found_at": _now()})
         write_index(self.ddir, self.state["discoveries"])
+        write_grades(self.root, self.cfg)
         self.save_state()
         log.info("DISCOVERY #%d %s | %s", disc_id, title, message.replace("\n", " | "))
         self.git_sync(f"Strategy discovery #{disc_id}: {g['family']} {g['universe']} {g['tf']}")
@@ -612,6 +614,7 @@ class Search:
         self.state["runtime_hours"] += (time.time() - last_ck) / 3600
         self.save_state()
         self.progress(t0, evals0)
+        write_grades(self.root, self.cfg)
         self.candidate_digest()
 
     def _done(self):

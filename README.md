@@ -1,5 +1,6 @@
 # Binance 선물 차트 데이터 수집기
 
+> **A·B 등급 전략 한눈에 보기: [GRADES.md](GRADES.md)** (자동 갱신)
 > 이 데이터로 찾은 매매전략: **[STRATEGIES.md](STRATEGIES.md)** (내 PC에서 실행하는 법) ·
 > 전략 자동 탐색기: [STRATEGY_LAB.md](STRATEGY_LAB.md)
 
