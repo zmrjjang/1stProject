@@ -40,7 +40,7 @@
 | C72 | C | 일목균형표 | ZECUSDT | 1h | 2.29 | 2.31 | +124.4% | 47% | 0.5x | [보기](C0072_ichimoku_ZECUSDT_1h.md) |
 | C75 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 15m | 1.88 | 2.10 | +60.3% | 54% | 0.5x | [보기](C0075_xsmom_ALL_15m.md) |
 | C94 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 2.10 | 1.97 | +48.2% | 17% | 1.5x | [보기](C0094_squeeze_ZECUSDT_1h.md) |
-| C109 | C | 거래량 급증 돌파 | ETHUSDT | 15m | 2.35 | 2.21 | +84.4% | 27% | 1x | [보기](C0109_vol_breakout_ETHUSDT_15m.md) |
+| C109 | C | 거래량 급증 돌파 | ETHUSDT | 15m | 2.34 | 2.46 | +93.7% | 32% | 0.5x | [보기](C0109_vol_breakout_ETHUSDT_15m.md) |
 | C136 | C | 켈트너 채널 | BNBUSDT | 30m | 2.10 | 2.47 | +17.2% | 10% | 3x | [보기](C0136_keltner_BNBUSDT_30m.md) |
 | C242 | C | 돈치안 채널 돌파 (터틀) | DOGEUSDT | 4h | 2.07 | 1.95 | +41.5% | 17% | 1.5x | [보기](C0242_donchian_DOGEUSDT_4h.md) |
 | C289 | C | 미결제약정(OI) × 가격 | ALL | 30m | 2.21 | 2.81 | +10.0% | 6% | 0.5x | [보기](C0289_oi_trend_ALL_30m.md) |
@@ -62,7 +62,6 @@
 | C409 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 2.93 | 1.89 | +66.5% | 30% | 1x | [보기](C0409_squeeze_SOLUSDT_4h.md) |
 | C414 | C | 슈퍼트렌드 | TRXUSDT | 4h | 1.92 | 1.82 | +52.2% | 40% | 0.5x | [보기](C0414_supertrend_TRXUSDT_4h.md) |
 | C419 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 5m | 1.98 | 1.91 | +13.4% | 13% | 4x | [보기](C0419_zscore_mr_SOLUSDT_5m.md) |
-| C420 | C | 하이킨아시 연속봉 | ALL | 1d | 1.78 | 1.82 | +22.0% | 12% | 1x | [보기](C0420_heikin_ALL_1d.md) |
 | C421 | C | 아룬 추세 | ALL | 1h | 2.08 | 1.87 | +11.6% | 5% | 1.5x | [보기](C0421_aroon_ALL_1h.md) |
 | C422 | C | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.79 | 2.14 | +85.2% | 46% | 0.5x | [보기](C0422_linreg_XRPUSDT_30m.md) |
 | C423 | C | 선형회귀 추세 유의성 | ZECUSDT | 15m | 2.43 | 1.91 | +108.1% | 54% | 0.5x | [보기](C0423_linreg_ZECUSDT_15m.md) |
@@ -73,4 +72,5 @@
 | C432 | C | MFI (거래량 가중 RSI) 역추세 | LINKUSDT | 1h | 1.80 | 2.03 | +26.0% | 14% | 2.5x | [보기](C0432_mfi_LINKUSDT_1h.md) |
 | C433 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 2.55 | 1.82 | +56.2% | 18% | 1.5x | [보기](C0433_positioning_BTCUSDT_1h.md) |
 | C434 | C | 테이커 주문흐름 불균형 | ZECUSDT | 1h | 1.81 | 3.02 | +122.1% | 52% | 0.5x | [보기](C0434_flow_ZECUSDT_1h.md) |
-| C435 | C | 아룬 추세 | SOLUSDT | 4h | 1.82 | 1.79 | +46.0% | 29% | 1x | [보기](C0435_aroon_SOLUSDT_4h.md) |
+| C436 | C | OBV 거래량 모멘텀 | XRPUSDT | 15m | 3.05 | 2.17 | +33.9% | 16% | 1x | [보기](C0436_obv_XRPUSDT_15m.md) |
+| C437 | C | 파라볼릭 SAR | SOLUSDT | 1d | 2.12 | 2.53 | +77.6% | 48% | 0.5x | [보기](C0437_psar_SOLUSDT_1d.md) |
