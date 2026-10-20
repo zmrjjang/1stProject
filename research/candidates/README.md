@@ -25,7 +25,7 @@
 | C427 | B | 거래량 급증 돌파 | ALL | 4h | 1.83 | 2.23 | +28.6% | 17% | 0.5x | [보기](C0427_vol_breakout_ALL_4h.md) |
 | C430 | B | 이동평균 교차 추세추종 | ALL | 1h | 1.66 | 1.71 | +30.2% | 19% | 1.5x | [보기](C0430_ma_cross_ALL_1h.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
-| C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.93 | 2.29 | +17.0% | 7% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
+| C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
 | C13 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.20 | 1.90 | +4.6% | 3% | 2x | [보기](C0013_zscore_mr_ALL_1h.md) |
 | C26 | C | 거래량 급증 돌파 | ETHUSDT | 1h | 3.25 | 3.32 | +16.4% | 12% | 2x | [보기](C0026_vol_breakout_ETHUSDT_1h.md) |
@@ -43,12 +43,11 @@
 | C109 | C | 거래량 급증 돌파 | ETHUSDT | 15m | 2.35 | 2.21 | +84.4% | 27% | 1x | [보기](C0109_vol_breakout_ETHUSDT_15m.md) |
 | C136 | C | 켈트너 채널 | BNBUSDT | 30m | 2.10 | 2.47 | +17.2% | 10% | 3x | [보기](C0136_keltner_BNBUSDT_30m.md) |
 | C242 | C | 돈치안 채널 돌파 (터틀) | DOGEUSDT | 4h | 2.07 | 1.95 | +41.5% | 17% | 1.5x | [보기](C0242_donchian_DOGEUSDT_4h.md) |
-| C284 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 2.00 | 1.74 | +28.6% | 11% | 2.5x | [보기](C0284_positioning_BTCUSDT_1h.md) |
 | C285 | C | 일목균형표 | BNBUSDT | 1h | 2.10 | 1.77 | +45.1% | 24% | 1x | [보기](C0285_ichimoku_BNBUSDT_1h.md) |
 | C289 | C | 미결제약정(OI) × 가격 | ALL | 30m | 2.21 | 2.81 | +10.0% | 6% | 0.5x | [보기](C0289_oi_trend_ALL_30m.md) |
 | C292 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 1h | 2.40 | 2.34 | +20.4% | 15% | 2x | [보기](C0292_squeeze_ALL_1h.md) |
 | C300 | C | 롱/숏 비율 포지셔닝 | ALL | 4h | 2.38 | 2.37 | +13.0% | 7% | 1.5x | [보기](C0300_positioning_ALL_4h.md) |
-| C311 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.33 | 2.05 | +30.0% | 16% | 1x | [보기](C0311_rsi_mr_ZECUSDT_5m.md) |
+| C311 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.42 | 2.43 | +32.2% | 21% | 2x | [보기](C0311_rsi_mr_ZECUSDT_5m.md) |
 | C317 | C | 거래량 급증 돌파 | ALL | 4h | 2.32 | 2.50 | +8.5% | 7% | 1.5x | [보기](C0317_vol_breakout_ALL_4h.md) |
 | C341 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 3.96 | 2.24 | +20.3% | 10% | 2.5x | [보기](C0341_oi_trend_BNBUSDT_1h.md) |
 | C364 | C | 거래량 급증 돌파 | SOLUSDT | 4h | 1.98 | 1.98 | +47.3% | 32% | 0.5x | [보기](C0364_vol_breakout_SOLUSDT_4h.md) |
@@ -74,3 +73,4 @@
 | C426 | C | 시계열 모멘텀 (변동성 정규화) | BTCUSDT | 15m | 1.96 | 2.87 | +13.9% | 6% | 5x | [보기](C0426_tsmom_BTCUSDT_15m.md) |
 | C428 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 2.16 | 1.91 | +72.9% | 30% | 1x | [보기](C0428_squeeze_DOGEUSDT_4h.md) |
 | C429 | C | 켈트너 채널 | XRPUSDT | 15m | 1.94 | 2.20 | +13.9% | 10% | 2.5x | [보기](C0429_keltner_XRPUSDT_15m.md) |
+| C431 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 1.77 | 2.42 | +13.6% | 9% | 4.5x | [보기](C0431_oi_trend_BNBUSDT_1h.md) |
