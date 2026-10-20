@@ -1,242 +1,242 @@
 {
  "created_at": "2026-10-02T08:51:45+00:00",
- "runs": 55,
- "runtime_hours": 286.5092827323412,
- "evaluations": 114375809,
+ "runs": 56,
+ "runtime_hours": 292.00132695542464,
+ "evaluations": 115957902,
  "is_sr": {
-  "n": 111228210,
-  "mean": 0.021454352525466368,
-  "m2": 1917255.1467817456
+  "n": 112781219,
+  "mean": 0.021376270178861397,
+  "m2": 1946526.382240733
  },
  "oos_sr": {
-  "n": 40809721,
-  "mean": 0.04763629445414693,
-  "m2": 44836.19518489078
+  "n": 41390412,
+  "mean": 0.04757348846380269,
+  "m2": 45428.76812349694
  },
  "ho_sr": {
   "n": 135,
   "mean": 0.012212264002887241,
   "m2": 0.5044963483969245
  },
- "oos_checks": 41201928,
- "robust_checks": 1195,
+ "oos_checks": 41782619,
+ "robust_checks": 1204,
  "holdout_checks": 130,
  "holdout_rejects": 121,
  "duplicates": 35,
  "families": {
   "tsmom": {
-   "evals": 10023177,
-   "oos": 4096780,
+   "evals": 10063517,
+   "oos": 4112245,
    "robust": 43,
    "holdout": 6,
    "found": 5
   },
   "ma_cross": {
-   "evals": 18935029,
-   "oos": 9374465,
+   "evals": 19024163,
+   "oos": 9416597,
    "robust": 15,
    "holdout": 0,
    "found": 0
   },
   "donchian": {
-   "evals": 16350198,
-   "oos": 10114342,
+   "evals": 16419206,
+   "oos": 10155112,
    "robust": 45,
    "holdout": 1,
    "found": 1
   },
   "zscore_mr": {
-   "evals": 4125063,
-   "oos": 1077060,
-   "robust": 49,
+   "evals": 4145255,
+   "oos": 1082244,
+   "robust": 50,
    "holdout": 19,
    "found": 0
   },
   "rsi_mr": {
-   "evals": 5443745,
-   "oos": 1417206,
+   "evals": 5472394,
+   "oos": 1424727,
    "robust": 86,
    "holdout": 36,
    "found": 2
   },
   "squeeze": {
-   "evals": 10853077,
-   "oos": 5569901,
-   "robust": 64,
+   "evals": 10896911,
+   "oos": 5590796,
+   "robust": 65,
    "holdout": 1,
    "found": 1
   },
   "flow": {
-   "evals": 2361716,
-   "oos": 161079,
-   "robust": 7,
+   "evals": 2372144,
+   "oos": 161358,
+   "robust": 8,
    "holdout": 0,
    "found": 0
   },
   "regime": {
-   "evals": 4030480,
-   "oos": 1293167,
+   "evals": 4048978,
+   "oos": 1298159,
    "robust": 36,
    "holdout": 0,
    "found": 0
   },
   "season": {
-   "evals": 1808420,
-   "oos": 2146,
+   "evals": 1817618,
+   "oos": 2155,
    "robust": 0,
    "holdout": 0,
    "found": 0
   },
   "xsmom": {
-   "evals": 6098733,
-   "oos": 268969,
-   "robust": 10,
+   "evals": 6127452,
+   "oos": 270216,
+   "robust": 11,
    "holdout": 0,
    "found": 0
   },
   "pairs": {
-   "evals": 3272371,
-   "oos": 526185,
+   "evals": 3291069,
+   "oos": 529568,
    "robust": 17,
    "holdout": 0,
    "found": 0
   },
   "funding": {
-   "evals": 5549176,
-   "oos": 1262037,
+   "evals": 5569886,
+   "oos": 1265357,
    "robust": 16,
    "holdout": 0,
    "found": 0
   },
   "positioning": {
-   "evals": 4942390,
-   "oos": 1062629,
-   "robust": 34,
+   "evals": 4965532,
+   "oos": 1067637,
+   "robust": 35,
    "holdout": 2,
    "found": 0
   },
   "oi_trend": {
-   "evals": 2884881,
-   "oos": 242297,
+   "evals": 2896153,
+   "oos": 242440,
    "robust": 95,
    "holdout": 58,
    "found": 0
   },
   "xs_carry": {
-   "evals": 5307621,
-   "oos": 31395,
+   "evals": 5330776,
+   "oos": 31536,
    "robust": 0,
    "holdout": 0,
    "found": 0
   },
   "macd": {
-   "evals": 1271596,
-   "oos": 586992,
+   "evals": 1396585,
+   "oos": 645080,
    "robust": 42,
    "holdout": 0,
    "found": 0
   },
   "adx_dmi": {
-   "evals": 698042,
-   "oos": 279486,
+   "evals": 770732,
+   "oos": 309684,
    "robust": 21,
    "holdout": 0,
    "found": 0
   },
   "ichimoku": {
-   "evals": 1039787,
-   "oos": 461113,
+   "evals": 1151611,
+   "oos": 511404,
    "robust": 33,
    "holdout": 0,
    "found": 0
   },
   "keltner": {
-   "evals": 853372,
-   "oos": 301895,
+   "evals": 938327,
+   "oos": 331115,
    "robust": 41,
    "holdout": 2,
    "found": 0
   },
   "supertrend": {
-   "evals": 773267,
-   "oos": 305305,
+   "evals": 843899,
+   "oos": 332215,
    "robust": 37,
    "holdout": 0,
    "found": 0
   },
   "stoch": {
-   "evals": 206660,
-   "oos": 4925,
+   "evals": 226311,
+   "oos": 5097,
    "robust": 0,
    "holdout": 0,
    "found": 0
   },
   "mfi": {
-   "evals": 249764,
-   "oos": 16224,
-   "robust": 3,
+   "evals": 275362,
+   "oos": 17976,
+   "robust": 4,
    "holdout": 0,
    "found": 0
   },
   "obv": {
-   "evals": 531664,
-   "oos": 132542,
-   "robust": 41,
+   "evals": 586491,
+   "oos": 146913,
+   "robust": 42,
    "holdout": 0,
    "found": 0
   },
   "vwap_dev": {
-   "evals": 700017,
-   "oos": 208344,
-   "robust": 48,
+   "evals": 778202,
+   "oos": 233449,
+   "robust": 49,
    "holdout": 5,
    "found": 0
   },
   "aroon": {
-   "evals": 772009,
-   "oos": 302357,
+   "evals": 843157,
+   "oos": 329149,
    "robust": 38,
    "holdout": 0,
    "found": 0
   },
   "psar": {
-   "evals": 790254,
-   "oos": 343450,
-   "robust": 35,
+   "evals": 863684,
+   "oos": 374198,
+   "robust": 36,
    "holdout": 0,
    "found": 0
   },
   "linreg": {
-   "evals": 1337319,
-   "oos": 660617,
+   "evals": 1464886,
+   "oos": 724085,
    "robust": 50,
    "holdout": 0,
    "found": 0
   },
   "heikin": {
-   "evals": 406038,
-   "oos": 101049,
+   "evals": 444749,
+   "oos": 110173,
    "robust": 37,
    "holdout": 0,
    "found": 0
   },
   "candle": {
-   "evals": 440894,
-   "oos": 94226,
+   "evals": 479020,
+   "oos": 101680,
    "robust": 29,
    "holdout": 0,
    "found": 0
   },
   "nr_breakout": {
-   "evals": 424486,
-   "oos": 111884,
+   "evals": 468390,
+   "oos": 124426,
    "robust": 6,
    "holdout": 0,
    "found": 0
   },
   "vol_breakout": {
-   "evals": 868006,
-   "oos": 399440,
+   "evals": 958885,
+   "oos": 443407,
    "robust": 97,
    "holdout": 0,
    "found": 0
@@ -307,8 +307,8 @@
   }
  ],
  "oos_independent_trials": 376264,
- "oos_clusters_hll": "Dg0LDgwLDAwUDg4MDAkPDgwMDwoMDAwLDAwNDA0KCwoMDQkOCw0NCwsNDQ0MCgwLDA4PDQoLCwwKDAoODwsMCwoKCxAMDgoLDAsJDAsMCwoMDQ8MDQ0OChAKDQwKDgoLDAoMDQsMDAwNDQwQDA4NDQwNDQwNDhALCQwLDAoNDA0PCwsMDgsODwsKDg4PCw4NCwwLDQsMDAsPDg0NDAwSDQ0JDQwMCg0MDhEMCwsNDgwMDAwMCw0ODQsKDgwNDAsLCwoMCwsLDg4SCgsODQ4LDQsKDAoMCwsLEBAMCgsKCgoNDQsODQsMCw0LCw0MDAwLDAsLDhAKEgwMDgwQDA8LCwoMDgsLEQ0KDA8MDgsMChENDA4LCwsKCwwNEAoLDBALDgsKDAwLDA4NDQ4NCgwLDQsPDAwMCgsLDwwMCRAMDAwODQsQCgwMDAsMCwoMCg4MDQ0KCw0MDg0ODAwMDAoPEAsMCgwLDQoNCwwMDQkMCgoLCwwMDwsLCwsMCwsRDAsNCg0LDQoKCwsLDAsOChMNDw8NCwwMDA4MDAsMCw8LEw0NCgoLDQsMDAoLDQwMCg0ODA0KDg0QCgsLDw0KCw8MCgwRCwwKDQsLDwoKEQ4LDA4KDg0NDBELDgwKCwoMCw8NDQ4MDQsPDgwODA0MCQ4KCwsMCw0LCwsKCw0NDA0LDAwLDAwLCw8SDAwOCwsLDA0LCgwLCwsNCgsLDAsODAwMDAsPDQ8PDgsNDQsKDwwMDQsPDw4LDAsLDA0LDQwKCw0NCwwNCgwMDQwPCQwODwsKDBENCgsODQsMDg4PDAwLEAwMCw0NDgsPCwsNCgsLDw0KCgsMDQwOCwoKDA0KDAoMDxAODQ8RCw8LCg0KDwsKDAwLEAsMDAsMDREPDwsOEA4LDAsLDAwNCg0KDQkLDQ0LCwwKDQwNDgwMDAoMCwsKDQwLDxAKDAwODAsNFQoODg8MDg8ODQ8MDgwKCgwODAkPDQ4LCw0LChEKEAwMCwsKCwoMCgwOCwsNCw0ODwwKCw4KDQ0MDA0KCgoLDQ0SDA0LDgwJDQwLCwwJDA0LCwwKDAwMDwoLEgsKDgwKCwsLEQoOCg0NEAwMDQ0LDQwLEA4NDA0KDA4LEAwLCwsLDBAMCg0OCw4KDQ0MDQoNDQsNDQ0NDAwKDQoMCw0OCgwPDQkMCQwRCw4MCw8MDA4PDhAMCgwMDA4KDgwNCwoNDAsNDAsNCw4LCwwPDQwODAwODhAMDBANDQwNCgsKDAoNCgsLDAwPDBEMDgsLCQoKEwsLDQ4MEQsNDBAKCgsOCRMKDgwMCw4KCwoLCgsLDBELDAsODg0LEA4MCxAMDQoLDQ4MCgwOCw0PDQoODgwKCg8LCgkNCw8NDAsRDAoNDQwNCwsKCgoMDQwNDQ0LDQ8TCgwMDQwODAwMCw0LDQsNDwoLCw4LCw8OEw0KDAoLDAoMEAsNDwsNDBANCwoLCwsNDw0ODAsKCw4NCgwLDQ4LDAwPDwwMDQ0QCg4MDw0ODAsMDQsJCw0XCg8NDQwMDgoKDAoLDA0NCg0SCw0UDQsMDQ8MDAsOCwoLDQsLCwwRDQ4NDA4KDAwNChELCQ0OEA8MDRANDAwMCw0KCw0LChEMDwwRDAwKCw8OFAoKDAwMCgsMDAoKDAoMCxAMCw4MDg0KCg8ODAsNCgwQDwsQDg8LCwsOCw8NDgsKCwsMDgsMCwsLDAsLCwsMCw4LDAwMDQ4LCwwLDQsMCgoKDg4LDA4LCQ4MCg4MDgoLCwwMDAwOCg4KDhANCwwSDQwNCgoNDgsMCw0MCgsMDAwLDQwNDAsNDA0NCgoNDg0MDQwMCgsNEAsNDgsOCwsLCg4MDQwLDAoOCwwMCwwMDg4MCQ8NDAsLDQsKCgsLCw0MDAoQCwsQDQ4MDg8OCwwODQoNDQwKDAwMCwsLDA4MDg8NDAsPCw4MDA4MDg0NDQ0NDQoMDA8LDAoLDQ4OCgoOCwsMDA8MDQ4ODQ4LDA8NDA0KCxMKDAwMCQ0LDA8ODQ8PCwwMDAwOCwsNCgwODQ4LDwkNCgsLCw0MDAwODAoKDQwNDgwMCwwPDAwPDQoMDQ4OCgoMCw0ODQsNDQsLDAsLEA0NDQ8MDQwNDA0NDA0ODgsLDwwLDA4MCwoKDA4OCwsNCgwMDAkKDAwKDQ8LDBELCwsNDQ8ODA8LCw4RDAwNFAwJCwsMDAsNDQoKDAwLCw8QDA0KDQoNCxEODA0LCwoLDBAKDQwOCg0OCwwNDg0NCw8MCwoLDA0NCwoLDgoKCwoNDwsLCw0MCgsKCgwODAoLDwwLCg4ODAsMCgoUEg0PCgsLEgwLCgoODA0MCwwKDA4LDgoOCw0PDg4ODgoOCw0LDQ0KCwoNDQ0NDxEMDAsLDA0LCw0NDQ0OCwwLDAwODgsMDgsKDwsKDAsNEQwMDAoTCxILCwsNDAsKDAwLEgwLDA4MCw0SDAsKDQwLCgoMDQsLCg0QEQwLDgsKDAwMDQsLDwoMDwwODQsLDAoQDAsLDAsLDQsKDg0LDQwNDAsMDBALDAoMCw0NDBAMDA4NDg4NCw0MChELDBEPCwsNCwoKDhALCgsMCwsMCQsLDQoPDQoSCwoKDQ0KCw0LCw4MEQwKDhAKDQsKCwsMDQ0MDgwLDAsMFg0KCgwMDA4KDQwLDQ4MDAkNCwsMDgoMDhALCg0KDA4OCwwPCwwLCg4KDRANDBENCgwMDAsPCgwMCw0MDAwLDQoLDQ0LDgsLCg4JDAwMCwsKCwsNCQoLDw8KDQwLDQwMDBELDw4KCwwNDgsOCgwKDhEMDAwMDAsTCwkLDQsODQoKCREKDQwKDQwNFA0LDAsMDAwOCwsMDA0NDBEPDwsODBQLCgwLEgwNCgsLCwsNCw4LDg8LCgkMCwwLDQ4NDAwNDQsLCw8KDQ4LCwsKDQkMCwoNEBAQDgwMDA0JCgoLDhAJDQ8LDRIKDQ8ODwwKCxAPEAwPDw8KDA0MDAkLDgwNEQsKCgwSDgsLDgwOCw0NDQwNDAwKCgwOCw0PDAwKDAwLDwwODAoPDg8NCg4LCwsLDQkPCg0KDAsKCgsKDAoMDQwOCw4NDAoMDAoMDAwKCwoKDQ0JDA0MDwwLCwoJDBAMDAwMDAwLDAoNCg0MDgwLDgsOCwsLDA8LDAkNDAsLDQsKCgwNCwwOCgsNEA0LDg4MCw4QDg0LDA4REAoOERAOCg0NCwwOCgsMDAsSDQoPDg8ODgsKDQoNCg8NChAPCxANDAoOCwoNCw4KCw0ODgoNCwwMCw0JDA4LDg0NDQ4NDAsMCg8MCwoQDQsUCxEMEwwNDQwODQ4LCwsMDAwSDgkMCwoODwsJDAwODQoMDAsMDQoMDQwKDA4MCwsKCwsLCwsNDBEMCwwNCwsNCwoKCwsKDQwNCg4LChAMDg8LCwwNCw8RDw0OCwsLCwsKDwoMDQsLDQkLCw4NDgsKDQ4NDQsLEw0NCg0KDQ0PDg0LDQsKDgsLCw0NDA0MCw0ODQwMDAoNCwwOEAoLEw0MDQsKCQ8NCwsPCgsMDAwODgoLDAwSDAwMDQsNCQ0MDAsNDQsLCw8NCwoNDQwPDw4MEg0MDA0LDgwNDwsMDgwPDg0NCgwMEAsLCwsLDg0MEw4KCg0LDwwOCwsMChAKCw8LCxAOCxEPDgwLCw4MEQwLCwsODAwMDQ0LDREMCw0NDAoKCw0ODA4NEhILCw0LDQsLCgwLCwsSDQwLDA0NCw8LCwwNDwoMCw4LCwkNDA8NCwsOCQoNCwoQDBANEA0MDAwNDwwNCAsNCwwPEQsMDg0KDQ0MDA4LDg0KDgwLCwoMCwsNDgoKCwoNCg0MDgsLCwoNCwsNEA0JDQsNCg0LEAwNCg4OCg0NCgsJDQoKDQsNDAoODA8NCwwNDA4NDQsNEgsKDA0MDAwLDA8NDQoOCQkKDA0PCwsPDQsLCwsMChQMCwwLCw8NCg0NDQ4LEQwMCgoMCwsNCgsPCw4LEhALDgkPDA0LEgsMDQsQDwwNDA0KCgsPDgwOCg4MDQoOCgsNCg8MCxIKCg4MCw0SDg4TDA0KCg0LDA4QDwwMDAwKCg4LCwsOCwoODQkPDgsLDQsLDg4MDgsLEAsLDA4OCwsNEQ0LDA8MDAwKCw8QCw0LCgsLDA0LCw4LCg4MCwsKDgwODQ0KDAwMDAsKCgsMCQ4NDA4LDAwNCw8KCgsLCwsNDA4LEAwLDAwLDQ4NDQwNCgoMDQwPCg4LCgwMDg0KDQ0KCgoJCgsKCw0MDAwLDwwNCw4MCxEMDgsNDA0NDgwMCwkLDg4KDw4LDQsNDAwKDQwNCwkKDg0MDAsLDwsPDAwKDAsPCw8LDAsMDQwMDgoPCgsNCgwLDA4LDw0PDgsMCw8JCwsNEQ0RCQ0OEA0LCwoPDA0KCw0KDQ4LDQoMCwsNCxENEQsNEQ4ODAsNCwsMDQsKCxINCwoODAwLDQ0NDQwQDQwPCgoJCwwKDRIKDw0KDQwLDAoMDQwKCw0PFwwLCgsLCw8LCgoNCw8LDQsLCgwMCgsLCwoOCgwODAsLDRMMCwwMDAwLDA0KCgsMCw4ODAsLDAwLDQoLDAwMCwoNDAwNDAwKDA0MDAkMDQoMDgwMCwkLDAsMFQ0LDAwMCwsMDw0NDAoLDQwNChALEA4PCQ0NCgwMDQ4NDg0MCQwMCw0MCw0SDQsMDwsNDwwLDAsNDQsNDwoMDgsLDwsLDQ0OCwoKDBIPEwsNDA4LDAoNEAwMDAwNDAwRDAsNCg0KCw0NCwsNDQ0PDQ0NEBAMDwoOCxAMDQwNDA0QDAwLDg0MCgoLDAwMDRINDBISCgsLCwwNDA4KDgoKEg8KCwwKDQwNDgsJCw0MDQwKDAkMDAwODA4RDg4LDBMLCg0NDRUPDQ0OCw8MDAoLCw4KDQoLCxAKCxAQCwwPEgsLDA4NDAsLCgwSCgsNEgsLCwsKDAwMCQsNCg8NDAkMDAoLCgwMDQwPCQwMEAwMDwsODQwLDg4MDwwNCw4NCgoLDgwODQwKCQoKCw0LDxAKDgsLCw4LCgwKDgwNEAwNCgoLDAsPDg4LDA4LDA0PDAwPDAsODQwMEA0MDQ0LCQsMDgwNCgsQCwoKCwsOCQwKCQoKDAsNDg4NDAwKDA0MDAoMCw4PDAsNCwsMCgkNDAsLDQ4KDA4LDxEMDwsKDQoODAwSDA4PCg8ODAwKDQsLDAsLCw0MCg0LDAoMCwkMCwsODAsPDAoOCwwMCw0KDAsLEAsMCgoOCgwMCwwPCwoNCg0MCgwMCg8KDQ0NEQkLERMMDg4MEAwNDA0OCgwLDw0LCwwMDwwPDA0MDA0MDwwMEBEMCgwNEgoQCgsQCgsKDgoPDg4PDA0LDQsPDAsMDQ4LDg0LDgoLDgoNDA4NChAMCw0MDg4MDQ0NCgoNCw0MCw0LCw0KDg4MCgsMCwwMCwkLDQ0LCgwKDAwLDQsPDAwKCwkODgoMChALDwsPCgsODAsMDw0NCwwODQ0OCw4NCwwKEAsMDwoNDA==",
- "updated_at": "2026-10-20T03:53:28+00:00",
+ "oos_clusters_hll": "Dg0LDgwLDAwUDg4MDAkPDgwMDwoMDA0LDAwNDA0KCwsMDQkOCw0NCwsNDQ0MCg4LDA4PDQoLCwwKDAoODwsMCwsKCxAMDgoLDAsJDAsMCwoMDQ8MDQ0OChAKDQwKDgoLDAoMDQsMDAwNDQwQDA4NDQwNDQwNDhALDAwLDAoNDA0PCwsMDgsODwsKDg4PCw4NCwwLDQsMDAsPDg0NDAwSDQ0JDQwMCg0MDhEMCwsNDgwMDAwMCw0ODQsLDgwNDAsLCwoMCwsLDg4SCgsODQ4LDQsKDAoMCwsLEBAMCgsKCgoNDQwODQsMCw0LCw0MDAwLDAsLDhAKEgwMDgwQDA8LCwoMDgsLEQ0KDA8MDgsMChENDA4LCwsKCwwNEAoLDBALDgsKDAwLDA4NDQ4NCgwLDQsPDAwMCgsLDwwMCRAMDAwODQsQCgwMDAsMCwoMDQ4MDQ0KCw0MDg0ODAwMDAoPEAsMCgwLDQoNCwwMDQkMCgoLCwwMDwsLCwsNCwsRDAsNCg0LDQoKCwsLDAsOChMNDw8NCwwMDA4MDAsMCw8LEw0NCgoLDQsMDAoLDQwMCg0ODA0KDg0QCgsLDw0KCw8MDAwRCwwKDQsLDwoKEQ4LDA4KDg0NDBEMDgwKCwoMCw8NDQ4MDQsPDgwODA4MCQ4KCwsMCw0LCwsKCw0NDA0LDAwLDAwLCw8SDAwOCwsLDA0LCgwLCwsNCgsLDAsODAwMDAsPDQ8PDgsNDQsKDwwMDQ0PDw4LDAsLDA0LDQwKCw0NCwwNCgwNDQwPCQwODwsKDBENCgsODQsMDg4PDAwLEAwMCw0NDgsPCwsNCgsLDw0OCgsODQwOCwoKDA0KDAoMDxAODQ8RCw8LCg0KDwsKDAwLEAsMDAsMDREPDwsOEA4LDAsLDAwNCg0KDQkLDQ0LCwwKDQwNDgwMDAoMCwsKDQwLDxAKDAwODAsNFQoODg8MDg8ODQ8MDgwKCgwODAkPDQ4LCw0LChEKEAwMCw8KCwoMCgwOCwsNCw0ODwwKCw4KDQ0MDA0KCgoLDQ0SDA0LDgwJDQwLCwwJDA0LCwwKDAwMDwoLEgsKDgwKCwsMEQoOCg0NEAwMDQ0LDQwLEA4NDA0KDA4LEAwLCwsLDRAMCg0OCw4KDQ0MDQoNDQsNDQ0NDQwKDQoMCw0ODAwPDQkMCwwRCw4MCw8MDA4PDhAMCgwMDA4KDgwNCwoNDAsNDAsNCw4LCwwPDQwODAwODxAMDBANDQwNCgsKDAoNCgsLDAwPDBEMDgsLCQoPEwsLDQ4MEQsNDBAKCgsOCRMKDgwMCw4KCwoLCgsLDBELDAsODg0LEA4MCxAMDQoLDQ4MCgwOCw0PDQoODgwKCg8LCgkNCw8NDAsREAoNDQwNCwsLCgoMDQwNDQ0LDQ8TCgwMDQwODAwMCw0LDQsNDwoLCw4LCw8OEw0KDAoLDAoMEAsNDwsNDBANCwoLCwsNDw0QDAsKCw4NCgwLDQ4LDAwPDwwMDQ0QCg4MDw0ODAsMDQsJCw0XCg8NDQwMDgoKDAoLDA0NCg0SCw0UDQsMDQ8MDAsOCwoLDQsLCwwRDQ4NDA4KDAwNChELCQ0OEA8MDRANDAwMCw0KCw0LChEMDwwRDAwKCw8OFAoPDAwMCgsMDAoKDAoMDRAMCw4MDg0KCg8ODAsNCgwQDwsQDg8LCwsOCw8NDgsKCwsMDgsMCwsLDAsLCwwMCw4LDAwMDQ4LCw4LDQwMCgoKDg4LDA4LCQ4MCg4MDgoLCwwMDAwOCg4KDhANCwwSDQwNCgoNDgsMCw0MCgsMDAwLDQwNDAsNDA0NCgoNDg0MDQwMCgwNEAsNDgsOCwsLCg4MDQwLDAoOCwwMCwwMDg4MCQ8NDAsLDQsKCgsLCw0MDQoQCwsQDQ4MDg8OCwwODQwNDQwKDAwMCwsLDA4MDg8NDAsPCw4MDA4MDg0NDQ0NDQoMDA8LDAoLDQ4OCgoOCwsMDA8MDQ4ODQ4LDA8NDA0KCxMKDAwMCQ0LDQ8ODQ8PCwwMDAwOCwsNCgwODQ4LDwkNCgsLCw0MDAwODAoKDwwNDgwMCwwPDAwPDQoMDQ4OCgoMCw0ODQsNDQsLDAsLEA0NDQ8MDQwNDA0NDA0ODgsLDwwLDA4MCwoKDA4OCwsNCgwMDAkKDAwKDQ8LDBELCwsNDg8ODA8LCw4RDAwNFAwJCwsMDAsNDQoKDAwLCw8QDA0KDQoNCxEODA0LCwoLDBALDQwOCg0OCwwNDg0NCw8MCwoLDA0NCwoLDgoKCwoNDwsLCw0MCgsKCgwQDAoLDwwLCg4ODAsMCgoUEg0PCgsLEgwLCwoODA0MCwwKDA4LDgoOCw0PDg4ODgoOCw0LDQ0KCwoNDQ0NDxEMDAsLDA0LCw0NDQ0OCwwLDAwODgsMDgsKDwsKDAsNEQwMDAoTCxILCwsNDAsLDAwLEgwLDA4MCw0SDQsKDQwLDAoMDQsLCg0QEQwLDgsKDAwMDQsLDwoMDwwODQsLDAoQDAwLDAsLDQsLDg0LDQwNDAsMDBALDAsMCw0NDBAMDA4NDg4NCw0MChELDBEPCwsNCwoLDhALCgsMCwsMCQsLDQoPDQoSCwoKDQ0KCw0LCw4MEQwKDhAKDQsKCwsMDQ0MDgwLDAsMFg0KCgwMDA4KDQwLDQ4MDAsNCwsMDgoMDhALCg0KDA4OCwwPCwwLCg4KDRANDBENCgwMDAsPCgwMCw0MDAwLDQoLDQ0LDgsLCg4JDAwMCwsKCwsNCQoLDw8KDQwLDQwMDBELDw4KCwwNDgsOCgwKDhEMDAwMDAsTCwkLDQsODQoKCREKDQwLDQwNFA0LDAsMDAwOCwsMDA0NDBEPDwsODBQLCgwLEgwNCgsLCwsNCw4LDg8LCgkMCwwLDQ4NDAwNDQsLCw8KDQ4LCwsKDQ4MCwoNEBAQDgwMDA0JCgwLDhANDQ8LDRIKDQ8PDwwKCxAPEAwPDw8KDA0MDAsLDgwNEQsKCgwSDgsLDgwOCw0NEgwNDAwKCgwOCw0PDAwKDAwLDwwODAoPDg8NCg4LCwsLDQkPDA0KDAsKCgsKDAoMDQwOCw4NDAoMDAoMDAwKCwoKDQ0JDA0MDwwLCwoMDBAMDAwMDAwLDAoNCg0MDgwLDgsOCwsLDA8LDAkNDAsLDQsKCgwNCwwOCgsNEA0LDg4MCw4QDg0LDA4REAoOERAOCg0NCwwOCgsMDA8SDQoPDg8ODgsKDQoNCg8NChAPCxANDAoOCwoNCw4KCw0ODgwNCwwMCw0JDA4LDg0NDQ4NDAsMCg8MCw4QDQsUCxEMEwwNDQwODQ4LCwsMDAwSDgkMCwoODwsKDAwODQoMDAsMDQoMDQwLDA4MCwsKCwsLCwsNDBEMCwwNCwsNCwoKCwsKDQwNCg4LChAMDg8LCwwNCw8RDw8OCwwLCwsKDw0MDQsLDgkLCw4NDgsKDQ4NDQsMEw0NCg0KDQ0PDg0LDQsKDgsLCw0NDA0MCw0ODQwMDAoNCwwOEAoLEw0MDQsKCQ8NCwsPCgsMDAwODgoLDAwSDAwMDQsNCQ0MDAsNDQsLCw8NCwoNDQwPDw4MEg0MDA0LDgwNDwsMDgwPDg0NCgwMEAsLCwsLDg0MEw4KCg0LDwwOCwsMChAKCw8LCxAOCxEPDgwLCw4MEQwLCwsODAwMDQ0LDREMCw0NDAoKCw0ODA4NEhILCw0LDQsLCgwLCwsSDQwLDA0NCw8LCwwNDwoMCw4LCwkNDA8NCwsOCQoNCwoQDBANEA0MDAwNDwwNCAsNCwwPEQsMDg0KDQ0MDA4LDg0KDgwLCwoMCwsNDgoKCwoNCg0MDgsLCwoNCwsNEA0JDQsNCg0LEA4NCg4OCg0NCgsJDQoKDQsNDAoODA8NCwwNDA4NDQsNEgsPDA0MDAwLDA8NDQoOCQkKDA0PCwsPDQsLCwsMChQMCwwLCw8NCg0NDQ4LEQwMCgoMCwsNCgsPCw4LEhALDgkPDA0LEgsMEAsQDwwNDA0KCwsPDgwOCg4MDQoOCgsNCg8MCxIKCg4MCw0SDg4TDA0KCg0LDA4QDwwMDAwKCw4LCwsOCwoODQkPDgsLDQsLDg4MDgsLEAsLDA4OCwsNEQ0LDA8MDAwKCw8QCw0LCgsLDg0LCw4LCg4MCwsKDgwODQ0KDAwMDAsKCgsMDA4NDA4LDAwNCw8KCgsLCwsNDA4LEAwLDAwLDQ4NDQwNCgoMDQwPCg4LCgwMDg0KDQ0KCgoJCgsKCw0MDAwLDwwNCw4MCxEMDgsNDA0NDgwMCwwLDg4KDw4LDQsNDAwKDQwNCwkKDg0MDAsMDwsPDAwKDAsPCw8LDAsMDQwMDgoPCgsNCgwLDA4LDw0PDgsMCw8JCwsNEQ0RCQ0OEA0LCwoPDA0KCw0KDQ4LDQoMCwsNCxEREQsNEQ4ODAsNCwsMDQsKCxINCwoODAwLDQ0NDQwQDQwPCgoJCwwKDRIKDw0KDQwLDAoMDQwKCw0PFwwLCgsLCw8LCgoNCw8LDQsLCgwMCgsLCwoOCgwODAsLDRMMCwwMDAwPDA0KCgsMCw4ODAsLDAwODQoLDAwMCwoNDAwNDAwKDA0MDAkMDQoMDgwMCwsLDAwMFQ0LDAwMCwsMDw0ODA8LDQwNChALEA4PCQ0NCgwMDQ4NDg0MCQwMDw0MCw0SDQsMDwsNDwwLDAsNDQsNEQoMDgsLDwsLDQ0OCwoKDBIPEwsNDA4LDAoNEAwMDAwNDAwRDAsNCg0KCw0NCwsNDQ0PDQ0NEBAMDwoOCxAMDQwNDA0QDAwLDg0MCgoLDAwMDRINDBISCgsLCwwNDA4KDgoKEg8KCwwKDQwNDgwMCw0MDQwKDAkMDAwODA4RDg4LDBMLDw0NDRUPDQ0ODg8MDAoLCw4KDQoLCxAKCxAQCwwPEgsLDA4NDAsLCgwSCgsNEgsLCwsKDAwMCQsNCg8NDAkMDAoLCgwMDQwPCQwMEAwMDwsODQwNDg4MDwwNCw4NCgoLDgwODQwKCQoKCw0LDxAKDgwLCw4LCgwKDgwNEAwNCgoLDAsPDg4LDA4LDA0PDAwPDAsODQwMEA0MDQ0LCQsMDgwNCgsQCwoKCwsOCQwKCQoKDAsNDg4NDAwKDA0MDAoMCw4PDAsNCwsMCgwNDAsLDQ4KDA4LDxEMDwsKDQoODAwSDA4PCg8ODAwKDQsLDAwLCw0MCg0LDAsMCwkMCwsODAsPDAoOCwwMCw0KDAsLEAsMCgoOCgwMCwwPCwoNCg0MCgwMCg8KDQ0NEQkLERMMDg4MEAwNDA0OCgwLDw0LCwwMDwwPDA0MDA0MDwwMEBEMCgwNEgoQCgsQCgsKDgoPDg4PDA0LDQsPDAsMDQ4LDg0LDgoLDgoNDA4NChAMCw0MDg4MDQ0NCgoNCw0MCw0LCw0KDg4MCgsMCwwMCwkLDQ0LCg0KDAwLDQsPDAwKCwkODgwMChALDwsPCgsODAsMDw0NCwwODQ0OCw4NCwwKEAsMDw0NDA==",
+ "updated_at": "2026-10-20T10:24:52+00:00",
  "last_id": 9,
  "pruned": [
   {
@@ -332,7 +332,7 @@
    "variant_of": 2
   }
  ],
- "oos_fine_clusters": 8089431,
+ "oos_fine_clusters": 8389597,
  "candidates": [
   {
    "id": 1,
@@ -516,14 +516,14 @@
    "name": "OBV 거래량 모멘텀",
    "universe": "ALL",
    "tf": "4h",
-   "oos_sharpe": 2.1668557030846416,
-   "ho_sharpe": 2.2225941590928673,
-   "cagr": 0.13113712979269665,
-   "mdd": 0.11112176707971955,
+   "oos_sharpe": 2.279418885850554,
+   "ho_sharpe": 2.8521258826869635,
+   "cagr": 0.1624422274137396,
+   "mdd": 0.22643200290180376,
    "lev": 1.5,
-   "score": 2.1668557030846416,
-   "found_at": "2026-10-17 13:49 UTC",
-   "replaced": false,
+   "score": 2.279418885850554,
+   "found_at": "2026-10-20T08:56:08+00:00",
+   "replaced": true,
    "grade": "C"
   },
   {
@@ -656,18 +656,18 @@
   },
   {
    "id": 60,
-   "slug": "C0060_vwap_dev_ALL_1h",
+   "slug": "C0060_vwap_dev_ALL_1d",
    "name": "롤링 VWAP 이격",
    "universe": "ALL",
-   "tf": "1h",
-   "oos_sharpe": 1.9003007472953413,
-   "ho_sharpe": 2.0309476167068183,
-   "cagr": 0.29173389308081443,
-   "mdd": 0.15350775464710942,
-   "lev": 0.5,
-   "score": 1.9003007472953413,
-   "found_at": "2026-10-17 09:01 UTC",
-   "replaced": false,
+   "tf": "1d",
+   "oos_sharpe": 1.9204639964688894,
+   "ho_sharpe": 2.0328004015922754,
+   "cagr": 0.34779424478484255,
+   "mdd": 0.17878357597753514,
+   "lev": 1.0,
+   "score": 1.9204639964688894,
+   "found_at": "2026-10-20T09:48:59+00:00",
+   "replaced": true,
    "grade": "C"
   },
   {
@@ -704,17 +704,17 @@
   },
   {
    "id": 75,
-   "slug": "C0075_xsmom_ALL_1h",
+   "slug": "C0075_xsmom_ALL_15m",
    "name": "횡단면 모멘텀/리버설 (10개 코인 순위)",
    "universe": "ALL",
-   "tf": "1h",
-   "oos_sharpe": 1.8265948694625345,
-   "ho_sharpe": 1.810524233314547,
-   "cagr": 0.3542109414447838,
-   "mdd": 0.3035856121856021,
-   "lev": 1.5,
-   "score": 1.810524233314547,
-   "found_at": "2026-10-19T17:42:06+00:00",
+   "tf": "15m",
+   "oos_sharpe": 1.8765906250634385,
+   "ho_sharpe": 2.0965524365892407,
+   "cagr": 0.6027224442801644,
+   "mdd": 0.5426404799816811,
+   "lev": 0.5,
+   "score": 1.8765906250634385,
+   "found_at": "2026-10-20T06:09:12+00:00",
    "replaced": true,
    "grade": "C"
   },
@@ -1040,18 +1040,18 @@
   },
   {
    "id": 381,
-   "slug": "C0381_zscore_mr_ZECUSDT_1h",
+   "slug": "C0381_zscore_mr_ZECUSDT_30m",
    "name": "Ornstein-Uhlenbeck 평균회귀 (z-score)",
    "universe": "ZECUSDT",
-   "tf": "1h",
-   "oos_sharpe": 1.8054930171961017,
-   "ho_sharpe": 2.4203267716049304,
-   "cagr": 0.3061867293667888,
-   "mdd": 0.1631761440359082,
-   "lev": 2.0,
-   "score": 1.8054930171961017,
-   "found_at": "2026-10-18T03:51:43+00:00",
-   "replaced": false,
+   "tf": "30m",
+   "oos_sharpe": 1.8605503504336434,
+   "ho_sharpe": 2.478257286664866,
+   "cagr": 0.13380294594110587,
+   "mdd": 0.04700564918942007,
+   "lev": 4.5,
+   "score": 1.8605503504336434,
+   "found_at": "2026-10-20T07:34:42+00:00",
+   "replaced": true,
    "grade": "C"
   },
   {
@@ -1172,30 +1172,14 @@
    "name": "변동성 수축 후 돌파 (볼린저 스퀴즈)",
    "universe": "SOLUSDT",
    "tf": "4h",
-   "oos_sharpe": 2.1400361266867485,
-   "ho_sharpe": 1.81501092181884,
-   "cagr": 0.5850895882486304,
-   "mdd": 0.39006640073491305,
+   "oos_sharpe": 2.925640323501345,
+   "ho_sharpe": 1.8893664197023166,
+   "cagr": 0.6651639111816467,
+   "mdd": 0.3017320011184783,
    "lev": 1.0,
-   "score": 1.81501092181884,
-   "found_at": "2026-10-18T18:00:45+00:00",
+   "score": 1.8893664197023166,
+   "found_at": "2026-10-20T07:36:54+00:00",
    "replaced": true,
-   "grade": "C"
-  },
-  {
-   "id": 413,
-   "slug": "C0413_aroon_ZECUSDT_4h",
-   "name": "아룬 추세",
-   "universe": "ZECUSDT",
-   "tf": "4h",
-   "oos_sharpe": 1.7696315501605853,
-   "ho_sharpe": 1.7776559498578848,
-   "cagr": 0.5788271502447313,
-   "mdd": 0.31224258339659994,
-   "lev": 1.0,
-   "score": 1.7696315501605853,
-   "found_at": "2026-10-18T15:09:23+00:00",
-   "replaced": false,
    "grade": "C"
   },
   {
@@ -1229,22 +1213,6 @@
    "found_at": "2026-10-18T16:56:01+00:00",
    "replaced": false,
    "grade": "B"
-  },
-  {
-   "id": 418,
-   "slug": "C0418_squeeze_BTCUSDT_30m",
-   "name": "변동성 수축 후 돌파 (볼린저 스퀴즈)",
-   "universe": "BTCUSDT",
-   "tf": "30m",
-   "oos_sharpe": 1.804249849553766,
-   "ho_sharpe": 1.7435982299804353,
-   "cagr": 0.11187919609071684,
-   "mdd": 0.05180977954148558,
-   "lev": 5.0,
-   "score": 1.7435982299804353,
-   "found_at": "2026-10-18T19:28:16+00:00",
-   "replaced": false,
-   "grade": "C"
   },
   {
    "id": 419,
@@ -1332,14 +1300,14 @@
    "name": "파라볼릭 SAR",
    "universe": "ALL",
    "tf": "1d",
-   "oos_sharpe": 1.8342781375302024,
-   "ho_sharpe": 1.673667470092225,
-   "cagr": 0.20023590183749418,
-   "mdd": 0.09423138344657567,
+   "oos_sharpe": 2.1589386121358425,
+   "ho_sharpe": 1.8491353820646164,
+   "cagr": 0.22382706143688047,
+   "mdd": 0.06646358619729931,
    "lev": 1.0,
-   "score": 1.673667470092225,
-   "found_at": "2026-10-19T05:05:47+00:00",
-   "replaced": false,
+   "score": 1.8491353820646164,
+   "found_at": "2026-10-20T05:30:20+00:00",
+   "replaced": true,
    "grade": "B"
   },
   {
@@ -1439,25 +1407,57 @@
    "grade": "B"
   },
   {
-   "id": 431,
-   "slug": "C0431_oi_trend_BNBUSDT_1h",
-   "name": "미결제약정(OI) × 가격",
-   "universe": "BNBUSDT",
+   "id": 432,
+   "slug": "C0432_mfi_LINKUSDT_1h",
+   "name": "MFI (거래량 가중 RSI) 역추세",
+   "universe": "LINKUSDT",
    "tf": "1h",
-   "oos_sharpe": 1.770676933842061,
-   "ho_sharpe": 2.420736880854612,
-   "cagr": 0.13562082501461892,
-   "mdd": 0.09215977362972305,
-   "lev": 4.5,
-   "score": 1.770676933842061,
-   "found_at": "2026-10-20T02:23:12+00:00",
+   "oos_sharpe": 1.8012999272637373,
+   "ho_sharpe": 2.0294933491498135,
+   "cagr": 0.25964330024913784,
+   "mdd": 0.14019394002579444,
+   "lev": 2.5,
+   "score": 1.8012999272637373,
+   "found_at": "2026-10-20T06:18:44+00:00",
+   "replaced": false,
+   "grade": "C"
+  },
+  {
+   "id": 433,
+   "slug": "C0433_positioning_BTCUSDT_1h",
+   "name": "롱/숏 비율 포지셔닝",
+   "universe": "BTCUSDT",
+   "tf": "1h",
+   "oos_sharpe": 2.5462651908576253,
+   "ho_sharpe": 1.820963207386901,
+   "cagr": 0.5624061608433621,
+   "mdd": 0.1826253996092997,
+   "lev": 1.5,
+   "score": 1.820963207386901,
+   "found_at": "2026-10-20T06:45:05+00:00",
+   "replaced": false,
+   "grade": "C"
+  },
+  {
+   "id": 434,
+   "slug": "C0434_flow_ZECUSDT_1h",
+   "name": "테이커 주문흐름 불균형",
+   "universe": "ZECUSDT",
+   "tf": "1h",
+   "oos_sharpe": 1.8052260142439125,
+   "ho_sharpe": 3.024710961861513,
+   "cagr": 1.2208681133651091,
+   "mdd": 0.5241039210260341,
+   "lev": 0.5,
+   "score": 1.8052260142439125,
+   "found_at": "2026-10-20T07:30:37+00:00",
    "replaced": false,
    "grade": "C"
   }
  ],
- "cand_last_id": 431,
- "cand_holdout_checks": 892,
+ "cand_last_id": 434,
+ "cand_holdout_checks": 901,
  "cand_holdout_rejects": 8,
- "cand_replaced": 565,
- "cand_archived": 361
+ "cand_replaced": 571,
+ "cand_archived": 364
 }
