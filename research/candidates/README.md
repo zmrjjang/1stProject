@@ -26,7 +26,7 @@
 | C430 | B | 이동평균 교차 추세추종 | ALL | 1h | 1.66 | 1.71 | +30.2% | 19% | 1.5x | [보기](C0430_ma_cross_ALL_1h.md) |
 | C438 | B | 아룬 추세 | ETHUSDT | 1h | 1.71 | 2.51 | +75.7% | 21% | 1x | [보기](C0438_aroon_ETHUSDT_1h.md) |
 | C440 | B | 롤링 VWAP 이격 | ALL | 30m | 1.52 | 1.74 | +29.5% | 16% | 1x | [보기](C0440_vwap_dev_ALL_30m.md) |
-| C441 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 30m | 1.58 | 1.60 | +64.2% | 23% | 1x | [보기](C0441_squeeze_ETHUSDT_30m.md) |
+| C441 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 30m | 1.78 | 1.60 | +65.3% | 17% | 1x | [보기](C0441_squeeze_ETHUSDT_30m.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
@@ -34,7 +34,7 @@
 | C26 | C | 거래량 급증 돌파 | ETHUSDT | 1h | 3.25 | 3.32 | +16.4% | 12% | 2x | [보기](C0026_vol_breakout_ETHUSDT_1h.md) |
 | C27 | C | 테이커 주문흐름 불균형 | ALL | 4h | 1.99 | 1.96 | +30.1% | 34% | 0.5x | [보기](C0027_flow_ALL_4h.md) |
 | C28 | C | OBV 거래량 모멘텀 | ALL | 4h | 2.28 | 2.85 | +16.2% | 23% | 1.5x | [보기](C0028_obv_ALL_4h.md) |
-| C33 | C | 켈트너 채널 | ALL | 30m | 1.83 | 1.85 | +11.3% | 8% | 1x | [보기](C0033_keltner_ALL_30m.md) |
+| C33 | C | 켈트너 채널 | ALL | 1h | 2.20 | 2.28 | +9.0% | 5% | 1x | [보기](C0033_keltner_ALL_1h.md) |
 | C40 | C | 국면 전환 (추세/횡보 판별 후 전략 선택) | ALL | 4h | 2.56 | 2.18 | +34.4% | 28% | 0.5x | [보기](C0040_regime_ALL_4h.md) |
 | C42 | C | 캔들 패턴 | SOLUSDT | 4h | 1.93 | 1.92 | +69.4% | 31% | 1x | [보기](C0042_candle_SOLUSDT_4h.md) |
 | C54 | C | 켈트너 채널 | SOLUSDT | 30m | 1.96 | 1.86 | +23.1% | 9% | 2x | [보기](C0054_keltner_SOLUSDT_30m.md) |
@@ -71,9 +71,9 @@
 | C426 | C | 시계열 모멘텀 (변동성 정규화) | BTCUSDT | 15m | 1.96 | 2.87 | +13.9% | 6% | 5x | [보기](C0426_tsmom_BTCUSDT_15m.md) |
 | C428 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 2.16 | 1.91 | +72.9% | 30% | 1x | [보기](C0428_squeeze_DOGEUSDT_4h.md) |
 | C429 | C | 켈트너 채널 | XRPUSDT | 15m | 1.94 | 2.20 | +13.9% | 10% | 2.5x | [보기](C0429_keltner_XRPUSDT_15m.md) |
-| C432 | C | MFI (거래량 가중 RSI) 역추세 | LINKUSDT | 1h | 1.80 | 2.03 | +26.0% | 14% | 2.5x | [보기](C0432_mfi_LINKUSDT_1h.md) |
 | C433 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 2.55 | 1.82 | +56.2% | 18% | 1.5x | [보기](C0433_positioning_BTCUSDT_1h.md) |
 | C434 | C | 테이커 주문흐름 불균형 | ZECUSDT | 1h | 1.81 | 3.02 | +122.1% | 52% | 0.5x | [보기](C0434_flow_ZECUSDT_1h.md) |
 | C436 | C | OBV 거래량 모멘텀 | XRPUSDT | 15m | 3.05 | 2.17 | +33.9% | 16% | 1x | [보기](C0436_obv_XRPUSDT_15m.md) |
 | C437 | C | 파라볼릭 SAR | SOLUSDT | 1d | 2.12 | 2.53 | +77.6% | 48% | 0.5x | [보기](C0437_psar_SOLUSDT_1d.md) |
 | C439 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.97 | 2.10 | +39.8% | 18% | 1.5x | [보기](C0439_vwap_dev_ZECUSDT_15m.md) |
+| C442 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | XRPUSDT | 15m | 1.84 | 3.01 | +12.8% | 9% | 3x | [보기](C0442_zscore_mr_XRPUSDT_15m.md) |
