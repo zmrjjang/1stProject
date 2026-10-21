@@ -23,7 +23,7 @@
 | C415 | B | ADX/DMI 추세 | ALL | 4h | 1.63 | 1.51 | +25.6% | 13% | 0.5x | [보기](C0415_adx_dmi_ALL_4h.md) |
 | C424 | B | 파라볼릭 SAR | ALL | 1d | 2.16 | 1.85 | +22.4% | 7% | 1x | [보기](C0424_psar_ALL_1d.md) |
 | C427 | B | 거래량 급증 돌파 | ALL | 4h | 1.83 | 2.23 | +28.6% | 17% | 0.5x | [보기](C0427_vol_breakout_ALL_4h.md) |
-| C430 | B | 이동평균 교차 추세추종 | ALL | 1h | 1.66 | 1.71 | +30.2% | 19% | 1.5x | [보기](C0430_ma_cross_ALL_1h.md) |
+| C430 | B | 이동평균 교차 추세추종 | ALL | 4h | 2.30 | 2.00 | +12.8% | 6% | 1x | [보기](C0430_ma_cross_ALL_4h.md) |
 | C438 | B | 아룬 추세 | ETHUSDT | 1h | 1.71 | 2.51 | +75.7% | 21% | 1x | [보기](C0438_aroon_ETHUSDT_1h.md) |
 | C440 | B | 롤링 VWAP 이격 | ALL | 30m | 1.52 | 1.74 | +29.5% | 16% | 1x | [보기](C0440_vwap_dev_ALL_30m.md) |
 | C441 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 30m | 1.78 | 1.60 | +65.3% | 17% | 1x | [보기](C0441_squeeze_ETHUSDT_30m.md) |
@@ -57,12 +57,11 @@
 | C379 | C | 일목균형표 | ALL | 4h | 2.07 | 1.85 | +10.8% | 8% | 1.5x | [보기](C0379_ichimoku_ALL_4h.md) |
 | C380 | C | 켈트너 채널 | ZECUSDT | 15m | 1.98 | 1.94 | +17.2% | 10% | 1x | [보기](C0380_keltner_ZECUSDT_15m.md) |
 | C381 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ZECUSDT | 30m | 1.86 | 2.48 | +13.4% | 5% | 4.5x | [보기](C0381_zscore_mr_ZECUSDT_30m.md) |
-| C382 | C | OBV 거래량 모멘텀 | ZECUSDT | 30m | 1.85 | 1.81 | +23.9% | 23% | 2.5x | [보기](C0382_obv_ZECUSDT_30m.md) |
 | C396 | C | 슈퍼트렌드 | SOLUSDT | 4h | 2.17 | 1.91 | +77.0% | 32% | 0.5x | [보기](C0396_supertrend_SOLUSDT_4h.md) |
 | C402 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.09 | 1.99 | +5.7% | 3% | 2x | [보기](C0402_zscore_mr_ALL_1h.md) |
 | C404 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BNBUSDT | 15m | 2.16 | 2.41 | +20.5% | 14% | 3x | [보기](C0404_pairs_DOGEUSDT-BNBUSDT_15m.md) |
 | C406 | C | 선형회귀 추세 유의성 | DOGEUSDT | 1h | 1.89 | 2.66 | +60.1% | 35% | 1x | [보기](C0406_linreg_DOGEUSDT_1h.md) |
-| C409 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 2.93 | 1.89 | +66.5% | 30% | 1x | [보기](C0409_squeeze_SOLUSDT_4h.md) |
+| C409 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 2.14 | 2.10 | +48.0% | 28% | 1x | [보기](C0409_squeeze_SOLUSDT_4h.md) |
 | C414 | C | 슈퍼트렌드 | TRXUSDT | 4h | 1.92 | 1.82 | +52.2% | 40% | 0.5x | [보기](C0414_supertrend_TRXUSDT_4h.md) |
 | C419 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 5m | 1.98 | 1.91 | +13.4% | 13% | 4x | [보기](C0419_zscore_mr_SOLUSDT_5m.md) |
 | C421 | C | 아룬 추세 | ALL | 1h | 2.08 | 1.87 | +11.6% | 5% | 1.5x | [보기](C0421_aroon_ALL_1h.md) |
@@ -77,3 +76,4 @@
 | C437 | C | 파라볼릭 SAR | SOLUSDT | 1d | 2.12 | 2.53 | +77.6% | 48% | 0.5x | [보기](C0437_psar_SOLUSDT_1d.md) |
 | C439 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.97 | 2.10 | +39.8% | 18% | 1.5x | [보기](C0439_vwap_dev_ZECUSDT_15m.md) |
 | C442 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | XRPUSDT | 15m | 1.84 | 3.01 | +12.8% | 9% | 3x | [보기](C0442_zscore_mr_XRPUSDT_15m.md) |
+| C443 | C | 아룬 추세 | SOLUSDT | 1h | 2.32 | 2.69 | +20.7% | 25% | 1x | [보기](C0443_aroon_SOLUSDT_1h.md) |
