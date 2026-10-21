@@ -202,6 +202,7 @@ def write_grades(root, cfg):
         "python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 번호만",
         "```",
         "",
+        *_recent_ab_changes(root),
         "## 요약",
         "",
         "| 등급 | 번호 | 전략 | 대상 | 봉 | 방향 | 학습 샤프 | 검증 샤프 | 최근 샤프 | 연수익 | 최대낙폭 | 권장 레버리지 |",
@@ -253,3 +254,83 @@ def write_grades(root, cfg):
     with open(os.path.join(root, "GRADES.md"), "w") as f:
         f.write("\n".join(x for x in L if x is not None) + "\n")
     return len(items)
+
+
+
+def change_summary(ref, info, grade):
+    """Compact description of one strategy version for the change log."""
+    g, st = info["genome"], info["stats"]
+    return {"ref": ref, "grade": grade, "name": FAMILIES[g["family"]]["name"], "universe": g["universe"],
+            "tf": g["tf"], "rule": describe(g), "oos": round(st["oos"]["sharpe"], 2), "ho": round(st["ho"]["sharpe"], 2),
+            "cagr": round(st["all"]["cagr"], 4), "mdd": round(st["all"]["max_dd"], 4),
+            "lev": info.get("leverage", 1), "genome": g}
+
+
+def _short(x):
+    return (f"{x['name']} {x['universe']} {x['tf']} · 검증 {x['oos']:.2f} / 최근 {x['ho']:.2f} · "
+            f"연 {_pct(x['cagr'])} · MDD {x['mdd'] * 100:.0f}%") if x else "-"
+
+
+KIND_KO = {"new": "신규", "replaced": "교체(개선)", "archived": "밀려남", "discovery": "A 신규"}
+
+
+def write_changelog(root, limit=400):
+    """research/CHANGELOG.md from research/changes.jsonl (newest first)."""
+    path = os.path.join(root, "research", "changes.jsonl")
+    events = []
+    if os.path.exists(path):
+        with open(path) as f:
+            events = [json.loads(x) for x in f if x.strip()]
+    events = events[::-1][:limit]
+    L = ["# 전략 변경 기록", "",
+         "탐색기가 전략을 새로 추가·교체(같은 번호로 더 좋은 변형)·밀어낼 때마다 자동으로 기록합니다 (최신이 위). "
+         "등급 현황은 [GRADES.md](../GRADES.md).", "",
+         "| 시각 (UTC) | 종류 | 번호 | 등급 | 이전 | 이후 |", "|---|---|---|---|---|---|"]
+    for e in events:
+        old, new = e.get("old"), e.get("new")
+        grade = (f"{old['grade']}→{new['grade']}" if old and new and old["grade"] != new["grade"]
+                 else (new or old)["grade"])
+        L.append(f"| {e['time'][:16].replace('T', ' ')} | {KIND_KO.get(e['kind'], e['kind'])} | {e['ref']} | {grade} | "
+                 f"{_short(old)} | {_short(new)} |")
+    L += ["", "## 교체·신규 상세 (A·B 등급, 최근 50건)", ""]
+    n = 0
+    for e in events:
+        new, old = e.get("new"), e.get("old")
+        if not new or new["grade"] not in ("A", "B") or e["kind"] == "archived":
+            continue
+        L += [f"### {e['time'][:16].replace('T', ' ')} · {e['ref']} {KIND_KO.get(e['kind'], e['kind'])}", ""]
+        if old:
+            L += [f"- **이전** ({old['grade']}): {old['rule']}", f"  - {_short(old)}"]
+        L += [f"- **이후** ({new['grade']}): {new['rule']}", f"  - {_short(new)} · 권장 레버리지 {new['lev']:g}x", ""]
+        n += 1
+        if n >= 50:
+            break
+    with open(os.path.join(root, "research", "CHANGELOG.md"), "w") as f:
+        f.write("\n".join(L) + "\n")
+    return events
+
+
+
+def _recent_ab_changes(root, n=15):
+    path = os.path.join(root, "research", "changes.jsonl")
+    if not os.path.exists(path):
+        return []
+    with open(path) as f:
+        events = [json.loads(x) for x in f if x.strip()]
+    rows = []
+    for e in reversed(events):
+        old, new = e.get("old"), e.get("new")
+        if not any(x and x["grade"] in ("A", "B") for x in (old, new)):
+            continue
+        what = {"new": "B 편입" if new and new["grade"] == "B" else "신규", "discovery": "A 신규",
+                "archived": "밀려남", "replaced": "교체"}.get(e["kind"], e["kind"])
+        if e["kind"] == "replaced" and old and new and old["grade"] != new["grade"]:
+            what = f"교체 ({old['grade']}→{new['grade']})"
+        rows.append(f"| {e['time'][:16].replace('T', ' ')} | {e['ref']} | {what} | {_short(new or old)} |")
+        if len(rows) >= n:
+            break
+    if not rows:
+        return []
+    return ["## 최근 변경 (A·B 관련)", "", "같은 번호로 내용이 바뀐 전략은 모의매매를 다시 시작하세요. "
+            "전체 기록: [research/CHANGELOG.md](research/CHANGELOG.md)", "",
+            "| 시각 (UTC) | 번호 | 변경 | 현재 내용 |", "|---|---|---|---|", *rows, ""]

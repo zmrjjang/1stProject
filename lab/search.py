@@ -31,7 +31,7 @@ from .families import FAMILIES
 from .genome import (cluster_key, crossover, key, mutate, neighbors, random_genome, search_space_cells,
                      structure_key)
 from .notify import notify
-from .report import write_discovery, write_grades, write_index
+from .report import change_summary, write_changelog, write_discovery, write_grades, write_index
 from .grades import is_b
 from .stats import HyperLogLog, RunningVar, dsr
 
@@ -402,7 +402,10 @@ class Search:
         if j is None:
             return maybe_b or self.has_room(score)
         old = next(e for e in self.state["candidates"] if e["id"] == ids[j])
-        return score > old["score"] and (maybe_b or old.get("grade") != "B")
+        if self.cand_known[ids[j]][0] != structure_key(g):
+            return False  # correlated with a different kind of strategy: not a variant of it
+        return (score > old["score"] * (1 + CG.get("min_improvement", 0))
+                and (maybe_b or old.get("grade") != "B"))
 
     def has_room(self, score, grade="C"):
         """B always has room. A C candidate needs a free slot (B candidates do not count) or
@@ -413,7 +416,22 @@ class Search:
         cap = self.CG.get("max_candidates", 10 ** 9)
         return len(cs) < cap or score > min(e["score"] for e in cs)
 
+    def log_change(self, kind, ref, new=None, old=None):
+        with open(os.path.join(self.rdir, "changes.jsonl"), "a") as f:
+            f.write(json.dumps({"time": _now(), "kind": kind, "ref": ref, "new": new, "old": old},
+                               ensure_ascii=False) + "\n")
+        write_changelog(self.root)
+
+    def _summary_from_file(self, folder, slug, ref, grade):
+        try:
+            with open(os.path.join(folder, slug + ".json")) as f:
+                return change_summary(ref, json.load(f), grade)
+        except FileNotFoundError:
+            return None
+
     def archive_candidate(self, entry, reason):
+        self.log_change("archived", f"C{entry['id']}",
+                        old=self._summary_from_file(self.cdir, entry["slug"], f"C{entry['id']}", entry.get("grade", "C")))
         adir = os.path.join(self.cdir, "archive")
         os.makedirs(adir, exist_ok=True)
         for ext in (".md", ".json", ".npy"):
@@ -446,9 +464,14 @@ class Search:
         j = duplicate_of(structure_key(g), daily, [self.cand_known[i] for i in ids], end, CG["max_corr"])
         if j is not None:
             old = next(e for e in st_["candidates"] if e["id"] == ids[j])
-            if score <= old["score"] or (old.get("grade") == "B" and grade != "B"):
+            # a number keeps the same family + coin set + direction; it only changes for a clearly
+            # better variant (every change restarts paper trading of that number)
+            if (self.cand_known[ids[j]][0] != structure_key(g)
+                    or score <= old["score"] * (1 + CG.get("min_improvement", 0))
+                    or (old.get("grade") == "B" and grade != "B")):
                 return
             cid = old["id"]
+            old_summary = self._summary_from_file(self.cdir, old["slug"], f"C{cid}", old.get("grade", "C"))
             for ext in (".md", ".json", ".npy"):
                 try:
                     os.remove(os.path.join(self.cdir, old["slug"] + ext))
@@ -466,6 +489,7 @@ class Search:
                 self.evicted += 1
             st_["cand_last_id"] += 1
             cid = st_["cand_last_id"]
+            old_summary = None
         ho_dsr = dsr(h["sr_daily"], h["days"], h["skew"], h["kurt"], max(2, st_["cand_holdout_checks"]),
                      self.ho_sr.var)  # informational only for candidates
         slug, title, message, body, link, lev = write_discovery(
@@ -475,6 +499,9 @@ class Search:
                  "tf": g["tf"], "oos_sharpe": o["sharpe"], "ho_sharpe": h["sharpe"], "cagr": st["all"]["cagr"],
                  "mdd": st["all"]["max_dd"], "lev": lev, "score": score, "found_at": _now(),
                  "replaced": j is not None, "grade": grade}
+        with open(os.path.join(self.cdir, slug + ".json")) as f:
+            self.log_change("replaced" if j is not None else "new", f"C{cid}",
+                            new=change_summary(f"C{cid}", json.load(f), grade), old=old_summary)
         st_["candidates"].append(entry)
         st_["candidates"].sort(key=lambda e: e["id"])
         self.cand_known[cid] = (structure_key(g), daily.astype(float))
@@ -539,6 +566,8 @@ class Search:
             "tf": g["tf"], "oos_sharpe": st["oos"]["sharpe"], "ho_sharpe": st["ho"]["sharpe"],
             "cagr": st["all"]["cagr"], "mdd": st["all"]["max_dd"], "lev": lev, "found_at": _now()})
         write_index(self.ddir, self.state["discoveries"])
+        with open(os.path.join(self.ddir, slug + ".json")) as f:
+            self.log_change("discovery", f"#{disc_id}", new=change_summary(f"#{disc_id}", json.load(f), "A"))
         write_grades(self.root, self.cfg)
         self.save_state()
         log.info("DISCOVERY #%d %s | %s", disc_id, title, message.replace("\n", " | "))

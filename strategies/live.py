@@ -147,10 +147,30 @@ class Runner:
     def run_strategy(self, s, now_ms):
         name = s["key"]
         coins = s.get("coins") or self.coins
+        legacy_changed = False
+        if name not in self.state and s.get("slug"):
+            # paper state from older versions was keyed by file name (e.g. C0003_vol_breakout_ALL_30m)
+            prefix = s["slug"].split("_")[0] + "_"
+            old = next((k for k in self.state if k.startswith(prefix)), None)
+            if old:
+                self.state[name] = self.state.pop(old)
+                legacy_changed = old != s["slug"]
         st = self.state.get(name)
         fresh = st is None
         if fresh:
             st = {"equity": 1.0, "start_time": None, "last_time": None, "coins": {}}
+        notes = []
+        if legacy_changed and not st.get("version"):
+            st["version"] = "old"
+        if s.get("version") and st.get("version") and st["version"] != s["version"]:
+            # the search replaced this number with a better variant: positions under the old rules no
+            # longer apply, so rebuild them from the new rules and keep the paper equity going
+            notes.append(f"  ⚠ 전략 내용이 바뀌었습니다 (버전 {st['version']} → {s['version']}, "
+                         f"research/CHANGELOG.md 참고). 새 규칙으로 포지션을 다시 계산합니다.")
+            st.setdefault("changes", []).append({"time": now_ms, "from": st["version"], "to": s["version"]})
+            st["coins"], st["last_time"] = {}, None
+        if s.get("version"):
+            st["version"] = s["version"]
         lines, actions, paper_trades = [], [], []
         bar_returns = {}
         last_closed = None
@@ -192,7 +212,7 @@ class Runner:
                 f"코인당 {per_coin:,.0f} USDT)\n"
                 f"  마지막 마감: {fmt_t(last_closed + TF_MS[s['tf']])} UTC → 아래 신호는 지금 시작된 봉의 시가에 실행 | "
                 f"페이퍼 수익 {(st['equity'] - 1) * 100:+.2f}% (시작 {fmt_t(st['start_time'])} UTC)")
-        return head + "\n" + "\n".join(lines), actions
+        return head + "\n" + "\n".join(notes + lines), actions
 
     @staticmethod
     def action_text(tr):

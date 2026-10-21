@@ -1,6 +1,7 @@
 """Run any strategy found by the research lab (discovery #N or candidate CN) live/paper,
 using exactly the same signal code (lab/families*.py) that the search evaluated."""
 
+import hashlib
 import json
 import os
 
@@ -85,7 +86,9 @@ def genome_spec(root, ref, cfg, all_symbols):
         return le, se, np.asarray(lx, bool), np.asarray(sx, bool), F("atr", 14)
 
     label = f"{'후보 C' if slug.startswith('C') else '#'}{info['id']} {fam['name']}"
-    return dict(key=slug, label=label, tf=tf, coins=None if g["universe"] == "ALL" else [g["universe"]],
+    version = hashlib.sha1(json.dumps(g, sort_keys=True).encode()).hexdigest()[:8]
+    return dict(key=f"{'C' if slug.startswith('C') else '#'}{info['id']}", version=version, slug=slug,
+                label=label, tf=tf, coins=None if g["universe"] == "ALL" else [g["universe"]],
                 direction=mod["direction"], sl_k=float(mod["sl_k"]), tp_k=float(mod["tp_k"]),
                 max_hold=int(mod["max_hold"]), leverage=float(info.get("leverage", 1.0)),
                 bars=4000, signals=signals)

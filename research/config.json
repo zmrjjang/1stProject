@@ -54,7 +54,8 @@
     "ho_trade_frac": 0.2,
     "max_corr": 0.6,
     "max_candidates": 50,
-    "min_score": 1.2
+    "min_score": 1.2,
+    "min_improvement": 0.1
   },
   "b_grade": {
     "_note": "B grade: strong in every period and robust, without Deflated-Sharpe gates. B candidates are never evicted by the 50-cap and are announced immediately.",
