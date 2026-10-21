@@ -71,9 +71,9 @@
 | C428 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 2.16 | 1.91 | +72.9% | 30% | 1x | [보기](C0428_squeeze_DOGEUSDT_4h.md) |
 | C429 | C | 켈트너 채널 | XRPUSDT | 15m | 1.94 | 2.20 | +13.9% | 10% | 2.5x | [보기](C0429_keltner_XRPUSDT_15m.md) |
 | C433 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 2.55 | 1.82 | +56.2% | 18% | 1.5x | [보기](C0433_positioning_BTCUSDT_1h.md) |
-| C434 | C | 테이커 주문흐름 불균형 | ZECUSDT | 1h | 1.81 | 3.02 | +122.1% | 52% | 0.5x | [보기](C0434_flow_ZECUSDT_1h.md) |
 | C436 | C | OBV 거래량 모멘텀 | XRPUSDT | 15m | 3.05 | 2.17 | +33.9% | 16% | 1x | [보기](C0436_obv_XRPUSDT_15m.md) |
 | C437 | C | 파라볼릭 SAR | SOLUSDT | 1d | 2.12 | 2.53 | +77.6% | 48% | 0.5x | [보기](C0437_psar_SOLUSDT_1d.md) |
 | C439 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.97 | 2.10 | +39.8% | 18% | 1.5x | [보기](C0439_vwap_dev_ZECUSDT_15m.md) |
 | C442 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | XRPUSDT | 15m | 1.84 | 3.01 | +12.8% | 9% | 3x | [보기](C0442_zscore_mr_XRPUSDT_15m.md) |
 | C443 | C | 아룬 추세 | SOLUSDT | 1h | 2.32 | 2.69 | +20.7% | 25% | 1x | [보기](C0443_aroon_SOLUSDT_1h.md) |
+| C444 | C | MACD | ETHUSDT | 15m | 1.96 | 2.25 | +4.2% | 2% | 5x | [보기](C0444_macd_ETHUSDT_15m.md) |
