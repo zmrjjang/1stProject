@@ -73,8 +73,8 @@
 | C436 | C | OBV 거래량 모멘텀 | XRPUSDT | 15m | 3.05 | 2.17 | +33.9% | 16% | 1x | [보기](C0436_obv_XRPUSDT_15m.md) |
 | C437 | C | 파라볼릭 SAR | SOLUSDT | 1d | 2.12 | 2.53 | +77.6% | 48% | 0.5x | [보기](C0437_psar_SOLUSDT_1d.md) |
 | C439 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.97 | 2.10 | +39.8% | 18% | 1.5x | [보기](C0439_vwap_dev_ZECUSDT_15m.md) |
-| C442 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | XRPUSDT | 15m | 1.84 | 3.01 | +12.8% | 9% | 3x | [보기](C0442_zscore_mr_XRPUSDT_15m.md) |
 | C443 | C | 아룬 추세 | SOLUSDT | 1h | 2.32 | 2.69 | +20.7% | 25% | 1x | [보기](C0443_aroon_SOLUSDT_1h.md) |
 | C444 | C | MACD | ETHUSDT | 15m | 1.96 | 2.25 | +4.2% | 2% | 5x | [보기](C0444_macd_ETHUSDT_15m.md) |
 | C446 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | ZECUSDT/DOGEUSDT | 30m | 2.21 | 2.55 | +108.3% | 39% | 0.5x | [보기](C0446_pairs_ZECUSDT-DOGEUSDT_30m.md) |
 | C447 | C | 일목균형표 | SOLUSDT | 4h | 2.03 | 2.45 | +54.8% | 48% | 1x | [보기](C0447_ichimoku_SOLUSDT_4h.md) |
+| C448 | C | 켈트너 채널 | LINKUSDT | 5m | 3.01 | 2.79 | +15.4% | 15% | 3.5x | [보기](C0448_keltner_LINKUSDT_5m.md) |
