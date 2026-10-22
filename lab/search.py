@@ -286,7 +286,8 @@ class Search:
             self.memo.clear()
         return scored
 
-    def next_generation(self, scored):
+    def next_generation(self, scored, lane=None):
+        """lane="short": every child stays a short-only strategy."""
         C = self.cfg["search"]
         P = C["population"]
         ranked = sorted(scored, key=lambda x: x[2], reverse=True)
@@ -300,8 +301,8 @@ class Search:
         while len(new) < P - n_imm:
             a = tournament()
             child = crossover(a, tournament(), self.rng) if self.rng.random() < 0.5 else a
-            new.append(mutate(child, self.rng, _UNI.symbols, C["mutation_rate"]))
-        new += [random_genome(self.rng, _UNI.symbols) for _ in range(P - len(new))]
+            new.append(mutate(child, self.rng, _UNI.symbols, C["mutation_rate"], lock_direction=lane is not None))
+        new += [random_genome(self.rng, _UNI.symbols, direction=lane) for _ in range(P - len(new))]
         return new
 
     # -- validation ---------------------------------------------------------
@@ -390,7 +391,8 @@ class Search:
                 and h["trades"] >= self.min_trades(g) * CG["ho_trade_frac"]):
             return False
         score = min(o["sharpe"], h["sharpe"])
-        if score < CG.get("min_score", 0):
+        short = self.is_short(g)
+        if score < self.min_score(short):
             return False
         end = _UNI.day_of(self.cfg["split"]["oos_end"])
         if duplicate_of(structure_key(g), daily, self.known, end, self.G["max_corr"]) is not None:
@@ -400,20 +402,36 @@ class Search:
         b_min = self.cfg["b_grade"]["min_sharpe_every_period"]
         maybe_b = min(st["is"]["sharpe"], o["sharpe"], h["sharpe"]) >= b_min
         if j is None:
-            return maybe_b or self.has_room(score)
+            return maybe_b or self.has_room(score, "C", short)
         old = next(e for e in self.state["candidates"] if e["id"] == ids[j])
         if self.cand_known[ids[j]][0] != structure_key(g):
             return False  # correlated with a different kind of strategy: not a variant of it
         return (score > old["score"] * (1 + CG.get("min_improvement", 0))
                 and (maybe_b or old.get("grade") != "B"))
 
-    def has_room(self, score, grade="C"):
-        """B always has room. A C candidate needs a free slot (B candidates do not count) or
-        must beat the weakest C candidate, which would be archived."""
+    # short-only strategies have their own slots: in a market that mostly went up they would
+    # otherwise always lose the ranking to long strategies
+    @staticmethod
+    def is_short(g):
+        return FAMILIES[g["family"]]["kind"] == "single" and g["mod"].get("direction") == "short"
+
+    def entry_is_short(self, e):
+        return self.cand_known.get(e["id"], ("",))[0].endswith("|short")
+
+    def min_score(self, short):
+        return self.CG["short"]["min_score"] if short else self.CG.get("min_score", 0)
+
+    def slot_pool(self, short):
+        """C candidates competing for the same slots (B candidates never count)."""
+        cs = [e for e in self.state["candidates"] if e.get("grade") != "B" and self.entry_is_short(e) == short]
+        return cs, (self.CG["short"]["max_candidates"] if short else self.CG.get("max_candidates", 10 ** 9))
+
+    def has_room(self, score, grade="C", short=False):
+        """B always has room. A C candidate needs a free slot or must beat the weakest C
+        candidate of its pool (short-only or the rest), which would be archived."""
         if grade == "B":
             return True
-        cs = [e for e in self.state["candidates"] if e.get("grade") != "B"]
-        cap = self.CG.get("max_candidates", 10 ** 9)
+        cs, cap = self.slot_pool(short)
         return len(cs) < cap or score > min(e["score"] for e in cs)
 
     def log_change(self, kind, ref, new=None, old=None):
@@ -457,7 +475,8 @@ class Search:
             st_["cand_holdout_rejects"] += 1
             return
         score = min(o["sharpe"], h["sharpe"])
-        if score < CG.get("min_score", 0):
+        short = self.is_short(g)
+        if score < self.min_score(short):
             return
         grade = "B" if is_b(st, checks, self.cfg) else "C"
         ids = list(self.cand_known)
@@ -480,10 +499,10 @@ class Search:
             st_["candidates"].remove(old)
             st_["cand_replaced"] += 1
         else:
-            if not self.has_room(score, grade):
+            if not self.has_room(score, grade, short):
                 return
-            cs = [e for e in st_["candidates"] if e.get("grade") != "B"]
-            if grade != "B" and len(cs) >= CG.get("max_candidates", 10 ** 9):
+            cs, cap = self.slot_pool(short)
+            if grade != "B" and len(cs) >= cap:
                 weakest = min(cs, key=lambda e: e["score"])
                 self.archive_candidate(weakest, f"a stronger candidate arrived (score {score:.2f})")
                 self.evicted += 1
@@ -498,7 +517,7 @@ class Search:
         entry = {"id": cid, "slug": slug, "name": FAMILIES[g["family"]]["name"], "universe": g["universe"],
                  "tf": g["tf"], "oos_sharpe": o["sharpe"], "ho_sharpe": h["sharpe"], "cagr": st["all"]["cagr"],
                  "mdd": st["all"]["max_dd"], "lev": lev, "score": score, "found_at": _now(),
-                 "replaced": j is not None, "grade": grade}
+                 "replaced": j is not None, "grade": grade, "short": short}
         with open(os.path.join(self.cdir, slug + ".json")) as f:
             self.log_change("replaced" if j is not None else "new", f"C{cid}",
                             new=change_summary(f"C{cid}", json.load(f), grade), old=old_summary)
@@ -507,8 +526,9 @@ class Search:
         self.cand_known[cid] = (structure_key(g), daily.astype(float))
         self.new_candidates.append(entry)
         write_index(self.cdir, st_["candidates"], kind="candidate")
-        log.info("CANDIDATE C%d [%s] %s %s %s | OOS %.2f HO %.2f%s", cid, grade, g["family"], g["universe"],
-                 g["tf"], o["sharpe"], h["sharpe"], " (replaced a weaker variant)" if j is not None else "")
+        log.info("CANDIDATE C%d [%s] %s %s %s %s | OOS %.2f HO %.2f%s", cid, grade, g["family"], g["universe"],
+                 g["tf"], (g.get("mod") or {}).get("direction", "portfolio"), o["sharpe"],
+                 h["sharpe"], " (replaced a weaker variant)" if j is not None else "")
         if grade == "B" and (j is None or old.get("grade") != "B"):
             write_grades(self.root, self.cfg)
             self.save_state()
@@ -534,10 +554,12 @@ class Search:
         alive = {e["id"] for e in self.state["candidates"]}
         new = [e for e in latest.values() if e["id"] in alive]
         n_new = sum(not e["replaced"] for e in new)
-        lines = [f"C{e['id']} {e['name']} {e['universe']} {e['tf']}: 검증 {e['oos_sharpe']:.2f} / "
-                 f"홀드아웃 {e['ho_sharpe']:.2f}{' (개선)' if e['replaced'] else ''}" for e in new]
+        lines = [f"C{e['id']}{' [숏]' if e.get('short') else ''} {e['name']} {e['universe']} {e['tf']}: "
+                 f"검증 {e['oos_sharpe']:.2f} / 홀드아웃 {e['ho_sharpe']:.2f}{' (개선)' if e['replaced'] else ''}"
+                 for e in new]
+        n_short = sum(self.entry_is_short(e) for e in self.state["candidates"])
         title = (f"페이퍼 트레이딩 후보: 신규 {n_new}개, 개선 {len(new) - n_new}개, 밀려남 {self.evicted}개 "
-                 f"(현재 {len(self.state['candidates'])}/{self.CG.get('max_candidates', '-')}개)")
+                 f"(현재 {len(self.state['candidates'])}개, 그중 숏 전용 {n_short}개)")
         if not new:
             self.new_candidates, self.evicted = [], 0
             return
@@ -614,7 +636,11 @@ class Search:
         ctx = mp.get_context("fork")
         with ctx.Pool(self.workers) as pool:
             while not self._done():
-                pop = [random_genome(self.rng, _UNI.symbols) for _ in range(C["population"])]
+                # a share of the epochs searches short-only strategies (long ones dominate otherwise)
+                lane = "short" if self.rng.random() < C.get("short_lane", 0) else None
+                if lane:
+                    self.state["short_epochs"] = self.state.get("short_epochs", 0) + 1
+                pop = [random_genome(self.rng, _UNI.symbols, direction=lane) for _ in range(C["population"])]
                 best, stale = -1e9, 0
                 for _ in range(C["generations_per_epoch"]):
                     scored = [(g, s, self.fitness(g, s)) for g, s in self.evaluate_population(pool, pop)]
@@ -638,7 +664,7 @@ class Search:
                         self.progress(t0, evals0)
                     if self._done() or stale >= C["stale_generations"]:
                         break
-                    pop = self.next_generation(scored)
+                    pop = self.next_generation(scored, lane)
             pool.terminate()
         self.state["runtime_hours"] += (time.time() - last_ck) / 3600
         self.save_state()

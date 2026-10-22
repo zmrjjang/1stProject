@@ -409,3 +409,44 @@ def heikin_run(o, h, l, c):
         else:
             run[i] = run[i - 1] - 1.0 if run[i - 1] < 0 else -1.0
     return run
+
+
+@njit(cache=True)
+def swing_structure(h, l, k):
+    """Dow-theory market structure from swing points (a swing high is the highest high of the
+    2k+1 bars around it, known only k bars later). Returns (state, last swing high, last swing
+    low): state +1 = higher high and higher low, -1 = lower high and lower low, 0 = mixed."""
+    size = h.size
+    state = np.zeros(size)
+    last_h = np.full(size, np.nan)
+    last_l = np.full(size, np.nan)
+    sh0 = np.nan
+    sh1 = np.nan
+    sl0 = np.nan
+    sl1 = np.nan
+    for i in range(size):
+        j = i - k
+        if j - k >= 0:
+            is_h = True
+            is_l = True
+            for m in range(j - k, i + 1):
+                if m == j:
+                    continue
+                if h[m] > h[j] or (m < j and h[m] == h[j]):
+                    is_h = False
+                if l[m] < l[j] or (m < j and l[m] == l[j]):
+                    is_l = False
+            if is_h:
+                sh0 = sh1
+                sh1 = h[j]
+            if is_l:
+                sl0 = sl1
+                sl1 = l[j]
+        if sh0 == sh0 and sl0 == sl0:
+            if sh1 > sh0 and sl1 > sl0:
+                state[i] = 1.0
+            elif sh1 < sh0 and sl1 < sl0:
+                state[i] = -1.0
+        last_h[i] = sh1
+        last_l[i] = sl1
+    return state, last_h, last_l

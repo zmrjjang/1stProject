@@ -8,6 +8,7 @@
     python run_strategy.py list                     # every discovery (#N) and candidate (CN) the search found
     python run_strategy.py paper --pick C3,C7,9 --loop   # paper trade discoveries/candidates by number
     python run_strategy.py paper --pick A --paper-dir paper_A --loop   # every A-grade strategy (B, C likewise)
+    python run_strategy.py paper --pick S --paper-dir paper_S --loop   # every short-only strategy
 """
 
 import argparse
@@ -21,7 +22,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("mode", choices=["backtest", "signal", "paper", "list"])
     p.add_argument("--pick", help="discoveries/candidates to run instead of the built-in strategies, "
-                                  "e.g. C3,C7,9 - or a whole grade: A, B or C")
+                                  "e.g. C3,C7,9 - or a whole grade: A, B or C - or S (every short-only strategy)")
     p.add_argument("--strategies", default=",".join(STRATEGIES),
                    help="comma separated subset of: " + ", ".join(STRATEGIES))
     p.add_argument("--capital", type=float, default=1000.0, help="USDT allocated to EACH strategy")
@@ -53,7 +54,7 @@ def main():
             cfg = json.load(f)
         refs = []
         for r in (x.strip() for x in args.pick.split(",") if x.strip()):
-            refs += grade_refs(".", r.upper()) if r.upper() in ("A", "B", "C") else [r]
+            refs += grade_refs(".", r.upper()) if r.upper() in ("A", "B", "C", "S") else [r]
         if not refs:
             raise SystemExit(f"--pick {args.pick}: 실행할 전략이 없습니다")
         print("실행 전략:", ", ".join(refs))

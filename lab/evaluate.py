@@ -24,6 +24,7 @@ class Evaluator:
         self.cache_max = cfg.get("feature_cache_size", 160)
         self._cache = OrderedDict()
         self._pcache = {}
+        self._fcache = {}
 
     # -- features ----------------------------------------------------------
     def _arr(self, sym, tf, field):
@@ -155,6 +156,8 @@ class Evaluator:
                 return ind.heikin_run(o, h, l, c)
             if name == "candle":
                 return _candles(o, h, l, c, args[0])
+            if name == "swing":
+                return ind.swing_structure(h, l, args[0])
             if name == "nr_prev":
                 n = args[0]
                 rng = h - l
@@ -180,8 +183,13 @@ class Evaluator:
         raise KeyError(name)
 
     # -- runs --------------------------------------------------------------
-    def _fund(self, tf):
-        return self.funding_8h * INTERVAL_MS[tf] / 28_800_000
+    def _fund(self, key, tf, fr):
+        """Funding per bar from the actual 8-hour rates (config funding_8h where none is known)."""
+        v = self._fcache.get(key)
+        if v is None:
+            v = np.ascontiguousarray(np.where(np.isfinite(fr), fr, self.funding_8h) * (INTERVAL_MS[tf] / 28_800_000))
+            self._fcache[key] = v
+        return v
 
     def _single(self, g, sym, upto_day, cost):
         tf, p, mod = g["tf"], g["p"], g["mod"]
@@ -199,7 +207,7 @@ class Evaluator:
             np.ascontiguousarray(le, bool), np.ascontiguousarray(se, bool),
             np.ascontiguousarray(lx, bool), np.ascontiguousarray(sx, bool),
             float(mod["sl_k"]), float(mod["tp_k"]), int(mod["max_hold"]),
-            cost, self._fund(tf), n_end)
+            cost, self._fund((sym, tf), tf, d["fr"]), n_end)
         day = d["day"][:n_end]
         daily = np.bincount(day, weights=ret[:n_end], minlength=self.uni.n_days).astype(float)
         daily[np.bincount(day, minlength=self.uni.n_days) == 0] = np.nan
@@ -224,7 +232,8 @@ class Evaluator:
             a, b = self.uni.symbols.index(p["a"]), self.uni.symbols.index(p["b"])
             valid = np.isfinite(m["c"][:, a]) & np.isfinite(m["c"][:, b])
         n_end = m["o"].shape[0] if upto_day is None else int(np.searchsorted(m["day"], upto_day))
-        ret, changes = engine.run_weights(m["o"], np.ascontiguousarray(w), cost, self._fund(tf), n_end)
+        ret, changes = engine.run_weights(m["o"], np.ascontiguousarray(w), cost,
+                                            self._fund(("*", tf), tf, m["fr"]), n_end)
         day = m["day"][:n_end]
         daily = np.bincount(day, weights=ret[:n_end], minlength=self.uni.n_days).astype(float)
         daily[np.bincount(day[valid[:n_end]], minlength=self.uni.n_days) == 0] = np.nan

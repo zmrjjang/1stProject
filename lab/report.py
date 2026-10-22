@@ -83,7 +83,7 @@ def write_discovery(out_dir, disc_id, g, stats, extra, daily, uni, cfg, link_bas
         f"- 근거 논문/이론: {fam['ref']}",
         f"- 규칙: {rule}",
         "- 체결 가정: 봉 마감에 신호 → 다음 봉 시가 체결, 손절/익절은 봉 내 고가/저가로 판정",
-        f"- 비용 가정: 편도 {cfg['cost_per_side'] * 100:.3f}% (수수료+슬리피지), 롱 펀딩 {cfg['funding_8h'] * 100:.3f}%/8h",
+        f"- 비용 가정: 편도 {cfg['cost_per_side'] * 100:.3f}% (수수료+슬리피지), 실제 펀딩비 (롱 지불, 숏 수령)",
         f"- 권장 레버리지: **{lev:g}x** (목표 연변동성 {cfg['leverage']['target_vol'] * 100:.0f}%, "
         f"과거 최악 역행폭이 증거금의 {cfg['leverage']['liq_buffer'] * 100:.0f}% 이내가 되도록 제한)",
         "",
@@ -161,6 +161,38 @@ _LIVE_UNSUPPORTED = {"funding", "positioning", "oi_trend", "xs_carry"}
 _TF_KO = {"5m": "5분봉", "15m": "15분봉", "30m": "30분봉", "1h": "1시간봉", "4h": "4시간봉", "1d": "일봉"}
 
 
+def _short_section(rd):
+    """Every active short-only strategy (any grade): they have their own candidate slots."""
+    rows = []
+    for folder, prefix in (("discoveries", "#"), ("candidates", "C")):
+        path = os.path.join(rd, folder)
+        if not os.path.isdir(path):
+            continue
+        for name in sorted(os.listdir(path)):
+            if not name.endswith(".json"):
+                continue
+            with open(os.path.join(path, name)) as f:
+                info = json.load(f)
+            g = info["genome"]
+            if (g.get("mod") or {}).get("direction") == "short":
+                rows.append((prefix + str(info["id"]), f"research/{folder}/{name[:-5]}.md", info,
+                             "A" if prefix == "#" else info.get("grade", "C")))
+    L = ["", "## 숏 전용 전략", "",
+         "하락에 베팅하는 전략만 따로 모았습니다 (C등급 포함). 숏 전용 후보는 롱 전략과 순위 경쟁 없이 별도 자리를 가집니다. "
+         "`python run_strategy.py paper --pick S --paper-dir paper_S --loop` 로 한꺼번에 모의매매할 수 있습니다.", ""]
+    if not rows:
+        return L + ["(아직 없음)"]
+    L += ["| 등급 | 번호 | 전략 | 대상 | 봉 | 학습 샤프 | 검증 샤프 | 최근 샤프 | 연수익 | 최대낙폭 | 상세 |",
+          "|---|---|---|---|---|---|---|---|---|---|---|"]
+    rows.sort(key=lambda r: -min(r[2]["stats"]["oos"]["sharpe"], r[2]["stats"]["ho"]["sharpe"]))
+    for ref, md, info, grade in rows:
+        g, st = info["genome"], info["stats"]
+        L.append(f"| {grade} | {ref} | {FAMILIES[g['family']]['name']} | {g['universe']} | {g['tf']} | "
+                 f"{st['is']['sharpe']:.2f} | {st['oos']['sharpe']:.2f} | {st['ho']['sharpe']:.2f} | "
+                 f"{_pct(st['all']['cagr'])} | {st['all']['max_dd'] * 100:.0f}% | [보기]({md}) |")
+    return L
+
+
 def write_grades(root, cfg):
     """GRADES.md: every A and B strategy with rules, performance and settings on one page."""
     rd = os.path.join(root, "research")
@@ -215,6 +247,7 @@ def write_grades(root, cfg):
         L.append(f"| {grade} | [{ref}](#{ref.lower().lstrip('#')}) | {fam['name']} | {g['universe']} | {g['tf']} | {direction} | "
                  f"{s['is']['sharpe']:.2f} | {s['oos']['sharpe']:.2f} | {s['ho']['sharpe']:.2f} | "
                  f"{_pct(s['all']['cagr'])} | {s['all']['max_dd'] * 100:.0f}% | {info.get('leverage', 1):g}x |")
+    L += _short_section(rd)
     L += ["", "## 전략별 상세", ""]
     for grade, ref, md, info in items:
         g, s, c = info["genome"], info["stats"], info.get("checks", {})
@@ -271,7 +304,7 @@ def _short(x):
             f"연 {_pct(x['cagr'])} · MDD {x['mdd'] * 100:.0f}%") if x else "-"
 
 
-KIND_KO = {"new": "신규", "replaced": "교체(개선)", "archived": "밀려남", "discovery": "A 신규"}
+KIND_KO = {"new": "신규", "replaced": "교체(개선)", "archived": "밀려남", "restored": "복원", "discovery": "A 신규"}
 
 
 def write_changelog(root, limit=400):

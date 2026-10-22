@@ -189,6 +189,82 @@ def b_volbreak(d, p, F):
         return spike & (c > F("shift_max", "h", n)), spike & (c < F("shift_min", "l", n)), lx, sx
 
 
+def _lag(x, m):
+    """x as it was m bars ago (NaN before the start)."""
+    out = np.full(x.size, np.nan)
+    if m < x.size:
+        out[m:] = x[: x.size - m]
+    return out
+
+
+# -- families aimed at the short side (mirrored for longs, so both directions stay searchable) --
+
+def b_blowoff(d, p, F):
+    """Exhaustion: price stretched k ATR from its EMA on a volume spike, then a reversal candle."""
+    c, o = d["c"], d["o"]
+    e = F("ema", "c", int(p["n"]))
+    with np.errstate(invalid="ignore", divide="ignore"):
+        ext = (c - e) / F("atr", 14)
+        spike = F("vol_z", int(p["w"])) > p["z"]
+        return ((ext < -p["k"]) & spike & (c > o), (ext > p["k"]) & spike & (c < o), c > e, c < e)
+
+
+def b_failed(d, p, F):
+    """Failed breakout (bull/bear trap): a new n-bar high within the last m bars, then a close
+    back below the old high -> short; mirrored for lows. Exit at mid-range or if the move resumes."""
+    c, o, h, l = d["c"], d["o"], d["h"], d["l"]
+    n, m = int(p["n"]), int(p["m"])
+    top = _lag(F("shift_max", "h", n), m)
+    bot = _lag(F("shift_min", "l", n), m)
+    with np.errstate(invalid="ignore"):
+        hi = np.fmax(F("shift_max", "h", m), h)
+        lo = np.fmin(F("shift_min", "l", m), l)
+        mid = (top + bot) / 2.0
+        return ((lo < bot) & (c > bot) & (c > o), (hi > top) & (c < top) & (c < o),
+                (c < bot) | (c > mid), (c > top) | (c < mid))
+
+
+def b_voldown(d, p, F):
+    """Leverage effect: falling prices with expanding volatility tend to keep falling."""
+    c = d["c"]
+    e = F("ema", "c", int(p["n"]))
+    with np.errstate(invalid="ignore"):
+        vz = F("atr_pct_z", int(p["w"]))
+        roc = F("log_roc", int(p["L"]))
+        hot = vz > p["z"]
+        cool = vz < min(p["x"], p["z"])
+        return hot & (c > e) & (roc > 0), hot & (c < e) & (roc < 0), (c < e) | cool, (c > e) | cool
+
+
+def b_structure(d, p, F):
+    """Dow-theory swings: lower highs + lower lows -> short (on the break of the last swing low
+    in 'break' mode); exit when price closes above the last swing high. Mirrored for longs."""
+    c = d["c"]
+    st, sh, sl = F("swing", int(p["k"]))
+    with np.errstate(invalid="ignore"):
+        if p["entry"] == "break":
+            return (st > 0) & (c > sh), (st < 0) & (c < sl), c < sl, c > sh
+        return st > 0, st < 0, c < sl, c > sh
+
+
+def b_rally(d, p, F):
+    """Sell rallies in a downtrend (buy dips in an uptrend): slow EMA falling and price below
+    it, short when RSI(n) gets overbought or price is rejected at the fast EMA."""
+    c, h, l = d["c"], d["h"], d["l"]
+    slow = F("ema", "c", int(p["slow"]))
+    with np.errstate(invalid="ignore"):
+        fall = slow < _lag(slow, int(p["slope"]))
+        rise = slow > _lag(slow, int(p["slope"]))
+        dn, up = (c < slow) & fall, (c > slow) & rise
+        if p["mode"] == "rsi":
+            r = F("rsi", int(p["n"]))
+            lo = p["low"]
+            return (up & (r < lo), dn & (r > 100 - lo),
+                    (c < slow) | (r > p["exit"]), (c > slow) | (r < 100 - p["exit"]))
+        fast = F("ema", "c", int(p["n"]))
+        return (up & (l <= fast) & (c > fast), dn & (h >= fast) & (c < fast), c < slow, c > slow)
+
+
 def _wrap(build):
     def built(d, p, F):
         le, se, lx, sx = build(d, p, F)
@@ -296,3 +372,47 @@ CHART_FAMILIES = {
                          lambda p: (f"거래량(로그)의 {int(p['w'])}봉 z-score > {p['z']:.2f} 이면서 종가가 직전 "
                                     f"{int(p['n'])}봉 고가 돌파 시 롱, 저가 이탈 시 숏. " + _ex(p)), "w"),
 }
+
+SHORT_FAMILIES = {
+    "blowoff": _fam(b_blowoff, {"n": ("int", 10, 300, True), "k": ("float", 1.5, 8.0),
+                                "w": ("int", 50, 2000, True), "z": ("float", 0.0, 3.5)},
+                    "과열 소진 역추세 (블로오프)",
+                    "De Bondt & Thaler (1985) 'Does the Stock Market Overreact?', J. Finance; "
+                    "Caporale & Plastun (2019) 'Price overreactions in the cryptocurrency market', J. Economic Studies",
+                    lambda p: (f"종가가 EMA({int(p['n'])})보다 {p['k']:.2f}×ATR(14) 이상 위에 있고 거래량 z-score({int(p['w'])}) > "
+                               f"{p['z']:.2f}인데 음봉이 나오면 숏, 반대(아래로 과열 + 양봉)면 롱. EMA({int(p['n'])}) 복귀 시 청산."),
+                    "n"),
+    "failed_breakout": _fam(b_failed, {"n": ("int", 10, 300, True), "m": ("int", 1, 10, False)},
+                            "돌파 실패 (불트랩/베어트랩)",
+                            "Osler (2005) 'Stop-loss orders and price cascades in currency markets', "
+                            "J. International Money and Finance; Bulkowski (2005) 'Encyclopedia of Chart Patterns'",
+                            lambda p: (f"최근 {int(p['m'])}봉 안에 직전 {int(p['n'])}봉 최고가를 돌파했다가 종가가 다시 그 아래로 "
+                                       f"떨어지며 음봉이면 숏 (최저가 이탈 후 복귀 + 양봉이면 롱). 박스권 중간에 도달하면 익절, "
+                                       f"돌파가 다시 이어지면 청산."), "n"),
+    "vol_down": _fam(b_voldown, {"n": ("int", 10, 500, True), "w": ("int", 50, 2000, True),
+                                 "z": ("float", 0.0, 3.0), "L": ("int", 2, 200, True), "x": ("float", -1.5, 1.0)},
+                     "하방 변동성 확대 (레버리지 효과)",
+                     "Black (1976) 'Studies of Stock Price Volatility Changes'; Christie (1982) J. Financial Economics; "
+                     "Baur & Dimpfl (2018) 'Asymmetric volatility in cryptocurrencies', Economics Letters",
+                     lambda p: (f"ATR% z-score({int(p['w'])}) > {p['z']:.2f}(변동성 확대)이고 종가 < EMA({int(p['n'])}), "
+                                f"{int(p['L'])}봉 수익률 < 0이면 숏 (모두 반대면 롱). EMA를 되돌파하거나 변동성 z가 "
+                                f"{min(p['x'], p['z']):.2f} 아래로 식으면 청산."), "n"),
+    "structure": _fam(b_structure, {"k": ("int", 2, 30, True), "entry": ("choice", ["state", "break"])},
+                      "시장 구조 (고점·저점 낮아짐)",
+                      "Lo, Mamaysky & Wang (2000) 'Foundations of Technical Analysis', J. Finance; Hamilton (1922) Dow theory",
+                      lambda p: (f"스윙 고점/저점(앞뒤 {int(p['k'])}봉 기준)이 고점·저점 모두 낮아지면 숏"
+                                 + (" (직전 스윙 저점을 종가로 이탈할 때)" if p["entry"] == "break" else "")
+                                 + ", 모두 높아지면 롱. 직전 스윙 고점(숏)/저점(롱)을 넘어서면 청산."), "k"),
+    "rally_fade": _fam(b_rally, {"slow": ("int", 50, 1000, True), "slope": ("int", 1, 100, True),
+                                 "n": ("int", 2, 50, True), "low": ("float", 10.0, 40.0),
+                                 "exit": ("float", 35.0, 70.0), "mode": ("choice", ["rsi", "ema"])},
+                       "하락추세 반등 매도 (상승추세 눌림 매수)",
+                       "Connors & Alvarez (2009) 'Short Term Trading Strategies That Work'; "
+                       "Moskowitz, Ooi & Pedersen (2012) J. Financial Economics",
+                       lambda p: (f"EMA({int(p['slow'])})가 {int(p['slope'])}봉 전보다 낮고 종가가 그 아래(하락추세)일 때 "
+                                  + (f"RSI({int(p['n'])}) > {100 - p['low']:.1f}(반등 과열)이면 숏, RSI < {100 - p['exit']:.1f} 이면 청산"
+                                     if p["mode"] == "rsi" else
+                                     f"고가가 EMA({int(p['n'])})에 닿고 종가가 그 아래(저항 확인)면 숏")
+                                  + f". 상승추세에서는 반대로 롱. 종가가 EMA({int(p['slow'])})를 넘어서면 청산."), "slow"),
+}
+CHART_FAMILIES.update(SHORT_FAMILIES)

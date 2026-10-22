@@ -4,6 +4,7 @@ import json
 import math
 
 from .families import FAMILIES, MODIFIERS
+from .families_chart import SHORT_FAMILIES
 
 
 def _py(v):
@@ -61,9 +62,16 @@ def perturb(spec, v, rng, scale):
 _NAMES = list(FAMILIES)
 _WEIGHTS = [FAMILIES[f].get("weight", 1.0) for f in _NAMES]
 _PROBS = [w / sum(_WEIGHTS) for w in _WEIGHTS]
+# short lane: single-asset families only, the short-oriented ones twice as often
+_S_NAMES = [f for f in _NAMES if FAMILIES[f]["kind"] == "single" and f != "season"]
+_S_WEIGHTS = [FAMILIES[f].get("weight", 1.0) * (2.0 if f in SHORT_FAMILIES else 1.0) for f in _S_NAMES]
+_S_PROBS = [w / sum(_S_WEIGHTS) for w in _S_WEIGHTS]
 
 
-def random_genome(rng, symbols, family=None):
+def random_genome(rng, symbols, family=None, direction=None):
+    """direction="short" draws a short-only single-asset strategy (the search's short lane)."""
+    if family is None and direction:
+        family = _S_NAMES[int(rng.choice(len(_S_NAMES), p=_S_PROBS))]
     fam = family or _NAMES[int(rng.choice(len(_NAMES), p=_PROBS))]
     spec = FAMILIES[fam]
     g = {"family": fam, "tf": _py(spec["tfs"][int(rng.integers(len(spec["tfs"])))]),
@@ -73,6 +81,8 @@ def random_genome(rng, symbols, family=None):
         g["mod"] = {k: sample(s, rng) for k, s in MODIFIERS.items()}
         if fam == "season":
             g["mod"]["direction"] = "both"
+        elif direction:
+            g["mod"]["direction"] = direction
     elif spec["kind"] == "xs":
         g["universe"] = "ALL"
     else:
@@ -82,7 +92,7 @@ def random_genome(rng, symbols, family=None):
     return g
 
 
-def mutate(g, rng, symbols, rate=0.35, scale=0.3):
+def mutate(g, rng, symbols, rate=0.35, scale=0.3, lock_direction=False):
     spec = FAMILIES[g["family"]]
     n = json.loads(json.dumps(g))
     changed = False
@@ -92,7 +102,7 @@ def mutate(g, rng, symbols, rate=0.35, scale=0.3):
             changed = True
     if spec["kind"] == "single":
         for k, s in MODIFIERS.items():
-            if rng.random() < rate * 0.5 and not (g["family"] == "season" and k == "direction"):
+            if rng.random() < rate * 0.5 and not (k == "direction" and (lock_direction or g["family"] == "season")):
                 n["mod"][k] = perturb(s, n["mod"][k], rng, scale)
                 changed = True
         if rng.random() < 0.08:

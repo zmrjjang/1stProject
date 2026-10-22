@@ -12,7 +12,8 @@
     "stale_generations": 10,
     "elite": 4,
     "immigrants": 0.2,
-    "mutation_rate": 0.35
+    "mutation_rate": 0.35,
+    "short_lane": 0.4
   },
   "gates": {
     "min_trades": {
@@ -55,7 +56,12 @@
     "max_corr": 0.6,
     "max_candidates": 50,
     "min_score": 1.2,
-    "min_improvement": 0.1
+    "min_improvement": 0.1,
+    "short": {
+      "_note": "Short-only strategies keep their own slots (not ranked against longs) and need min(OOS, holdout Sharpe) >= min_score.",
+      "max_candidates": 20,
+      "min_score": 1.0
+    }
   },
   "b_grade": {
     "_note": "B grade: strong in every period and robust, without Deflated-Sharpe gates. B candidates are never evicted by the 50-cap and are announced immediately.",

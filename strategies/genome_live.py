@@ -95,12 +95,31 @@ def genome_spec(root, ref, cfg, all_symbols):
 
 
 def grade_refs(root, grade):
-    """'A' -> every discovery, 'B'/'C' -> every active candidate of that grade (live-runnable only)."""
+    """'A' -> every discovery, 'B'/'C' -> every active candidate of that grade,
+    'S' -> every short-only strategy of any grade (live-runnable only)."""
+    if grade == "S":
+        return [ref for ref, why in short_refs(root) if why is None]
     refs = []
     for ref, _name, _uni, _tf, _o, _h, _c, _m, _l, why, g in list_all(root):
         if g == grade and why is None:
             refs.append(ref)
     return refs
+
+
+def short_refs(root):
+    """[(ref, unsupported reason or None)] of active short-only discoveries and candidates."""
+    out = []
+    for folder, cand in (("discoveries", False), ("candidates", True)):
+        path = os.path.join(root, "research", folder)
+        if not os.path.isdir(path):
+            continue
+        for name in sorted(os.listdir(path)):
+            if name.endswith(".json"):
+                with open(os.path.join(path, name)) as f:
+                    info = json.load(f)
+                if (info["genome"].get("mod") or {}).get("direction") == "short":
+                    out.append((f"C{info['id']}" if cand else f"#{info['id']}", unsupported_reason(info["genome"])))
+    return out
 
 
 def list_all(root):

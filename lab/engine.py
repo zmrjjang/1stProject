@@ -6,7 +6,8 @@ Execution model (no look-ahead):
     touched in the same bar the stop is assumed to fill first (conservative);
     gaps through the stop fill at the open
   * every fill pays `cost` (taker fee + slippage) on the traded notional
-  * longs pay `fund` per bar (average positive funding); shorts receive nothing
+  * funding: fund[i] is the funding rate for holding through bar i (actual Binance rate,
+    pro-rated per bar); a long pays it and a short receives it (negative rates the other way)
 """
 
 import numpy as np
@@ -28,6 +29,7 @@ def run_single(o, h, l, c, atr_, long_entry, short_entry, long_exit, short_exit,
     stop = 0.0
     take = 0.0
     held = 0
+    facc = 0.0
     mae = 0.0
     entry_idx = 0
     pending = 0
@@ -45,7 +47,7 @@ def run_single(o, h, l, c, atr_, long_entry, short_entry, long_exit, short_exit,
                 trades[nt, 0] = entry_idx
                 trades[nt, 1] = i
                 trades[nt, 2] = pos
-                trades[nt, 3] = pos * (px / entry - 1.0) - 2.0 * cost - (fund * held if pos > 0 else 0.0)
+                trades[nt, 3] = pos * (px / entry - 1.0) - 2.0 * cost - facc
                 trades[nt, 4] = mae
                 nt += 1
                 pos = 0
@@ -55,6 +57,7 @@ def run_single(o, h, l, c, atr_, long_entry, short_entry, long_exit, short_exit,
                 ref = px
                 r -= cost
                 held = 0
+                facc = 0.0
                 mae = 0.0
                 entry_idx = i
                 a = atr_[i - 1]
@@ -86,7 +89,7 @@ def run_single(o, h, l, c, atr_, long_entry, short_entry, long_exit, short_exit,
                 trades[nt, 0] = entry_idx
                 trades[nt, 1] = i
                 trades[nt, 2] = pos
-                trades[nt, 3] = pos * (exit_px / entry - 1.0) - 2.0 * cost - (fund * held if pos > 0 else 0.0)
+                trades[nt, 3] = pos * (exit_px / entry - 1.0) - 2.0 * cost - facc
                 trades[nt, 4] = mae
                 nt += 1
                 # after a stop/target, wait for the entry signal to reset before re-entering
@@ -101,8 +104,8 @@ def run_single(o, h, l, c, atr_, long_entry, short_entry, long_exit, short_exit,
             r += pos * (c[i] / ref - 1.0)
             ref = c[i]
             held += 1
-            if pos > 0:
-                r -= fund
+            r -= pos * fund[i]
+            facc += pos * fund[i]
         ret[i] = r
 
         # 4) decide the next order on this close
@@ -134,7 +137,7 @@ def run_single(o, h, l, c, atr_, long_entry, short_entry, long_exit, short_exit,
         trades[nt, 0] = entry_idx
         trades[nt, 1] = n - 1
         trades[nt, 2] = pos
-        trades[nt, 3] = pos * (c[n - 1] / entry - 1.0) - cost - (fund * held if pos > 0 else 0.0)
+        trades[nt, 3] = pos * (c[n - 1] / entry - 1.0) - cost - facc
         trades[nt, 4] = mae
         nt += 1
     return ret, trades[:nt]
@@ -166,8 +169,9 @@ def run_weights(o, w, cost, fund, n_end):
                 b = o[i + 1, j]
                 if a == a and b == b and a > 0:
                     r += wj * (b / a - 1.0)
-                if wj > 0:
-                    r -= fund * wj
+                f = fund[i, j]
+                if f == f:
+                    r -= wj * f
         ret[i] = r
         changes[i] = ch
     return ret, changes
