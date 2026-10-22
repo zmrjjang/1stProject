@@ -2,38 +2,38 @@
  "created_at": "2026-10-02T08:51:45+00:00",
  "runs": 65,
  "runtime_hours": 340.37699374198877,
- "evaluations": 132465935,
+ "evaluations": 132466320,
  "is_sr": {
-  "n": 128987281,
-  "mean": 0.020451082782838317,
-  "m2": 2248759.0628540334
+  "n": 128987658,
+  "mean": 0.02045109385153918,
+  "m2": 2248762.3774527083
  },
  "oos_sr": {
-  "n": 47250475,
-  "mean": 0.04696592556725306,
-  "m2": 51639.45198707648
+  "n": 47250614,
+  "mean": 0.04696593884895508,
+  "m2": 51639.71735043925
  },
  "ho_sr": {
   "n": 138,
   "mean": 0.011383001260547183,
   "m2": 0.5154653739789065
  },
- "oos_checks": 47642682,
- "robust_checks": 1333,
+ "oos_checks": 47642821,
+ "robust_checks": 1334,
  "holdout_checks": 133,
  "holdout_rejects": 124,
  "duplicates": 36,
  "families": {
   "tsmom": {
-   "evals": 10535327,
+   "evals": 10535330,
    "oos": 4296964,
    "robust": 43,
    "holdout": 6,
    "found": 5
   },
   "ma_cross": {
-   "evals": 19894782,
-   "oos": 9830467,
+   "evals": 19894784,
+   "oos": 9830468,
    "robust": 20,
    "holdout": 0,
    "found": 0
@@ -46,28 +46,28 @@
    "found": 1
   },
   "zscore_mr": {
-   "evals": 4349138,
+   "evals": 4349139,
    "oos": 1127197,
    "robust": 54,
    "holdout": 19,
    "found": 0
   },
   "rsi_mr": {
-   "evals": 5741151,
+   "evals": 5741152,
    "oos": 1492324,
    "robust": 88,
    "holdout": 36,
    "found": 2
   },
   "squeeze": {
-   "evals": 11510156,
+   "evals": 11510158,
    "oos": 5884438,
    "robust": 85,
    "holdout": 1,
    "found": 1
   },
   "flow": {
-   "evals": 2497390,
+   "evals": 2497393,
    "oos": 168797,
    "robust": 9,
    "holdout": 0,
@@ -88,78 +88,78 @@
    "found": 0
   },
   "xsmom": {
-   "evals": 6410765,
+   "evals": 6410773,
    "oos": 283153,
    "robust": 11,
    "holdout": 0,
    "found": 0
   },
   "pairs": {
-   "evals": 3464726,
+   "evals": 3464728,
    "oos": 560355,
    "robust": 18,
    "holdout": 0,
    "found": 0
   },
   "funding": {
-   "evals": 5786425,
+   "evals": 5786428,
    "oos": 1299853,
    "robust": 19,
    "holdout": 0,
    "found": 0
   },
   "positioning": {
-   "evals": 5200402,
+   "evals": 5200403,
    "oos": 1105383,
    "robust": 47,
    "holdout": 2,
    "found": 0
   },
   "oi_trend": {
-   "evals": 3029592,
-   "oos": 248706,
-   "robust": 100,
+   "evals": 3029866,
+   "oos": 248831,
+   "robust": 101,
    "holdout": 58,
    "found": 0
   },
   "xs_carry": {
-   "evals": 5574832,
+   "evals": 5574834,
    "oos": 36237,
    "robust": 0,
    "holdout": 0,
    "found": 0
   },
   "macd": {
-   "evals": 2561443,
+   "evals": 2561446,
    "oos": 1163162,
    "robust": 49,
    "holdout": 0,
    "found": 0
   },
   "adx_dmi": {
-   "evals": 1516192,
+   "evals": 1516193,
    "oos": 614667,
    "robust": 26,
    "holdout": 0,
    "found": 0
   },
   "ichimoku": {
-   "evals": 2236995,
+   "evals": 2236996,
    "oos": 986559,
    "robust": 36,
    "holdout": 0,
    "found": 0
   },
   "keltner": {
-   "evals": 1835857,
+   "evals": 1835859,
    "oos": 647208,
    "robust": 45,
    "holdout": 2,
    "found": 0
   },
   "supertrend": {
-   "evals": 1585247,
-   "oos": 615476,
+   "evals": 1585268,
+   "oos": 615489,
    "robust": 48,
    "holdout": 0,
    "found": 0
@@ -172,7 +172,7 @@
    "found": 0
   },
   "mfi": {
-   "evals": 529408,
+   "evals": 529416,
    "oos": 33353,
    "robust": 4,
    "holdout": 0,
@@ -186,91 +186,91 @@
    "found": 0
   },
   "vwap_dev": {
-   "evals": 1507142,
+   "evals": 1507143,
    "oos": 450052,
    "robust": 58,
    "holdout": 7,
    "found": 0
   },
   "aroon": {
-   "evals": 1586062,
+   "evals": 1586068,
    "oos": 606723,
    "robust": 43,
    "holdout": 0,
    "found": 0
   },
   "psar": {
-   "evals": 1632067,
+   "evals": 1632075,
    "oos": 692214,
    "robust": 39,
    "holdout": 0,
    "found": 0
   },
   "linreg": {
-   "evals": 2756810,
+   "evals": 2756811,
    "oos": 1341749,
    "robust": 58,
    "holdout": 0,
    "found": 0
   },
   "heikin": {
-   "evals": 841244,
+   "evals": 841245,
    "oos": 200101,
    "robust": 37,
    "holdout": 0,
    "found": 0
   },
   "candle": {
-   "evals": 915060,
+   "evals": 915067,
    "oos": 196419,
    "robust": 31,
    "holdout": 0,
    "found": 0
   },
   "nr_breakout": {
-   "evals": 884315,
+   "evals": 884317,
    "oos": 228753,
    "robust": 6,
    "holdout": 0,
    "found": 0
   },
   "vol_breakout": {
-   "evals": 1808651,
+   "evals": 1808654,
    "oos": 817448,
    "robust": 100,
    "holdout": 0,
    "found": 0
   },
   "blowoff": {
-   "evals": 58545,
+   "evals": 58550,
    "oos": 5789,
    "robust": 0,
    "holdout": 0,
    "found": 0
   },
   "failed_breakout": {
-   "evals": 53669,
+   "evals": 53671,
    "oos": 2697,
    "robust": 2,
    "holdout": 0,
    "found": 0
   },
   "vol_down": {
-   "evals": 121952,
+   "evals": 121960,
    "oos": 43944,
    "robust": 6,
    "holdout": 1,
    "found": 0
   },
   "structure": {
-   "evals": 51093,
+   "evals": 51094,
    "oos": 4195,
    "robust": 1,
    "holdout": 0,
    "found": 0
   },
   "rally_fade": {
-   "evals": 97255,
+   "evals": 97257,
    "oos": 20469,
    "robust": 6,
    "holdout": 0,
@@ -343,7 +343,7 @@
  ],
  "oos_independent_trials": 476056,
  "oos_clusters_hll": "Dg0NDgwLDAwUDg4MDAkPEAwMDwoMDA0MDAwNDA0KCwwMDQoOCw0NCwsNDQ0NEw4LDA4PDQoLCwwKDAwODwsMCwsLDBAMDgoNDAsKDA8MCwsMDQ8MDQ0OChAKDQwKDgsMDAoMDQ0MDAwNDQwQDA4NDg0NDQ4NERALDAwLDAwNDA0PCwsMDgsODwsKDg4PCw4NCwwLDQsMEAwPDg0NDA0SDQ0ODQ4NCg0MDxEMCwsNDgwMDAwMCw0ODQsLDgwNDA4LDgsMCwsMDg4SCgsODQ4LDwsLDAwMCwsLEBAQCw4KDwwNDQwODQ8PCw0LCw0NDAwLDAsLDhAKEgwODgwQDA8PCwoMDgsLEQ0KDA8MDgsMChENDA4LCw0KCwwNEAoNDBALDgsKDAwLDA4NDQ4NCxMLDQsPDAwMCw0PDwwMCxAMDAwODQsQCwwMDAwMCwoMDQ4MDQ4LCw4MDg0OEAwMDA0PEAsMCgwLDQsNCwwMDQoMCgoLDgwMDwsLCwsNCwsRDAsNCw0LDQsKCwsPDA0OChMNDw8NCwwMDA4MDQsMDg8LEw0NCgoLDQsMDQoMDQwMDw0ODA0SDg0QCgsLDw0KCw8MDAwRDAwKDQsMDw4KEQ4LDA4LDg0NDBEMDg8ODAwMDQ8NDQ4MDQsPDgwODg4MCQ4KCwsMCw0LDA4KDg0NDA0LDA0LDAwLDA8SDAwOCwsLDA0LCgwUDQsNCgsNDA4ODAwMDAsPDQ8PDgsNDQsODwwMDQ0PDw4LDQsLDA0LDQwKCw0NCwwNDAwUDQwPDAwODwsKDBENDA0ODQsMDg8PDAwLEAwMCw0NDgwPCwsNCgsLDw0OCwsODQwOCwoLDA0KDAoMDxAODQ8RCw8LCg0KDwsKDAwLEAsMDAsMDREPDwsOEA4MDAsLDA0NDQ0LDQkMDQ0LCwwKDQwNDgwMDAoMDAsMDQwMDxAKDAwODgsNFQoODg8ODg8ODQ8PDgwKCwwODRAPDQ4MDA0MChEKEAwMCw8NCw4RChAOCwsNDQ0ODw4KCw4NDQ0MDA0MCgoLDQ0SDA0LDgwMDQwMCwwODQ0LCwwODAwMDwoOEg0KDgwKCwsMEQoOCg0NEAwMDw0SDQwMEA4NDA4MDA4LEAwLCwsLDRAMCw0OCw4MDQ0TDQoNDQsNDg0NDQwLDQsMCw0ODAwPDQoMCwwRCw4MDA8MDA4PDhAMCgwMDA4KDgwNCw4NDQsNDAsNDQ4MDAwPDQwODAwODxAMDBANDgwNCgsLDAoNCgwLDAwPDBEMEgwLCg0PEwsLDQ4MEQsNDBALCg0OChMKDgwMCw8MCwoLCgsLDBELDAsPDg0MEA4MCxAMDQoLDQ4MCgwODg0PDQsODgwLCg8MCwkNCw8NDAsREAsNDQwNDA0LCgsMDQwNDQ0MEA8TCgwMDQwODQwMCw0LDQwNDwoMCw4NDQ8OEw0KDAoLDgsMEAsNDwsNDRANDAoNCwwNDw0QDAsKCw4NCwwMDQ4LDA0PDwwMDg4QCw4MDw0ODQsMDQsKEQ0XCg8NDQ0MDg4KDA0LDA0NCg0SCw0UDQwMDQ8MDAsOCw8LDQsLDgwRDQ4NDA4MDAwNChEMCQ0OEA8MDRANDQwMDw0NCw0LChEMDwwRDAwKCw8OFAoPDAwODA0MDgoKDwsMDRAMCw4MDg0NDQ8ODAsNDAwQDwsQDg8LCw0ODA8NDgsNCw8MDgsNCwsLDAsLCwwMDQ4LDAwMDQ4LCw4PDQwMCgoLDg4MDg4LCQ4OCg8MDgoNCwwMDQwODw4KDhANCwwSDQwNCgsNDg4MCw0MDQwMDAwLDQwNDAsNDA0NCw8NDg0MDQwOCgwNEAsNDg8OCwwLCg4NDQwLDAoOCwwMDAwMDg4MCQ8NDAsLDQsNDAsNCw0MDQsQCw4QDQ4MDg8QCwwODQ0NDQwNDAwMCwsLDA4MDg8NDQsPCw4MDA4NDg0RDQ0NDQoMDA8MDg0LDQ4ODQwODAwODA8MDQ4ODQ4LDA8NDA0TDRMMDAwNChALDREODQ8PCwwMDAwOCw0NDAwODQ4LDwkNDAsLCw0MDAwODAoKDwwNDgwMCwwPDAwPDQ4MDQ4OCgsMCw0ODQsNDQsLDAsLEA0NDQ8PDQwNDA0ODA0ODgsLDwwODA4MDAsKDA4OCwwNCgwMEAoMDAwKDQ8LDBELCwsNDg8ODA8NCw4RDAwNFA4KCwsNDA4NDQwKDAwODA8QDA0LDQsNCxEODg0LCwoLDBALDQwOCg0OCwwNEA0NCw8MCw4LDA0NDQoLDgoKCwsNDwwLCw0MCwsKCg0QDAoLDwwOCw4ODAsMCgsUEg0PCgwLEgwLCwsODA8MCwwKEA4LDgwODQ0PDg4ODgoOCw0LDQ0LCw0NDg0NDxEMDAsLDBILCw0NDQ0ODQwLDAwODhQMDgsODwsKDAsNEQwMDAoTCxILCw8NDAsPDA0LEgwLDA4MCw0SDQ0KDQwLDAoMDQ4LCg0QEQwLDgsKDAwMDQsLDwoMDwwODQwLDAsQDAwLDAsLDQsLDg0LDQwNDAwMDBALDAsMCw0NDBAMDQ4NDg4NCw0MDBELDhEPCwsNCwoNDhALCwsMCwsMDAsODQoPDQoSCwoMDQ0LCw0LCw4MEQwKEBAKDQsKCwsMDQ0MDgwLDAsMFg0MDAwMDA4KDQwLDQ4MDAsNCwwMDgsMDhALDw0MDA4OCwwPCw4LCg4KDRANDBENCwwMDA0PCgwNCw0MDAwLDQoLDQ0LDgsLDA4ODAwMCw4MDA0NCQoLDw8ODQwLDQwMDBEMDw4KCwwREA4OCgwPDhEMDAwMDAsTCwkMDQsODQsKCRELDQwLDQwNFA8MDA8QDAwOCwwMDQ4NDBEPDwsODBQLDQwLEgwNCwsLDwsNCw4LDg8MCgoMCwwLDQ4NDAwNDQ4LCw8LDw4LCwwKDQ4MDQoNEBAQDgwMDA0LDAwLDhANDQ8LDRIKEQ8PDwwOCxAPEAwPDw8KDA0NDAwLDgwNEQsMCgwSDg0LDgwOCw0NEgwNDAwKCgwOCw0PDAwLDAwLDwwODA0PDg8NCw4LCwwPDQ0PDA0MDA0LCgwKDAsMEAwOCw4NDwoMDAoMDA0OCwoKDQ0KDg0MDwwNCwoMDBANDAwVDAwLDQoNDg0MDgwLDg0ODQsLDA8LDAoNDQsLDQsLDAwNCwwPDAsNEA0MDg4MCw4QDg0LDA4REAwOERAOCg0NDAwOCgsMDA8SDQwPDg8ODgsLDQoNCw8OChAPCxANDA0OCwoNCw4KDA0ODgwNDAwMDg0LDA4RDhANDw4NDQsMCg8MEA4QDQsUCxEMEwwNDQwODQ4LCwsMDAwSDgwMCwoODwsKDAwODQ4ODAsMDQoNDQwLDA4MCwsKCwsMCwsNDREMDQ0NDQsNCw8MDA4ODQwODg4LChAMDg8LCw4NCw8RDw8OCwwODA0KDw0MDQsLDgoNCw4NDgsLDQ4NDQsMEw0NCg0KDQ0PDg0LDQ8LDgsLCw0NDA0MDA0ODgwMDAoNCwwOEAwLEw0MDQsLCw8NCw0PCgsMDAwODhILDAwSDAwMDQsNCQ0MDAsNDQsLCw8NCwsNDQ4PDw4MEg0MDA0LDgwNDwsMDgwPDg0NCgwMEAsLCwsLDg0MEw4LCg8MDwwODA0MChAKCw8LCxAOCxEPDgwLCw4MEQwNCw8ODAwMDQ0LDREMCw0NDBILDg0ODA4NEhILCw0NDQsLDAwLDQsSDQwLDA0NCw8OCwwNDw0NCw4LCw0NDA8NCwwOCg4NCw8QDBANEA0MDAwNDwwNCwsNCwwPEQsMDg0KDQ0MDA4LDg0MDhALDAoNCwsNDgoKCwoNCw0MDgsLCwsNEQsNEA0LEAsNDA0LEA4NCg4OCg0NCwsNDQsKDQsNDAoODA8NDA4NDA4NDQsNEgwPDA0MDAwLDA8NDQ4ODAkKDA0PCwsPDgsLCw0MDBQNCwwLCw8PCw0NDQ4LEQwMCgoMCwsNCgsPCw4LEhALDgkPDA0LEgwMEAwQDwwPDA0LCwwPDg0OCg4MDQsOCwsNDA8MCxIKDA4MCw0SDg4TDA0KCg0MDA4QDwwMDQwKDA4LCwsOCwsODQwPDgwLDQ0LDg4MDgsLEAsLDA4OCwsNEQ0MDA8ODAwLCw8QCw0LDwsODg0LCw4LCw4MCw8KDg4ODQ4UDAwMDAsMCwsNDQ4NDQ8NDAwNCw8KChALCxANDA4LEAwQDw8NDRANDQwNCgoMDQwPDg4NDA0MDg0KDQ0KCgoLDAsMCw0MDAwNDwwNCw4MDxEMDg0NDA0NDhEMCwwLDg4LDw4LDQsNDAwKDQwPCwkKDg0MDAsODwsPDAwLDAsPCw8LDA0MDQwMDgoPDAsNCgwLDA4LDw0PDgsMDg8LCwwNEQ0RDQ0OEA0LDQwPFA0KDA0KDQ4MDQwMCwwNCxEREQsNEQ4ODAsNDAsMDQ8NCxINDQoODAwLDQ0NDQwQDQwPCg4KCwwKDRIKDw0ODQwLDAoMDQwODg0PFw4LCgsMCw8LCgoNDA8LDQsPDQwMDAsLCwoODAwODAsLDRMMCwwMDQwPDQ0KDwsMCw4ODAsLDA4ODQ0LDAwMCwoNDQwNDAwKDQ0MDAoMDQoMDgwMCwsLDAwMFQ0LDAwOCwsMDw0ODA8LDQwNChAMEA4PCw0NDAwMDQ4NDg0MCgwMDw0MCw0SDQ8MDwsNDwwMDAsNDQsOERAMDgwLDwsLDw0OCwoNDBIPExANDQ4LDAsSEAwMDAwNDAwRDAsNCg0KCw0NCw0NDQ0PDQ0NEBAMDwsOCxAMDQwNDA0QDAwMDg0MCgoLDAwMDRINDhISDgsLCwwNDA4KDwoKEg8MCwwKDQwPDgwMCw0MDQwNDAoODAwODA4RDg4LDBMMDw0NDRUPDQ0ODg8MDAsLCw4MDgoPCxALCxAQDgwPEgsLDA4NDA4LDAwSCgwNEg8LCxAKDAwMCwsNCw8NDAsMDgwLCgwMDQwPCgwMEA0MDwsODQwNDg4MDwwNCw4NDQoLDgwODQwOCwoLDQ0LDxANDg0MCw4MCgwNDgwNEAwNCwoLEQsPDg4LDA4LDA0PDAwPDAsODQwMEA8ODQ4LDQwNDgwNDQsQDAwKCwsODAwMEAsNDAsNDg4NDAwLDA0MDAoMCw4PDAsNCwsMDAwNDAsNDw4LDA4LDxEMDwsLDg4ODAwSDA4PCw8ODAwLDQsODAwLCw0MCg0LDAsMCwoMCwsODBAPDAoODQwNCw0KDQsLEAsMDAoOCgwMCwwPCwoNCg0MCwwMCg8LDQ0NEQsLERMPDg4MEAwNDA4ODAwLDw0LCwwMDwwPDA0MDQ0MDwwMEBEMCgwNEgwQCgwQCwsMDgoPDg4PDA0LDQsPDAsPDQ4LDg0MDgsNDgoNDA4NCxAMCw0MDg4MDQ0NChENDQ4MEg0NCw0LDg4PCwsMCwwNCwkLDQ0LDg0KDwwODQsPDAwLDQsODgwMChALDwsPCgsODQsMDxANCwwODQ0OCxINCwwLEAsMDw0NDQ==",
- "updated_at": "2026-10-22T14:57:40+00:00",
+ "updated_at": "2026-10-22T14:57:44+00:00",
  "last_id": 9,
  "pruned": [
   {
@@ -1962,10 +1962,27 @@
    "replaced": false,
    "grade": "B",
    "short": false
+  },
+  {
+   "id": 491,
+   "slug": "C0491_oi_trend_SOLUSDT_30m",
+   "name": "미결제약정(OI) × 가격",
+   "universe": "SOLUSDT",
+   "tf": "30m",
+   "oos_sharpe": 1.8107210984196462,
+   "ho_sharpe": 1.6937837481688507,
+   "cagr": 0.3315905145195064,
+   "mdd": 0.18878432037491277,
+   "lev": 1.5,
+   "score": 1.6937837481688507,
+   "found_at": "2026-10-22T14:57:44+00:00",
+   "replaced": false,
+   "grade": "B",
+   "short": false
   }
  ],
- "cand_last_id": 490,
- "cand_holdout_checks": 1029,
+ "cand_last_id": 491,
+ "cand_holdout_checks": 1030,
  "cand_holdout_rejects": 10,
  "cand_replaced": 605,
  "cand_archived": 399,
