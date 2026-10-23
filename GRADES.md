@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-23 22:44 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-23 23:57 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -21,6 +21,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 
 | 시각 (UTC) | 번호 | 변경 | 현재 내용 |
 |---|---|---|---|
+| 2026-10-23 23:57 | C528 | B 편입 | Ornstein-Uhlenbeck 평균회귀 (z-score) ALL 1h · 검증 2.31 / 최근 1.82 · 연 +9.5% · MDD 4% |
 | 2026-10-23 18:13 | C522 | 교체 | 변동성 수축 후 돌파 (볼린저 스퀴즈) ALL 4h · 검증 1.76 / 최근 2.12 · 연 +11.5% · MDD 8% |
 | 2026-10-23 12:47 | C522 | B 편입 | 변동성 수축 후 돌파 (볼린저 스퀴즈) ALL 1h · 검증 1.75 / 최근 1.50 · 연 +13.3% · MDD 6% |
 | 2026-10-23 08:29 | C467 | 교체 | 하방 변동성 확대 (레버리지 효과) ALL 4h · 검증 2.52 / 최근 3.22 · 연 +12.9% · MDD 5% |
@@ -35,7 +36,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | 2026-10-22 14:57 | C491 | B 편입 | 미결제약정(OI) × 가격 SOLUSDT 30m · 검증 1.81 / 최근 1.69 · 연 +33.2% · MDD 19% |
 | 2026-10-22 14:57 | C490 | B 편입 | 미결제약정(OI) × 가격 SOLUSDT 30m · 검증 2.43 / 최근 1.84 · 연 +42.1% · MDD 24% |
 | 2026-10-22 12:46 | C477 | 교체 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 1h · 검증 2.39 / 최근 1.87 · 연 +14.2% · MDD 11% |
-| 2026-10-22 12:46 | C477 | B 편입 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 1h · 검증 2.67 / 최근 1.57 · 연 +15.5% · MDD 13% |
 
 ## 요약
 
@@ -77,6 +77,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | [C492](#c492) | 하락추세 반등 매도 (상승추세 눌림 매수) | ALL | 4h | 롱/숏 양방향 | 1.52 | 2.05 | 2.00 | +17.1% | 10% | 1x |
 | B | [C496](#c496) | 롱/숏 비율 포지셔닝 | BTCUSDT | 30m | 롱만 | 1.93 | 1.77 | 1.52 | +51.5% | 21% | 1.5x |
 | B | [C522](#c522) | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 숏만 | 1.73 | 1.76 | 2.12 | +11.5% | 8% | 2.5x |
+| B | [C528](#c528) | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 롱만 | 1.93 | 2.31 | 1.82 | +9.5% | 4% | 1.5x |
 
 ## 숏 전용 전략
 
@@ -93,6 +94,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C456 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 1.48 | 2.19 | 2.05 | +60.8% | 25% | [보기](research/candidates/C0456_squeeze_DOGEUSDT_4h.md) |
 | C | C481 | 일목균형표 | SOLUSDT | 4h | 1.48 | 2.37 | 2.03 | +39.5% | 33% | [보기](research/candidates/C0481_ichimoku_SOLUSDT_4h.md) |
 | C | C502 | MACD | DOGEUSDT | 1h | 1.15 | 2.63 | 2.00 | +40.2% | 21% | [보기](research/candidates/C0502_macd_DOGEUSDT_1h.md) |
+| C | C527 | ADX/DMI 추세 | BTCUSDT | 30m | 1.17 | 1.97 | 2.09 | +7.7% | 7% | [보기](research/candidates/C0527_adx_dmi_BTCUSDT_30m.md) |
 | C | C417 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 4h | 1.03 | 1.95 | 2.33 | +27.8% | 21% | [보기](research/candidates/C0417_squeeze_XRPUSDT_4h.md) |
 | C | C485 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 1.22 | 1.87 | 2.63 | +24.3% | 17% | [보기](research/candidates/C0485_squeeze_SOLUSDT_4h.md) |
 | C | C476 | ADX/DMI 추세 | BNBUSDT | 15m | 1.34 | 1.82 | 1.92 | +8.4% | 6% | [보기](research/candidates/C0476_adx_dmi_BNBUSDT_15m.md) |
@@ -104,7 +106,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C459 | 이동평균 교차 추세추종 | SOLUSDT | 1h | 1.77 | 2.34 | 1.75 | +26.9% | 10% | [보기](research/candidates/C0459_ma_cross_SOLUSDT_1h.md) |
 | C | C524 | 슈퍼트렌드 | XRPUSDT | 1h | 1.16 | 1.79 | 1.74 | +39.2% | 24% | [보기](research/candidates/C0524_supertrend_XRPUSDT_1h.md) |
 | C | C488 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.77 | 1.74 | 2.63 | +40.3% | 12% | [보기](research/candidates/C0488_psar_DOGEUSDT_4h.md) |
-| C | C525 | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.44 | 1.85 | 1.73 | +26.8% | 28% | [보기](research/candidates/C0525_vol_down_ETHUSDT_1h.md) |
 
 ## 전략별 상세
 
@@ -1693,6 +1694,48 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
     "sl_k": 6.9244,
     "tp_k": 1.0,
     "max_hold": 288
+  },
+  "universe": "ALL"
+}
+```
+</details>
+
+<a id="c528"></a>
+### B등급 C528 — Ornstein-Uhlenbeck 평균회귀 (z-score) (10개 코인 전체 (코인당 자금 1/10), 1시간봉)
+
+- **규칙**: 가격의 24봉 z-score가 -2.16 미만이면 롱, +2.16 초과면 숏. z가 ∓0.36까지 회귀하면 청산. 추세필터: EMA(88) 위에서만 롱, 아래에서만 숏. [롱만, 익절 ATR(14)×8.10]
+- **체결**: 봉 마감에 신호 확인 → 다음 봉 시가에 시장가. 손절/익절은 진입가 기준 ATR(14) 배수로 미리 걸어둠
+- **권장 레버리지**: 1.5x
+- **모의매매**: `python run_strategy.py paper --pick C528 --loop`
+
+| 구간 | 샤프 | 연수익 | 최대낙폭 | 거래수 |
+|---|---|---|---|---|
+| 학습 | 1.93 | +10.4% | 3.8% | 622 |
+| 검증 | 2.31 | +8.7% | 2.1% | 244 |
+| 홀드아웃(최근) | 1.82 | +7.7% | 4.4% | 194 |
+| 전체 | 1.96 | +9.5% | 4.4% | 1060 |
+
+- **연도별 수익률**: 2020 +9.0% · 2021 +21.7% · 2022 +5.8% · 2023 +5.9% · 2024 +11.8% · 2025 +10.8% · 2026 +0.4%
+- **강건성**: 비용 2배 샤프 1.49 · 파라미터 근방 수익 비율 100% · 근거: Avellaneda & Lee (2010) 'Statistical Arbitrage in the US Equities Market', Quant. Finance
+- **상세 보고서**: [C0528_zscore_mr_ALL_1h.md](research/candidates/C0528_zscore_mr_ALL_1h.md)
+
+<details><summary>파라미터 (JSON)</summary>
+
+```json
+{
+  "family": "zscore_mr",
+  "tf": "1h",
+  "p": {
+    "n": 24,
+    "z_in": 2.1603,
+    "z_out": 0.3564,
+    "trend": 88
+  },
+  "mod": {
+    "direction": "long",
+    "sl_k": 0.0,
+    "tp_k": 8.102,
+    "max_hold": 0
   },
   "universe": "ALL"
 }
