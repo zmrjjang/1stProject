@@ -35,10 +35,10 @@
 | C491 | B | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 1.81 | 1.69 | +33.2% | 19% | 1.5x | [보기](C0491_oi_trend_SOLUSDT_30m.md) |
 | C492 | B | 하락추세 반등 매도 (상승추세 눌림 매수) | ALL | 4h | 2.05 | 2.00 | +17.1% | 10% | 1x | [보기](C0492_rally_fade_ALL_4h.md) |
 | C496 | B | 롱/숏 비율 포지셔닝 | BTCUSDT | 30m | 1.77 | 1.52 | +51.5% | 21% | 1.5x | [보기](C0496_positioning_BTCUSDT_30m.md) |
+| C522 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 1h | 1.75 | 1.50 | +13.3% | 6% | 3.5x | [보기](C0522_squeeze_ALL_1h.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
-| C13 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.20 | 1.90 | +4.6% | 3% | 2x | [보기](C0013_zscore_mr_ALL_1h.md) |
 | C26 | C | 거래량 급증 돌파 | ETHUSDT | 1h | 3.25 | 3.32 | +16.4% | 12% | 2x | [보기](C0026_vol_breakout_ETHUSDT_1h.md) |
 | C27 | C | 테이커 주문흐름 불균형 | ALL | 4h | 1.99 | 1.96 | +30.1% | 34% | 0.5x | [보기](C0027_flow_ALL_4h.md) |
 | C28 | C | OBV 거래량 모멘텀 | ALL | 4h | 2.28 | 2.85 | +16.2% | 23% | 1.5x | [보기](C0028_obv_ALL_4h.md) |
@@ -105,3 +105,4 @@
 | C517 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 15m | 1.95 | 1.95 | +47.0% | 36% | 1x | [보기](C0517_xsmom_ALL_15m.md) |
 | C518 | C | 테이커 주문흐름 불균형 | DOGEUSDT | 4h | 1.71 | 1.69 | +30.6% | 33% | 1.5x | [보기](C0518_flow_DOGEUSDT_4h.md) |
 | C520 | C | 슈퍼트렌드 | DOGEUSDT | 4h | 1.76 | 2.05 | +27.2% | 15% | 2x | [보기](C0520_supertrend_DOGEUSDT_4h.md) |
+| C521 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | DOGEUSDT | 15m | 2.09 | 2.00 | +11.2% | 3% | 5x | [보기](C0521_zscore_mr_DOGEUSDT_15m.md) |
