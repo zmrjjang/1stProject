@@ -29,7 +29,7 @@
 | C441 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 30m | 1.78 | 1.60 | +65.3% | 17% | 1x | [보기](C0441_squeeze_ETHUSDT_30m.md) |
 | C445 | B | 선형회귀 추세 유의성 | ETHUSDT | 1h | 1.56 | 1.78 | +39.4% | 18% | 1.5x | [보기](C0445_linreg_ETHUSDT_1h.md) |
 | C464 | B | 시장 구조 (고점·저점 낮아짐) | ALL | 1h | 1.94 | 1.77 | +21.6% | 10% | 1x | [보기](C0464_structure_ALL_1h.md) |
-| C467 | B | 하방 변동성 확대 (레버리지 효과) | ALL | 4h | 2.24 | 2.50 | +15.4% | 6% | 1x | [보기](C0467_vol_down_ALL_4h.md) |
+| C467 | B | 하방 변동성 확대 (레버리지 효과) | ALL | 4h | 2.52 | 3.22 | +12.9% | 5% | 1x | [보기](C0467_vol_down_ALL_4h.md) |
 | C477 | B | 하락추세 반등 매도 (상승추세 눌림 매수) | ALL | 1h | 2.28 | 2.37 | +9.7% | 6% | 1x | [보기](C0477_rally_fade_ALL_1h.md) |
 | C490 | B | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.43 | 1.84 | +42.1% | 24% | 1.5x | [보기](C0490_oi_trend_SOLUSDT_30m.md) |
 | C491 | B | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 1.81 | 1.69 | +33.2% | 19% | 1.5x | [보기](C0491_oi_trend_SOLUSDT_30m.md) |
@@ -48,7 +48,6 @@
 | C60 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 1h | 2.72 | 2.69 | +18.5% | 12% | 2x | [보기](C0060_squeeze_ALL_1h.md) |
 | C69 | C | 롱/숏 비율 포지셔닝 | ALL | 30m | 2.55 | 2.22 | +32.1% | 16% | 1x | [보기](C0069_positioning_ALL_30m.md) |
 | C72 | C | 일목균형표 | ZECUSDT | 1h | 2.29 | 2.31 | +124.4% | 47% | 0.5x | [보기](C0072_ichimoku_ZECUSDT_1h.md) |
-| C75 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 15m | 1.88 | 2.10 | +60.3% | 54% | 0.5x | [보기](C0075_xsmom_ALL_15m.md) |
 | C94 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 2.10 | 1.97 | +48.2% | 17% | 1.5x | [보기](C0094_squeeze_ZECUSDT_1h.md) |
 | C109 | C | 거래량 급증 돌파 | ETHUSDT | 15m | 2.34 | 2.46 | +93.7% | 32% | 0.5x | [보기](C0109_vol_breakout_ETHUSDT_15m.md) |
 | C136 | C | 켈트너 채널 | BNBUSDT | 15m | 2.30 | 2.15 | +27.9% | 10% | 3x | [보기](C0136_keltner_BNBUSDT_15m.md) |
@@ -65,11 +64,9 @@
 | C396 | C | 슈퍼트렌드 | SOLUSDT | 4h | 2.17 | 1.91 | +77.0% | 32% | 0.5x | [보기](C0396_supertrend_SOLUSDT_4h.md) |
 | C402 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.09 | 1.99 | +5.7% | 3% | 2x | [보기](C0402_zscore_mr_ALL_1h.md) |
 | C404 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BNBUSDT | 15m | 2.16 | 2.41 | +20.5% | 14% | 3x | [보기](C0404_pairs_DOGEUSDT-BNBUSDT_15m.md) |
-| C406 | C | 선형회귀 추세 유의성 | DOGEUSDT | 1h | 1.89 | 2.66 | +60.1% | 35% | 1x | [보기](C0406_linreg_DOGEUSDT_1h.md) |
 | C409 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 2.14 | 2.10 | +48.0% | 28% | 1x | [보기](C0409_squeeze_SOLUSDT_4h.md) |
 | C417 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 4h | 1.95 | 2.33 | +27.8% | 21% | 2x | [보기](C0417_squeeze_XRPUSDT_4h.md) |
 | C419 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 15m | 2.26 | 2.14 | +19.1% | 8% | 1.5x | [보기](C0419_zscore_mr_SOLUSDT_15m.md) |
-| C421 | C | 아룬 추세 | ALL | 1h | 2.08 | 1.87 | +11.6% | 5% | 1.5x | [보기](C0421_aroon_ALL_1h.md) |
 | C423 | C | 선형회귀 추세 유의성 | ZECUSDT | 15m | 2.43 | 1.91 | +108.1% | 54% | 0.5x | [보기](C0423_linreg_ZECUSDT_15m.md) |
 | C425 | C | 켈트너 채널 | SOLUSDT | 5m | 2.19 | 1.91 | +14.8% | 9% | 3.5x | [보기](C0425_keltner_SOLUSDT_5m.md) |
 | C426 | C | 시계열 모멘텀 (변동성 정규화) | BTCUSDT | 15m | 1.96 | 2.87 | +13.9% | 6% | 5x | [보기](C0426_tsmom_BTCUSDT_15m.md) |
@@ -95,13 +92,16 @@
 | C488 | C | 파라볼릭 SAR | DOGEUSDT | 4h | 1.74 | 2.63 | +40.3% | 12% | 2x | [보기](C0488_psar_DOGEUSDT_4h.md) |
 | C495 | C | 롱/숏 비율 포지셔닝 | DOGEUSDT | 4h | 2.06 | 2.45 | +55.0% | 38% | 1x | [보기](C0495_positioning_DOGEUSDT_4h.md) |
 | C498 | C | MACD | XRPUSDT | 4h | 2.06 | 2.37 | +32.4% | 20% | 1.5x | [보기](C0498_macd_XRPUSDT_4h.md) |
-| C501 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.63 | 2.06 | +17.8% | 16% | 3x | [보기](C0501_vol_down_ETHUSDT_1h.md) |
 | C502 | C | MACD | DOGEUSDT | 1h | 2.63 | 2.00 | +40.2% | 21% | 1x | [보기](C0502_macd_DOGEUSDT_1h.md) |
-| C504 | C | 선형회귀 추세 유의성 | DOGEUSDT | 30m | 1.79 | 1.68 | +99.2% | 41% | 0.5x | [보기](C0504_linreg_DOGEUSDT_30m.md) |
 | C505 | C | 선형회귀 추세 유의성 | XRPUSDT | 1h | 1.81 | 1.94 | +45.0% | 28% | 1x | [보기](C0505_linreg_XRPUSDT_1h.md) |
 | C506 | C | 일목균형표 | LINKUSDT | 4h | 1.70 | 1.96 | +31.1% | 22% | 1.5x | [보기](C0506_ichimoku_LINKUSDT_4h.md) |
 | C507 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 5m | 2.00 | 2.10 | +7.5% | 3% | 5x | [보기](C0507_zscore_mr_SOLUSDT_5m.md) |
-| C508 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.66 | 1.94 | +5.0% | 4% | 2.5x | [보기](C0508_squeeze_ALL_4h.md) |
 | C509 | C | 선형회귀 추세 유의성 | SOLUSDT | 1h | 2.07 | 2.06 | +53.9% | 42% | 0.5x | [보기](C0509_linreg_SOLUSDT_1h.md) |
 | C511 | C | 하방 변동성 확대 (레버리지 효과) | BTCUSDT | 1h | 1.78 | 1.82 | +14.1% | 9% | 4x | [보기](C0511_vol_down_BTCUSDT_1h.md) |
 | C512 | C | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 2.25 | 3.20 | +16.2% | 9% | 4x | [보기](C0512_positioning_SOLUSDT_30m.md) |
+| C513 | C | 아룬 추세 | DOGEUSDT | 15m | 2.09 | 2.06 | +88.4% | 53% | 0.5x | [보기](C0513_aroon_DOGEUSDT_15m.md) |
+| C515 | C | 펀딩비 쏠림 | ALL | 30m | 2.10 | 1.90 | +18.8% | 10% | 1x | [보기](C0515_funding_ALL_30m.md) |
+| C516 | C | 이동평균 교차 추세추종 | BTCUSDT | 1h | 2.41 | 2.18 | +7.6% | 6% | 5x | [보기](C0516_ma_cross_BTCUSDT_1h.md) |
+| C517 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 15m | 1.95 | 1.95 | +47.0% | 36% | 1x | [보기](C0517_xsmom_ALL_15m.md) |
+| C518 | C | 테이커 주문흐름 불균형 | DOGEUSDT | 4h | 1.71 | 1.69 | +30.6% | 33% | 1.5x | [보기](C0518_flow_DOGEUSDT_4h.md) |
+| C520 | C | 슈퍼트렌드 | DOGEUSDT | 4h | 1.76 | 2.05 | +27.2% | 15% | 2x | [보기](C0520_supertrend_DOGEUSDT_4h.md) |
