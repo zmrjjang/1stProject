@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-24 16:35 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-24 22:06 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -21,6 +21,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 
 | 시각 (UTC) | 번호 | 변경 | 현재 내용 |
 |---|---|---|---|
+| 2026-10-24 19:41 | C467 | 교체 | 하방 변동성 확대 (레버리지 효과) ALL 1h · 검증 3.01 / 최근 2.78 · 연 +7.8% · MDD 3% |
 | 2026-10-24 14:04 | C540 | B 편입 | 과열 소진 역추세 (블로오프) ALL 15m · 검증 1.61 / 최근 1.64 · 연 +7.8% · MDD 2% |
 | 2026-10-24 03:53 | C531 | B 편입 | 파라볼릭 SAR DOGEUSDT 4h · 검증 1.64 / 최근 1.63 · 연 +46.7% · MDD 19% |
 | 2026-10-24 01:57 | C529 | B 편입 | 페어 트레이딩 (공적분 스프레드 평균회귀) DOGEUSDT/BTCUSDT 30m · 검증 1.58 / 최근 2.08 · 연 +39.1% · MDD 17% |
@@ -35,7 +36,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | 2026-10-22 15:52 | C496 | B 편입 | 롱/숏 비율 포지셔닝 BTCUSDT 30m · 검증 1.77 / 최근 1.52 · 연 +51.5% · MDD 21% |
 | 2026-10-22 15:05 | C492 | 교체 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 2.05 / 최근 2.00 · 연 +17.1% · MDD 10% |
 | 2026-10-22 15:05 | C492 | 교체 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 1.80 / 최근 1.86 · 연 +18.5% · MDD 9% |
-| 2026-10-22 15:05 | C492 | B 편입 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 1.56 / 최근 1.85 · 연 +18.6% · MDD 9% |
 
 ## 요약
 
@@ -70,7 +70,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | [C441](#c441) | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 30m | 롱/숏 양방향 | 1.99 | 1.78 | 1.60 | +65.3% | 17% | 1x |
 | B | [C445](#c445) | 선형회귀 추세 유의성 | ETHUSDT | 1h | 롱만 | 1.57 | 1.56 | 1.78 | +39.4% | 18% | 1.5x |
 | B | [C464](#c464) | 시장 구조 (고점·저점 낮아짐) | ALL | 1h | 롱만 | 1.80 | 1.94 | 1.77 | +21.6% | 10% | 1x |
-| B | [C467](#c467) | 하방 변동성 확대 (레버리지 효과) | ALL | 4h | 롱만 | 2.12 | 2.52 | 3.22 | +12.9% | 5% | 1x |
+| B | [C467](#c467) | 하방 변동성 확대 (레버리지 효과) | ALL | 1h | 롱만 | 1.77 | 3.01 | 2.78 | +7.8% | 3% | 1.5x |
 | B | [C477](#c477) | 하락추세 반등 매도 (상승추세 눌림 매수) | ALL | 1h | 롱만 | 1.84 | 2.28 | 2.37 | +9.7% | 6% | 1x |
 | B | [C490](#c490) | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 롱만 | 1.65 | 2.43 | 1.84 | +42.1% | 24% | 1.5x |
 | B | [C491](#c491) | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 롱/숏 양방향 | 1.75 | 1.81 | 1.69 | +33.2% | 19% | 1.5x |
@@ -90,10 +90,12 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 |---|---|---|---|---|---|---|---|---|---|---|
 | C | C535 | 이동평균 교차 추세추종 | SOLUSDT | 1h | 1.11 | 2.57 | 2.55 | +23.3% | 41% | [보기](research/candidates/C0535_ma_cross_SOLUSDT_1h.md) |
 | C | C507 | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 15m | 2.06 | 2.47 | 2.69 | +4.7% | 2% | [보기](research/candidates/C0507_zscore_mr_SOLUSDT_15m.md) |
+| C | C542 | 하방 변동성 확대 (레버리지 효과) | DOGEUSDT | 1h | 1.02 | 2.41 | 2.42 | +20.1% | 16% | [보기](research/candidates/C0542_vol_down_DOGEUSDT_1h.md) |
 | C | C471 | ADX/DMI 추세 | SOLUSDT | 1h | 1.03 | 2.82 | 2.38 | +19.2% | 15% | [보기](research/candidates/C0471_adx_dmi_SOLUSDT_1h.md) |
 | C | C512 | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.12 | 2.25 | 3.20 | +16.2% | 9% | [보기](research/candidates/C0512_positioning_SOLUSDT_30m.md) |
 | C | C516 | 이동평균 교차 추세추종 | BTCUSDT | 1h | 1.06 | 2.41 | 2.18 | +7.6% | 6% | [보기](research/candidates/C0516_ma_cross_BTCUSDT_1h.md) |
 | C | C538 | 이동평균 교차 추세추종 | DOGEUSDT | 1h | 1.49 | 2.60 | 2.11 | +68.2% | 37% | [보기](research/candidates/C0538_ma_cross_DOGEUSDT_1h.md) |
+| C | C541 | 하방 변동성 확대 (레버리지 효과) | BTCUSDT | 1h | 1.66 | 2.09 | 2.21 | +13.3% | 5% | [보기](research/candidates/C0541_vol_down_BTCUSDT_1h.md) |
 | C | C533 | 펀딩비 쏠림 | ETHUSDT | 1h | 1.04 | 2.18 | 2.08 | +23.3% | 10% | [보기](research/candidates/C0533_funding_ETHUSDT_1h.md) |
 | C | C495 | 롱/숏 비율 포지셔닝 | DOGEUSDT | 4h | 1.01 | 2.06 | 2.45 | +55.0% | 38% | [보기](research/candidates/C0495_positioning_DOGEUSDT_4h.md) |
 | C | C498 | MACD | XRPUSDT | 4h | 1.09 | 2.06 | 2.37 | +32.4% | 20% | [보기](research/candidates/C0498_macd_XRPUSDT_4h.md) |
@@ -104,10 +106,8 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C527 | ADX/DMI 추세 | BTCUSDT | 30m | 1.17 | 1.97 | 2.09 | +7.7% | 7% | [보기](research/candidates/C0527_adx_dmi_BTCUSDT_30m.md) |
 | C | C417 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 4h | 1.03 | 1.95 | 2.33 | +27.8% | 21% | [보기](research/candidates/C0417_squeeze_XRPUSDT_4h.md) |
 | C | C530 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 1h | 1.01 | 1.92 | 2.26 | +13.3% | 11% | [보기](research/candidates/C0530_squeeze_ETHUSDT_1h.md) |
+| C | C543 | ADX/DMI 추세 | BNBUSDT | 15m | 1.51 | 1.90 | 1.94 | +9.0% | 6% | [보기](research/candidates/C0543_adx_dmi_BNBUSDT_15m.md) |
 | C | C485 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 1.22 | 1.87 | 2.63 | +24.3% | 17% | [보기](research/candidates/C0485_squeeze_SOLUSDT_4h.md) |
-| C | C539 | 과열 소진 역추세 (블로오프) | ZECUSDT | 5m | 1.09 | 1.85 | 1.84 | +6.9% | 11% | [보기](research/candidates/C0539_blowoff_ZECUSDT_5m.md) |
-| C | C532 | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.02 | 2.35 | 1.83 | +21.2% | 19% | [보기](research/candidates/C0532_vol_down_ETHUSDT_1h.md) |
-| C | C476 | ADX/DMI 추세 | BNBUSDT | 15m | 1.34 | 1.82 | 1.92 | +8.4% | 6% | [보기](research/candidates/C0476_adx_dmi_BNBUSDT_15m.md) |
 | B | C522 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.73 | 1.76 | 2.12 | +11.5% | 8% | [보기](research/candidates/C0522_squeeze_ALL_4h.md) |
 | B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
 
@@ -1387,46 +1387,46 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 </details>
 
 <a id="c467"></a>
-### B등급 C467 — 하방 변동성 확대 (레버리지 효과) (10개 코인 전체 (코인당 자금 1/10), 4시간봉)
+### B등급 C467 — 하방 변동성 확대 (레버리지 효과) (10개 코인 전체 (코인당 자금 1/10), 1시간봉)
 
-- **규칙**: ATR% z-score(50) > 2.50(변동성 확대)이고 종가 < EMA(56), 8봉 수익률 < 0이면 숏 (모두 반대면 롱). EMA를 되돌파하거나 변동성 z가 -0.85 아래로 식으면 청산. 상위봉 필터: 1단계 위 봉의 종가가 EMA(48) 위일 때만 롱, 아래일 때만 숏. [롱만, 익절 ATR(14)×1.00, 최대 보유 249봉]
+- **규칙**: ATR% z-score(232) > 3.00(변동성 확대)이고 종가 < EMA(422), 30봉 수익률 < 0이면 숏 (모두 반대면 롱). EMA를 되돌파하거나 변동성 z가 1.00 아래로 식으면 청산. 추세장에서만: ADX(14) > 40. [롱만, 익절 ATR(14)×1.00]
 - **체결**: 봉 마감에 신호 확인 → 다음 봉 시가에 시장가. 손절/익절은 진입가 기준 ATR(14) 배수로 미리 걸어둠
-- **권장 레버리지**: 1x
+- **권장 레버리지**: 1.5x
 - **모의매매**: `python run_strategy.py paper --pick C467 --loop`
 
 | 구간 | 샤프 | 연수익 | 최대낙폭 | 거래수 |
 |---|---|---|---|---|
-| 학습 | 2.12 | +14.4% | 5.1% | 280 |
-| 검증 | 2.52 | +10.4% | 1.9% | 100 |
-| 홀드아웃(최근) | 3.22 | +11.3% | 2.3% | 88 |
-| 전체 | 2.24 | +12.9% | 5.1% | 468 |
+| 학습 | 1.77 | +7.7% | 3.3% | 264 |
+| 검증 | 3.01 | +7.5% | 0.6% | 73 |
+| 홀드아웃(최근) | 2.78 | +8.4% | 0.5% | 93 |
+| 전체 | 2.06 | +7.8% | 3.3% | 430 |
 
-- **연도별 수익률**: 2020 +21.1% · 2021 +17.3% · 2022 +10.3% · 2023 +9.2% · 2024 +12.9% · 2025 +8.4% · 2026 +8.4%
-- **강건성**: 비용 2배 샤프 1.99 · 파라미터 근방 수익 비율 100% · 근거: Black (1976) 'Studies of Stock Price Volatility Changes'; Christie (1982) J. Financial Economics; Baur & Dimpfl (2018) 'Asymmetric volatility in cryptocurrencies', Economics Letters
-- **상세 보고서**: [C0467_vol_down_ALL_4h.md](research/candidates/C0467_vol_down_ALL_4h.md)
+- **연도별 수익률**: 2020 +9.7% · 2021 +12.0% · 2022 +5.3% · 2023 +4.2% · 2024 +8.0% · 2025 +9.5% · 2026 +4.3%
+- **강건성**: 비용 2배 샤프 1.71 · 파라미터 근방 수익 비율 100% · 근거: Black (1976) 'Studies of Stock Price Volatility Changes'; Christie (1982) J. Financial Economics; Baur & Dimpfl (2018) 'Asymmetric volatility in cryptocurrencies', Economics Letters
+- **상세 보고서**: [C0467_vol_down_ALL_1h.md](research/candidates/C0467_vol_down_ALL_1h.md)
 
 <details><summary>파라미터 (JSON)</summary>
 
 ```json
 {
   "family": "vol_down",
-  "tf": "4h",
+  "tf": "1h",
   "p": {
-    "n": 56,
-    "w": 50,
-    "z": 2.5008,
-    "L": 8,
-    "x": -0.8457,
-    "filter": "htf",
-    "f_n": 48,
-    "f_th": 0.5391,
-    "htf": 1
+    "n": 422,
+    "w": 232,
+    "z": 3.0,
+    "L": 30,
+    "x": 1.0,
+    "filter": "adx_hi",
+    "f_n": 39,
+    "f_th": 1.0,
+    "htf": 2
   },
   "mod": {
     "direction": "long",
     "sl_k": 0.0,
     "tp_k": 1.0,
-    "max_hold": 249
+    "max_hold": 0
   },
   "universe": "ALL"
 }
