@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-24 01:57 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-24 03:53 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -21,6 +21,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 
 | 시각 (UTC) | 번호 | 변경 | 현재 내용 |
 |---|---|---|---|
+| 2026-10-24 03:53 | C531 | B 편입 | 파라볼릭 SAR DOGEUSDT 4h · 검증 1.64 / 최근 1.63 · 연 +46.7% · MDD 19% |
 | 2026-10-24 01:57 | C529 | B 편입 | 페어 트레이딩 (공적분 스프레드 평균회귀) DOGEUSDT/BTCUSDT 30m · 검증 1.58 / 최근 2.08 · 연 +39.1% · MDD 17% |
 | 2026-10-23 23:57 | C528 | B 편입 | Ornstein-Uhlenbeck 평균회귀 (z-score) ALL 1h · 검증 2.31 / 최근 1.82 · 연 +9.5% · MDD 4% |
 | 2026-10-23 18:13 | C522 | 교체 | 변동성 수축 후 돌파 (볼린저 스퀴즈) ALL 4h · 검증 1.76 / 최근 2.12 · 연 +11.5% · MDD 8% |
@@ -35,7 +36,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | 2026-10-22 15:05 | C492 | 교체 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 1.80 / 최근 1.86 · 연 +18.5% · MDD 9% |
 | 2026-10-22 15:05 | C492 | B 편입 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 1.56 / 최근 1.85 · 연 +18.6% · MDD 9% |
 | 2026-10-22 14:57 | C491 | B 편입 | 미결제약정(OI) × 가격 SOLUSDT 30m · 검증 1.81 / 최근 1.69 · 연 +33.2% · MDD 19% |
-| 2026-10-22 14:57 | C490 | B 편입 | 미결제약정(OI) × 가격 SOLUSDT 30m · 검증 2.43 / 최근 1.84 · 연 +42.1% · MDD 24% |
 
 ## 요약
 
@@ -79,6 +79,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | [C522](#c522) | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 숏만 | 1.73 | 1.76 | 2.12 | +11.5% | 8% | 2.5x |
 | B | [C528](#c528) | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 롱만 | 1.93 | 2.31 | 1.82 | +9.5% | 4% | 1.5x |
 | B | [C529](#c529) | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BTCUSDT | 30m | 포트폴리오 | 1.58 | 1.58 | 2.08 | +39.1% | 17% | 1.5x |
+| B | [C531](#c531) | 파라볼릭 SAR | DOGEUSDT | 4h | 숏만 | 1.69 | 1.64 | 1.63 | +46.7% | 19% | 1.5x |
 
 ## 숏 전용 전략
 
@@ -97,6 +98,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C502 | MACD | DOGEUSDT | 1h | 1.15 | 2.63 | 2.00 | +40.2% | 21% | [보기](research/candidates/C0502_macd_DOGEUSDT_1h.md) |
 | C | C527 | ADX/DMI 추세 | BTCUSDT | 30m | 1.17 | 1.97 | 2.09 | +7.7% | 7% | [보기](research/candidates/C0527_adx_dmi_BTCUSDT_30m.md) |
 | C | C417 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 4h | 1.03 | 1.95 | 2.33 | +27.8% | 21% | [보기](research/candidates/C0417_squeeze_XRPUSDT_4h.md) |
+| C | C530 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 1h | 1.01 | 1.92 | 2.26 | +13.3% | 11% | [보기](research/candidates/C0530_squeeze_ETHUSDT_1h.md) |
 | C | C485 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 1.22 | 1.87 | 2.63 | +24.3% | 17% | [보기](research/candidates/C0485_squeeze_SOLUSDT_4h.md) |
 | C | C476 | ADX/DMI 추세 | BNBUSDT | 15m | 1.34 | 1.82 | 1.92 | +8.4% | 6% | [보기](research/candidates/C0476_adx_dmi_BNBUSDT_15m.md) |
 | C | C505 | 선형회귀 추세 유의성 | XRPUSDT | 1h | 1.04 | 1.81 | 1.94 | +45.0% | 28% | [보기](research/candidates/C0505_linreg_XRPUSDT_1h.md) |
@@ -106,7 +108,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | C522 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.73 | 1.76 | 2.12 | +11.5% | 8% | [보기](research/candidates/C0522_squeeze_ALL_4h.md) |
 | C | C459 | 이동평균 교차 추세추종 | SOLUSDT | 1h | 1.77 | 2.34 | 1.75 | +26.9% | 10% | [보기](research/candidates/C0459_ma_cross_SOLUSDT_1h.md) |
 | C | C524 | 슈퍼트렌드 | XRPUSDT | 1h | 1.16 | 1.79 | 1.74 | +39.2% | 24% | [보기](research/candidates/C0524_supertrend_XRPUSDT_1h.md) |
-| C | C488 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.77 | 1.74 | 2.63 | +40.3% | 12% | [보기](research/candidates/C0488_psar_DOGEUSDT_4h.md) |
+| B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
 
 ## 전략별 상세
 
@@ -1778,6 +1780,50 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
   },
   "mod": {},
   "universe": "DOGEUSDT/BTCUSDT"
+}
+```
+</details>
+
+<a id="c531"></a>
+### B등급 C531 — 파라볼릭 SAR (DOGEUSDT, 4시간봉)
+
+- **규칙**: 파라볼릭 SAR(가속 0.050, 최대 0.50) 방향대로 롱/숏, 반전 시 청산·전환. 횡보장에서만: ADX(14) < 21. [숏만, 손절 ATR(14)×6.98, 익절 ATR(14)×1.04, 최대 보유 8봉]
+- **체결**: 봉 마감에 신호 확인 → 다음 봉 시가에 시장가. 손절/익절은 진입가 기준 ATR(14) 배수로 미리 걸어둠
+- **권장 레버리지**: 1.5x
+- **모의매매**: `python run_strategy.py paper --pick C531 --loop`
+
+| 구간 | 샤프 | 연수익 | 최대낙폭 | 거래수 |
+|---|---|---|---|---|
+| 학습 | 1.69 | +51.6% | 19.4% | 253 |
+| 검증 | 1.64 | +42.8% | 11.6% | 95 |
+| 홀드아웃(최근) | 1.63 | +38.2% | 16.6% | 107 |
+| 전체 | 1.66 | +46.7% | 19.4% | 455 |
+
+- **연도별 수익률**: 2020 +9.2% · 2021 +236.8% · 2022 +9.7% · 2023 +5.6% · 2024 +49.6% · 2025 +47.5% · 2026 +15.9%
+- **강건성**: 비용 2배 샤프 1.30 · 파라미터 근방 수익 비율 100% · 근거: Wilder (1978) 'New Concepts in Technical Trading Systems'
+- **상세 보고서**: [C0531_psar_DOGEUSDT_4h.md](research/candidates/C0531_psar_DOGEUSDT_4h.md)
+
+<details><summary>파라미터 (JSON)</summary>
+
+```json
+{
+  "family": "psar",
+  "tf": "4h",
+  "p": {
+    "step": 0.0495,
+    "max_step": 0.5,
+    "filter": "adx_lo",
+    "f_n": 71,
+    "f_th": 0.2464,
+    "htf": 2
+  },
+  "mod": {
+    "direction": "short",
+    "sl_k": 6.9782,
+    "tp_k": 1.0435,
+    "max_hold": 8
+  },
+  "universe": "DOGEUSDT"
 }
 ```
 </details>

@@ -38,6 +38,7 @@
 | C522 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.76 | 2.12 | +11.5% | 8% | 2.5x | [보기](C0522_squeeze_ALL_4h.md) |
 | C528 | B | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.31 | 1.82 | +9.5% | 4% | 1.5x | [보기](C0528_zscore_mr_ALL_1h.md) |
 | C529 | B | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BTCUSDT | 30m | 1.58 | 2.08 | +39.1% | 17% | 1.5x | [보기](C0529_pairs_DOGEUSDT-BTCUSDT_30m.md) |
+| C531 | B | 파라볼릭 SAR | DOGEUSDT | 4h | 1.64 | 1.63 | +46.7% | 19% | 1.5x | [보기](C0531_psar_DOGEUSDT_4h.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
@@ -90,7 +91,6 @@
 | C481 | C | 일목균형표 | SOLUSDT | 4h | 2.37 | 2.03 | +39.5% | 33% | 1.5x | [보기](C0481_ichimoku_SOLUSDT_4h.md) |
 | C482 | C | 테이커 주문흐름 불균형 | ZECUSDT | 4h | 2.15 | 2.61 | +125.3% | 60% | 0.5x | [보기](C0482_flow_ZECUSDT_4h.md) |
 | C485 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 1.87 | 2.63 | +24.3% | 17% | 2.5x | [보기](C0485_squeeze_SOLUSDT_4h.md) |
-| C488 | C | 파라볼릭 SAR | DOGEUSDT | 4h | 1.74 | 2.63 | +40.3% | 12% | 2x | [보기](C0488_psar_DOGEUSDT_4h.md) |
 | C495 | C | 롱/숏 비율 포지셔닝 | DOGEUSDT | 4h | 2.06 | 2.45 | +55.0% | 38% | 1x | [보기](C0495_positioning_DOGEUSDT_4h.md) |
 | C498 | C | MACD | XRPUSDT | 4h | 2.06 | 2.37 | +32.4% | 20% | 1.5x | [보기](C0498_macd_XRPUSDT_4h.md) |
 | C502 | C | MACD | DOGEUSDT | 1h | 2.63 | 2.00 | +40.2% | 21% | 1x | [보기](C0502_macd_DOGEUSDT_1h.md) |
@@ -108,3 +108,4 @@
 | C524 | C | 슈퍼트렌드 | XRPUSDT | 1h | 1.79 | 1.74 | +39.2% | 24% | 1x | [보기](C0524_supertrend_XRPUSDT_1h.md) |
 | C526 | C | 롤링 VWAP 이격 | DOGEUSDT | 4h | 1.76 | 2.56 | +78.5% | 28% | 1x | [보기](C0526_vwap_dev_DOGEUSDT_4h.md) |
 | C527 | C | ADX/DMI 추세 | BTCUSDT | 30m | 1.97 | 2.09 | +7.7% | 7% | 4.5x | [보기](C0527_adx_dmi_BTCUSDT_30m.md) |
+| C530 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 1h | 1.92 | 2.26 | +13.3% | 11% | 3x | [보기](C0530_squeeze_ETHUSDT_1h.md) |
