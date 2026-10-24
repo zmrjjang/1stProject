@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Pump radar: ranks every Binance USDT-M perpetual by how likely a big upward move is in the next
-3 days, using the model in strategies/pump_model.npz (see PUMP_RADAR.md).
+3 days, using the model in strategies/pump_model.npz (see PUMP_RADAR.md). These are LONG candidates.
+
+Tested long plan (out of sample 2025-07 .. 2026-10, top 10 at every 4h snapshot): buy, take profit
+at +30%, stop at -40%, close after 7 days at the latest -> +1.4% per trade vs -0.4% for random coins.
 
     python pump_radar.py                 # top 20 right now
     python pump_radar.py --top 40
-    python pump_radar.py --loop --notify # every hour, push the top list via ntfy/Telegram/Discord
+    python pump_radar.py --loop --notify # every 4 hours, push the top list via ntfy/Telegram/Discord
 
 Uses fapi.binance.com, or www.binance.com where fapi is blocked (HTTP 451). Signals only, no orders.
 Coins with a scheduled delisting (deliveryDate set) are left out.
@@ -20,6 +23,7 @@ import requests
 
 from strategies.pump_features import FEATS, H, HISTORY_BARS, Model, features, non_crypto
 
+LONG_PLAN = {"take": 0.30, "stop": 0.40, "days": 7}
 BASE = "https://fapi.binance.com"
 MIRROR = "https://www.binance.com"  # same API, reachable where fapi.binance.com answers 451
 NO_DELIVERY = 4_000_000_000_000  # a perpetual's deliveryDate is ~2100 unless a delisting is scheduled
@@ -113,7 +117,7 @@ def why(x, prem_crash=0.0):
     if f["r1d"] < -0.2:
         tags.append(f"하루 {f['r1d'] * 100:+.0f}% 급락")
     if f["prem1"] < -0.002:
-        tags.append(f"숏 쏠림 (프리미엄 {f['prem1'] * 100:+.2f}%)")
+        tags.append(f"숏 과밀 → 스퀴즈 연료 (프리미엄 {f['prem1'] * 100:+.2f}%)")
     if f["qv_r1"] > 3:
         tags.append(f"거래량 {f['qv_r1']:.1f}배")
     if f["dd90"] < -0.6:
@@ -129,7 +133,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--top", type=int, default=20)
     p.add_argument("--min-volume", type=float, default=1e6, help="minimum 30-day average daily volume in USDT")
-    p.add_argument("--loop", action="store_true", help="repeat every hour")
+    p.add_argument("--loop", action="store_true", help="repeat every --every hours")
+    p.add_argument("--every", type=int, default=4, help="hours between scans with --loop (default 4, as tested)")
     p.add_argument("--notify", action="store_true", help="push the top list via ntfy/Telegram/Discord env vars")
     args = p.parse_args()
     model, api = Model(MODEL), Api()
@@ -138,20 +143,25 @@ def main():
         rows = scan(api, args.min_volume)
         score, h50, h30 = model.score(np.vstack([r[1] for r in rows]))
         order = np.argsort(-score)[:args.top]
-        print(f"\n===== 펌핑 후보 상위 {len(order)} / {len(rows)}개 (3일 안에 +50% / +30% 실측 비율) =====")
+        L = LONG_PLAN
+        print(f"\n===== 롱 후보 상위 {len(order)} / {len(rows)}개 (3일 안에 +50% / +30% 실측 비율) =====")
+        print(f"검증된 롱 방식: 익절 +{L['take']:.0%}, 손절 -{L['stop']:.0%}, 최대 {L['days']}일 보유, 종목당 소액")
         lines = []
         for rank, i in enumerate(order, 1):
             sym, x, price = rows[i][0], rows[i][1], rows[i][2]
-            line = f"{rank:2d}. {sym:14s} 점수 {score[i]:.2f}  +50% {h50[i]:.0%} / +30% {h30[i]:.0%}  가격 {price:.6g}  {why(x, rows[i][4])}"
+            line = (f"{rank:2d}. {sym:14s} 점수 {score[i]:.2f}  +50% {h50[i]:.0%} / +30% {h30[i]:.0%}  "
+                    f"가격 {price:.6g} → 익절 {price * (1 + L['take']):.6g} / 손절 {price * (1 - L['stop']):.6g}  {why(x, rows[i][4])}")
             print(line)
             lines.append(line)
         print("\n참고: 아무 코인이나 3일 안에 +50% 오를 확률은 약 2%입니다. 상위 후보는 3일 안에 −30% 급락할 확률도 12~17%입니다.")
+        print("익절 없이 들고 있으면 평균 손익이 0 근처로 떨어집니다 (펌핑 후 되돌림). 손절을 −15%처럼 짧게 두면 흔들기에 털려 손해입니다.")
         if args.notify:
             from lab.notify import notify
-            notify(f"펌핑 후보 상위 {min(10, len(lines))}", "\n".join(lines[:10]), "\n".join(lines))
+            notify(f"롱 후보 상위 {min(10, len(lines))}", "\n".join(lines[:10]), "\n".join(lines))
         if not args.loop:
             break
-        time.sleep(3600 - time.time() % 3600 + 120)
+        step = 3600 * args.every
+        time.sleep(step - time.time() % step + 120)
 
 
 if __name__ == "__main__":
