@@ -3,7 +3,7 @@
 바이낸스 USDT 무기한 선물 전 종목(주식·원자재·스테이블코인 제외, 30일 평균 하루 거래대금 $1M 이상)을
 **"앞으로 3일 안에 크게 오를 가능성"** 순으로 줄 세웁니다. 매매 신호가 아니라 **감시 목록**입니다.
 
-## 실행 (내 PC에서 — fapi.binance.com 접속 필요)
+## 실행
 
 ```bash
 git pull && pip install -r requirements.txt
@@ -11,6 +11,12 @@ python pump_radar.py                  # 지금 상위 20개 (약 5분)
 python pump_radar.py --top 40
 python pump_radar.py --loop --notify  # 매시간 다시 계산해서 폰으로 상위 10개 알림
 ```
+
+fapi.binance.com이 막힌 곳(HTTP 451)에서는 자동으로 www.binance.com 경로를 씁니다.
+**상장폐지(정산) 일정이 잡힌 코인은 자동으로 빠집니다.** 바이낸스가 공지하면 계약에 정산일이 붙습니다
+(예: PTB, MITO는 2026-10-23 정산).
+`⚠ 프리미엄 급변` 표시는 최근 48시간 사이 선물이 현물보다 갑자기 몇 % 이상 싸진 경우입니다.
+상장폐지 공지 직후나 IRYS 같은 급등·급락 때 나오니 공지와 차트를 확인하세요.
 
 폰 알림은 `NTFY_TOPIC=zmr-strategy-32bdb26924` 를 설정하면 탐색기 알림과 같은 곳으로 옵니다
 (Windows PowerShell: `$env:NTFY_TOPIC="zmr-strategy-32bdb26924"`).

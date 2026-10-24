@@ -66,6 +66,7 @@ def simulate(t, o, h, l, c, entry_i, entry_px, funding, rule=RULE):
 # ---------------------------------------------------------------------------
 class BinanceAPI:
     BASE = "https://fapi.binance.com"
+    MIRROR = "https://www.binance.com"  # same API, reachable where fapi.binance.com answers 451
 
     def __init__(self, delay=0.2):
         self.s = requests.Session()
@@ -76,11 +77,15 @@ class BinanceAPI:
             try:
                 r = self.s.get(self.BASE + path, params=params, timeout=20)
                 if r.status_code == 451:
-                    raise SystemExit("fapi.binance.com이 이 지역에서 차단되어 있습니다 (HTTP 451). "
-                                     "바이낸스 접속이 되는 PC에서 실행하세요.")
+                    if self.BASE == self.MIRROR:
+                        raise SystemExit("바이낸스 선물 API가 이 지역에서 차단되어 있습니다 (HTTP 451).")
+                    self.BASE = self.MIRROR
+                    continue
                 if r.status_code in (418, 429):
                     time.sleep(int(r.headers.get("Retry-After", 60)))
                     continue
+                if r.status_code == 400:  # unknown symbol: the contract no longer exists
+                    return []
                 r.raise_for_status()
                 time.sleep(self.delay)
                 return r.json()
@@ -96,6 +101,9 @@ class BinanceAPI:
                     or s.get("underlyingType", "COIN") != "COIN" or s["baseAsset"] in TRADFI):
                 continue
             ob = int(s.get("onboardDate", 0))
+            # a scheduled delisting sets deliveryDate to the settlement time: no new entries there
+            if int(s.get("deliveryDate", 4_000_000_000_000)) < 4_000_000_000_000:
+                continue
             if now_ms - days * 86_400_000 <= ob <= now_ms:
                 out.append((s["symbol"], ob))
         return sorted(out, key=lambda x: x[1])
@@ -156,15 +164,30 @@ class Radar:
         listings += [(sym, p["onboard_ms"]) for sym, p in st["positions"].items() if sym not in known]
         for sym, ob in listings:
             t, o, h, l, c, live_open = self.api.candles(sym, ob, now_ms)
+            pos = st["positions"].get(sym)
+            if pos and not t.size:
+                # contract gone (delisted): settle at the last price seen
+                px = pos.get("last_px", pos["entry_px"])
+                ret = 1 - px / pos["entry_px"] - 2 * R["cost"]
+                st["equity"] += pos["notional"] * ret
+                st["closed"].append({**pos, "symbol": sym, "open": False, "exit_px": px, "exit_ms": now_ms,
+                                     "reason": "delisted", "funding": 0.0, "ret": ret, "pnl": pos["notional"] * ret})
+                del st["positions"][sym]
+                st["seen"][sym] = "closed"
+                events.append(f"{sym} 상장폐지로 정산 추정: {ret * 100:+.1f}%")
+                continue
             if not t.size:
                 rows.append((sym, ob, "⏳", "첫 봉 대기", None))
                 continue
             sig = signal(o, c)
             day1 = c[R["entry_after_h"] - 1] / o[0] - 1 if sig is not None else c[-1] / o[0] - 1
-            pos = st["positions"].get(sym)
             if pos:
+                pos["last_px"] = float(c[-1])
                 i = int(np.searchsorted(t, pos["entry_ms"]))
                 res = simulate(t, o, h, l, c, i, pos["entry_px"], self.api.funding(sym, pos["entry_ms"]))
+                if res["open"] and t.size and now_ms - (int(t[-1]) + H) > 6 * H:
+                    # no new candles for hours: the contract was delisted and settled at about the last price
+                    res = {**res, "open": False, "exit_px": float(c[-1]), "exit_ms": int(t[-1]) + H, "reason": "delisted"}
                 if res["open"]:
                     rows.append((sym, ob, "🔻", f"보유 중 {res['ret'] * 100:+.1f}% (진입 {pos['entry_px']:.6g}, "
                                  f"손절 {pos['entry_px'] * (1 + R['stop']):.6g}, 익절 {pos['entry_px'] * (1 - R['take']):.6g})", day1))

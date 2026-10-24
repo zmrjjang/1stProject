@@ -24,6 +24,7 @@ from .simulator import CoinTrader
 FIELDS = ("t", "o", "h", "l", "c", "v", "n", "tbv")
 
 FAPI = "https://fapi.binance.com/fapi/v1/klines"
+FAPI_MIRROR = "https://www.binance.com/fapi/v1/klines"  # reachable where fapi answers 451
 SIDE = {1: "롱", -1: "숏", 0: "없음"}
 REASON = {"exit_signal": "청산 신호", "time_limit": "보유기간 만료", "reverse": "반대 신호", "stop": "손절",
           "take": "익절", "": ""}
@@ -41,15 +42,18 @@ class BinanceSource:
     def __init__(self, delay=0.25):
         self.s = requests.Session()
         self.delay = delay
+        self.url = FAPI
 
     def _page(self, symbol, tf, end_ms):
         for attempt in range(5):
             try:
-                r = self.s.get(FAPI, params={"symbol": symbol, "interval": tf, "limit": 1500,
-                                             "endTime": end_ms}, timeout=20)
+                r = self.s.get(self.url, params={"symbol": symbol, "interval": tf, "limit": 1500,
+                                                 "endTime": end_ms}, timeout=20)
                 if r.status_code == 451:
-                    raise SystemExit("fapi.binance.com이 이 지역에서 차단되어 있습니다 (HTTP 451). "
-                                     "바이낸스 접속이 되는 PC에서 실행하세요.")
+                    if self.url == FAPI_MIRROR:
+                        raise SystemExit("바이낸스 선물 API가 이 지역에서 차단되어 있습니다 (HTTP 451).")
+                    self.url = FAPI_MIRROR
+                    continue
                 if r.status_code in (418, 429):
                     time.sleep(int(r.headers.get("Retry-After", 60)))
                     continue
