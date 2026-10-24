@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-24 10:10 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-24 14:04 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -21,6 +21,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 
 | 시각 (UTC) | 번호 | 변경 | 현재 내용 |
 |---|---|---|---|
+| 2026-10-24 14:04 | C540 | B 편입 | 과열 소진 역추세 (블로오프) ALL 15m · 검증 1.61 / 최근 1.64 · 연 +7.8% · MDD 2% |
 | 2026-10-24 03:53 | C531 | B 편입 | 파라볼릭 SAR DOGEUSDT 4h · 검증 1.64 / 최근 1.63 · 연 +46.7% · MDD 19% |
 | 2026-10-24 01:57 | C529 | B 편입 | 페어 트레이딩 (공적분 스프레드 평균회귀) DOGEUSDT/BTCUSDT 30m · 검증 1.58 / 최근 2.08 · 연 +39.1% · MDD 17% |
 | 2026-10-23 23:57 | C528 | B 편입 | Ornstein-Uhlenbeck 평균회귀 (z-score) ALL 1h · 검증 2.31 / 최근 1.82 · 연 +9.5% · MDD 4% |
@@ -35,7 +36,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | 2026-10-22 15:05 | C492 | 교체 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 2.05 / 최근 2.00 · 연 +17.1% · MDD 10% |
 | 2026-10-22 15:05 | C492 | 교체 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 1.80 / 최근 1.86 · 연 +18.5% · MDD 9% |
 | 2026-10-22 15:05 | C492 | B 편입 | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 4h · 검증 1.56 / 최근 1.85 · 연 +18.6% · MDD 9% |
-| 2026-10-22 14:57 | C491 | B 편입 | 미결제약정(OI) × 가격 SOLUSDT 30m · 검증 1.81 / 최근 1.69 · 연 +33.2% · MDD 19% |
 
 ## 요약
 
@@ -80,6 +80,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | [C528](#c528) | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 롱만 | 1.93 | 2.31 | 1.82 | +9.5% | 4% | 1.5x |
 | B | [C529](#c529) | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BTCUSDT | 30m | 포트폴리오 | 1.58 | 1.58 | 2.08 | +39.1% | 17% | 1.5x |
 | B | [C531](#c531) | 파라볼릭 SAR | DOGEUSDT | 4h | 숏만 | 1.69 | 1.64 | 1.63 | +46.7% | 19% | 1.5x |
+| B | [C540](#c540) | 과열 소진 역추세 (블로오프) | ALL | 15m | 롱만 | 1.97 | 1.61 | 1.64 | +7.8% | 2% | 1x |
 
 ## 숏 전용 전략
 
@@ -87,6 +88,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 
 | 등급 | 번호 | 전략 | 대상 | 봉 | 학습 샤프 | 검증 샤프 | 최근 샤프 | 연수익 | 최대낙폭 | 상세 |
 |---|---|---|---|---|---|---|---|---|---|---|
+| C | C535 | 이동평균 교차 추세추종 | SOLUSDT | 1h | 1.11 | 2.57 | 2.55 | +23.3% | 41% | [보기](research/candidates/C0535_ma_cross_SOLUSDT_1h.md) |
 | C | C507 | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 15m | 2.06 | 2.47 | 2.69 | +4.7% | 2% | [보기](research/candidates/C0507_zscore_mr_SOLUSDT_15m.md) |
 | C | C471 | ADX/DMI 추세 | SOLUSDT | 1h | 1.03 | 2.82 | 2.38 | +19.2% | 15% | [보기](research/candidates/C0471_adx_dmi_SOLUSDT_1h.md) |
 | C | C512 | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.12 | 2.25 | 3.20 | +16.2% | 9% | [보기](research/candidates/C0512_positioning_SOLUSDT_30m.md) |
@@ -103,7 +105,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C417 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 4h | 1.03 | 1.95 | 2.33 | +27.8% | 21% | [보기](research/candidates/C0417_squeeze_XRPUSDT_4h.md) |
 | C | C530 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 1h | 1.01 | 1.92 | 2.26 | +13.3% | 11% | [보기](research/candidates/C0530_squeeze_ETHUSDT_1h.md) |
 | C | C485 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 1.22 | 1.87 | 2.63 | +24.3% | 17% | [보기](research/candidates/C0485_squeeze_SOLUSDT_4h.md) |
-| C | C535 | 이동평균 교차 추세추종 | SOLUSDT | 4h | 1.27 | 2.39 | 1.87 | +35.9% | 16% | [보기](research/candidates/C0535_ma_cross_SOLUSDT_4h.md) |
 | C | C539 | 과열 소진 역추세 (블로오프) | ZECUSDT | 5m | 1.09 | 1.85 | 1.84 | +6.9% | 11% | [보기](research/candidates/C0539_blowoff_ZECUSDT_5m.md) |
 | C | C532 | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.02 | 2.35 | 1.83 | +21.2% | 19% | [보기](research/candidates/C0532_vol_down_ETHUSDT_1h.md) |
 | C | C476 | ADX/DMI 추세 | BNBUSDT | 15m | 1.34 | 1.82 | 1.92 | +8.4% | 6% | [보기](research/candidates/C0476_adx_dmi_BNBUSDT_15m.md) |
@@ -1824,6 +1825,52 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
     "max_hold": 8
   },
   "universe": "DOGEUSDT"
+}
+```
+</details>
+
+<a id="c540"></a>
+### B등급 C540 — 과열 소진 역추세 (블로오프) (10개 코인 전체 (코인당 자금 1/10), 15분봉)
+
+- **규칙**: 종가가 EMA(16)보다 1.84×ATR(14) 이상 위에 있고 거래량 z-score(776) > 2.85인데 음봉이 나오면 숏, 반대(아래로 과열 + 양봉)면 롱. EMA(16) 복귀 시 청산. 추세장에서만: ADX(14) > 40. [롱만, 익절 ATR(14)×12.06]
+- **체결**: 봉 마감에 신호 확인 → 다음 봉 시가에 시장가. 손절/익절은 진입가 기준 ATR(14) 배수로 미리 걸어둠
+- **권장 레버리지**: 1x
+- **모의매매**: `python run_strategy.py paper --pick C540 --loop`
+
+| 구간 | 샤프 | 연수익 | 최대낙폭 | 거래수 |
+|---|---|---|---|---|
+| 학습 | 1.97 | +8.9% | 2.0% | 224 |
+| 검증 | 1.61 | +7.5% | 1.9% | 103 |
+| 홀드아웃(최근) | 1.64 | +4.5% | 0.7% | 41 |
+| 전체 | 1.82 | +7.8% | 2.0% | 368 |
+
+- **연도별 수익률**: 2020 +8.2% · 2021 +16.9% · 2022 +9.2% · 2023 +1.9% · 2024 +6.9% · 2025 +7.1% · 2026 +2.8%
+- **강건성**: 비용 2배 샤프 1.68 · 파라미터 근방 수익 비율 100% · 근거: De Bondt & Thaler (1985) 'Does the Stock Market Overreact?', J. Finance; Caporale & Plastun (2019) 'Price overreactions in the cryptocurrency market', J. Economic Studies
+- **상세 보고서**: [C0540_blowoff_ALL_15m.md](research/candidates/C0540_blowoff_ALL_15m.md)
+
+<details><summary>파라미터 (JSON)</summary>
+
+```json
+{
+  "family": "blowoff",
+  "tf": "15m",
+  "p": {
+    "n": 16,
+    "k": 1.8423,
+    "w": 776,
+    "z": 2.8457,
+    "filter": "adx_hi",
+    "f_n": 346,
+    "f_th": 1.0,
+    "htf": 1
+  },
+  "mod": {
+    "direction": "long",
+    "sl_k": 0.0,
+    "tp_k": 12.0613,
+    "max_hold": 0
+  },
+  "universe": "ALL"
 }
 ```
 </details>

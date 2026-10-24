@@ -39,6 +39,7 @@
 | C528 | B | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.31 | 1.82 | +9.5% | 4% | 1.5x | [보기](C0528_zscore_mr_ALL_1h.md) |
 | C529 | B | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BTCUSDT | 30m | 1.58 | 2.08 | +39.1% | 17% | 1.5x | [보기](C0529_pairs_DOGEUSDT-BTCUSDT_30m.md) |
 | C531 | B | 파라볼릭 SAR | DOGEUSDT | 4h | 1.64 | 1.63 | +46.7% | 19% | 1.5x | [보기](C0531_psar_DOGEUSDT_4h.md) |
+| C540 | B | 과열 소진 역추세 (블로오프) | ALL | 15m | 1.61 | 1.64 | +7.8% | 2% | 1x | [보기](C0540_blowoff_ALL_15m.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
@@ -104,7 +105,7 @@
 | C530 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 1h | 1.92 | 2.26 | +13.3% | 11% | 3x | [보기](C0530_squeeze_ETHUSDT_1h.md) |
 | C532 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 2.35 | 1.83 | +21.2% | 19% | 2.5x | [보기](C0532_vol_down_ETHUSDT_1h.md) |
 | C533 | C | 펀딩비 쏠림 | ETHUSDT | 1h | 2.18 | 2.08 | +23.3% | 10% | 2.5x | [보기](C0533_funding_ETHUSDT_1h.md) |
-| C535 | C | 이동평균 교차 추세추종 | SOLUSDT | 4h | 2.39 | 1.87 | +35.9% | 16% | 1.5x | [보기](C0535_ma_cross_SOLUSDT_4h.md) |
+| C535 | C | 이동평균 교차 추세추종 | SOLUSDT | 1h | 2.57 | 2.55 | +23.3% | 41% | 2x | [보기](C0535_ma_cross_SOLUSDT_1h.md) |
 | C536 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 30m | 2.09 | 2.16 | +17.2% | 10% | 2x | [보기](C0536_vol_down_ETHUSDT_30m.md) |
 | C537 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 2.16 | 1.99 | +42.8% | 38% | 1.5x | [보기](C0537_squeeze_ZECUSDT_1h.md) |
 | C538 | C | 이동평균 교차 추세추종 | DOGEUSDT | 1h | 2.60 | 2.11 | +68.2% | 37% | 1x | [보기](C0538_ma_cross_DOGEUSDT_1h.md) |
