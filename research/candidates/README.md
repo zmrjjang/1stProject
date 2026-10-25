@@ -109,5 +109,5 @@
 | C538 | C | 이동평균 교차 추세추종 | DOGEUSDT | 1h | 2.60 | 2.11 | +68.2% | 37% | 1x | [보기](C0538_ma_cross_DOGEUSDT_1h.md) |
 | C541 | C | 하방 변동성 확대 (레버리지 효과) | BTCUSDT | 1h | 2.09 | 2.21 | +13.3% | 5% | 4.5x | [보기](C0541_vol_down_BTCUSDT_1h.md) |
 | C542 | C | 하방 변동성 확대 (레버리지 효과) | DOGEUSDT | 1h | 2.41 | 2.42 | +20.1% | 16% | 2.5x | [보기](C0542_vol_down_DOGEUSDT_1h.md) |
-| C543 | C | ADX/DMI 추세 | BNBUSDT | 15m | 1.90 | 1.94 | +9.0% | 6% | 4.5x | [보기](C0543_adx_dmi_BNBUSDT_15m.md) |
 | C544 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 2.39 | 2.30 | +26.8% | 25% | 2.5x | [보기](C0544_vol_down_ETHUSDT_1h.md) |
+| C546 | C | 테이커 주문흐름 불균형 | DOGEUSDT | 1h | 2.09 | 1.95 | +31.4% | 21% | 1.5x | [보기](C0546_flow_DOGEUSDT_1h.md) |
