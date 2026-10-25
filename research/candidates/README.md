@@ -104,7 +104,6 @@
 | C521 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | DOGEUSDT | 15m | 2.09 | 2.00 | +11.2% | 3% | 5x | [보기](C0521_zscore_mr_DOGEUSDT_15m.md) |
 | C523 | C | 하방 변동성 확대 (레버리지 효과) | SOLUSDT | 1h | 2.06 | 2.33 | +26.5% | 15% | 2x | [보기](C0523_vol_down_SOLUSDT_1h.md) |
 | C527 | C | ADX/DMI 추세 | BTCUSDT | 30m | 1.97 | 2.09 | +7.7% | 7% | 4.5x | [보기](C0527_adx_dmi_BTCUSDT_30m.md) |
-| C530 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 1h | 1.92 | 2.26 | +13.3% | 11% | 3x | [보기](C0530_squeeze_ETHUSDT_1h.md) |
 | C533 | C | 펀딩비 쏠림 | ETHUSDT | 1h | 2.18 | 2.08 | +23.3% | 10% | 2.5x | [보기](C0533_funding_ETHUSDT_1h.md) |
 | C535 | C | 이동평균 교차 추세추종 | SOLUSDT | 1h | 2.57 | 2.55 | +23.3% | 41% | 2x | [보기](C0535_ma_cross_SOLUSDT_1h.md) |
 | C536 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 30m | 2.09 | 2.16 | +17.2% | 10% | 2x | [보기](C0536_vol_down_ETHUSDT_30m.md) |
@@ -114,3 +113,4 @@
 | C542 | C | 하방 변동성 확대 (레버리지 효과) | DOGEUSDT | 1h | 2.41 | 2.42 | +20.1% | 16% | 2.5x | [보기](C0542_vol_down_DOGEUSDT_1h.md) |
 | C544 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 2.39 | 2.30 | +26.8% | 25% | 2.5x | [보기](C0544_vol_down_ETHUSDT_1h.md) |
 | C546 | C | 테이커 주문흐름 불균형 | DOGEUSDT | 1h | 2.09 | 1.95 | +31.4% | 21% | 1.5x | [보기](C0546_flow_DOGEUSDT_1h.md) |
+| C550 | C | RSI 과매도/과매수 역추세 | SOLUSDT | 30m | 2.29 | 2.34 | +8.4% | 7% | 5x | [보기](C0550_rsi_mr_SOLUSDT_30m.md) |
