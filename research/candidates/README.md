@@ -40,6 +40,7 @@
 | C529 | B | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/BTCUSDT | 30m | 1.58 | 2.08 | +39.1% | 17% | 1.5x | [보기](C0529_pairs_DOGEUSDT-BTCUSDT_30m.md) |
 | C531 | B | 파라볼릭 SAR | DOGEUSDT | 4h | 1.64 | 1.63 | +46.7% | 19% | 1.5x | [보기](C0531_psar_DOGEUSDT_4h.md) |
 | C540 | B | 과열 소진 역추세 (블로오프) | ALL | 15m | 1.61 | 1.64 | +7.8% | 2% | 1x | [보기](C0540_blowoff_ALL_15m.md) |
+| C545 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 1.54 | 1.60 | +37.1% | 15% | 2x | [보기](C0545_squeeze_SOLUSDT_30m.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
