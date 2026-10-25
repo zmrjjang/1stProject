@@ -28,7 +28,7 @@
 | C440 | B | 롤링 VWAP 이격 | ALL | 1h | 1.80 | 2.19 | +33.4% | 18% | 1x | [보기](C0440_vwap_dev_ALL_1h.md) |
 | C441 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 30m | 1.78 | 1.60 | +65.3% | 17% | 1x | [보기](C0441_squeeze_ETHUSDT_30m.md) |
 | C445 | B | 선형회귀 추세 유의성 | ETHUSDT | 1h | 1.56 | 1.78 | +39.4% | 18% | 1.5x | [보기](C0445_linreg_ETHUSDT_1h.md) |
-| C464 | B | 시장 구조 (고점·저점 낮아짐) | ALL | 1h | 1.94 | 1.77 | +21.6% | 10% | 1x | [보기](C0464_structure_ALL_1h.md) |
+| C464 | B | 시장 구조 (고점·저점 낮아짐) | ALL | 1h | 1.96 | 2.48 | +23.6% | 7% | 1x | [보기](C0464_structure_ALL_1h.md) |
 | C467 | B | 하방 변동성 확대 (레버리지 효과) | ALL | 1h | 3.01 | 2.78 | +7.8% | 3% | 1.5x | [보기](C0467_vol_down_ALL_1h.md) |
 | C477 | B | 하락추세 반등 매도 (상승추세 눌림 매수) | ALL | 1h | 2.28 | 2.37 | +9.7% | 6% | 1x | [보기](C0477_rally_fade_ALL_1h.md) |
 | C490 | B | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.43 | 1.84 | +42.1% | 24% | 1.5x | [보기](C0490_oi_trend_SOLUSDT_30m.md) |
@@ -88,7 +88,6 @@
 | C478 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | SOLUSDT | 1h | 2.00 | 2.26 | +26.9% | 23% | 1x | [보기](C0478_rally_fade_SOLUSDT_1h.md) |
 | C481 | C | 일목균형표 | SOLUSDT | 4h | 2.37 | 2.03 | +39.5% | 33% | 1.5x | [보기](C0481_ichimoku_SOLUSDT_4h.md) |
 | C482 | C | 테이커 주문흐름 불균형 | ZECUSDT | 4h | 2.15 | 2.61 | +125.3% | 60% | 0.5x | [보기](C0482_flow_ZECUSDT_4h.md) |
-| C485 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 1.87 | 2.63 | +24.3% | 17% | 2.5x | [보기](C0485_squeeze_SOLUSDT_4h.md) |
 | C495 | C | 롱/숏 비율 포지셔닝 | DOGEUSDT | 4h | 2.06 | 2.45 | +55.0% | 38% | 1x | [보기](C0495_positioning_DOGEUSDT_4h.md) |
 | C498 | C | MACD | XRPUSDT | 4h | 2.06 | 2.37 | +32.4% | 20% | 1.5x | [보기](C0498_macd_XRPUSDT_4h.md) |
 | C502 | C | MACD | DOGEUSDT | 1h | 2.63 | 2.00 | +40.2% | 21% | 1x | [보기](C0502_macd_DOGEUSDT_1h.md) |
@@ -110,3 +109,4 @@
 | C541 | C | 하방 변동성 확대 (레버리지 효과) | BTCUSDT | 1h | 2.09 | 2.21 | +13.3% | 5% | 4.5x | [보기](C0541_vol_down_BTCUSDT_1h.md) |
 | C542 | C | 하방 변동성 확대 (레버리지 효과) | DOGEUSDT | 1h | 2.41 | 2.42 | +20.1% | 16% | 2.5x | [보기](C0542_vol_down_DOGEUSDT_1h.md) |
 | C543 | C | ADX/DMI 추세 | BNBUSDT | 15m | 1.90 | 1.94 | +9.0% | 6% | 4.5x | [보기](C0543_adx_dmi_BNBUSDT_15m.md) |
+| C544 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 2.39 | 2.30 | +26.8% | 25% | 2.5x | [보기](C0544_vol_down_ETHUSDT_1h.md) |
