@@ -44,6 +44,7 @@
 | C547 | B | 아룬 추세 | ALL | 4h | 1.71 | 2.04 | +41.6% | 15% | 0.5x | [보기](C0547_aroon_ALL_4h.md) |
 | C548 | B | MACD | ALL | 1d | 1.65 | 1.95 | +38.3% | 23% | 0.5x | [보기](C0548_macd_ALL_1d.md) |
 | C549 | B | ADX/DMI 추세 | ETHUSDT | 15m | 3.10 | 2.13 | +18.3% | 10% | 3.5x | [보기](C0549_adx_dmi_ETHUSDT_15m.md) |
+| C551 | B | 켈트너 채널 | SOLUSDT | 5m | 1.51 | 1.59 | +57.4% | 21% | 0.5x | [보기](C0551_keltner_SOLUSDT_5m.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
