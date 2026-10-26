@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-26 10:21 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-26 18:38 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -101,6 +101,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C550 | RSI 과매도/과매수 역추세 | SOLUSDT | 30m | 1.44 | 2.29 | 2.34 | +8.4% | 7% | [보기](research/candidates/C0550_rsi_mr_SOLUSDT_30m.md) |
 | C | C512 | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.12 | 2.25 | 3.20 | +16.2% | 9% | [보기](research/candidates/C0512_positioning_SOLUSDT_30m.md) |
 | C | C516 | 이동평균 교차 추세추종 | BTCUSDT | 1h | 1.06 | 2.41 | 2.18 | +7.6% | 6% | [보기](research/candidates/C0516_ma_cross_BTCUSDT_1h.md) |
+| C | C552 | 펀딩비 쏠림 | ZECUSDT | 30m | 1.26 | 2.14 | 2.18 | +28.1% | 29% | [보기](research/candidates/C0552_funding_ZECUSDT_30m.md) |
 | B | C549 | ADX/DMI 추세 | ETHUSDT | 15m | 1.87 | 3.10 | 2.13 | +18.3% | 10% | [보기](research/candidates/C0549_adx_dmi_ETHUSDT_15m.md) |
 | C | C538 | 이동평균 교차 추세추종 | DOGEUSDT | 1h | 1.49 | 2.60 | 2.11 | +68.2% | 37% | [보기](research/candidates/C0538_ma_cross_DOGEUSDT_1h.md) |
 | C | C541 | 하방 변동성 확대 (레버리지 효과) | BTCUSDT | 1h | 1.66 | 2.09 | 2.21 | +13.3% | 5% | [보기](research/candidates/C0541_vol_down_BTCUSDT_1h.md) |
@@ -113,7 +114,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C537 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.04 | 2.16 | 1.99 | +42.8% | 38% | [보기](research/candidates/C0537_squeeze_ZECUSDT_1h.md) |
 | C | C527 | ADX/DMI 추세 | BTCUSDT | 30m | 1.17 | 1.97 | 2.09 | +7.7% | 7% | [보기](research/candidates/C0527_adx_dmi_BTCUSDT_30m.md) |
 | C | C417 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 4h | 1.03 | 1.95 | 2.33 | +27.8% | 21% | [보기](research/candidates/C0417_squeeze_XRPUSDT_4h.md) |
-| C | C546 | 테이커 주문흐름 불균형 | DOGEUSDT | 1h | 1.02 | 2.09 | 1.95 | +31.4% | 21% | [보기](research/candidates/C0546_flow_DOGEUSDT_1h.md) |
 | B | C522 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.73 | 1.76 | 2.12 | +11.5% | 8% | [보기](research/candidates/C0522_squeeze_ALL_4h.md) |
 | B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
 | B | C545 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 2.35 | 1.54 | 1.60 | +37.1% | 15% | [보기](research/candidates/C0545_squeeze_SOLUSDT_30m.md) |
