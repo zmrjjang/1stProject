@@ -45,7 +45,7 @@
 | C548 | B | MACD | ALL | 1d | 1.65 | 1.95 | +38.3% | 23% | 0.5x | [보기](C0548_macd_ALL_1d.md) |
 | C549 | B | ADX/DMI 추세 | ETHUSDT | 15m | 3.10 | 2.13 | +18.3% | 10% | 3.5x | [보기](C0549_adx_dmi_ETHUSDT_15m.md) |
 | C551 | B | 켈트너 채널 | SOLUSDT | 5m | 1.51 | 1.59 | +57.4% | 21% | 0.5x | [보기](C0551_keltner_SOLUSDT_5m.md) |
-| C557 | B | 일목균형표 | ALL | 4h | 1.57 | 1.69 | +20.0% | 4% | 1x | [보기](C0557_ichimoku_ALL_4h.md) |
+| C557 | B | 일목균형표 | ALL | 4h | 1.96 | 1.78 | +14.1% | 9% | 1x | [보기](C0557_ichimoku_ALL_4h.md) |
 | C2 | C | 돈치안 채널 돌파 (터틀) | ALL | 4h | 2.13 | 2.14 | +47.6% | 35% | 0.5x | [보기](C0002_donchian_ALL_4h.md) |
 | C5 | C | 켈트너 채널 | ETHUSDT | 30m | 1.98 | 1.94 | +16.5% | 8% | 3.5x | [보기](C0005_keltner_ETHUSDT_30m.md) |
 | C11 | C | 켈트너 채널 | ALL | 15m | 2.57 | 2.61 | +5.2% | 4% | 2.5x | [보기](C0011_keltner_ALL_15m.md) |
@@ -77,7 +77,6 @@
 | C419 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | SOLUSDT | 15m | 2.26 | 2.14 | +19.1% | 8% | 1.5x | [보기](C0419_zscore_mr_SOLUSDT_15m.md) |
 | C423 | C | 선형회귀 추세 유의성 | ZECUSDT | 15m | 2.33 | 2.20 | +123.7% | 41% | 0.5x | [보기](C0423_linreg_ZECUSDT_15m.md) |
 | C426 | C | 시계열 모멘텀 (변동성 정규화) | BTCUSDT | 15m | 1.96 | 2.87 | +13.9% | 6% | 5x | [보기](C0426_tsmom_BTCUSDT_15m.md) |
-| C429 | C | 켈트너 채널 | XRPUSDT | 15m | 1.94 | 2.20 | +13.9% | 10% | 2.5x | [보기](C0429_keltner_XRPUSDT_15m.md) |
 | C436 | C | OBV 거래량 모멘텀 | XRPUSDT | 15m | 3.05 | 2.17 | +33.9% | 16% | 1x | [보기](C0436_obv_XRPUSDT_15m.md) |
 | C437 | C | 파라볼릭 SAR | SOLUSDT | 1d | 2.12 | 2.53 | +77.6% | 48% | 0.5x | [보기](C0437_psar_SOLUSDT_1d.md) |
 | C439 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.97 | 2.10 | +39.8% | 18% | 1.5x | [보기](C0439_vwap_dev_ZECUSDT_15m.md) |
@@ -116,3 +115,4 @@
 | C553 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 2.26 | 2.73 | +20.0% | 19% | 2.5x | [보기](C0553_vol_down_ETHUSDT_1h.md) |
 | C555 | C | 테이커 주문흐름 불균형 | ZECUSDT | 1h | 2.39 | 3.25 | +131.1% | 59% | 0.5x | [보기](C0555_flow_ZECUSDT_1h.md) |
 | C556 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 2.10 | 2.12 | +13.1% | 6% | 2.5x | [보기](C0556_oi_trend_BNBUSDT_1h.md) |
+| C558 | C | 과열 소진 역추세 (블로오프) | SOLUSDT | 5m | 3.30 | 1.97 | +21.4% | 16% | 1.5x | [보기](C0558_blowoff_SOLUSDT_5m.md) |
