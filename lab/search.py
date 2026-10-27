@@ -242,19 +242,32 @@ class Search:
         return max(2, min(self.oos_clusters.count(), search_space_cells(len(_UNI.symbols))))
 
     # -- gates --------------------------------------------------------------
-    def min_trades(self, g):
+    def min_rate(self, g):
+        """Minimum trades per year (config gates.min_trades_per_year); ALL = summed over the coins."""
         kind = FAMILIES[g["family"]]["kind"]
         if kind == "single":
-            return self.G["min_trades"]["all" if g["universe"] == "ALL" else "single"]
-        return self.G["min_trades"][kind]
+            kind = "all" if g["universe"] == "ALL" else "single"
+        return self.G["min_trades_per_year"][kind]
+
+    @staticmethod
+    def rate(s):
+        """Trades per year in a stats segment."""
+        return s["trades"] / max(s["days"], 1) * 365.25
+
+    def active(self, g, s, frac=1.0):
+        return self.rate(s) >= self.min_rate(g) * frac
 
     def fitness(self, g, s):
         if "error" in s:
             return -10.0
         f = s["sharpe"]
-        mt = self.min_trades(g)
-        if s["trades"] < mt:
-            f = f * s["trades"] / mt - 1.0
+        r, mt = self.rate(s), self.min_rate(g)
+        if r < mt:
+            f = f * r / mt - 1.0
+        else:
+            # nudge evolution toward busier strategies, up to activity_target x the minimum
+            C = self.cfg["search"]
+            f -= C.get("activity_penalty", 0.0) * max(0.0, 1.0 - r / (mt * C.get("activity_target", 1.0)))
         if s["days"] < 365:
             f -= 2.0
         if s["max_dd"] > 0.6:
@@ -264,7 +277,7 @@ class Search:
     def pre_gate(self, g, s):
         G = self.G
         return ("error" not in s and s["sharpe"] >= G["is_min_sharpe"] and s["psr0"] >= G["is_min_psr"]
-                and s["trades"] >= self.min_trades(g) and s["days"] >= 365 and s["max_dd"] <= G["is_max_dd"])
+                and self.active(g, s) and s["days"] >= 365 and s["max_dd"] <= G["is_max_dd"])
 
     # -- GA -----------------------------------------------------------------
     def evaluate_population(self, pool, pop):
@@ -328,11 +341,11 @@ class Search:
                     "is_sharpe": round(st["is"]["sharpe"], 2), "oos_sharpe": round(o["sharpe"], 2),
                     "oos_dsr": round(oos_dsr, 3), "at": _now()}
             strict = (o["sharpe"] >= G["oos_min_sharpe"] and oos_dsr >= G["oos_min_dsr"]
-                      and o["trades"] >= self.min_trades(g) * G["oos_trade_frac"]
+                      and self.active(g, o, G["oos_trade_frac"])
                       and o["total_return"] > 0 and o["max_dd"] <= G["oos_max_dd"])
             CG = self.CG
             loose = (o["sharpe"] >= CG["oos_min_sharpe"] and o["total_return"] > 0
-                     and o["trades"] >= self.min_trades(g) * CG["oos_trade_frac"] and o["max_dd"] <= CG["oos_max_dd"])
+                     and self.active(g, o, CG["oos_trade_frac"]) and o["max_dd"] <= CG["oos_max_dd"])
             # candidates are only worth the costly robustness test if they could be recorded
             if strict or (loose and self.candidate_could_record(g, st, daily)):
                 passed.append((g, st, daily, oos_dsr, strict))
@@ -369,7 +382,7 @@ class Search:
         ho_dsr = dsr(h["sr_daily"], h["days"], h["skew"], h["kurt"],
                      max(2, self.state["holdout_checks"]), self.ho_sr.var)
         if not (h["sharpe"] >= G["ho_min_sharpe"] and h["total_return"] > 0 and ho_dsr >= G["ho_min_dsr"]
-                and h["trades"] >= self.min_trades(g) * G["ho_trade_frac"]):
+                and self.active(g, h, G["ho_trade_frac"])):
             self.state["holdout_rejects"] += 1
             return False
         self.record(g, st, daily, self.extra(st, checks, ho_dsr, self.state["holdout_checks"]))
@@ -388,7 +401,7 @@ class Search:
         CG = self.CG
         h, o = st["ho"], st["oos"]
         if not (h["sharpe"] >= CG["ho_min_sharpe"] and h["total_return"] > 0
-                and h["trades"] >= self.min_trades(g) * CG["ho_trade_frac"]):
+                and self.active(g, h, CG["ho_trade_frac"])):
             return False
         score = min(o["sharpe"], h["sharpe"])
         short = self.is_short(g)
@@ -471,7 +484,7 @@ class Search:
         st_["cand_holdout_checks"] += 1
         h, o = st["ho"], st["oos"]
         if not (h["sharpe"] >= CG["ho_min_sharpe"] and h["total_return"] > 0
-                and h["trades"] >= self.min_trades(g) * CG["ho_trade_frac"]):
+                and self.active(g, h, CG["ho_trade_frac"])):
             st_["cand_holdout_rejects"] += 1
             return
         score = min(o["sharpe"], h["sharpe"])
@@ -517,7 +530,7 @@ class Search:
         entry = {"id": cid, "slug": slug, "name": FAMILIES[g["family"]]["name"], "universe": g["universe"],
                  "tf": g["tf"], "oos_sharpe": o["sharpe"], "ho_sharpe": h["sharpe"], "cagr": st["all"]["cagr"],
                  "mdd": st["all"]["max_dd"], "lev": lev, "score": score, "found_at": _now(),
-                 "replaced": j is not None, "grade": grade, "short": short}
+                 "replaced": j is not None, "grade": grade, "short": short, "tpy": self.rate(st["all"])}
         with open(os.path.join(self.cdir, slug + ".json")) as f:
             self.log_change("replaced" if j is not None else "new", f"C{cid}",
                             new=change_summary(f"C{cid}", json.load(f), grade), old=old_summary)

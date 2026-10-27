@@ -143,12 +143,12 @@ def write_index(out_dir, entries, kind="discovery"):
                 "같은 아이디어의 변형은 더 좋은 것이 나오면 교체되고, 목록은 min(검증, 홀드아웃 샤프) 상위 "
                 "최대 50개만 유지합니다 (밀려난 후보는 [archive](archive/)에 보관되며 번호로 계속 실행 가능). "
                 "`python run_strategy.py paper --pick C번호` 로 모의매매할 수 있습니다.", ""] if cand else []),
-             "| # | 등급 | 전략 | 대상 | 봉 | 검증 샤프 | 홀드아웃 샤프 | 전체 연수익(1x) | MDD(1x) | 권장 레버리지 | 상세 |",
-             "|---|---|---|---|---|---|---|---|---|---|---|"]
+             "| # | 등급 | 전략 | 대상 | 봉 | 검증 샤프 | 홀드아웃 샤프 | 거래/년 | 전체 연수익(1x) | MDD(1x) | 권장 레버리지 | 상세 |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     order = (lambda e: (e.get("grade", "C") != "B", e["id"])) if cand else (lambda e: e["id"])
     for e in sorted(entries, key=order):
         lines.append(f"| {'C' if cand else ''}{e['id']} | {e.get('grade', 'C' if cand else 'A')} | {e['name']} | {e['universe']} | {e['tf']} | {e['oos_sharpe']:.2f} | "
-                     f"{e['ho_sharpe']:.2f} | {_pct(e['cagr'])} | {e['mdd'] * 100:.0f}% | {e['lev']:g}x | "
+                     f"{e['ho_sharpe']:.2f} | {e.get('tpy', 0):.0f} | {_pct(e['cagr'])} | {e['mdd'] * 100:.0f}% | {e['lev']:g}x | "
                      f"[보기]({e['slug']}.md) |")
     if not cand:
         lines += ["", "같은 전략의 변형(같은 계열·대상·방향이거나 일간수익률 상관 > 0.4)은 "
@@ -237,8 +237,8 @@ def write_grades(root, cfg):
         *_recent_ab_changes(root),
         "## 요약",
         "",
-        "| 등급 | 번호 | 전략 | 대상 | 봉 | 방향 | 학습 샤프 | 검증 샤프 | 최근 샤프 | 연수익 | 최대낙폭 | 권장 레버리지 |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "| 등급 | 번호 | 전략 | 대상 | 봉 | 방향 | 학습 샤프 | 검증 샤프 | 최근 샤프 | 거래/년 | 연수익 | 최대낙폭 | 권장 레버리지 |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for grade, ref, md, info in items:
         g, s = info["genome"], info["stats"]
@@ -246,6 +246,7 @@ def write_grades(root, cfg):
         direction = DIR_LABEL.get((g.get("mod") or {}).get("direction", ""), "포트폴리오")
         L.append(f"| {grade} | [{ref}](#{ref.lower().lstrip('#')}) | {fam['name']} | {g['universe']} | {g['tf']} | {direction} | "
                  f"{s['is']['sharpe']:.2f} | {s['oos']['sharpe']:.2f} | {s['ho']['sharpe']:.2f} | "
+                 f"{s['all']['trades'] / max(s['all']['days'], 1) * 365.25:.0f} | "
                  f"{_pct(s['all']['cagr'])} | {s['all']['max_dd'] * 100:.0f}% | {info.get('leverage', 1):g}x |")
     L += _short_section(rd)
     L += ["", "## 전략별 상세", ""]

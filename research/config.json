@@ -13,21 +13,17 @@
     "elite": 4,
     "immigrants": 0.2,
     "mutation_rate": 0.35,
-    "short_lane": 0.4
+    "short_lane": 0.4,
+    "activity_target": 2.0,
+    "activity_penalty": 0.5
   },
   "gates": {
-    "min_trades": {
-      "single": 40,
-      "all": 150,
-      "xs": 60,
-      "pair": 30
-    },
     "is_min_sharpe": 1.0,
     "is_min_psr": 0.95,
     "is_max_dd": 0.6,
     "oos_min_sharpe": 0.8,
     "oos_min_dsr": 0.9,
-    "oos_trade_frac": 0.3,
+    "oos_trade_frac": 0.7,
     "oos_max_dd": 0.5,
     "stress_cost_mult": 2.0,
     "stress_min_sharpe": 0.4,
@@ -35,9 +31,16 @@
     "nb_min_ratio": 0.5,
     "nb_min_positive": 0.75,
     "ho_min_sharpe": 0.5,
-    "ho_trade_frac": 0.2,
+    "ho_trade_frac": 0.7,
     "max_corr": 0.4,
-    "ho_min_dsr": 0.5
+    "ho_min_dsr": 0.5,
+    "min_trades_per_year": {
+      "_note": "trades per year in EVERY period (OOS/holdout may be oos/ho_trade_frac of it); ALL = summed over the coins",
+      "single": 52,
+      "all": 150,
+      "xs": 52,
+      "pair": 26
+    }
   },
   "leverage": {
     "target_vol": 0.4,
@@ -48,11 +51,11 @@
     "_note": "Looser tier for paper-trading candidates: no Deflated-Sharpe gates. At most max_candidates are kept, ranked by min(OOS, holdout Sharpe).",
     "oos_min_sharpe": 1.0,
     "oos_max_dd": 0.5,
-    "oos_trade_frac": 0.3,
+    "oos_trade_frac": 0.7,
     "stress_min_sharpe": 0.3,
     "nb_min_positive": 0.6,
     "ho_min_sharpe": 0.5,
-    "ho_trade_frac": 0.2,
+    "ho_trade_frac": 0.7,
     "max_corr": 0.6,
     "max_candidates": 50,
     "min_score": 1.2,
