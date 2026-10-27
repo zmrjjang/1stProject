@@ -40,12 +40,12 @@
 | C517 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 4h | 2.21 | 2.32 | 516 | +47.6% | 36% | 1.5x | [보기](C0517_xsmom_ALL_4h.md) |
 | C538 | C | 이동평균 교차 추세추종 | DOGEUSDT | 1h | 2.60 | 2.11 | 64 | +68.2% | 37% | 1x | [보기](C0538_ma_cross_DOGEUSDT_1h.md) |
 | C559 | C | 거래량 급증 돌파 | ALL | 15m | 2.12 | 2.07 | 171 | +12.2% | 11% | 1.5x | [보기](C0559_vol_breakout_ALL_15m.md) |
-| C560 | C | 선형회귀 추세 유의성 | DOGEUSDT | 5m | 1.68 | 1.63 | 172 | +78.8% | 48% | 0.5x | [보기](C0560_linreg_DOGEUSDT_5m.md) |
+| C560 | C | 선형회귀 추세 유의성 | DOGEUSDT | 5m | 1.84 | 2.17 | 171 | +125.0% | 45% | 0.5x | [보기](C0560_linreg_DOGEUSDT_5m.md) |
 | C561 | C | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.59 | 1.97 | 111 | +51.8% | 29% | 1x | [보기](C0561_linreg_XRPUSDT_30m.md) |
 | C562 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.85 | 1.94 | 237 | +31.7% | 28% | 1.5x | [보기](C0562_squeeze_ALL_4h.md) |
 | C563 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | LINKUSDT/ETHUSDT | 15m | 1.59 | 1.27 | 56 | +21.0% | 14% | 2.5x | [보기](C0563_pairs_LINKUSDT-ETHUSDT_15m.md) |
 | C564 | C | 켈트너 채널 | ALL | 1h | 1.64 | 1.88 | 361 | +27.5% | 15% | 2x | [보기](C0564_keltner_ALL_1h.md) |
-| C565 | C | 거래량 급증 돌파 | ETHUSDT | 30m | 1.26 | 1.36 | 55 | +28.5% | 19% | 1.5x | [보기](C0565_vol_breakout_ETHUSDT_30m.md) |
+| C565 | C | 거래량 급증 돌파 | ETHUSDT | 30m | 1.49 | 1.63 | 73 | +35.4% | 24% | 1x | [보기](C0565_vol_breakout_ETHUSDT_30m.md) |
 | C566 | C | 파라볼릭 SAR | ALL | 1d | 2.09 | 1.48 | 176 | +29.7% | 20% | 0.5x | [보기](C0566_psar_ALL_1d.md) |
 | C568 | C | 하방 변동성 확대 (레버리지 효과) | ALL | 1h | 1.77 | 1.71 | 345 | +18.8% | 13% | 1x | [보기](C0568_vol_down_ALL_1h.md) |
 | C569 | C | 이동평균 교차 추세추종 | ALL | 1h | 1.07 | 1.03 | 221 | +6.6% | 5% | 2x | [보기](C0569_ma_cross_ALL_1h.md) |
@@ -63,7 +63,7 @@
 | C583 | C | 선형회귀 추세 유의성 | SOLUSDT | 30m | 1.84 | 1.59 | 65 | +63.4% | 37% | 1x | [보기](C0583_linreg_SOLUSDT_30m.md) |
 | C585 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.02 | 1.05 | 65 | +26.2% | 19% | 1.5x | [보기](C0585_positioning_BTCUSDT_1h.md) |
 | C586 | C | 하방 변동성 확대 (레버리지 효과) | SOLUSDT | 1h | 1.30 | 1.25 | 85 | +167.4% | 36% | 0.5x | [보기](C0586_vol_down_SOLUSDT_1h.md) |
-| C587 | C | 롱/숏 비율 포지셔닝 | ALL | 1h | 1.56 | 1.92 | 294 | +34.7% | 20% | 0.5x | [보기](C0587_positioning_ALL_1h.md) |
+| C587 | C | 롱/숏 비율 포지셔닝 | ALL | 1h | 1.88 | 1.77 | 681 | +44.7% | 19% | 1x | [보기](C0587_positioning_ALL_1h.md) |
 | C588 | C | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.81 | 1.44 | 127 | +60.6% | 50% | 0.5x | [보기](C0588_heikin_DOGEUSDT_4h.md) |
 | C589 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ZECUSDT | 5m | 2.05 | 1.52 | 157 | +47.3% | 39% | 1x | [보기](C0589_zscore_mr_ZECUSDT_5m.md) |
 | C590 | C | 일목균형표 | TRXUSDT | 1h | 1.21 | 1.25 | 64 | +52.4% | 60% | 0.5x | [보기](C0590_ichimoku_TRXUSDT_1h.md) |
@@ -72,7 +72,7 @@
 | C593 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.36 | 1.45 | 69 | +40.1% | 12% | 1.5x | [보기](C0593_positioning_BTCUSDT_1h.md) |
 | C594 | C | MACD | XRPUSDT | 1h | 1.25 | 1.79 | 64 | +33.4% | 25% | 1x | [보기](C0594_macd_XRPUSDT_1h.md) |
 | C595 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | LINKUSDT | 30m | 1.08 | 1.08 | 73 | +33.6% | 17% | 1.5x | [보기](C0595_squeeze_LINKUSDT_30m.md) |
-| C596 | C | 일목균형표 | ALL | 4h | 1.33 | 1.84 | 216 | +21.8% | 17% | 0.5x | [보기](C0596_ichimoku_ALL_4h.md) |
+| C596 | C | 일목균형표 | ALL | 1h | 1.62 | 2.29 | 452 | +25.7% | 25% | 1x | [보기](C0596_ichimoku_ALL_1h.md) |
 | C597 | C | 아룬 추세 | ALL | 30m | 1.47 | 1.47 | 419 | +28.2% | 27% | 1x | [보기](C0597_aroon_ALL_30m.md) |
 | C598 | C | 일목균형표 | DOGEUSDT | 15m | 1.14 | 1.17 | 236 | +49.6% | 56% | 0.5x | [보기](C0598_ichimoku_DOGEUSDT_15m.md) |
 | C599 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 15m | 1.49 | 1.82 | 306 | +201.5% | 56% | 0.5x | [보기](C0599_xsmom_ALL_15m.md) |
@@ -83,3 +83,6 @@
 | C604 | C | 아룬 추세 | DOGEUSDT | 4h | 1.45 | 1.05 | 68 | +55.4% | 46% | 0.5x | [보기](C0604_aroon_DOGEUSDT_4h.md) |
 | C605 | C | MACD | DOGEUSDT | 1h | 1.05 | 1.40 | 131 | +59.2% | 36% | 0.5x | [보기](C0605_macd_DOGEUSDT_1h.md) |
 | C606 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BTCUSDT/BNBUSDT | 4h | 1.77 | 1.70 | 54 | +39.0% | 44% | 1x | [보기](C0606_pairs_BTCUSDT-BNBUSDT_4h.md) |
+| C608 | C | 켈트너 채널 | ALL | 30m | 1.34 | 1.22 | 229 | +13.0% | 10% | 0.5x | [보기](C0608_keltner_ALL_30m.md) |
+| C609 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 1h | 1.26 | 1.21 | 58 | +18.7% | 14% | 2x | [보기](C0609_pairs_DOGEUSDT-LINKUSDT_1h.md) |
+| C610 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 30m | 1.42 | 1.20 | 65 | +63.3% | 39% | 0.5x | [보기](C0610_vol_down_ETHUSDT_30m.md) |
