@@ -53,7 +53,6 @@
 | C28 | C | OBV 거래량 모멘텀 | ALL | 4h | 2.28 | 2.85 | +16.2% | 23% | 1.5x | [보기](C0028_obv_ALL_4h.md) |
 | C33 | C | 켈트너 채널 | ALL | 1h | 2.20 | 2.28 | +9.0% | 5% | 1x | [보기](C0033_keltner_ALL_1h.md) |
 | C40 | C | 국면 전환 (추세/횡보 판별 후 전략 선택) | ALL | 4h | 2.47 | 2.47 | +17.8% | 16% | 0.5x | [보기](C0040_regime_ALL_4h.md) |
-| C42 | C | 캔들 패턴 | SOLUSDT | 4h | 1.93 | 1.92 | +69.4% | 31% | 1x | [보기](C0042_candle_SOLUSDT_4h.md) |
 | C60 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 1h | 2.72 | 2.69 | +18.5% | 12% | 2x | [보기](C0060_squeeze_ALL_1h.md) |
 | C69 | C | 롱/숏 비율 포지셔닝 | ALL | 30m | 2.55 | 2.22 | +32.1% | 16% | 1x | [보기](C0069_positioning_ALL_30m.md) |
 | C72 | C | 일목균형표 | ZECUSDT | 1h | 2.29 | 2.31 | +124.4% | 47% | 0.5x | [보기](C0072_ichimoku_ZECUSDT_1h.md) |
@@ -66,7 +65,7 @@
 | C300 | C | 롱/숏 비율 포지셔닝 | ALL | 4h | 2.38 | 2.37 | +13.0% | 7% | 1.5x | [보기](C0300_positioning_ALL_4h.md) |
 | C311 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.42 | 2.43 | +32.2% | 21% | 2x | [보기](C0311_rsi_mr_ZECUSDT_5m.md) |
 | C317 | C | 거래량 급증 돌파 | ALL | 4h | 2.32 | 2.50 | +8.5% | 7% | 1.5x | [보기](C0317_vol_breakout_ALL_4h.md) |
-| C341 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 3.96 | 2.24 | +20.3% | 10% | 2.5x | [보기](C0341_oi_trend_BNBUSDT_1h.md) |
+| C341 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 2.82 | 2.56 | +18.1% | 6% | 2.5x | [보기](C0341_oi_trend_BNBUSDT_1h.md) |
 | C364 | C | 거래량 급증 돌파 | SOLUSDT | 4h | 1.98 | 1.98 | +47.3% | 32% | 0.5x | [보기](C0364_vol_breakout_SOLUSDT_4h.md) |
 | C378 | C | 시계열 모멘텀 (변동성 정규화) | SOLUSDT | 15m | 2.51 | 2.64 | +59.6% | 44% | 1x | [보기](C0378_tsmom_SOLUSDT_15m.md) |
 | C380 | C | 켈트너 채널 | ZECUSDT | 15m | 1.98 | 1.94 | +17.2% | 10% | 1x | [보기](C0380_keltner_ZECUSDT_15m.md) |
@@ -114,4 +113,5 @@
 | C550 | C | RSI 과매도/과매수 역추세 | SOLUSDT | 30m | 2.29 | 2.34 | +8.4% | 7% | 5x | [보기](C0550_rsi_mr_SOLUSDT_30m.md) |
 | C552 | C | 펀딩비 쏠림 | ZECUSDT | 30m | 2.14 | 2.18 | +28.1% | 29% | 2x | [보기](C0552_funding_ZECUSDT_30m.md) |
 | C553 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 2.26 | 2.73 | +20.0% | 19% | 2.5x | [보기](C0553_vol_down_ETHUSDT_1h.md) |
-| C554 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 4h | 1.92 | 2.76 | +79.2% | 40% | 1x | [보기](C0554_squeeze_SOLUSDT_4h.md) |
+| C555 | C | 테이커 주문흐름 불균형 | ZECUSDT | 1h | 2.39 | 3.25 | +131.1% | 59% | 0.5x | [보기](C0555_flow_ZECUSDT_1h.md) |
+| C556 | C | 미결제약정(OI) × 가격 | BNBUSDT | 1h | 2.10 | 2.12 | +13.1% | 6% | 2.5x | [보기](C0556_oi_trend_BNBUSDT_1h.md) |
