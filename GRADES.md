@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-27 15:40 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-27 16:31 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -21,6 +21,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 
 | 시각 (UTC) | 번호 | 변경 | 현재 내용 |
 |---|---|---|---|
+| 2026-10-27 16:31 | C584 | 교체 (C→B) | 변동성 수축 후 돌파 (볼린저 스퀴즈) XRPUSDT 30m · 검증 1.54 / 최근 1.65 · 연 +32.2% · MDD 17% |
 | 2026-10-27 15:40 | C567 | 교체 (C→B) | 하락추세 반등 매도 (상승추세 눌림 매수) ALL 15m · 검증 1.68 / 최근 1.57 · 연 +12.5% · MDD 12% |
 | 2026-10-27 13:27 | C572 | 교체 (C→B) | 이동평균 교차 추세추종 ALL 1h · 검증 1.50 / 최근 1.66 · 연 +28.8% · MDD 14% |
 | 2026-10-27 13:07 | C570 | 교체 (C→B) | 롤링 VWAP 이격 DOGEUSDT 5m · 검증 1.82 / 최근 1.64 · 연 +72.0% · MDD 14% |
@@ -35,7 +36,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | 2026-10-27 11:42 | C430 | 밀려남 | 이동평균 교차 추세추종 ALL 4h · 검증 2.30 / 최근 2.00 · 연 +12.8% · MDD 6% |
 | 2026-10-27 11:42 | C424 | 밀려남 | 파라볼릭 SAR ALL 1d · 검증 2.16 / 최근 1.85 · 연 +22.4% · MDD 7% |
 | 2026-10-27 11:42 | C415 | 밀려남 | ADX/DMI 추세 ALL 4h · 검증 1.63 / 최근 1.51 · 연 +25.6% · MDD 13% |
-| 2026-10-27 11:42 | C398 | 밀려남 | MACD ALL 1d · 검증 2.53 / 최근 2.62 · 연 +25.6% · MDD 9% |
 
 ## 요약
 
@@ -66,6 +66,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | [C567](#c567) | 하락추세 반등 매도 (상승추세 눌림 매수) | ALL | 15m | 롱만 | 1.88 | 1.68 | 1.57 | 349 | +12.5% | 12% | 1x |
 | B | [C570](#c570) | 롤링 VWAP 이격 | DOGEUSDT | 5m | 롱만 | 2.66 | 1.82 | 1.64 | 76 | +72.0% | 14% | 0.5x |
 | B | [C572](#c572) | 이동평균 교차 추세추종 | ALL | 1h | 롱만 | 1.60 | 1.50 | 1.66 | 508 | +28.8% | 14% | 1.5x |
+| B | [C584](#c584) | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 30m | 숏만 | 1.78 | 1.54 | 1.65 | 63 | +32.2% | 17% | 2x |
 
 ## 숏 전용 전략
 
@@ -79,9 +80,12 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
 | C | C560 | 선형회귀 추세 유의성 | DOGEUSDT | 5m | 1.47 | 1.68 | 1.63 | +78.8% | 48% | [보기](research/candidates/C0560_linreg_DOGEUSDT_5m.md) |
 | C | C561 | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.23 | 1.59 | 1.97 | +51.8% | 29% | [보기](research/candidates/C0561_linreg_XRPUSDT_30m.md) |
+| B | C584 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 30m | 1.78 | 1.54 | 1.65 | +32.2% | 17% | [보기](research/candidates/C0584_squeeze_XRPUSDT_30m.md) |
 | B | C545 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 2.35 | 1.54 | 1.60 | +37.1% | 15% | [보기](research/candidates/C0545_squeeze_SOLUSDT_30m.md) |
 | C | C583 | 선형회귀 추세 유의성 | SOLUSDT | 30m | 1.01 | 1.85 | 1.41 | +44.7% | 48% | [보기](research/candidates/C0583_linreg_SOLUSDT_30m.md) |
-| C | C584 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 1h | 1.11 | 1.20 | 1.29 | +30.0% | 27% | [보기](research/candidates/C0584_squeeze_XRPUSDT_1h.md) |
+| C | C594 | MACD | XRPUSDT | 1h | 1.05 | 1.25 | 1.79 | +33.4% | 25% | [보기](research/candidates/C0594_macd_XRPUSDT_1h.md) |
+| C | C598 | 일목균형표 | DOGEUSDT | 15m | 1.03 | 1.14 | 1.17 | +49.6% | 56% | [보기](research/candidates/C0598_ichimoku_DOGEUSDT_15m.md) |
+| C | C595 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | LINKUSDT | 30m | 1.55 | 1.08 | 1.08 | +33.6% | 17% | [보기](research/candidates/C0595_squeeze_LINKUSDT_30m.md) |
 | C | C569 | 이동평균 교차 추세추종 | ALL | 1h | 1.12 | 1.07 | 1.03 | +6.6% | 5% | [보기](research/candidates/C0569_ma_cross_ALL_1h.md) |
 | C | C585 | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.11 | 1.02 | 1.05 | +26.2% | 19% | [보기](research/candidates/C0585_positioning_BTCUSDT_1h.md) |
 | C | C588 | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.25 | 1.59 | 1.01 | +38.6% | 32% | [보기](research/candidates/C0588_heikin_DOGEUSDT_4h.md) |
@@ -1176,6 +1180,48 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
     "max_hold": 0
   },
   "universe": "ALL"
+}
+```
+</details>
+
+<a id="c584"></a>
+### B등급 C584 — 변동성 수축 후 돌파 (볼린저 스퀴즈) (XRPUSDT, 30분봉)
+
+- **규칙**: 볼린저밴드(98, 1.00σ) 폭의 1339봉 z-score가 -1.16 미만(수축)인 상태에서 상단 돌파 시 롱, 하단 이탈 시 숏. 중심선 복귀 시 청산. [숏만, 손절 ATR(14)×3.57, 익절 ATR(14)×4.84]
+- **체결**: 봉 마감에 신호 확인 → 다음 봉 시가에 시장가. 손절/익절은 진입가 기준 ATR(14) 배수로 미리 걸어둠
+- **권장 레버리지**: 2x
+- **모의매매**: `python run_strategy.py paper --pick C584 --loop`
+
+| 구간 | 샤프 | 연수익 | 최대낙폭 | 거래수 |
+|---|---|---|---|---|
+| 학습 | 1.78 | +38.0% | 14.9% | 254 |
+| 검증 | 1.54 | +23.7% | 16.9% | 85 |
+| 홀드아웃(최근) | 1.65 | +24.6% | 5.6% | 86 |
+| 전체 | 1.70 | +32.2% | 16.9% | 425 |
+
+- **연도별 수익률**: 2020 +41.2% · 2021 +55.8% · 2022 +27.5% · 2023 +28.9% · 2024 +3.8% · 2025 +45.7% · 2026 +19.8%
+- **강건성**: 비용 2배 샤프 1.24 · 파라미터 근방 수익 비율 88% · 근거: Bollerslev (1986) GARCH volatility clustering; Bollinger (2001) 'Bollinger on Bollinger Bands'
+- **상세 보고서**: [C0584_squeeze_XRPUSDT_30m.md](research/candidates/C0584_squeeze_XRPUSDT_30m.md)
+
+<details><summary>파라미터 (JSON)</summary>
+
+```json
+{
+  "family": "squeeze",
+  "tf": "30m",
+  "p": {
+    "n": 98,
+    "k": 1.0046,
+    "w": 1339,
+    "squeeze": -1.1593
+  },
+  "mod": {
+    "direction": "short",
+    "sl_k": 3.57,
+    "tp_k": 4.844,
+    "max_hold": 0
+  },
+  "universe": "XRPUSDT"
 }
 ```
 </details>
