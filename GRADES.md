@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-28 03:56 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-28 05:08 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -96,6 +96,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C595 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | LINKUSDT | 30m | 1.55 | 1.08 | 1.08 | +33.6% | 17% | [보기](research/candidates/C0595_squeeze_LINKUSDT_30m.md) |
 | C | C604 | 아룬 추세 | DOGEUSDT | 4h | 1.15 | 1.45 | 1.05 | +55.4% | 46% | [보기](research/candidates/C0604_aroon_DOGEUSDT_4h.md) |
 | C | C605 | MACD | DOGEUSDT | 1h | 1.22 | 1.05 | 1.40 | +59.2% | 36% | [보기](research/candidates/C0605_macd_DOGEUSDT_1h.md) |
+| C | C620 | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 30m | 1.00 | 1.03 | 1.41 | +29.1% | 32% | [보기](research/candidates/C0620_vol_down_ETHUSDT_30m.md) |
 | C | C569 | 이동평균 교차 추세추종 | ALL | 1h | 1.12 | 1.07 | 1.03 | +6.6% | 5% | [보기](research/candidates/C0569_ma_cross_ALL_1h.md) |
 | C | C585 | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.11 | 1.02 | 1.05 | +26.2% | 19% | [보기](research/candidates/C0585_positioning_BTCUSDT_1h.md) |
 

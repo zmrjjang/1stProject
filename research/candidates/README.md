@@ -95,3 +95,4 @@
 | C616 | C | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.31 | 1.98 | 90 | +48.9% | 39% | 1x | [보기](C0616_heikin_XRPUSDT_4h.md) |
 | C617 | C | 돈치안 채널 돌파 (터틀) | ZECUSDT | 1h | 1.25 | 1.22 | 77 | +43.8% | 42% | 0.5x | [보기](C0617_donchian_ZECUSDT_1h.md) |
 | C618 | C | 켈트너 채널 | ZECUSDT | 5m | 1.98 | 1.68 | 173 | +39.7% | 24% | 1x | [보기](C0618_keltner_ZECUSDT_5m.md) |
+| C620 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 30m | 1.03 | 1.41 | 54 | +29.1% | 32% | 1x | [보기](C0620_vol_down_ETHUSDT_30m.md) |
