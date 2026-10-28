@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-28 16:07 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-28 18:30 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -89,6 +89,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C583 | 선형회귀 추세 유의성 | SOLUSDT | 30m | 1.54 | 1.84 | 1.59 | +63.4% | 37% | [보기](research/candidates/C0583_linreg_SOLUSDT_30m.md) |
 | B | C584 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 30m | 1.78 | 1.54 | 1.65 | +32.2% | 17% | [보기](research/candidates/C0584_squeeze_XRPUSDT_30m.md) |
 | B | C545 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 2.35 | 1.54 | 1.60 | +37.1% | 15% | [보기](research/candidates/C0545_squeeze_SOLUSDT_30m.md) |
+| C | C632 | 펀딩비 쏠림 | ETHUSDT | 30m | 1.10 | 1.51 | 1.43 | +41.9% | 22% | [보기](research/candidates/C0632_funding_ETHUSDT_30m.md) |
 | C | C605 | MACD | DOGEUSDT | 1h | 1.55 | 1.89 | 1.41 | +36.0% | 34% | [보기](research/candidates/C0605_macd_DOGEUSDT_1h.md) |
 | C | C598 | 일목균형표 | DOGEUSDT | 30m | 1.17 | 1.32 | 1.34 | +61.1% | 39% | [보기](research/candidates/C0598_ichimoku_DOGEUSDT_30m.md) |
 | C | C616 | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.08 | 1.31 | 1.98 | +48.9% | 39% | [보기](research/candidates/C0616_heikin_XRPUSDT_4h.md) |
@@ -102,7 +103,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C620 | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 30m | 1.00 | 1.03 | 1.41 | +29.1% | 32% | [보기](research/candidates/C0620_vol_down_ETHUSDT_30m.md) |
 | C | C569 | 이동평균 교차 추세추종 | ALL | 1h | 1.12 | 1.07 | 1.03 | +6.6% | 5% | [보기](research/candidates/C0569_ma_cross_ALL_1h.md) |
 | C | C625 | 국면 전환 (추세/횡보 판별 후 전략 선택) | XRPUSDT | 30m | 1.32 | 1.03 | 1.45 | +42.5% | 32% | [보기](research/candidates/C0625_regime_XRPUSDT_30m.md) |
-| C | C585 | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.11 | 1.02 | 1.05 | +26.2% | 19% | [보기](research/candidates/C0585_positioning_BTCUSDT_1h.md) |
 
 ## 전략별 상세
 
