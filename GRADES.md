@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-30 11:23 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-10-30 18:29 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -82,17 +82,19 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 |---|---|---|---|---|---|---|---|---|---|---|
 | C | C538 | 이동평균 교차 추세추종 | DOGEUSDT | 1h | 1.49 | 2.60 | 2.11 | +68.2% | 37% | [보기](research/candidates/C0538_ma_cross_DOGEUSDT_1h.md) |
 | C | C456 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 1.48 | 2.19 | 2.05 | +60.8% | 25% | [보기](research/candidates/C0456_squeeze_DOGEUSDT_4h.md) |
+| C | C561 | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.11 | 2.35 | 2.04 | +65.4% | 51% | [보기](research/candidates/C0561_linreg_XRPUSDT_30m.md) |
 | C | C560 | 선형회귀 추세 유의성 | DOGEUSDT | 15m | 1.70 | 2.19 | 2.03 | +123.3% | 43% | [보기](research/candidates/C0560_linreg_DOGEUSDT_15m.md) |
 | C | C605 | MACD | DOGEUSDT | 4h | 1.89 | 1.84 | 2.36 | +74.3% | 36% | [보기](research/candidates/C0605_macd_DOGEUSDT_4h.md) |
 | B | C522 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.73 | 1.76 | 2.12 | +11.5% | 8% | [보기](research/candidates/C0522_squeeze_ALL_4h.md) |
 | C | C645 | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.28 | 1.65 | 1.76 | +40.4% | 28% | [보기](research/candidates/C0645_positioning_SOLUSDT_30m.md) |
 | B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
 | C | C588 | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.20 | 2.03 | 1.63 | +73.5% | 57% | [보기](research/candidates/C0588_heikin_DOGEUSDT_4h.md) |
-| C | C561 | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.23 | 1.59 | 1.97 | +51.8% | 29% | [보기](research/candidates/C0561_linreg_XRPUSDT_30m.md) |
 | C | C583 | 선형회귀 추세 유의성 | SOLUSDT | 30m | 1.54 | 1.84 | 1.59 | +63.4% | 37% | [보기](research/candidates/C0583_linreg_SOLUSDT_30m.md) |
+| C | C660 | 스토캐스틱 역추세 | DOGEUSDT | 30m | 1.61 | 2.06 | 1.57 | +53.3% | 33% | [보기](research/candidates/C0660_stoch_DOGEUSDT_30m.md) |
 | B | C584 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 30m | 1.78 | 1.54 | 1.65 | +32.2% | 17% | [보기](research/candidates/C0584_squeeze_XRPUSDT_30m.md) |
 | B | C545 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 2.35 | 1.54 | 1.60 | +37.1% | 15% | [보기](research/candidates/C0545_squeeze_SOLUSDT_30m.md) |
 | C | C632 | 펀딩비 쏠림 | ETHUSDT | 30m | 1.10 | 1.51 | 1.43 | +41.9% | 22% | [보기](research/candidates/C0632_funding_ETHUSDT_30m.md) |
+| C | C663 | 롤링 VWAP 이격 | XRPUSDT | 1h | 1.27 | 1.41 | 1.73 | +48.4% | 30% | [보기](research/candidates/C0663_vwap_dev_XRPUSDT_1h.md) |
 | C | C642 | 일목균형표 | XRPUSDT | 4h | 1.22 | 1.37 | 1.35 | +40.8% | 33% | [보기](research/candidates/C0642_ichimoku_XRPUSDT_4h.md) |
 | C | C598 | 일목균형표 | DOGEUSDT | 30m | 1.17 | 1.32 | 1.34 | +61.1% | 39% | [보기](research/candidates/C0598_ichimoku_DOGEUSDT_30m.md) |
 | C | C616 | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.08 | 1.31 | 1.98 | +48.9% | 39% | [보기](research/candidates/C0616_heikin_XRPUSDT_4h.md) |
@@ -100,10 +102,8 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C594 | MACD | XRPUSDT | 1h | 1.05 | 1.25 | 1.79 | +33.4% | 25% | [보기](research/candidates/C0594_macd_XRPUSDT_1h.md) |
 | C | C652 | 파라볼릭 SAR | XRPUSDT | 1h | 1.48 | 1.25 | 1.54 | +39.2% | 35% | [보기](research/candidates/C0652_psar_XRPUSDT_1h.md) |
 | C | C617 | 돈치안 채널 돌파 (터틀) | ZECUSDT | 1h | 1.04 | 1.25 | 1.22 | +43.8% | 42% | [보기](research/candidates/C0617_donchian_ZECUSDT_1h.md) |
+| C | C658 | 아룬 추세 | XRPUSDT | 30m | 1.40 | 1.38 | 1.22 | +55.6% | 41% | [보기](research/candidates/C0658_aroon_XRPUSDT_30m.md) |
 | C | C626 | MACD | ALL | 1h | 1.06 | 1.35 | 1.20 | +8.4% | 6% | [보기](research/candidates/C0626_macd_ALL_1h.md) |
-| C | C603 | 슈퍼트렌드 | DOGEUSDT | 4h | 1.04 | 1.18 | 1.17 | +32.0% | 29% | [보기](research/candidates/C0603_supertrend_DOGEUSDT_4h.md) |
-| C | C627 | 아룬 추세 | SOLUSDT | 30m | 1.36 | 1.18 | 1.17 | +54.8% | 42% | [보기](research/candidates/C0627_aroon_SOLUSDT_30m.md) |
-| C | C648 | 롤링 VWAP 이격 | ALL | 4h | 1.09 | 1.28 | 1.12 | +7.9% | 9% | [보기](research/candidates/C0648_vwap_dev_ALL_4h.md) |
 
 ## 전략별 상세
 
