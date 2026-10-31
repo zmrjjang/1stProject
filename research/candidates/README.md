@@ -77,7 +77,6 @@
 | C616 | C | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.31 | 1.98 | 90 | +48.9% | 39% | 1x | [보기](C0616_heikin_XRPUSDT_4h.md) |
 | C617 | C | 돈치안 채널 돌파 (터틀) | ZECUSDT | 1h | 1.25 | 1.22 | 77 | +43.8% | 42% | 0.5x | [보기](C0617_donchian_ZECUSDT_1h.md) |
 | C618 | C | 켈트너 채널 | ZECUSDT | 5m | 1.98 | 1.68 | 173 | +39.7% | 24% | 1x | [보기](C0618_keltner_ZECUSDT_5m.md) |
-| C626 | C | MACD | ALL | 1h | 1.35 | 1.20 | 293 | +8.4% | 6% | 2x | [보기](C0626_macd_ALL_1h.md) |
 | C629 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.54 | 1.54 | 183 | +44.3% | 33% | 1x | [보기](C0629_vwap_dev_ZECUSDT_15m.md) |
 | C632 | C | 펀딩비 쏠림 | ETHUSDT | 30m | 1.51 | 1.43 | 73 | +41.9% | 22% | 1x | [보기](C0632_funding_ETHUSDT_30m.md) |
 | C633 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | SOLUSDT/BNBUSDT | 1h | 1.41 | 1.58 | 52 | +44.1% | 37% | 1x | [보기](C0633_pairs_SOLUSDT-BNBUSDT_1h.md) |
@@ -102,3 +101,4 @@
 | C661 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.45 | 1.50 | 60 | +63.1% | 36% | 0.5x | [보기](C0661_vol_down_ETHUSDT_1h.md) |
 | C662 | C | MACD | SOLUSDT | 1d | 1.42 | 1.40 | 75 | +113.0% | 56% | 0.5x | [보기](C0662_macd_SOLUSDT_1d.md) |
 | C663 | C | 롤링 VWAP 이격 | XRPUSDT | 1h | 1.41 | 1.73 | 53 | +48.4% | 30% | 1x | [보기](C0663_vwap_dev_XRPUSDT_1h.md) |
+| C664 | C | 선형회귀 추세 유의성 | ZECUSDT | 1h | 1.29 | 1.26 | 53 | +20.2% | 15% | 2.5x | [보기](C0664_linreg_ZECUSDT_1h.md) |
