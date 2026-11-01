@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-01 03:08 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-01 11:41 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -97,6 +97,8 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | B | C545 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 2.35 | 1.54 | 1.60 | +37.1% | 15% | [보기](research/candidates/C0545_squeeze_SOLUSDT_30m.md) |
 | C | C632 | 펀딩비 쏠림 | ETHUSDT | 30m | 1.10 | 1.51 | 1.43 | +41.9% | 22% | [보기](research/candidates/C0632_funding_ETHUSDT_30m.md) |
 | C | C663 | 롤링 VWAP 이격 | XRPUSDT | 1h | 1.27 | 1.41 | 1.73 | +48.4% | 30% | [보기](research/candidates/C0663_vwap_dev_XRPUSDT_1h.md) |
+| C | C675 | 파라볼릭 SAR | SOLUSDT | 4h | 1.07 | 1.77 | 1.40 | +43.2% | 28% | [보기](research/candidates/C0675_psar_SOLUSDT_4h.md) |
+| C | C676 | ADX/DMI 추세 | SOLUSDT | 1h | 1.25 | 1.64 | 1.38 | +35.5% | 32% | [보기](research/candidates/C0676_adx_dmi_SOLUSDT_1h.md) |
 | C | C642 | 일목균형표 | XRPUSDT | 4h | 1.22 | 1.37 | 1.35 | +40.8% | 33% | [보기](research/candidates/C0642_ichimoku_XRPUSDT_4h.md) |
 | C | C598 | 일목균형표 | DOGEUSDT | 30m | 1.17 | 1.32 | 1.34 | +61.1% | 39% | [보기](research/candidates/C0598_ichimoku_DOGEUSDT_30m.md) |
 | C | C616 | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.08 | 1.31 | 1.98 | +48.9% | 39% | [보기](research/candidates/C0616_heikin_XRPUSDT_4h.md) |
@@ -104,8 +106,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C664 | 선형회귀 추세 유의성 | ZECUSDT | 1h | 1.26 | 1.29 | 1.26 | +20.2% | 15% | [보기](research/candidates/C0664_linreg_ZECUSDT_1h.md) |
 | C | C594 | MACD | XRPUSDT | 1h | 1.05 | 1.25 | 1.79 | +33.4% | 25% | [보기](research/candidates/C0594_macd_XRPUSDT_1h.md) |
 | C | C652 | 파라볼릭 SAR | XRPUSDT | 1h | 1.48 | 1.25 | 1.54 | +39.2% | 35% | [보기](research/candidates/C0652_psar_XRPUSDT_1h.md) |
-| C | C617 | 돈치안 채널 돌파 (터틀) | ZECUSDT | 1h | 1.04 | 1.25 | 1.22 | +43.8% | 42% | [보기](research/candidates/C0617_donchian_ZECUSDT_1h.md) |
-| C | C658 | 아룬 추세 | XRPUSDT | 30m | 1.40 | 1.38 | 1.22 | +55.6% | 41% | [보기](research/candidates/C0658_aroon_XRPUSDT_30m.md) |
 
 ## 전략별 상세
 
