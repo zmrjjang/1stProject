@@ -80,7 +80,6 @@
 | C629 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.54 | 1.54 | 183 | +44.3% | 33% | 1x | [보기](C0629_vwap_dev_ZECUSDT_15m.md) |
 | C632 | C | 펀딩비 쏠림 | ETHUSDT | 30m | 1.51 | 1.43 | 73 | +41.9% | 22% | 1x | [보기](C0632_funding_ETHUSDT_30m.md) |
 | C636 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.54 | 1.84 | 168 | +8.8% | 5% | 1.5x | [보기](C0636_zscore_mr_ALL_1h.md) |
-| C638 | C | 하이킨아시 연속봉 | SOLUSDT | 4h | 1.82 | 1.44 | 72 | +69.7% | 56% | 0.5x | [보기](C0638_heikin_SOLUSDT_4h.md) |
 | C639 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.09 | 1.75 | 91 | +36.8% | 25% | 1x | [보기](C0639_rsi_mr_ZECUSDT_5m.md) |
 | C641 | C | OBV 거래량 모멘텀 | XRPUSDT | 5m | 1.35 | 1.29 | 52 | +28.3% | 14% | 2x | [보기](C0641_obv_XRPUSDT_5m.md) |
 | C642 | C | 일목균형표 | XRPUSDT | 4h | 1.37 | 1.35 | 108 | +40.8% | 33% | 1x | [보기](C0642_ichimoku_XRPUSDT_4h.md) |
@@ -104,3 +103,4 @@
 | C670 | C | 켈트너 채널 | XRPUSDT | 5m | 1.55 | 1.49 | 90 | +55.5% | 21% | 0.5x | [보기](C0670_keltner_XRPUSDT_5m.md) |
 | C671 | C | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.47 | 1.68 | 54 | +62.1% | 60% | 0.5x | [보기](C0671_linreg_XRPUSDT_30m.md) |
 | C672 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.47 | 1.46 | 161 | +33.6% | 25% | 1.5x | [보기](C0672_pairs_DOGEUSDT-LINKUSDT_15m.md) |
+| C674 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | LINKUSDT/BTCUSDT | 15m | 1.44 | 1.56 | 51 | +32.5% | 11% | 2x | [보기](C0674_pairs_LINKUSDT-BTCUSDT_15m.md) |
