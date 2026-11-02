@@ -86,12 +86,11 @@
 | C645 | C | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.65 | 1.76 | 79 | +40.4% | 28% | 1.5x | [보기](C0645_positioning_SOLUSDT_30m.md) |
 | C649 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/LINKUSDT | 15m | 1.55 | 1.53 | 92 | +38.8% | 22% | 1x | [보기](C0649_pairs_XRPUSDT-LINKUSDT_15m.md) |
 | C651 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/BNBUSDT | 15m | 2.06 | 1.66 | 108 | +24.4% | 16% | 2.5x | [보기](C0651_pairs_XRPUSDT-BNBUSDT_15m.md) |
-| C652 | C | 파라볼릭 SAR | XRPUSDT | 1h | 1.25 | 1.54 | 84 | +39.2% | 35% | 1.5x | [보기](C0652_psar_XRPUSDT_1h.md) |
+| C652 | C | 파라볼릭 SAR | XRPUSDT | 1h | 1.54 | 1.51 | 85 | +41.8% | 36% | 1x | [보기](C0652_psar_XRPUSDT_1h.md) |
 | C654 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/ETHUSDT | 30m | 1.48 | 1.97 | 73 | +22.5% | 20% | 2.5x | [보기](C0654_pairs_XRPUSDT-ETHUSDT_30m.md) |
 | C655 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BNBUSDT/ETHUSDT | 15m | 1.64 | 1.90 | 115 | +23.2% | 24% | 2x | [보기](C0655_pairs_BNBUSDT-ETHUSDT_15m.md) |
 | C656 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.60 | 1.52 | 78 | +67.1% | 30% | 1x | [보기](C0656_positioning_BTCUSDT_1h.md) |
 | C660 | C | 스토캐스틱 역추세 | DOGEUSDT | 30m | 2.06 | 1.57 | 132 | +53.3% | 33% | 1x | [보기](C0660_stoch_DOGEUSDT_30m.md) |
-| C661 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.45 | 1.50 | 60 | +63.1% | 36% | 0.5x | [보기](C0661_vol_down_ETHUSDT_1h.md) |
 | C663 | C | 롤링 VWAP 이격 | XRPUSDT | 1h | 1.41 | 1.73 | 53 | +48.4% | 30% | 1x | [보기](C0663_vwap_dev_XRPUSDT_1h.md) |
 | C664 | C | 선형회귀 추세 유의성 | ZECUSDT | 1h | 1.29 | 1.26 | 53 | +20.2% | 15% | 2.5x | [보기](C0664_linreg_ZECUSDT_1h.md) |
 | C665 | C | 롤링 VWAP 이격 | ALL | 1d | 1.89 | 1.59 | 174 | +35.2% | 24% | 0.5x | [보기](C0665_vwap_dev_ALL_1d.md) |
@@ -104,3 +103,4 @@
 | C675 | C | 파라볼릭 SAR | SOLUSDT | 4h | 1.77 | 1.40 | 70 | +43.2% | 28% | 1x | [보기](C0675_psar_SOLUSDT_4h.md) |
 | C676 | C | ADX/DMI 추세 | SOLUSDT | 1h | 1.64 | 1.38 | 50 | +35.5% | 32% | 1.5x | [보기](C0676_adx_dmi_SOLUSDT_1h.md) |
 | C678 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/ETHUSDT | 15m | 2.30 | 2.12 | 98 | +48.4% | 24% | 1x | [보기](C0678_pairs_DOGEUSDT-ETHUSDT_15m.md) |
+| C679 | C | 돈치안 채널 돌파 (터틀) | XRPUSDT | 30m | 2.06 | 2.03 | 58 | +46.3% | 30% | 1x | [보기](C0679_donchian_XRPUSDT_30m.md) |
