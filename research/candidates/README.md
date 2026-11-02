@@ -101,6 +101,6 @@
 | C670 | C | 켈트너 채널 | XRPUSDT | 5m | 1.55 | 1.49 | 90 | +55.5% | 21% | 0.5x | [보기](C0670_keltner_XRPUSDT_5m.md) |
 | C671 | C | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.47 | 1.68 | 54 | +62.1% | 60% | 0.5x | [보기](C0671_linreg_XRPUSDT_30m.md) |
 | C672 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.47 | 1.46 | 161 | +33.6% | 25% | 1.5x | [보기](C0672_pairs_DOGEUSDT-LINKUSDT_15m.md) |
-| C674 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | LINKUSDT/BTCUSDT | 15m | 1.44 | 1.56 | 51 | +32.5% | 11% | 2x | [보기](C0674_pairs_LINKUSDT-BTCUSDT_15m.md) |
 | C675 | C | 파라볼릭 SAR | SOLUSDT | 4h | 1.77 | 1.40 | 70 | +43.2% | 28% | 1x | [보기](C0675_psar_SOLUSDT_4h.md) |
 | C676 | C | ADX/DMI 추세 | SOLUSDT | 1h | 1.64 | 1.38 | 50 | +35.5% | 32% | 1.5x | [보기](C0676_adx_dmi_SOLUSDT_1h.md) |
+| C678 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/ETHUSDT | 15m | 2.30 | 2.12 | 98 | +48.4% | 24% | 1x | [보기](C0678_pairs_DOGEUSDT-ETHUSDT_15m.md) |
