@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-03 06:30 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-03 19:50 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -90,6 +90,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C560 | 선형회귀 추세 유의성 | DOGEUSDT | 15m | 1.70 | 2.19 | 2.03 | +123.3% | 43% | [보기](research/candidates/C0560_linreg_DOGEUSDT_15m.md) |
 | C | C605 | MACD | DOGEUSDT | 4h | 1.89 | 1.84 | 2.36 | +74.3% | 36% | [보기](research/candidates/C0605_macd_DOGEUSDT_4h.md) |
 | B | C522 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.73 | 1.76 | 2.12 | +11.5% | 8% | [보기](research/candidates/C0522_squeeze_ALL_4h.md) |
+| C | C684 | 롤링 VWAP 이격 | DOGEUSDT | 4h | 1.32 | 1.65 | 2.61 | +57.1% | 27% | [보기](research/candidates/C0684_vwap_dev_DOGEUSDT_4h.md) |
 | C | C645 | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.28 | 1.65 | 1.76 | +40.4% | 28% | [보기](research/candidates/C0645_positioning_SOLUSDT_30m.md) |
 | B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
 | C | C588 | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.20 | 2.03 | 1.63 | +73.5% | 57% | [보기](research/candidates/C0588_heikin_DOGEUSDT_4h.md) |
@@ -107,7 +108,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C616 | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.08 | 1.31 | 1.98 | +48.9% | 39% | [보기](research/candidates/C0616_heikin_XRPUSDT_4h.md) |
 | C | C641 | OBV 거래량 모멘텀 | XRPUSDT | 5m | 1.65 | 1.35 | 1.29 | +28.3% | 14% | [보기](research/candidates/C0641_obv_XRPUSDT_5m.md) |
 | C | C682 | 돈치안 채널 돌파 (터틀) | ZECUSDT | 1h | 1.05 | 1.27 | 1.26 | +44.8% | 42% | [보기](research/candidates/C0682_donchian_ZECUSDT_1h.md) |
-| C | C664 | 선형회귀 추세 유의성 | ZECUSDT | 1h | 1.26 | 1.29 | 1.26 | +20.2% | 15% | [보기](research/candidates/C0664_linreg_ZECUSDT_1h.md) |
 
 ## 전략별 상세
 
