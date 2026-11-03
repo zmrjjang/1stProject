@@ -63,7 +63,6 @@
 | C587 | C | 롱/숏 비율 포지셔닝 | ALL | 1h | 2.48 | 2.64 | 443 | +42.4% | 23% | 1x | [보기](C0587_positioning_ALL_1h.md) |
 | C588 | C | 하이킨아시 연속봉 | DOGEUSDT | 4h | 2.03 | 1.63 | 140 | +73.5% | 57% | 0.5x | [보기](C0588_heikin_DOGEUSDT_4h.md) |
 | C589 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ZECUSDT | 5m | 2.05 | 1.52 | 157 | +47.3% | 39% | 1x | [보기](C0589_zscore_mr_ZECUSDT_5m.md) |
-| C594 | C | MACD | XRPUSDT | 1h | 1.25 | 1.79 | 64 | +33.4% | 25% | 1x | [보기](C0594_macd_XRPUSDT_1h.md) |
 | C596 | C | 일목균형표 | ALL | 1h | 1.62 | 2.29 | 452 | +25.7% | 25% | 1x | [보기](C0596_ichimoku_ALL_1h.md) |
 | C597 | C | 아룬 추세 | ALL | 30m | 1.87 | 1.88 | 211 | +14.4% | 12% | 1x | [보기](C0597_aroon_ALL_30m.md) |
 | C598 | C | 일목균형표 | DOGEUSDT | 30m | 1.32 | 1.34 | 270 | +61.1% | 39% | 0.5x | [보기](C0598_ichimoku_DOGEUSDT_30m.md) |
@@ -105,3 +104,5 @@
 | C676 | C | ADX/DMI 추세 | SOLUSDT | 1h | 1.64 | 1.38 | 50 | +35.5% | 32% | 1.5x | [보기](C0676_adx_dmi_SOLUSDT_1h.md) |
 | C678 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/ETHUSDT | 15m | 2.30 | 2.12 | 98 | +48.4% | 24% | 1x | [보기](C0678_pairs_DOGEUSDT-ETHUSDT_15m.md) |
 | C679 | C | 돈치안 채널 돌파 (터틀) | XRPUSDT | 30m | 2.06 | 2.03 | 58 | +46.3% | 30% | 1x | [보기](C0679_donchian_XRPUSDT_30m.md) |
+| C681 | C | 거래량 급증 돌파 | SOLUSDT | 4h | 1.29 | 1.67 | 92 | +62.2% | 40% | 0.5x | [보기](C0681_vol_breakout_SOLUSDT_4h.md) |
+| C682 | C | 돈치안 채널 돌파 (터틀) | ZECUSDT | 1h | 1.27 | 1.26 | 77 | +44.8% | 42% | 0.5x | [보기](C0682_donchian_ZECUSDT_1h.md) |
