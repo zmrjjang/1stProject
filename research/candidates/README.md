@@ -104,5 +104,5 @@
 | C678 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/ETHUSDT | 15m | 2.30 | 2.12 | 98 | +48.4% | 24% | 1x | [보기](C0678_pairs_DOGEUSDT-ETHUSDT_15m.md) |
 | C679 | C | 돈치안 채널 돌파 (터틀) | XRPUSDT | 30m | 2.06 | 2.03 | 58 | +46.3% | 30% | 1x | [보기](C0679_donchian_XRPUSDT_30m.md) |
 | C682 | C | 돈치안 채널 돌파 (터틀) | ZECUSDT | 1h | 1.27 | 1.26 | 77 | +44.8% | 42% | 0.5x | [보기](C0682_donchian_ZECUSDT_1h.md) |
-| C683 | C | 켈트너 채널 | BNBUSDT | 15m | 1.34 | 1.44 | 83 | +19.3% | 26% | 1.5x | [보기](C0683_keltner_BNBUSDT_15m.md) |
 | C684 | C | 롤링 VWAP 이격 | DOGEUSDT | 4h | 1.65 | 2.61 | 74 | +57.1% | 27% | 1x | [보기](C0684_vwap_dev_DOGEUSDT_4h.md) |
+| C685 | C | NR 협폭봉 돌파 | ALL | 4h | 1.44 | 1.82 | 313 | +41.6% | 26% | 1x | [보기](C0685_nr_breakout_ALL_4h.md) |
