@@ -65,7 +65,6 @@
 | C589 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ZECUSDT | 5m | 2.05 | 1.52 | 157 | +47.3% | 39% | 1x | [보기](C0589_zscore_mr_ZECUSDT_5m.md) |
 | C596 | C | 일목균형표 | ALL | 1h | 1.62 | 2.29 | 452 | +25.7% | 25% | 1x | [보기](C0596_ichimoku_ALL_1h.md) |
 | C597 | C | 아룬 추세 | ALL | 1h | 2.09 | 2.49 | 186 | +22.9% | 24% | 1x | [보기](C0597_aroon_ALL_1h.md) |
-| C598 | C | 일목균형표 | DOGEUSDT | 30m | 1.32 | 1.34 | 270 | +61.1% | 39% | 0.5x | [보기](C0598_ichimoku_DOGEUSDT_30m.md) |
 | C601 | C | 롱/숏 비율 포지셔닝 | ALL | 4h | 2.40 | 2.22 | 352 | +29.7% | 14% | 1x | [보기](C0601_positioning_ALL_4h.md) |
 | C602 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | ZECUSDT | 15m | 2.98 | 1.66 | 69 | +27.7% | 15% | 1x | [보기](C0602_rally_fade_ZECUSDT_15m.md) |
 | C605 | C | MACD | DOGEUSDT | 4h | 1.84 | 2.36 | 74 | +74.3% | 36% | 1x | [보기](C0605_macd_DOGEUSDT_4h.md) |
@@ -106,3 +105,4 @@
 | C692 | C | OBV 거래량 모멘텀 | ZECUSDT | 15m | 1.62 | 1.58 | 76 | +18.5% | 22% | 1.5x | [보기](C0692_obv_ZECUSDT_15m.md) |
 | C693 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | ZECUSDT/SOLUSDT | 15m | 1.72 | 2.15 | 103 | +35.8% | 27% | 1.5x | [보기](C0693_pairs_ZECUSDT-SOLUSDT_15m.md) |
 | C694 | C | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.38 | 1.61 | 87 | +38.4% | 28% | 1x | [보기](C0694_oi_trend_SOLUSDT_30m.md) |
+| C695 | C | OBV 거래량 모멘텀 | DOGEUSDT | 30m | 1.43 | 1.55 | 73 | +40.4% | 30% | 1x | [보기](C0695_obv_DOGEUSDT_30m.md) |
