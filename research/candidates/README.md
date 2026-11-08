@@ -70,10 +70,9 @@
 | C606 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BTCUSDT/BNBUSDT | 4h | 1.77 | 1.70 | 54 | +39.0% | 44% | 1x | [보기](C0606_pairs_BTCUSDT-BNBUSDT_4h.md) |
 | C608 | C | 켈트너 채널 | ALL | 15m | 1.76 | 1.70 | 204 | +13.3% | 6% | 1x | [보기](C0608_keltner_ALL_15m.md) |
 | C611 | C | 미결제약정(OI) × 가격 | ALL | 30m | 2.70 | 2.08 | 239 | +11.4% | 8% | 0.5x | [보기](C0611_oi_trend_ALL_30m.md) |
-| C612 | C | 미결제약정(OI) × 가격 | ALL | 30m | 1.51 | 2.24 | 261 | +7.6% | 4% | 0.5x | [보기](C0612_oi_trend_ALL_30m.md) |
 | C615 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | TRXUSDT/SOLUSDT | 4h | 1.51 | 1.52 | 29 | +47.8% | 45% | 1.5x | [보기](C0615_pairs_TRXUSDT-SOLUSDT_4h.md) |
 | C618 | C | 켈트너 채널 | ZECUSDT | 5m | 1.98 | 1.68 | 173 | +39.7% | 24% | 1x | [보기](C0618_keltner_ZECUSDT_5m.md) |
-| C629 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.54 | 1.54 | 183 | +44.3% | 33% | 1x | [보기](C0629_vwap_dev_ZECUSDT_15m.md) |
+| C629 | C | 롤링 VWAP 이격 | ZECUSDT | 5m | 2.10 | 1.73 | 81 | +32.9% | 29% | 1x | [보기](C0629_vwap_dev_ZECUSDT_5m.md) |
 | C632 | C | 펀딩비 쏠림 | ETHUSDT | 30m | 1.51 | 1.43 | 73 | +41.9% | 22% | 1x | [보기](C0632_funding_ETHUSDT_30m.md) |
 | C636 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.54 | 1.84 | 168 | +8.8% | 5% | 1.5x | [보기](C0636_zscore_mr_ALL_1h.md) |
 | C639 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.09 | 1.75 | 91 | +36.8% | 25% | 1x | [보기](C0639_rsi_mr_ZECUSDT_5m.md) |
@@ -106,3 +105,4 @@
 | C695 | C | OBV 거래량 모멘텀 | DOGEUSDT | 30m | 1.43 | 1.55 | 73 | +40.4% | 30% | 1x | [보기](C0695_obv_DOGEUSDT_30m.md) |
 | C696 | C | 하방 변동성 확대 (레버리지 효과) | ZECUSDT | 1h | 2.10 | 2.75 | 57 | +90.3% | 46% | 0.5x | [보기](C0696_vol_down_ZECUSDT_1h.md) |
 | C697 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/SOLUSDT | 15m | 1.61 | 1.55 | 527 | +57.3% | 39% | 0.5x | [보기](C0697_pairs_DOGEUSDT-SOLUSDT_15m.md) |
+| C698 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BTCUSDT/TRXUSDT | 30m | 1.56 | 1.69 | 57 | +13.7% | 13% | 3x | [보기](C0698_pairs_BTCUSDT-TRXUSDT_30m.md) |
