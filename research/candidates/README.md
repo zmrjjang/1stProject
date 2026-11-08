@@ -88,7 +88,6 @@
 | C660 | C | 스토캐스틱 역추세 | DOGEUSDT | 30m | 2.06 | 1.57 | 132 | +53.3% | 33% | 1x | [보기](C0660_stoch_DOGEUSDT_30m.md) |
 | C663 | C | 롤링 VWAP 이격 | XRPUSDT | 1h | 1.41 | 1.73 | 53 | +48.4% | 30% | 1x | [보기](C0663_vwap_dev_XRPUSDT_1h.md) |
 | C665 | C | 롤링 VWAP 이격 | ALL | 1d | 1.89 | 1.59 | 174 | +35.2% | 24% | 0.5x | [보기](C0665_vwap_dev_ALL_1d.md) |
-| C666 | C | OBV 거래량 모멘텀 | SOLUSDT | 15m | 2.11 | 1.49 | 61 | +35.9% | 25% | 1x | [보기](C0666_obv_SOLUSDT_15m.md) |
 | C667 | C | OBV 거래량 모멘텀 | ETHUSDT | 5m | 1.72 | 1.66 | 67 | +46.2% | 21% | 1x | [보기](C0667_obv_ETHUSDT_5m.md) |
 | C668 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | ZECUSDT/BNBUSDT | 15m | 1.86 | 1.63 | 44 | +16.7% | 10% | 3.5x | [보기](C0668_pairs_ZECUSDT-BNBUSDT_15m.md) |
 | C675 | C | 파라볼릭 SAR | SOLUSDT | 4h | 1.77 | 1.40 | 70 | +43.2% | 28% | 1x | [보기](C0675_psar_SOLUSDT_4h.md) |
@@ -106,3 +105,4 @@
 | C694 | C | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.38 | 1.61 | 87 | +38.4% | 28% | 1x | [보기](C0694_oi_trend_SOLUSDT_30m.md) |
 | C695 | C | OBV 거래량 모멘텀 | DOGEUSDT | 30m | 1.43 | 1.55 | 73 | +40.4% | 30% | 1x | [보기](C0695_obv_DOGEUSDT_30m.md) |
 | C696 | C | 하방 변동성 확대 (레버리지 효과) | ZECUSDT | 1h | 2.10 | 2.75 | 57 | +90.3% | 46% | 0.5x | [보기](C0696_vol_down_ZECUSDT_1h.md) |
+| C697 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/SOLUSDT | 15m | 1.61 | 1.55 | 527 | +57.3% | 39% | 0.5x | [보기](C0697_pairs_DOGEUSDT-SOLUSDT_15m.md) |
