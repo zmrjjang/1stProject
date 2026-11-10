@@ -75,7 +75,6 @@
 | C632 | C | 펀딩비 쏠림 | ETHUSDT | 30m | 1.51 | 1.43 | 73 | +41.9% | 22% | 1x | [보기](C0632_funding_ETHUSDT_30m.md) |
 | C636 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.54 | 1.84 | 168 | +8.8% | 5% | 1.5x | [보기](C0636_zscore_mr_ALL_1h.md) |
 | C639 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.09 | 1.75 | 91 | +36.8% | 25% | 1x | [보기](C0639_rsi_mr_ZECUSDT_5m.md) |
-| C642 | C | 일목균형표 | XRPUSDT | 4h | 1.37 | 1.35 | 108 | +40.8% | 33% | 1x | [보기](C0642_ichimoku_XRPUSDT_4h.md) |
 | C644 | C | 켈트너 채널 | ETHUSDT | 30m | 1.65 | 1.62 | 56 | +16.9% | 13% | 3.5x | [보기](C0644_keltner_ETHUSDT_30m.md) |
 | C645 | C | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.65 | 1.76 | 79 | +40.4% | 28% | 1.5x | [보기](C0645_positioning_SOLUSDT_30m.md) |
 | C649 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/LINKUSDT | 15m | 1.55 | 1.53 | 92 | +38.8% | 22% | 1x | [보기](C0649_pairs_XRPUSDT-LINKUSDT_15m.md) |
@@ -97,7 +96,6 @@
 | C687 | C | 하이킨아시 연속봉 | ALL | 4h | 1.72 | 2.10 | 215 | +16.5% | 15% | 1x | [보기](C0687_heikin_ALL_4h.md) |
 | C688 | C | 아룬 추세 | XRPUSDT | 1h | 1.65 | 1.79 | 180 | +54.2% | 39% | 1x | [보기](C0688_aroon_XRPUSDT_1h.md) |
 | C689 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.61 | 1.64 | 72 | +25.1% | 23% | 2x | [보기](C0689_vol_down_ETHUSDT_1h.md) |
-| C690 | C | OBV 거래량 모멘텀 | ALL | 30m | 1.38 | 1.37 | 206 | +7.9% | 4% | 2x | [보기](C0690_obv_ALL_30m.md) |
 | C692 | C | OBV 거래량 모멘텀 | ZECUSDT | 15m | 1.62 | 1.58 | 76 | +18.5% | 22% | 1.5x | [보기](C0692_obv_ZECUSDT_15m.md) |
 | C693 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | ZECUSDT/SOLUSDT | 15m | 1.72 | 2.15 | 103 | +35.8% | 27% | 1.5x | [보기](C0693_pairs_ZECUSDT-SOLUSDT_15m.md) |
 | C694 | C | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.38 | 1.61 | 87 | +38.4% | 28% | 1x | [보기](C0694_oi_trend_SOLUSDT_30m.md) |
@@ -106,3 +104,5 @@
 | C697 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/SOLUSDT | 15m | 1.61 | 1.55 | 527 | +57.3% | 39% | 0.5x | [보기](C0697_pairs_DOGEUSDT-SOLUSDT_15m.md) |
 | C698 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BTCUSDT/TRXUSDT | 30m | 1.56 | 1.69 | 57 | +13.7% | 13% | 3x | [보기](C0698_pairs_BTCUSDT-TRXUSDT_30m.md) |
 | C699 | C | 미결제약정(OI) × 가격 | ALL | 30m | 1.52 | 1.66 | 359 | +12.0% | 8% | 0.5x | [보기](C0699_oi_trend_ALL_30m.md) |
+| C700 | C | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.67 | 1.69 | 108 | +63.7% | 32% | 1x | [보기](C0700_heikin_XRPUSDT_4h.md) |
+| C701 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.83 | 1.75 | 70 | +59.6% | 30% | 0.5x | [보기](C0701_squeeze_ZECUSDT_1h.md) |

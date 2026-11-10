@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-10 03:54 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-10 12:53 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -91,7 +91,9 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C583 | 선형회귀 추세 유의성 | SOLUSDT | 30m | 1.11 | 1.94 | 2.10 | +52.5% | 26% | [보기](research/candidates/C0583_linreg_SOLUSDT_30m.md) |
 | C | C605 | MACD | DOGEUSDT | 4h | 1.89 | 1.84 | 2.36 | +74.3% | 36% | [보기](research/candidates/C0605_macd_DOGEUSDT_4h.md) |
 | B | C522 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.73 | 1.76 | 2.12 | +11.5% | 8% | [보기](research/candidates/C0522_squeeze_ALL_4h.md) |
+| C | C701 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.04 | 1.83 | 1.75 | +59.6% | 30% | [보기](research/candidates/C0701_squeeze_ZECUSDT_1h.md) |
 | B | C584 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | XRPUSDT | 30m | 1.56 | 1.77 | 1.72 | +24.5% | 15% | [보기](research/candidates/C0584_squeeze_XRPUSDT_30m.md) |
+| C | C700 | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.42 | 1.67 | 1.69 | +63.7% | 32% | [보기](research/candidates/C0700_heikin_XRPUSDT_4h.md) |
 | C | C684 | 롤링 VWAP 이격 | DOGEUSDT | 4h | 1.32 | 1.65 | 2.61 | +57.1% | 27% | [보기](research/candidates/C0684_vwap_dev_DOGEUSDT_4h.md) |
 | C | C645 | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.28 | 1.65 | 1.76 | +40.4% | 28% | [보기](research/candidates/C0645_positioning_SOLUSDT_30m.md) |
 | C | C688 | 아룬 추세 | XRPUSDT | 1h | 1.36 | 1.65 | 1.79 | +54.2% | 39% | [보기](research/candidates/C0688_aroon_XRPUSDT_1h.md) |
@@ -106,8 +108,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C663 | 롤링 VWAP 이격 | XRPUSDT | 1h | 1.27 | 1.41 | 1.73 | +48.4% | 30% | [보기](research/candidates/C0663_vwap_dev_XRPUSDT_1h.md) |
 | C | C675 | 파라볼릭 SAR | SOLUSDT | 4h | 1.07 | 1.77 | 1.40 | +43.2% | 28% | [보기](research/candidates/C0675_psar_SOLUSDT_4h.md) |
 | C | C676 | ADX/DMI 추세 | SOLUSDT | 1h | 1.25 | 1.64 | 1.38 | +35.5% | 32% | [보기](research/candidates/C0676_adx_dmi_SOLUSDT_1h.md) |
-| C | C690 | OBV 거래량 모멘텀 | ALL | 30m | 1.24 | 1.38 | 1.37 | +7.9% | 4% | [보기](research/candidates/C0690_obv_ALL_30m.md) |
-| C | C642 | 일목균형표 | XRPUSDT | 4h | 1.22 | 1.37 | 1.35 | +40.8% | 33% | [보기](research/candidates/C0642_ichimoku_XRPUSDT_4h.md) |
 
 ## 전략별 상세
 
