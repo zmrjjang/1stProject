@@ -77,7 +77,6 @@
 | C639 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.09 | 1.75 | 91 | +36.8% | 25% | 1x | [보기](C0639_rsi_mr_ZECUSDT_5m.md) |
 | C644 | C | 켈트너 채널 | ETHUSDT | 30m | 1.65 | 1.62 | 56 | +16.9% | 13% | 3.5x | [보기](C0644_keltner_ETHUSDT_30m.md) |
 | C645 | C | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.65 | 1.76 | 79 | +40.4% | 28% | 1.5x | [보기](C0645_positioning_SOLUSDT_30m.md) |
-| C649 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/LINKUSDT | 15m | 1.55 | 1.53 | 92 | +38.8% | 22% | 1x | [보기](C0649_pairs_XRPUSDT-LINKUSDT_15m.md) |
 | C651 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/BNBUSDT | 15m | 2.06 | 1.66 | 108 | +24.4% | 16% | 2.5x | [보기](C0651_pairs_XRPUSDT-BNBUSDT_15m.md) |
 | C652 | C | 파라볼릭 SAR | XRPUSDT | 1h | 1.54 | 1.51 | 85 | +41.8% | 36% | 1x | [보기](C0652_psar_XRPUSDT_1h.md) |
 | C655 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BNBUSDT/ETHUSDT | 15m | 1.64 | 1.90 | 115 | +23.2% | 24% | 2x | [보기](C0655_pairs_BNBUSDT-ETHUSDT_15m.md) |
@@ -107,3 +106,4 @@
 | C704 | C | 일목균형표 | XRPUSDT | 4h | 1.57 | 1.89 | 97 | +37.7% | 26% | 1.5x | [보기](C0704_ichimoku_XRPUSDT_4h.md) |
 | C705 | C | 시계열 모멘텀 (변동성 정규화) | DOGEUSDT | 4h | 1.55 | 1.86 | 156 | +71.3% | 41% | 0.5x | [보기](C0705_tsmom_DOGEUSDT_4h.md) |
 | C707 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.63 | 1.73 | 111 | +20.5% | 15% | 3x | [보기](C0707_pairs_DOGEUSDT-LINKUSDT_15m.md) |
+| C708 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | LINKUSDT | 15m | 1.63 | 2.29 | 71 | +27.4% | 21% | 2x | [보기](C0708_rally_fade_LINKUSDT_15m.md) |
