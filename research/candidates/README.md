@@ -97,7 +97,6 @@
 | C694 | C | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.38 | 1.61 | 87 | +38.4% | 28% | 1x | [보기](C0694_oi_trend_SOLUSDT_30m.md) |
 | C695 | C | OBV 거래량 모멘텀 | DOGEUSDT | 30m | 1.43 | 1.55 | 73 | +40.4% | 30% | 1x | [보기](C0695_obv_DOGEUSDT_30m.md) |
 | C696 | C | 하방 변동성 확대 (레버리지 효과) | ZECUSDT | 1h | 2.10 | 2.75 | 57 | +90.3% | 46% | 0.5x | [보기](C0696_vol_down_ZECUSDT_1h.md) |
-| C697 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/SOLUSDT | 15m | 1.61 | 1.55 | 527 | +57.3% | 39% | 0.5x | [보기](C0697_pairs_DOGEUSDT-SOLUSDT_15m.md) |
 | C698 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BTCUSDT/TRXUSDT | 30m | 1.56 | 1.69 | 57 | +13.7% | 13% | 3x | [보기](C0698_pairs_BTCUSDT-TRXUSDT_30m.md) |
 | C700 | C | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.67 | 1.69 | 108 | +63.7% | 32% | 1x | [보기](C0700_heikin_XRPUSDT_4h.md) |
 | C701 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.83 | 1.75 | 70 | +59.6% | 30% | 0.5x | [보기](C0701_squeeze_ZECUSDT_1h.md) |
@@ -107,3 +106,4 @@
 | C705 | C | 시계열 모멘텀 (변동성 정규화) | DOGEUSDT | 4h | 1.55 | 1.86 | 156 | +71.3% | 41% | 0.5x | [보기](C0705_tsmom_DOGEUSDT_4h.md) |
 | C707 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.63 | 1.73 | 111 | +20.5% | 15% | 3x | [보기](C0707_pairs_DOGEUSDT-LINKUSDT_15m.md) |
 | C708 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | LINKUSDT | 15m | 1.63 | 2.29 | 71 | +27.4% | 21% | 2x | [보기](C0708_rally_fade_LINKUSDT_15m.md) |
+| C709 | C | 하방 변동성 확대 (레버리지 효과) | ALL | 1h | 1.55 | 1.74 | 353 | +32.8% | 20% | 1x | [보기](C0709_vol_down_ALL_1h.md) |
