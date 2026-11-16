@@ -81,7 +81,6 @@
 | C652 | C | 파라볼릭 SAR | XRPUSDT | 1h | 1.54 | 1.51 | 85 | +41.8% | 36% | 1x | [보기](C0652_psar_XRPUSDT_1h.md) |
 | C655 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BNBUSDT/ETHUSDT | 15m | 1.64 | 1.90 | 115 | +23.2% | 24% | 2x | [보기](C0655_pairs_BNBUSDT-ETHUSDT_15m.md) |
 | C660 | C | 스토캐스틱 역추세 | DOGEUSDT | 30m | 2.06 | 1.57 | 132 | +53.3% | 33% | 1x | [보기](C0660_stoch_DOGEUSDT_30m.md) |
-| C663 | C | 롤링 VWAP 이격 | XRPUSDT | 1h | 1.41 | 1.73 | 53 | +48.4% | 30% | 1x | [보기](C0663_vwap_dev_XRPUSDT_1h.md) |
 | C665 | C | 롤링 VWAP 이격 | ALL | 1d | 1.89 | 1.59 | 174 | +35.2% | 24% | 0.5x | [보기](C0665_vwap_dev_ALL_1d.md) |
 | C667 | C | OBV 거래량 모멘텀 | ETHUSDT | 5m | 1.72 | 1.66 | 67 | +46.2% | 21% | 1x | [보기](C0667_obv_ETHUSDT_5m.md) |
 | C668 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | ZECUSDT/BNBUSDT | 15m | 1.86 | 1.63 | 44 | +16.7% | 10% | 3.5x | [보기](C0668_pairs_ZECUSDT-BNBUSDT_15m.md) |
@@ -101,9 +100,10 @@
 | C700 | C | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.67 | 1.69 | 108 | +63.7% | 32% | 1x | [보기](C0700_heikin_XRPUSDT_4h.md) |
 | C701 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.83 | 1.75 | 70 | +59.6% | 30% | 0.5x | [보기](C0701_squeeze_ZECUSDT_1h.md) |
 | C702 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 1d | 2.02 | 1.97 | 61 | +128.5% | 60% | 0.5x | [보기](C0702_xsmom_ALL_1d.md) |
-| C703 | C | 켈트너 채널 | BNBUSDT | 15m | 2.22 | 1.55 | 57 | +22.7% | 26% | 2.5x | [보기](C0703_keltner_BNBUSDT_15m.md) |
 | C704 | C | 일목균형표 | XRPUSDT | 4h | 1.57 | 1.89 | 97 | +37.7% | 26% | 1.5x | [보기](C0704_ichimoku_XRPUSDT_4h.md) |
 | C705 | C | 시계열 모멘텀 (변동성 정규화) | DOGEUSDT | 4h | 1.55 | 1.86 | 156 | +71.3% | 41% | 0.5x | [보기](C0705_tsmom_DOGEUSDT_4h.md) |
 | C707 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.63 | 1.73 | 111 | +20.5% | 15% | 3x | [보기](C0707_pairs_DOGEUSDT-LINKUSDT_15m.md) |
 | C708 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | LINKUSDT | 15m | 1.63 | 2.29 | 71 | +27.4% | 21% | 2x | [보기](C0708_rally_fade_LINKUSDT_15m.md) |
-| C709 | C | 하방 변동성 확대 (레버리지 효과) | ALL | 1h | 1.55 | 1.74 | 353 | +32.8% | 20% | 1x | [보기](C0709_vol_down_ALL_1h.md) |
+| C710 | C | NR 협폭봉 돌파 | ALL | 4h | 1.58 | 1.76 | 248 | +36.2% | 26% | 1x | [보기](C0710_nr_breakout_ALL_4h.md) |
+| C711 | C | 이동평균 교차 추세추종 | SOLUSDT | 5m | 2.33 | 1.50 | 87 | +52.5% | 33% | 1x | [보기](C0711_ma_cross_SOLUSDT_5m.md) |
+| C712 | C | 과열 소진 역추세 (블로오프) | XRPUSDT | 5m | 2.08 | 1.61 | 66 | +40.8% | 48% | 0.5x | [보기](C0712_blowoff_XRPUSDT_5m.md) |
