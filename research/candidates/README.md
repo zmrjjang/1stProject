@@ -32,7 +32,7 @@
 | C607 | B | 켈트너 채널 | ETHUSDT | 30m | 1.84 | 1.65 | 104 | +33.3% | 13% | 2x | [보기](C0607_keltner_ETHUSDT_30m.md) |
 | C619 | B | 하락추세 반등 매도 (상승추세 눌림 매수) | SOLUSDT | 30m | 1.62 | 1.75 | 73 | +32.9% | 17% | 2x | [보기](C0619_rally_fade_SOLUSDT_30m.md) |
 | C630 | B | Ornstein-Uhlenbeck 평균회귀 (z-score) | DOGEUSDT | 5m | 2.11 | 1.64 | 70 | +40.8% | 18% | 1x | [보기](C0630_zscore_mr_DOGEUSDT_5m.md) |
-| C659 | B | OBV 거래량 모멘텀 | XRPUSDT | 15m | 2.01 | 2.01 | 72 | +49.6% | 19% | 1x | [보기](C0659_obv_XRPUSDT_15m.md) |
+| C659 | B | OBV 거래량 모멘텀 | XRPUSDT | 15m | 2.92 | 2.31 | 70 | +39.8% | 15% | 1.5x | [보기](C0659_obv_XRPUSDT_15m.md) |
 | C670 | B | 켈트너 채널 | XRPUSDT | 5m | 1.88 | 1.66 | 65 | +53.0% | 12% | 0.5x | [보기](C0670_keltner_XRPUSDT_5m.md) |
 | C673 | B | 과열 소진 역추세 (블로오프) | ALL | 5m | 1.64 | 1.82 | 221 | +9.9% | 10% | 0.5x | [보기](C0673_blowoff_ALL_5m.md) |
 | C680 | B | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 30m | 1.74 | 1.66 | 70 | +80.7% | 24% | 1x | [보기](C0680_vol_down_ETHUSDT_30m.md) |
