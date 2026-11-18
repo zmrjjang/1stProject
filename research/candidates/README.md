@@ -96,7 +96,6 @@
 | C694 | C | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.38 | 1.61 | 87 | +38.4% | 28% | 1x | [보기](C0694_oi_trend_SOLUSDT_30m.md) |
 | C695 | C | OBV 거래량 모멘텀 | DOGEUSDT | 30m | 1.43 | 1.55 | 73 | +40.4% | 30% | 1x | [보기](C0695_obv_DOGEUSDT_30m.md) |
 | C696 | C | 하방 변동성 확대 (레버리지 효과) | ZECUSDT | 1h | 2.10 | 2.75 | 57 | +90.3% | 46% | 0.5x | [보기](C0696_vol_down_ZECUSDT_1h.md) |
-| C698 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BTCUSDT/TRXUSDT | 30m | 1.56 | 1.69 | 57 | +13.7% | 13% | 3x | [보기](C0698_pairs_BTCUSDT-TRXUSDT_30m.md) |
 | C700 | C | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.67 | 1.69 | 108 | +63.7% | 32% | 1x | [보기](C0700_heikin_XRPUSDT_4h.md) |
 | C701 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.83 | 1.75 | 70 | +59.6% | 30% | 0.5x | [보기](C0701_squeeze_ZECUSDT_1h.md) |
 | C702 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 1d | 2.02 | 1.97 | 61 | +128.5% | 60% | 0.5x | [보기](C0702_xsmom_ALL_1d.md) |
@@ -107,3 +106,4 @@
 | C710 | C | NR 협폭봉 돌파 | ALL | 4h | 1.58 | 1.76 | 248 | +36.2% | 26% | 1x | [보기](C0710_nr_breakout_ALL_4h.md) |
 | C711 | C | 이동평균 교차 추세추종 | SOLUSDT | 5m | 2.33 | 1.50 | 87 | +52.5% | 33% | 1x | [보기](C0711_ma_cross_SOLUSDT_5m.md) |
 | C712 | C | 과열 소진 역추세 (블로오프) | XRPUSDT | 5m | 2.08 | 1.61 | 66 | +40.8% | 48% | 0.5x | [보기](C0712_blowoff_XRPUSDT_5m.md) |
+| C713 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | XRPUSDT | 15m | 1.60 | 1.73 | 63 | +23.1% | 26% | 1x | [보기](C0713_zscore_mr_XRPUSDT_15m.md) |
