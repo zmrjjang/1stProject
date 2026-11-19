@@ -55,7 +55,7 @@
 | C562 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 1h | 2.33 | 2.29 | 190 | +21.7% | 15% | 2x | [보기](C0562_squeeze_ALL_1h.md) |
 | C563 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | LINKUSDT/ETHUSDT | 1h | 2.54 | 1.74 | 40 | +20.1% | 11% | 3x | [보기](C0563_pairs_LINKUSDT-ETHUSDT_1h.md) |
 | C566 | C | 파라볼릭 SAR | ALL | 4h | 1.67 | 1.66 | 310 | +35.8% | 24% | 1.5x | [보기](C0566_psar_ALL_4h.md) |
-| C573 | C | 펀딩비 쏠림 | ALL | 30m | 1.63 | 1.63 | 213 | +26.3% | 14% | 0.5x | [보기](C0573_funding_ALL_30m.md) |
+| C573 | C | 펀딩비 쏠림 | ALL | 30m | 1.81 | 1.81 | 294 | +63.8% | 30% | 0.5x | [보기](C0573_funding_ALL_30m.md) |
 | C574 | C | MACD | ALL | 4h | 1.89 | 1.85 | 218 | +35.2% | 34% | 1x | [보기](C0574_macd_ALL_4h.md) |
 | C575 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | ZECUSDT/BTCUSDT | 30m | 2.56 | 2.08 | 95 | +48.7% | 20% | 1.5x | [보기](C0575_pairs_ZECUSDT-BTCUSDT_30m.md) |
 | C576 | C | 캔들 패턴 | ALL | 4h | 1.81 | 2.18 | 209 | +16.5% | 15% | 1x | [보기](C0576_candle_ALL_4h.md) |
@@ -102,8 +102,8 @@
 | C707 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.63 | 1.73 | 111 | +20.5% | 15% | 3x | [보기](C0707_pairs_DOGEUSDT-LINKUSDT_15m.md) |
 | C708 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | LINKUSDT | 15m | 1.63 | 2.29 | 71 | +27.4% | 21% | 2x | [보기](C0708_rally_fade_LINKUSDT_15m.md) |
 | C710 | C | NR 협폭봉 돌파 | ALL | 4h | 1.58 | 1.76 | 248 | +36.2% | 26% | 1x | [보기](C0710_nr_breakout_ALL_4h.md) |
-| C711 | C | 이동평균 교차 추세추종 | SOLUSDT | 5m | 2.33 | 1.50 | 87 | +52.5% | 33% | 1x | [보기](C0711_ma_cross_SOLUSDT_5m.md) |
 | C712 | C | 과열 소진 역추세 (블로오프) | XRPUSDT | 5m | 2.08 | 1.61 | 66 | +40.8% | 48% | 0.5x | [보기](C0712_blowoff_XRPUSDT_5m.md) |
 | C713 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | XRPUSDT | 15m | 1.60 | 1.73 | 63 | +23.1% | 26% | 1x | [보기](C0713_zscore_mr_XRPUSDT_15m.md) |
 | C714 | C | MACD | XRPUSDT | 30m | 1.73 | 1.55 | 67 | +31.3% | 27% | 1.5x | [보기](C0714_macd_XRPUSDT_30m.md) |
 | C715 | C | 슈퍼트렌드 | XRPUSDT | 1h | 1.58 | 2.18 | 64 | +44.3% | 20% | 1x | [보기](C0715_supertrend_XRPUSDT_1h.md) |
+| C716 | C | 펀딩비 쏠림 | ETHUSDT | 30m | 1.67 | 1.63 | 61 | +48.9% | 27% | 1x | [보기](C0716_funding_ETHUSDT_30m.md) |

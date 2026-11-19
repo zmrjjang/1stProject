@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-19 02:05 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-19 12:59 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -100,6 +100,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C688 | 아룬 추세 | XRPUSDT | 1h | 1.36 | 1.65 | 1.79 | +54.2% | 39% | [보기](research/candidates/C0688_aroon_XRPUSDT_1h.md) |
 | B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
 | C | C588 | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.20 | 2.03 | 1.63 | +73.5% | 57% | [보기](research/candidates/C0588_heikin_DOGEUSDT_4h.md) |
+| C | C716 | 펀딩비 쏠림 | ETHUSDT | 30m | 1.22 | 1.67 | 1.63 | +48.9% | 27% | [보기](research/candidates/C0716_funding_ETHUSDT_30m.md) |
 | C | C689 | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.09 | 1.61 | 1.64 | +25.1% | 23% | [보기](research/candidates/C0689_vol_down_ETHUSDT_1h.md) |
 | C | C715 | 슈퍼트렌드 | XRPUSDT | 1h | 1.41 | 1.58 | 2.18 | +44.3% | 20% | [보기](research/candidates/C0715_supertrend_XRPUSDT_1h.md) |
 | C | C660 | 스토캐스틱 역추세 | DOGEUSDT | 30m | 1.61 | 2.06 | 1.57 | +53.3% | 33% | [보기](research/candidates/C0660_stoch_DOGEUSDT_30m.md) |
@@ -108,7 +109,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C705 | 시계열 모멘텀 (변동성 정규화) | DOGEUSDT | 4h | 1.21 | 1.55 | 1.86 | +71.3% | 41% | [보기](research/candidates/C0705_tsmom_DOGEUSDT_4h.md) |
 | B | C545 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 2.35 | 1.54 | 1.60 | +37.1% | 15% | [보기](research/candidates/C0545_squeeze_SOLUSDT_30m.md) |
 | C | C652 | 파라볼릭 SAR | XRPUSDT | 1h | 1.17 | 1.54 | 1.51 | +41.8% | 36% | [보기](research/candidates/C0652_psar_XRPUSDT_1h.md) |
-| C | C711 | 이동평균 교차 추세추종 | SOLUSDT | 5m | 1.45 | 2.33 | 1.50 | +52.5% | 33% | [보기](research/candidates/C0711_ma_cross_SOLUSDT_5m.md) |
 
 ## 전략별 상세
 
