@@ -71,7 +71,7 @@
 | C608 | C | 켈트너 채널 | ALL | 15m | 1.76 | 1.70 | 204 | +13.3% | 6% | 1x | [보기](C0608_keltner_ALL_15m.md) |
 | C611 | C | 미결제약정(OI) × 가격 | ALL | 30m | 2.70 | 2.08 | 239 | +11.4% | 8% | 0.5x | [보기](C0611_oi_trend_ALL_30m.md) |
 | C618 | C | 켈트너 채널 | ZECUSDT | 15m | 1.97 | 1.90 | 103 | +41.8% | 39% | 1x | [보기](C0618_keltner_ZECUSDT_15m.md) |
-| C629 | C | 롤링 VWAP 이격 | ZECUSDT | 5m | 2.10 | 1.73 | 81 | +32.9% | 29% | 1x | [보기](C0629_vwap_dev_ZECUSDT_5m.md) |
+| C629 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.91 | 2.36 | 106 | +34.4% | 30% | 1x | [보기](C0629_vwap_dev_ZECUSDT_15m.md) |
 | C636 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.54 | 1.84 | 168 | +8.8% | 5% | 1.5x | [보기](C0636_zscore_mr_ALL_1h.md) |
 | C639 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 5m | 2.09 | 1.75 | 91 | +36.8% | 25% | 1x | [보기](C0639_rsi_mr_ZECUSDT_5m.md) |
 | C644 | C | 켈트너 채널 | ETHUSDT | 30m | 1.65 | 1.62 | 56 | +16.9% | 13% | 3.5x | [보기](C0644_keltner_ETHUSDT_30m.md) |
@@ -96,7 +96,6 @@
 | C701 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.83 | 1.75 | 70 | +59.6% | 30% | 0.5x | [보기](C0701_squeeze_ZECUSDT_1h.md) |
 | C702 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 1d | 2.02 | 1.97 | 61 | +128.5% | 60% | 0.5x | [보기](C0702_xsmom_ALL_1d.md) |
 | C704 | C | 일목균형표 | XRPUSDT | 4h | 1.57 | 1.89 | 97 | +37.7% | 26% | 1.5x | [보기](C0704_ichimoku_XRPUSDT_4h.md) |
-| C705 | C | 시계열 모멘텀 (변동성 정규화) | DOGEUSDT | 4h | 1.55 | 1.86 | 156 | +71.3% | 41% | 0.5x | [보기](C0705_tsmom_DOGEUSDT_4h.md) |
 | C707 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.63 | 1.73 | 111 | +20.5% | 15% | 3x | [보기](C0707_pairs_DOGEUSDT-LINKUSDT_15m.md) |
 | C708 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | LINKUSDT | 15m | 1.63 | 2.29 | 71 | +27.4% | 21% | 2x | [보기](C0708_rally_fade_LINKUSDT_15m.md) |
 | C712 | C | 과열 소진 역추세 (블로오프) | XRPUSDT | 5m | 2.08 | 1.61 | 66 | +40.8% | 48% | 0.5x | [보기](C0712_blowoff_XRPUSDT_5m.md) |
@@ -107,3 +106,4 @@
 | C717 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/ZECUSDT | 1h | 1.79 | 1.68 | 86 | +35.0% | 24% | 1.5x | [보기](C0717_pairs_XRPUSDT-ZECUSDT_1h.md) |
 | C718 | C | 일목균형표 | DOGEUSDT | 15m | 1.55 | 1.75 | 254 | +65.4% | 55% | 0.5x | [보기](C0718_ichimoku_DOGEUSDT_15m.md) |
 | C719 | C | OBV 거래량 모멘텀 | ZECUSDT | 30m | 1.72 | 1.76 | 154 | +52.2% | 46% | 1x | [보기](C0719_obv_ZECUSDT_30m.md) |
+| C720 | C | 일목균형표 | ETHUSDT | 30m | 1.64 | 1.57 | 86 | +24.7% | 20% | 2x | [보기](C0720_ichimoku_ETHUSDT_30m.md) |
