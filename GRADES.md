@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-21 01:54 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-21 12:43 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -106,8 +106,8 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C720 | 일목균형표 | ETHUSDT | 30m | 1.01 | 1.64 | 1.57 | +24.7% | 20% | [보기](research/candidates/C0720_ichimoku_ETHUSDT_30m.md) |
 | C | C660 | 스토캐스틱 역추세 | DOGEUSDT | 30m | 1.61 | 2.06 | 1.57 | +53.3% | 33% | [보기](research/candidates/C0660_stoch_DOGEUSDT_30m.md) |
 | C | C704 | 일목균형표 | XRPUSDT | 4h | 1.18 | 1.57 | 1.89 | +37.7% | 26% | [보기](research/candidates/C0704_ichimoku_XRPUSDT_4h.md) |
+| C | C721 | 파라볼릭 SAR | XRPUSDT | 4h | 1.58 | 1.87 | 1.55 | +40.4% | 25% | [보기](research/candidates/C0721_psar_XRPUSDT_4h.md) |
 | C | C718 | 일목균형표 | DOGEUSDT | 15m | 1.14 | 1.55 | 1.75 | +65.4% | 55% | [보기](research/candidates/C0718_ichimoku_DOGEUSDT_15m.md) |
-| C | C714 | MACD | XRPUSDT | 30m | 1.07 | 1.73 | 1.55 | +31.3% | 27% | [보기](research/candidates/C0714_macd_XRPUSDT_30m.md) |
 | B | C545 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | SOLUSDT | 30m | 2.35 | 1.54 | 1.60 | +37.1% | 15% | [보기](research/candidates/C0545_squeeze_SOLUSDT_30m.md) |
 
 ## 전략별 상세
