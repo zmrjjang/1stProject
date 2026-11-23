@@ -90,7 +90,6 @@
 | C688 | C | 아룬 추세 | XRPUSDT | 1h | 1.65 | 1.79 | 180 | +54.2% | 39% | 1x | [보기](C0688_aroon_XRPUSDT_1h.md) |
 | C689 | C | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.61 | 1.64 | 72 | +25.1% | 23% | 2x | [보기](C0689_vol_down_ETHUSDT_1h.md) |
 | C693 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | ZECUSDT/SOLUSDT | 15m | 1.72 | 2.15 | 103 | +35.8% | 27% | 1.5x | [보기](C0693_pairs_ZECUSDT-SOLUSDT_15m.md) |
-| C694 | C | 미결제약정(OI) × 가격 | SOLUSDT | 30m | 2.38 | 1.61 | 87 | +38.4% | 28% | 1x | [보기](C0694_oi_trend_SOLUSDT_30m.md) |
 | C696 | C | 하방 변동성 확대 (레버리지 효과) | ZECUSDT | 1h | 2.10 | 2.75 | 57 | +90.3% | 46% | 0.5x | [보기](C0696_vol_down_ZECUSDT_1h.md) |
 | C700 | C | 하이킨아시 연속봉 | XRPUSDT | 4h | 1.67 | 1.69 | 108 | +63.7% | 32% | 1x | [보기](C0700_heikin_XRPUSDT_4h.md) |
 | C701 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.83 | 1.75 | 70 | +59.6% | 30% | 0.5x | [보기](C0701_squeeze_ZECUSDT_1h.md) |
@@ -108,3 +107,4 @@
 | C721 | C | 파라볼릭 SAR | XRPUSDT | 4h | 1.87 | 1.55 | 87 | +40.4% | 25% | 1.5x | [보기](C0721_psar_XRPUSDT_4h.md) |
 | C722 | C | 캔들 패턴 | ALL | 4h | 1.66 | 1.89 | 231 | +19.1% | 17% | 1x | [보기](C0722_candle_ALL_4h.md) |
 | C723 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 1.75 | 1.64 | 71 | +70.1% | 39% | 0.5x | [보기](C0723_squeeze_DOGEUSDT_4h.md) |
+| C725 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.66 | 2.01 | 129 | +64.0% | 46% | 1x | [보기](C0725_positioning_BTCUSDT_1h.md) |
