@@ -97,7 +97,6 @@
 | C704 | C | 일목균형표 | XRPUSDT | 4h | 1.57 | 1.89 | 97 | +37.7% | 26% | 1.5x | [보기](C0704_ichimoku_XRPUSDT_4h.md) |
 | C707 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | DOGEUSDT/LINKUSDT | 15m | 1.63 | 1.73 | 111 | +20.5% | 15% | 3x | [보기](C0707_pairs_DOGEUSDT-LINKUSDT_15m.md) |
 | C708 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | LINKUSDT | 15m | 1.63 | 2.29 | 71 | +27.4% | 21% | 2x | [보기](C0708_rally_fade_LINKUSDT_15m.md) |
-| C712 | C | 과열 소진 역추세 (블로오프) | XRPUSDT | 5m | 2.08 | 1.61 | 66 | +40.8% | 48% | 0.5x | [보기](C0712_blowoff_XRPUSDT_5m.md) |
 | C715 | C | 슈퍼트렌드 | XRPUSDT | 1h | 1.58 | 2.18 | 64 | +44.3% | 20% | 1x | [보기](C0715_supertrend_XRPUSDT_1h.md) |
 | C716 | C | 펀딩비 쏠림 | ETHUSDT | 30m | 1.67 | 1.63 | 61 | +48.9% | 27% | 1x | [보기](C0716_funding_ETHUSDT_30m.md) |
 | C717 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/ZECUSDT | 1h | 1.79 | 1.68 | 86 | +35.0% | 24% | 1.5x | [보기](C0717_pairs_XRPUSDT-ZECUSDT_1h.md) |
@@ -108,3 +107,4 @@
 | C722 | C | 캔들 패턴 | ALL | 4h | 1.66 | 1.89 | 231 | +19.1% | 17% | 1x | [보기](C0722_candle_ALL_4h.md) |
 | C723 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 1.75 | 1.64 | 71 | +70.1% | 39% | 0.5x | [보기](C0723_squeeze_DOGEUSDT_4h.md) |
 | C725 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.66 | 2.01 | 129 | +64.0% | 46% | 1x | [보기](C0725_positioning_BTCUSDT_1h.md) |
+| C726 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | TRXUSDT/LINKUSDT | 30m | 1.74 | 2.00 | 67 | +16.6% | 19% | 2.5x | [보기](C0726_pairs_TRXUSDT-LINKUSDT_30m.md) |
