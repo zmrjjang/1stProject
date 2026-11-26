@@ -10,7 +10,7 @@
 | C427 | B | 거래량 급증 돌파 | ALL | 4h | 1.83 | 2.23 | 299 | +28.6% | 17% | 0.5x | [보기](C0427_vol_breakout_ALL_4h.md) |
 | C438 | B | 아룬 추세 | ETHUSDT | 1h | 1.71 | 2.51 | 57 | +75.7% | 21% | 1x | [보기](C0438_aroon_ETHUSDT_1h.md) |
 | C440 | B | 롤링 VWAP 이격 | ALL | 1h | 1.80 | 2.19 | 244 | +33.4% | 18% | 1x | [보기](C0440_vwap_dev_ALL_1h.md) |
-| C441 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 30m | 1.78 | 1.60 | 71 | +65.3% | 17% | 1x | [보기](C0441_squeeze_ETHUSDT_30m.md) |
+| C441 | B | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ETHUSDT | 1h | 1.83 | 1.84 | 55 | +49.8% | 13% | 1.5x | [보기](C0441_squeeze_ETHUSDT_1h.md) |
 | C445 | B | 선형회귀 추세 유의성 | ETHUSDT | 1h | 1.56 | 1.78 | 54 | +39.4% | 18% | 1.5x | [보기](C0445_linreg_ETHUSDT_1h.md) |
 | C464 | B | 시장 구조 (고점·저점 낮아짐) | ALL | 1h | 1.96 | 2.48 | 194 | +23.6% | 7% | 1x | [보기](C0464_structure_ALL_1h.md) |
 | C496 | B | 롱/숏 비율 포지셔닝 | BTCUSDT | 30m | 1.77 | 1.52 | 76 | +51.5% | 21% | 1.5x | [보기](C0496_positioning_BTCUSDT_30m.md) |
@@ -75,7 +75,6 @@
 | C629 | C | 롤링 VWAP 이격 | ZECUSDT | 15m | 1.91 | 2.36 | 106 | +34.4% | 30% | 1x | [보기](C0629_vwap_dev_ZECUSDT_15m.md) |
 | C636 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ALL | 1h | 2.54 | 1.84 | 168 | +8.8% | 5% | 1.5x | [보기](C0636_zscore_mr_ALL_1h.md) |
 | C639 | C | RSI 과매도/과매수 역추세 | ZECUSDT | 15m | 2.03 | 2.50 | 70 | +20.1% | 16% | 1x | [보기](C0639_rsi_mr_ZECUSDT_15m.md) |
-| C644 | C | 켈트너 채널 | ETHUSDT | 30m | 1.65 | 1.62 | 56 | +16.9% | 13% | 3.5x | [보기](C0644_keltner_ETHUSDT_30m.md) |
 | C645 | C | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.65 | 1.76 | 79 | +40.4% | 28% | 1.5x | [보기](C0645_positioning_SOLUSDT_30m.md) |
 | C651 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/BNBUSDT | 15m | 2.06 | 1.66 | 108 | +24.4% | 16% | 2.5x | [보기](C0651_pairs_XRPUSDT-BNBUSDT_15m.md) |
 | C655 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | BNBUSDT/ETHUSDT | 15m | 1.64 | 1.90 | 115 | +23.2% | 24% | 2x | [보기](C0655_pairs_BNBUSDT-ETHUSDT_15m.md) |
@@ -108,3 +107,4 @@
 | C723 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | DOGEUSDT | 4h | 1.75 | 1.64 | 71 | +70.1% | 39% | 0.5x | [보기](C0723_squeeze_DOGEUSDT_4h.md) |
 | C725 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.66 | 2.01 | 129 | +64.0% | 46% | 1x | [보기](C0725_positioning_BTCUSDT_1h.md) |
 | C726 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | TRXUSDT/LINKUSDT | 30m | 1.74 | 2.00 | 67 | +16.6% | 19% | 2.5x | [보기](C0726_pairs_TRXUSDT-LINKUSDT_30m.md) |
+| C727 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ZECUSDT | 15m | 1.75 | 2.33 | 121 | +37.0% | 22% | 1.5x | [보기](C0727_zscore_mr_ZECUSDT_15m.md) |
