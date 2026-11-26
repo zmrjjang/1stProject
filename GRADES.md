@@ -1,6 +1,6 @@
 # A·B 등급 전략 모음
 
-자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-26 03:14 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
+자동 탐색기가 갱신합니다 (마지막 갱신: 2026-11-26 13:54 UTC). 백테스트 기간: 학습 ~2024-01-01 / 검증 ~2025-07-01 / 홀드아웃(최근) 2025-07-01~. 모든 수치는 레버리지 1x, 비용 반영 기준.
 
 - **A등급**: 엄격한 과최적화 검정(Deflated Sharpe Ratio)까지 통과
 - **B등급**: 학습·검증·홀드아웃 샤프 모두 ≥ 1.5, 최대낙폭 ≤ 25%, 거래 ≥ 300회, 비용 2배 샤프 ≥ 1.0, 파라미터 근방 88% 이상 수익 (DSR 검정 없음)
@@ -91,6 +91,7 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C561 | 선형회귀 추세 유의성 | XRPUSDT | 30m | 1.11 | 2.35 | 2.04 | +65.4% | 51% | [보기](research/candidates/C0561_linreg_XRPUSDT_30m.md) |
 | C | C560 | 선형회귀 추세 유의성 | DOGEUSDT | 15m | 1.70 | 2.19 | 2.03 | +123.3% | 43% | [보기](research/candidates/C0560_linreg_DOGEUSDT_15m.md) |
 | C | C583 | 선형회귀 추세 유의성 | SOLUSDT | 30m | 1.11 | 1.94 | 2.10 | +52.5% | 26% | [보기](research/candidates/C0583_linreg_SOLUSDT_30m.md) |
+| C | C588 | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.14 | 1.89 | 1.94 | +58.4% | 33% | [보기](research/candidates/C0588_heikin_DOGEUSDT_4h.md) |
 | C | C605 | MACD | DOGEUSDT | 4h | 1.89 | 1.84 | 2.36 | +74.3% | 36% | [보기](research/candidates/C0605_macd_DOGEUSDT_4h.md) |
 | B | C522 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ALL | 4h | 1.73 | 1.76 | 2.12 | +11.5% | 8% | [보기](research/candidates/C0522_squeeze_ALL_4h.md) |
 | C | C701 | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.04 | 1.83 | 1.75 | +59.6% | 30% | [보기](research/candidates/C0701_squeeze_ZECUSDT_1h.md) |
@@ -100,7 +101,6 @@ python run_strategy.py paper --pick C1,C20 --loop                  # 원하는 �
 | C | C645 | 롱/숏 비율 포지셔닝 | SOLUSDT | 30m | 1.28 | 1.65 | 1.76 | +40.4% | 28% | [보기](research/candidates/C0645_positioning_SOLUSDT_30m.md) |
 | C | C688 | 아룬 추세 | XRPUSDT | 1h | 1.36 | 1.65 | 1.79 | +54.2% | 39% | [보기](research/candidates/C0688_aroon_XRPUSDT_1h.md) |
 | B | C531 | 파라볼릭 SAR | DOGEUSDT | 4h | 1.69 | 1.64 | 1.63 | +46.7% | 19% | [보기](research/candidates/C0531_psar_DOGEUSDT_4h.md) |
-| C | C588 | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.20 | 2.03 | 1.63 | +73.5% | 57% | [보기](research/candidates/C0588_heikin_DOGEUSDT_4h.md) |
 | C | C716 | 펀딩비 쏠림 | ETHUSDT | 30m | 1.22 | 1.67 | 1.63 | +48.9% | 27% | [보기](research/candidates/C0716_funding_ETHUSDT_30m.md) |
 | C | C689 | 하방 변동성 확대 (레버리지 효과) | ETHUSDT | 1h | 1.09 | 1.61 | 1.64 | +25.1% | 23% | [보기](research/candidates/C0689_vol_down_ETHUSDT_1h.md) |
 | C | C715 | 슈퍼트렌드 | XRPUSDT | 1h | 1.41 | 1.58 | 2.18 | +44.3% | 20% | [보기](research/candidates/C0715_supertrend_XRPUSDT_1h.md) |

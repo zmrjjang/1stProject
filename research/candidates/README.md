@@ -62,8 +62,7 @@
 | C576 | C | 캔들 패턴 | ALL | 4h | 1.81 | 2.18 | 209 | +16.5% | 15% | 1x | [보기](C0576_candle_ALL_4h.md) |
 | C583 | C | 선형회귀 추세 유의성 | SOLUSDT | 30m | 1.94 | 2.10 | 64 | +52.5% | 26% | 1x | [보기](C0583_linreg_SOLUSDT_30m.md) |
 | C587 | C | 롱/숏 비율 포지셔닝 | ALL | 1h | 2.48 | 2.64 | 443 | +42.4% | 23% | 1x | [보기](C0587_positioning_ALL_1h.md) |
-| C588 | C | 하이킨아시 연속봉 | DOGEUSDT | 4h | 2.03 | 1.63 | 140 | +73.5% | 57% | 0.5x | [보기](C0588_heikin_DOGEUSDT_4h.md) |
-| C596 | C | 일목균형표 | ALL | 1h | 1.62 | 2.29 | 452 | +25.7% | 25% | 1x | [보기](C0596_ichimoku_ALL_1h.md) |
+| C588 | C | 하이킨아시 연속봉 | DOGEUSDT | 4h | 1.89 | 1.94 | 135 | +58.4% | 33% | 1x | [보기](C0588_heikin_DOGEUSDT_4h.md) |
 | C597 | C | 아룬 추세 | ALL | 1h | 2.09 | 2.49 | 186 | +22.9% | 24% | 1x | [보기](C0597_aroon_ALL_1h.md) |
 | C601 | C | 롱/숏 비율 포지셔닝 | ALL | 4h | 2.40 | 2.22 | 352 | +29.7% | 14% | 1x | [보기](C0601_positioning_ALL_4h.md) |
 | C602 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | ZECUSDT | 15m | 2.98 | 1.66 | 69 | +27.7% | 15% | 1x | [보기](C0602_rally_fade_ZECUSDT_15m.md) |
@@ -108,3 +107,4 @@
 | C725 | C | 롱/숏 비율 포지셔닝 | BTCUSDT | 1h | 1.66 | 2.01 | 129 | +64.0% | 46% | 1x | [보기](C0725_positioning_BTCUSDT_1h.md) |
 | C726 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | TRXUSDT/LINKUSDT | 30m | 1.74 | 2.00 | 67 | +16.6% | 19% | 2.5x | [보기](C0726_pairs_TRXUSDT-LINKUSDT_30m.md) |
 | C727 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | ZECUSDT | 15m | 1.75 | 2.33 | 121 | +37.0% | 22% | 1.5x | [보기](C0727_zscore_mr_ZECUSDT_15m.md) |
+| C728 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/LINKUSDT | 15m | 1.92 | 2.05 | 155 | +24.6% | 23% | 2x | [보기](C0728_pairs_XRPUSDT-LINKUSDT_15m.md) |
