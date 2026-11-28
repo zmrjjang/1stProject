@@ -92,7 +92,6 @@
 | C701 | C | 변동성 수축 후 돌파 (볼린저 스퀴즈) | ZECUSDT | 1h | 1.83 | 1.75 | 70 | +59.6% | 30% | 0.5x | [보기](C0701_squeeze_ZECUSDT_1h.md) |
 | C702 | C | 횡단면 모멘텀/리버설 (10개 코인 순위) | ALL | 1d | 2.02 | 1.97 | 61 | +128.5% | 60% | 0.5x | [보기](C0702_xsmom_ALL_1d.md) |
 | C704 | C | 일목균형표 | XRPUSDT | 4h | 1.57 | 1.89 | 97 | +37.7% | 26% | 1.5x | [보기](C0704_ichimoku_XRPUSDT_4h.md) |
-| C708 | C | 하락추세 반등 매도 (상승추세 눌림 매수) | LINKUSDT | 15m | 1.63 | 2.29 | 71 | +27.4% | 21% | 2x | [보기](C0708_rally_fade_LINKUSDT_15m.md) |
 | C715 | C | 슈퍼트렌드 | XRPUSDT | 1h | 1.58 | 2.18 | 64 | +44.3% | 20% | 1x | [보기](C0715_supertrend_XRPUSDT_1h.md) |
 | C716 | C | 펀딩비 쏠림 | ETHUSDT | 30m | 1.67 | 1.63 | 61 | +48.9% | 27% | 1x | [보기](C0716_funding_ETHUSDT_30m.md) |
 | C717 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/ZECUSDT | 1h | 1.79 | 1.68 | 86 | +35.0% | 24% | 1.5x | [보기](C0717_pairs_XRPUSDT-ZECUSDT_1h.md) |
@@ -108,3 +107,4 @@
 | C728 | C | 페어 트레이딩 (공적분 스프레드 평균회귀) | XRPUSDT/LINKUSDT | 15m | 1.92 | 2.05 | 155 | +24.6% | 23% | 2x | [보기](C0728_pairs_XRPUSDT-LINKUSDT_15m.md) |
 | C729 | C | 미결제약정(OI) × 가격 | ALL | 30m | 2.05 | 1.84 | 230 | +8.2% | 6% | 0.5x | [보기](C0729_oi_trend_ALL_30m.md) |
 | C730 | C | 일목균형표 | ALL | 1h | 1.64 | 2.36 | 354 | +21.7% | 22% | 1x | [보기](C0730_ichimoku_ALL_1h.md) |
+| C731 | C | Ornstein-Uhlenbeck 평균회귀 (z-score) | XRPUSDT | 15m | 1.88 | 1.85 | 53 | +20.0% | 21% | 1x | [보기](C0731_zscore_mr_XRPUSDT_15m.md) |
